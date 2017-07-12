@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error == nil {
                 print("Success")
             } else {
-                print("Error")
+                print("Error: Couldn't sign in.")
             }
         })
         return true
