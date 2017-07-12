@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
-        Auth.auth().signIn(withEmail: "test@fireswiffer.com", password: "test@fireswiffer.com", completion: { (user:User?, error: NSError?) in
+        
+        Auth.auth().signIn(withEmail: "test@fireswiffer.com", password: "test@fireswiffer.com", completion: {(user:User?, error:Error?) in
             if error == nil {
-                print(user?.email)
+                print("Success")
             } else {
-                print(error?.description)
+                print("Error")
             }
         })
         return true
