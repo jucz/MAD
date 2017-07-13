@@ -12,18 +12,34 @@
         <!--FireSwiffer-->
         <scene sceneID="Txd-4i-ozT">
             <objects>
-                <tableViewController id="Er9-gL-5TF" sceneMemberID="viewController">
+                <tableViewController id="Er9-gL-5TF" customClass="SweetsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dOg-vA-zjQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aI4-QR-Scj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="KSt-Fi-IuK" detailTextLabel="SHq-ra-nfc" style="IBUITableViewCellStyleSubtitle" id="aI4-QR-Scj">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aI4-QR-Scj" id="oxM-Kc-WIX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KSt-Fi-IuK">
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SHq-ra-nfc">
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -34,7 +50,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="FireSwiffer" id="c0k-6N-kCd">
                         <barButtonItem key="leftBarButtonItem" title="Login" id="Bp7-yw-aYe"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xvr-Zt-SzP"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xvr-Zt-SzP">
+                            <connections>
+                                <action selector="addSweet:" destination="Er9-gL-5TF" id="Vmh-3c-QEy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLz-Ed-BjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,7 +66,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fwy-hb-3HZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="l2q-Qm-gpk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l2q-Qm-gpk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.70523537154826244" blue="0.081869447146556973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

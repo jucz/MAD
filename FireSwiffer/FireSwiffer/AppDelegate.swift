@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         
-        Auth.auth().signIn(withEmail: "test@fireswiffer.com", password: "test@fireswiffer.com", completion: {(user:User?, error:Error?) in
+        Auth.auth().signIn(withEmail: "test@app.de", password: "123456", completion: {(user,error) in
             if error == nil {
-                print("Success")
+                print("User-Email: "+(user?.email)!)
             } else {
-                print("Error: Couldn't sign in.")
+                print("ANMELDUNG FEHLGESCHLAGEN: "+error!.localizedDescription)
             }
         })
         return true
@@ -52,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 

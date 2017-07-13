@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>545812605050-41p5k9osnpitgfij4ql6teksk6m6ej4u.apps.googleusercontent.com</string>
+	<string>33178384142-fesvrphur76cok0l00emarr4hjou9hin.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.545812605050-41p5k9osnpitgfij4ql6teksk6m6ej4u</string>
+	<string>com.googleusercontent.apps.33178384142-fesvrphur76cok0l00emarr4hjou9hin</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBCnEM4Zjm0fDPYumpVukenMAOoJIGuKlY</string>
+	<string>AIzaSyC_2c2F5wOSmrXYyBLvZNJQD7Cw3wgDqF4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>545812605050</string>
+	<string>33178384142</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>FireSwiffer</string>
+	<string>de.Tutorial.FireSwiffer</string>
 	<key>PROJECT_ID</key>
-	<string>fireswiffer-f4a92</string>
+	<string>fireswiffer-84a64</string>
 	<key>STORAGE_BUCKET</key>
-	<string>fireswiffer-f4a92.appspot.com</string>
+	<string>fireswiffer-84a64.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:545812605050:ios:e583978ccf264138</string>
+	<string>1:33178384142:ios:42f71cb74685d6c2</string>
 	<key>DATABASE_URL</key>
-	<string>https://fireswiffer-f4a92.firebaseio.com</string>
+	<string>https://fireswiffer-84a64.firebaseio.com</string>
 </dict>
 </plist>
