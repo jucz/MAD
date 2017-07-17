@@ -32,16 +32,37 @@ struct User {
     }
     
     //Others
-    public func toAnyObject() -> Any {
+    //Convert Object to Any. Result can be saved to Firebase.
+    public func toAny() -> Any {
+        //TESTDATEN
+        let blockedUsers = self.toAny(array: ["olaf@app.de", "peter@app.de"])
+        //ENDE TESTDATEN
         return [
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "exercisesOwned": self.exercisesOwned,
-            "blocked": self.blocked,
+            "blocked": blockedUsers, //self.blocked
             "roomsAsTeacher": self.roomsAsTeacher,
             "roomsAsStudent": self.roomsAsStudent
         ]
+    }
+    
+    //Converts an Array to a directory which can be saved in Firebase as Any
+    public func toAny(array: [String]?) -> Any? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:String] = [:]
+        for element in array! {
+            list[User.convertEmail(email: element)] = element
+        }
+        return list
+    }
+    
+    //Convert all not allowed charakters to alternative substrings
+    public static func convertEmail(email: String) -> String {
+        return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }
     
     

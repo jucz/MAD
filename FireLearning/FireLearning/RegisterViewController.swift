@@ -12,7 +12,10 @@ import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     
+    //JULIAN
     let rootRef = Database.database().reference()
+    //ENDE JULIAN
+    
     
     //Custom Back-Button
     @IBAction func backButton(_ sender: Any) {
@@ -135,13 +138,9 @@ class RegisterViewController: UIViewController {
     
     //JULIAN
     public func createUserInDB(user: User) {
-        let email: String = self.convertEmail(email: user.getEmail())
-        self.rootRef.setValue(email)
-        self.rootRef.child(email).setValue(user.toAnyObject())
-    }
-    
-    private func convertEmail(email: String) -> String {
-        return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
+        let email: String = User.convertEmail(email: user.getEmail())
+        let ref = self.rootRef.child("users")
+        ref.child(email).setValue(user.toAny())
     }
     //ENDE JULIAN
 }
