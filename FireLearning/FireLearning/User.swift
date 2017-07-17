@@ -5,17 +5,21 @@ import FirebaseAuth
 
 struct User {
   
-  let uid: String
-  let email: String
+    let email: String
+    let firstname: String
+    let lastname: String
+    var exercisesOwned = [Int:String]()
+    
   
-  /*init(authData: FIRUser) {
-    uid = authData.uid
-    email = authData.email!
-  }*/
+    /*init(authData: FIRUser) {
+     uid = authData.uid
+     email = authData.email!
+     }*/
   
-  init(uid: String, email: String) {
-    self.uid = uid
-    self.email = email
-  }
+    init(email: String, firstname: String, lastname: String) {
+        self.email = email
+        self.firstname = firstname
+        self.lastname = lastname
+    }
   
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     //Custom Back-Button
@@ -121,4 +122,16 @@ class RegisterViewController: UIViewController {
         _textField.layer.borderColor = myColor.cgColor
         _textField.layer.borderWidth = 1.0
     }
+    
+    //JULIAN
+    public func createUserInDB() {
+        var ref = Database.database().reference(withPath: "users")
+
+    }
+    //ENDE JULIAN
 }
+
+
+
+
+
