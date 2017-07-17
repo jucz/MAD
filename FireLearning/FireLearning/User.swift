@@ -37,14 +37,18 @@ struct User {
         //TESTDATEN
         let blockedUsers = self.toAny(array: ["olaf@app.de", "peter@app.de"])
         //ENDE TESTDATEN
+        let blocked = self.toAny(array: self.blocked)
+        let roomsAsTeacher = self.toAny(array: self.roomsAsTeacher)
+        let roomsAsStudent = self.toAny(array: self.roomsAsStudent)
+        
         return [
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "exercisesOwned": self.exercisesOwned,
-            "blocked": blockedUsers, //self.blocked
-            "roomsAsTeacher": self.roomsAsTeacher,
-            "roomsAsStudent": self.roomsAsStudent
+            "blocked": blockedUsers, //blocked
+            "roomsAsTeacher": roomsAsTeacher,
+            "roomsAsStudent": roomsAsStudent
         ]
     }
     
@@ -56,6 +60,17 @@ struct User {
         var list: [String:String] = [:]
         for element in array! {
             list[User.convertEmail(email: element)] = element
+        }
+        return list
+    }
+    
+    public func toAny(array: [Int]?) -> Any? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:Int] = [:]
+        for element in array! {
+            list["\(element)"] = element
         }
         return list
     }
