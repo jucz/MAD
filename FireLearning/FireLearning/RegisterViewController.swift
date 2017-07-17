@@ -11,6 +11,9 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
+    
+    let rootRef = Database.database().reference()
+    
     //Custom Back-Button
     @IBAction func backButton(_ sender: Any) {
         performSegue(withIdentifier: "backToLogin", sender: self)
@@ -108,6 +111,13 @@ class RegisterViewController: UIViewController {
                                         }
             }
             
+            //JULIAN
+            let user = User(email: emailTextField.text!,
+                            firstname: vornameTextField.text!,
+                            lastname: nachnameTextField.text!)
+            self.createUserInDB(user: user)
+            //ENDE JULIAN
+            
             return true
         }
     }
@@ -124,9 +134,14 @@ class RegisterViewController: UIViewController {
     }
     
     //JULIAN
-    public func createUserInDB() {
-        var ref = Database.database().reference(withPath: "users")
-
+    public func createUserInDB(user: User) {
+        let email: String = self.convertEmail(email: user.getEmail())
+        self.rootRef.setValue(email)
+        self.rootRef.child(email).setValue(user.toAnyObject())
+    }
+    
+    private func convertEmail(email: String) -> String {
+        return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }
     //ENDE JULIAN
 }

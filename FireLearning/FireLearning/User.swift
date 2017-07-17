@@ -30,5 +30,28 @@ struct User {
         self.firstname = firstname
         self.lastname = lastname
     }
+    
+    //Others
+    public func toAnyObject() -> Any {
+        return [
+            "email": self.email,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            "exercisesOwned": self.exercisesOwned,
+            "blocked": self.blocked,
+            "roomsAsTeacher": self.roomsAsTeacher,
+            "roomsAsStudent": self.roomsAsStudent
+        ]
+    }
+    
+    
+    //Setter
+    //Not necessary yet
+    
+    
+    //Getter
+    public func getEmail() -> String {
+        return self.email
+    }
   
 }
