@@ -60,7 +60,7 @@ struct User {
         return list
     }
     
-    //Convert all not allowed charakters to alternative substrings
+    //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {
         return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }

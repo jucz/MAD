@@ -13,7 +13,7 @@ import FirebaseDatabase
 class RegisterViewController: UIViewController {
     
     //JULIAN
-    let rootRef = Database.database().reference()
+    let rootRef = Database.database().reference() //root of database / top of the tree
     //ENDE JULIAN
     
     
