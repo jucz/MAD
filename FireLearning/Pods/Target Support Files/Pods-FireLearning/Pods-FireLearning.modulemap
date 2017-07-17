@@ -1,0 +1,6 @@
+framework module Pods_FireLearning {
+  umbrella header "Pods-FireLearning-umbrella.h"
+
+  export *
+  module * { export * }
+}
