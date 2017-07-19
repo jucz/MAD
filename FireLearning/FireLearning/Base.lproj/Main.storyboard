@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -205,7 +205,7 @@
         <!--Einstellungen View Controller-->
         <scene sceneID="xag-ct-dn8">
             <objects>
-                <viewController id="ljm-Iz-0Ft" userLabel="Einstellungen View Controller" sceneMemberID="viewController">
+                <viewController id="ljm-Iz-0Ft" userLabel="Einstellungen View Controller" customClass="SettingsViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZg-Lu-oz0"/>
                         <viewControllerLayoutGuide type="bottom" id="oVU-JN-WUf"/>
@@ -233,7 +233,7 @@
         <!--Aufgaben View Controller-->
         <scene sceneID="eu7-eP-shN">
             <objects>
-                <viewController id="G32-yh-290" userLabel="Aufgaben View Controller" sceneMemberID="viewController">
+                <viewController id="G32-yh-290" userLabel="Aufgaben View Controller" customClass="ExercisesViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s7h-QP-Mi8"/>
                         <viewControllerLayoutGuide type="bottom" id="VOo-eB-LaV"/>
@@ -252,7 +252,7 @@
         <!--Klassenräume View Controller-->
         <scene sceneID="Y9x-tu-2dq">
             <objects>
-                <viewController id="kjB-uN-cAa" userLabel="Klassenräume View Controller" sceneMemberID="viewController">
+                <viewController id="kjB-uN-cAa" userLabel="Klassenräume View Controller" customClass="RoomsViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2V5-8J-fDX"/>
                         <viewControllerLayoutGuide type="bottom" id="KWv-XS-WWZ"/>
@@ -271,7 +271,7 @@
         <!--Dashboard View Controller-->
         <scene sceneID="idS-Vh-uQw">
             <objects>
-                <viewController id="kMR-SH-ck6" userLabel="Dashboard View Controller" sceneMemberID="viewController">
+                <viewController id="kMR-SH-ck6" userLabel="Dashboard View Controller" customClass="DashboardViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KlK-Uv-vcw"/>
                         <viewControllerLayoutGuide type="bottom" id="Sts-sf-GX8"/>
