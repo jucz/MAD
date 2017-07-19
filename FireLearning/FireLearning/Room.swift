@@ -34,6 +34,11 @@ struct Room {
     public mutating func addStudent(email: String) {
         self.students?.append(email)
     }
+    
+    public mutating func addExercise(exercise: Exercise, start: Date, end: Date) {
+        self.exercises?.append(ExerciseExported(exercise: exercise, start: start, end: end))
+    }
+    
 
     
     
