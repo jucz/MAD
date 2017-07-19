@@ -30,6 +30,10 @@ struct Room {
         self.students = room.students
         self.exercises = room.exercises
     }
+    
+    public mutating func addStudent(email: String) {
+        self.students?.append(email)
+    }
 
     
     

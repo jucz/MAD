@@ -2,8 +2,11 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseDatabase
 
 struct User {
+    
+    static var rootRef = Database.database().reference()
   
     let email: String
     let firstname: String
@@ -32,6 +35,12 @@ struct User {
     }
     
     //Others
+    public func createUserInDB() {
+        let email: String = User.convertEmail(email: self.email)
+        let ref = User.rootRef.child("users")
+        ref.child(email).setValue(self.toAny())
+    }
+    
     //Convert Object to Any. Result can be saved to Firebase.
     public func toAny() -> Any {
         //TESTDATEN

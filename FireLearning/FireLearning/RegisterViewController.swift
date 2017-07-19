@@ -111,15 +111,16 @@ class RegisterViewController: UIViewController {
                                        password: passwortTextField.text!) { user, error in
                                         if error == nil {
                                             print("user erstellt")
+                                            //JULIAN
+                                            let user = User(email: self.emailTextField.text!,
+                                                            firstname: self.vornameTextField.text!,
+                                                            lastname: self.nachnameTextField.text!)
+                                            user.createUserInDB()
+                                            //ENDE JULIAN
                                         }
             }
             
-            //JULIAN
-            let user = User(email: emailTextField.text!,
-                            firstname: vornameTextField.text!,
-                            lastname: nachnameTextField.text!)
-            self.createUserInDB(user: user)
-            //ENDE JULIAN
+            
             
             return true
         }
@@ -136,13 +137,6 @@ class RegisterViewController: UIViewController {
         _textField.layer.borderWidth = 1.0
     }
     
-    //JULIAN
-    public func createUserInDB(user: User) {
-        let email: String = User.convertEmail(email: user.email)
-        let ref = self.rootRef.child("users")
-        ref.child(email).setValue(user.toAny())
-    }
-    //ENDE JULIAN
 }
 
 
