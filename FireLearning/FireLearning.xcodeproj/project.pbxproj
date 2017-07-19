@@ -25,6 +25,10 @@
 		849FF9361F1A5A64006D99F3 /* FireLearningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF9351F1A5A64006D99F3 /* FireLearningTests.swift */; };
 		849FF9411F1A5A65006D99F3 /* FireLearningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF9401F1A5A65006D99F3 /* FireLearningUITests.swift */; };
 		849FF94F1F1A5A95006D99F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */; };
+		84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */; };
+		84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */; };
+		84DC14611F1F5F1700ACBD89 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC14601F1F5F1700ACBD89 /* RoomsViewController.swift */; };
+		84DC14631F1F5F5C00ACBD89 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC14621F1F5F5C00ACBD89 /* ExercisesViewController.swift */; };
 		FEDF341CBEAC00BAC75E61AD /* Pods_FireLearning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3D891403BBA863A4B17041 /* Pods_FireLearning.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +75,10 @@
 		849FF9401F1A5A65006D99F3 /* FireLearningUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireLearningUITests.swift; sourceTree = "<group>"; };
 		849FF9421F1A5A65006D99F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		84DC14601F1F5F1700ACBD89 /* RoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		84DC14621F1F5F5C00ACBD89 /* ExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		AD0C968B93A9E31AED3EDD1D /* Pods-FireLearningTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningTests/Pods-FireLearningTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF724BA208622254D54AF103 /* Pods-FireLearningTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningTests/Pods-FireLearningTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB0725389C1A092183785B04 /* Pods-FireLearningUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningUITests/Pods-FireLearningUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +206,10 @@
 		84DC14591F1F5D5300ACBD89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */,
+				84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */,
+				84DC14601F1F5F1700ACBD89 /* RoomsViewController.swift */,
+				84DC14621F1F5F5C00ACBD89 /* ExercisesViewController.swift */,
 				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
 				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
 			);
@@ -516,11 +528,15 @@
 			files = (
 				849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */,
 				849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */,
+				84DC14631F1F5F5C00ACBD89 /* ExercisesViewController.swift in Sources */,
+				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
 				84777D5A1F1C941C004324A2 /* User.swift in Sources */,
 				84777D581F1C89FA004324A2 /* RegisterViewController.swift in Sources */,
+				84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */,
 				0AD4069B1F1D2E9700FD2533 /* ExerciseExported.swift in Sources */,
+				84DC14611F1F5F1700ACBD89 /* RoomsViewController.swift in Sources */,
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,
