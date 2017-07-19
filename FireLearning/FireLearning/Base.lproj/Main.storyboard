@@ -233,7 +233,7 @@
         <!--Aufgaben View Controller-->
         <scene sceneID="eu7-eP-shN">
             <objects>
-                <viewController id="G32-yh-290" userLabel="Aufgaben View Controller" customClass="ExercisesTableViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="G32-yh-290" userLabel="Aufgaben View Controller" customClass="ExercisesViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s7h-QP-Mi8"/>
                         <viewControllerLayoutGuide type="bottom" id="VOo-eB-LaV"/>
@@ -247,7 +247,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0K4-hq-wYT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="0K4-hq-wYT">
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0K4-hq-wYT" id="B7c-NE-dxw">
@@ -261,6 +261,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Aufgaben" id="HUl-yI-dau" userLabel="Aufgaben"/>
+                    <connections>
+                        <outlet property="tableView" destination="uJZ-dp-jY0" id="7Mk-Sv-AVf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orU-6W-qBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
