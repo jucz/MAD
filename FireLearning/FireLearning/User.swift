@@ -86,8 +86,6 @@ struct User {
     
     
     //Getter
-    public func getEmail() -> String {
-        return self.email
-    }
+    //Not necessary yet
   
 }

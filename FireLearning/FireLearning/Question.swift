@@ -19,6 +19,13 @@ struct Question {
         self.answers = answers
     }
     
+    init(question: Question) {
+        self.qid = question.qid
+        self.question = question.question
+        self.answerIndex = question.answerIndex
+        self.answers = question.answers
+    }
+    
     
     //Other
     public mutating func addAnswer(answer: String){
@@ -29,17 +36,21 @@ struct Question {
     
     
     //Setter
-    public mutating func setQuestion(question: String){
+    /*public mutating func setQuestion(question: String){
         self.question = question
     }
     
     public mutating func setAnswerIndex(answerIndex: Int){
         self.answerIndex = answerIndex
-    }
+    }*/
     
     //Getter
-    public func getQid() -> Int {
+    /*public func getQid() -> Int {
         return self.qid
+    }
+    
+    public func getQuestion() -> String {
+        return self.question
     }
     
     public func getAnswerIndex() -> Int {
@@ -48,7 +59,7 @@ struct Question {
     
     public func getAnswers() -> [String] {
         return self.answers
-    }
+    }*/
     
     
 }

@@ -1,6 +1,8 @@
 
 import Foundation
 
+
+
 struct Exercise {
     
     static var eids: Int = 0
@@ -24,22 +26,22 @@ struct Exercise {
     
     //Other
     public mutating func addQuestion(question: Question){
-        self.questions[question.getQid()] = question
+        self.questions[question.qid] = question
     }
     
     
     //Setter
-    public mutating func setTitle(title: String){
+    /*public mutating func setTitle(title: String){
         self.title = title
     }
     
     public mutating func setQuestions(questions: [Int:Question]){
         self.questions = questions
-    }
+    }*/
     
     
     //Getter
-    public func getEid() -> Int {
+    /*public func getEid() -> Int {
         return self.eid
     }
     
@@ -49,6 +51,6 @@ struct Exercise {
     
     public func getQuestions() -> [Int:Question] {
         return self.questions
-    }
+    }*/
     
 }

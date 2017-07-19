@@ -24,6 +24,13 @@ struct Statistics {
         self.resultDone = resultDone
     }
     
+    init(statistics: Statistics){
+        self.done = statistics.done
+        self.notDone = statistics.notDone
+        self.resultComplete = statistics.resultComplete
+        self.resultDone = statistics.resultDone
+    }
+    
     //Others
     //Wird aufgerufen, um eine Satistik zu berechnen
     public func calculateResults() {
@@ -44,13 +51,21 @@ struct Statistics {
     
     
     //Getter
+    /*public func getDone() -> [String:Int]? {
+        return self.done
+    }
+    
+    public func getNotDone() -> [String]? {
+        return self.notDone
+    }
+    
     public func getResultComplete() -> Int {
         return self.resultComplete
     }
     
     public func getResultDone() -> Int {
         return self.resultDone
-    }
+    }*/
     
     
 }

@@ -3,8 +3,6 @@ import Foundation
 
 struct ExerciseExported {
     
-    static var eids: Int = 0
-    
     var eidCopy: Exercise
     var start: Date
     var end: Date
@@ -14,12 +12,19 @@ struct ExerciseExported {
     //Wird benutzt, um ein ExerciseExported-Objekt zu generieren und dieses unter den exercises
     //eines Rooms abzuspeichern
     init(exercise: Exercise, start: Date, end: Date) {
-        self.eidCopy = Exercise(eid: exercise.getEid(),
-                                title: exercise.getTitle(),
-                                questions: exercise.getQuestions())
+        self.eidCopy = Exercise(eid: exercise.eid,
+                                title: exercise.title,
+                                questions: exercise.questions)
         self.start = start
         self.end = end
         self.statistics = Statistics()
+    }
+    
+    init(exerciseOwned: ExerciseExported) {
+        self.eidCopy = exerciseOwned.eidCopy
+        self.start = exerciseOwned.start
+        self.end = exerciseOwned.end
+        self.statistics = exerciseOwned.statistics
     }
     
     //Setter
@@ -27,7 +32,7 @@ struct ExerciseExported {
     
     
     //Getter
-    public func getEidCopy() -> Exercise {
+    /*public func getEidCopy() -> Exercise {
         return self.eidCopy
     }
     
@@ -41,7 +46,7 @@ struct ExerciseExported {
     
     public func getStatistics() -> Statistics {
         return self.statistics
-    }
+    }*/
     
     
 }

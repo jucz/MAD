@@ -138,7 +138,7 @@ class RegisterViewController: UIViewController {
     
     //JULIAN
     public func createUserInDB(user: User) {
-        let email: String = User.convertEmail(email: user.getEmail())
+        let email: String = User.convertEmail(email: user.email)
         let ref = self.rootRef.child("users")
         ref.child(email).setValue(user.toAny())
     }
