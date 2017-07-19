@@ -156,22 +156,10 @@
 		849FF91C1F1A5A64006D99F3 /* FireLearning */ = {
 			isa = PBXGroup;
 			children = (
-				84777D5B1F1C9841004324A2 /* FireLearning.entitlements */,
-				84777D591F1C941C004324A2 /* User.swift */,
-				0AD406941F1D24CF00FD2533 /* Exercise.swift */,
-				0AD4069A1F1D2E9700FD2533 /* ExerciseExported.swift */,
-				0AD4069C1F1D2F1500FD2533 /* Statistics.swift */,
-				0AD406961F1D24F600FD2533 /* Question.swift */,
-				0AD406981F1D253400FD2533 /* Room.swift */,
-				849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */,
-				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
-				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
-				849FF9211F1A5A64006D99F3 /* Main.storyboard */,
-				849FF9271F1A5A64006D99F3 /* Assets.xcassets */,
-				849FF9291F1A5A64006D99F3 /* LaunchScreen.storyboard */,
-				849FF92C1F1A5A64006D99F3 /* Info.plist */,
-				849FF9241F1A5A64006D99F3 /* FireLearning.xcdatamodeld */,
-				849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */,
+				84DC145B1F1F5D9B00ACBD89 /* Storyboard */,
+				84DC145A1F1F5D7400ACBD89 /* Other */,
+				84DC14591F1F5D5300ACBD89 /* Controller */,
+				84DC14581F1F5D1600ACBD89 /* Classes */,
 			);
 			path = FireLearning;
 			sourceTree = "<group>";
@@ -192,6 +180,50 @@
 				849FF9421F1A5A65006D99F3 /* Info.plist */,
 			);
 			path = FireLearningUITests;
+			sourceTree = "<group>";
+		};
+		84DC14581F1F5D1600ACBD89 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84777D591F1C941C004324A2 /* User.swift */,
+				0AD406941F1D24CF00FD2533 /* Exercise.swift */,
+				0AD4069A1F1D2E9700FD2533 /* ExerciseExported.swift */,
+				0AD4069C1F1D2F1500FD2533 /* Statistics.swift */,
+				0AD406961F1D24F600FD2533 /* Question.swift */,
+				0AD406981F1D253400FD2533 /* Room.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		84DC14591F1F5D5300ACBD89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
+				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		84DC145A1F1F5D7400ACBD89 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				84777D5B1F1C9841004324A2 /* FireLearning.entitlements */,
+				849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */,
+				849FF9271F1A5A64006D99F3 /* Assets.xcassets */,
+				849FF9291F1A5A64006D99F3 /* LaunchScreen.storyboard */,
+				849FF92C1F1A5A64006D99F3 /* Info.plist */,
+				849FF9241F1A5A64006D99F3 /* FireLearning.xcdatamodeld */,
+				849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		84DC145B1F1F5D9B00ACBD89 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				849FF9211F1A5A64006D99F3 /* Main.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
