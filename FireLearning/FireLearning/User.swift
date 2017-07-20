@@ -1,13 +1,9 @@
 
 
 import Foundation
-import FirebaseAuth
-import FirebaseDatabase
 
 struct User {
-    
-    static var rootRef = Database.database().reference()
-  
+      
     let email: String
     let firstname: String
     let lastname: String
@@ -36,19 +32,19 @@ struct User {
     
     //Others
     public func createUserInDB() {
-        let email: String = User.convertEmail(email: self.email)
-        let ref = User.rootRef.child("users")
+        let email: String = Helpers.convertEmail(email: self.email)
+        let ref = Helpers.rootRef.child("users")
         ref.child(email).setValue(self.toAny())
     }
     
     //Convert Object to Any. Result can be saved to Firebase.
     public func toAny() -> Any {
         //TESTDATEN
-        let blockedUsers = self.toAny(array: ["olaf@app.de", "peter@app.de"])
+        let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
         //ENDE TESTDATEN
-        let blocked = self.toAny(array: self.blocked)
-        let roomsAsTeacher = self.toAny(array: self.roomsAsTeacher)
-        let roomsAsStudent = self.toAny(array: self.roomsAsStudent)
+        let blocked = Helpers.toAny(array: self.blocked)
+        let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
+        let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
         
         return [
             "email": self.email,
@@ -59,34 +55,6 @@ struct User {
             "roomsAsTeacher": roomsAsTeacher,
             "roomsAsStudent": roomsAsStudent
         ]
-    }
-    
-    //Converts an Array to a directory which can be saved in Firebase as Any
-    public func toAny(array: [String]?) -> Any? {
-        if array == nil {
-            return nil
-        }
-        var list: [String:String] = [:]
-        for element in array! {
-            list[User.convertEmail(email: element)] = element
-        }
-        return list
-    }
-    
-    public func toAny(array: [Int]?) -> Any? {
-        if array == nil {
-            return nil
-        }
-        var list: [String:Int] = [:]
-        for element in array! {
-            list["\(element)"] = element
-        }
-        return list
-    }
-    
-    //Convert all not allowed characters to alternative substrings
-    public static func convertEmail(email: String) -> String {
-        return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }
     
     

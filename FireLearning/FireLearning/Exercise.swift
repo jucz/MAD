@@ -29,6 +29,18 @@ struct Exercise {
         self.questions[question.qid] = question
     }
     
+    public func toAny() -> Any {
+        var questions = [String:Any]()
+        for element in self.questions {
+            questions["\(element.key)"] = element.value.toAny()
+        }
+        return [
+            "eid": self.eid,
+            "title": self.title,
+            "questions": questions
+        ]
+    }
+    
     
     //Setter
     /*public mutating func setTitle(title: String){

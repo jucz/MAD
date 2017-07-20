@@ -27,6 +27,23 @@ struct ExerciseExported {
         self.statistics = exerciseOwned.statistics
     }
     
+    //Others
+    public func toAny() -> Any {
+        let eidCopy = self.eidCopy.toAny()
+        let statistics = self.statistics.toAny()
+        return [
+            "eidCopy": eidCopy,
+            "start": "\(self.start)",
+            "end": "\(self.end)",
+            "statistics": statistics
+        ]
+    }
+    
+    public mutating func createRoomInDB() {
+        Helpers.rootRef.child("rooms").setValue(self.toAny())
+    }
+    
+    
     //Setter
     //not necessary yet
     

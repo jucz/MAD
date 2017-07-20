@@ -10,8 +10,8 @@ struct Room {
     var admin: String //email of admin
     var description: String?
     var news: String?
-    var students: [String]?
-    var exercises: [ExerciseExported]?
+    var students = [String]()
+    var exercises = [ExerciseExported]()
     
     
     init(title: String, email: String){
@@ -31,12 +31,66 @@ struct Room {
         self.exercises = room.exercises
     }
     
+    //Others
     public mutating func addStudent(email: String) {
-        self.students?.append(email)
+        self.students.append(email)
     }
     
     public mutating func addExercise(exercise: Exercise, start: Date, end: Date) {
-        self.exercises?.append(ExerciseExported(exercise: exercise, start: start, end: end))
+        self.exercises.append(ExerciseExported(exercise: exercise, start: start, end: end))
+    }
+    
+    //Others
+    public func createRoomInDB() {
+        Helpers.rootRef.child("rooms").setValue(self.toAny())
+    }
+    
+    public func toAny() -> Any {
+        let students = Helpers.toAny(array: self.students)
+        var exercises = [Any]()
+        for element in self.exercises {
+            exercises.append(element.toAny())
+        }
+        let description = self.description
+        let news = self.news
+        if description != nil && news != nil {
+            print("\n__________________OKAY________________\n")
+            return [
+                "rid": self.rid,
+                "title": self.title,
+                "admin": self.admin,
+                "description": self.description!,
+                "news": self.news!,
+                "students": students,
+                "exercises": exercises
+            ]
+        } else if description != nil && news == nil {
+            return [
+                "rid": self.rid,
+                "title": self.title,
+                "admin": self.admin,
+                "description": self.description!,
+                "students": students,
+                "exercises": exercises
+            ]
+        } else if description == nil && news != nil {
+            return [
+                "rid": self.rid,
+                "title": self.title,
+                "admin": self.admin,
+                "news": self.news!,
+                "students": students,
+                "exercises": exercises
+            ]
+        } else {
+            return [
+                "rid": self.rid,
+                "title": self.title,
+                "admin": self.admin,
+                "students": students,
+                "exercises": exercises
+            ]
+        }
     }
     
 
