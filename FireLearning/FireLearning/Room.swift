@@ -54,7 +54,6 @@ struct Room {
         let description = self.description
         let news = self.news
         if description != nil && news != nil {
-            print("\n__________________OKAY________________\n")
             return [
                 "rid": self.rid,
                 "title": self.title,
