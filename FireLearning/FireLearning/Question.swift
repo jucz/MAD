@@ -32,6 +32,15 @@ struct Question {
         self.answers.append(answer)
     }
     
+    public func toAny() -> Any {
+        let answers = Helpers.toAny(array: self.answers)
+        return [
+            "qid": self.qid,
+            "question": self.question,
+            "answerIndex": self.answerIndex,
+            "answers": answers
+        ]
+    }
     
     
     

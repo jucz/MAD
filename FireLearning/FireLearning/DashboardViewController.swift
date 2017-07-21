@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-
 var globalUser: User!
 
 class DashboardViewController: UIViewController {

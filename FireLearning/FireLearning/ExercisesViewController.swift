@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ExercisesViewController: UIViewController, UITableViewDataSource {
     

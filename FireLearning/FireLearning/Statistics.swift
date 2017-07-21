@@ -46,6 +46,20 @@ struct Statistics {
         //resultComplete /= ANZAHL ALLER SCHUELER DES ZUGEHOERIGEN RAUMS
     }
     
+    public func toAny() -> Any {
+        let notDone = Helpers.toAny(array: self.notDone)
+        var done = [String:String]()
+        for element in self.done {
+            done[element.key] = "\(element.value)"
+        }
+        return [
+            "done": done,
+            "notDone": notDone,
+            "resultComplete": self.resultComplete,
+            "resultDone": self.resultDone
+        ]
+    }
+    
     //Setter
     //not necessary yet
     
