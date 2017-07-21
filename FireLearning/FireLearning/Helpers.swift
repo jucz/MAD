@@ -37,6 +37,28 @@ class Helpers {
         return list
     }
     
+    public static func toAny(array: [Any]?) -> Any? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:String] = [:]
+        for element in array! {
+            list["\(element)"] = "\(element)"
+        }
+        return list
+    }
+    
+    public static func toAny(dict: [String:Any]?) -> Any? {
+        if dict == nil {
+            return nil
+        }
+        var res = [String:String]()
+        for element in dict! {
+            res[element.key] = "\(element.value)"
+        }
+        return res
+    }
+    
     //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {
         return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")

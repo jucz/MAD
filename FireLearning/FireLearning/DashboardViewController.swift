@@ -23,7 +23,7 @@ class DashboardViewController: UIViewController {
             
             if(user != nil){
                 
-                userMail = User.convertEmail(email: (user?.email)!)
+                userMail = Helpers.convertEmail(email: (user?.email)!)
                 
                 //user aus datenbank in globalUser laden
                 var ref = Database.database().reference()

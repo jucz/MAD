@@ -51,48 +51,15 @@ struct Room {
         for element in self.exercises {
             exercises.append(element.toAny())
         }
-        let description = self.description
-        let news = self.news
-        if description != nil && news != nil {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "description": self.description!,
-                "news": self.news!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else if description != nil && news == nil {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "description": self.description!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else if description == nil && news != nil {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "news": self.news!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "students": students,
-                "exercises": exercises
-            ]
-        }
+        return [
+            "rid": self.rid,
+            "title": self.title,
+            "admin": self.admin,
+            "description": self.description!,
+            "news": self.news!,
+            "students": students,
+            "exercises": exercises
+        ]
     }
-    
-
-    
     
 }

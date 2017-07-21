@@ -33,8 +33,7 @@ struct User {
     //Others
     public func createUserInDB() {
         let email: String = Helpers.convertEmail(email: self.email)
-        let ref = Helpers.rootRef.child("users")
-        ref.child(email).setValue(self.toAny())
+        Helpers.rootRef.child("users").child(email).setValue(self.toAny())
     }
     
     //Convert Object to Any. Result can be saved to Firebase.

@@ -132,9 +132,7 @@ class RegisterViewController: UIViewController {
                                             //ENDE JULIAN
                                         }
             }
-            
-            
-            
+        
             return true
         }
     }
