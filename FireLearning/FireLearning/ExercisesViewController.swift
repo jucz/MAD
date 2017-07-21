@@ -11,10 +11,35 @@ import UIKit
 class ExercisesViewController: UIViewController, UITableViewDataSource {
     
     
-    
+    var name = ""
     
     @IBAction func addButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "createExercise", sender: self)
+        let alert = UIAlertController(title: "neue Aufgabe",
+                                      message: "Namen festlegen",
+                                      preferredStyle: .alert)
+        
+        
+        
+        let cancelAction = UIAlertAction(title: "Abbrechen",
+                                         style: .default)
+        let saveAction = UIAlertAction(title: "Weiter",
+                                       style: .default) { _ in
+                                        
+                                        self.name = (alert.textFields?.first?.text)!
+                                        
+                                        if( self.name != ""){
+                                            exerciseName = self.name
+                                            self.performSegue(withIdentifier: "createExercise", sender: self)
+                                        }
+        }
+        
+        alert.addTextField()
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
     @IBOutlet var tableView: UITableView!
     var data = [String]()
@@ -33,7 +58,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
     //table methoden
     func numberOfSections(in tableView: UITableView) -> Int {

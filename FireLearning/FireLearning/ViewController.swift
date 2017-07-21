@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
@@ -25,7 +26,11 @@ class ViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("StateFired")
             print(user?.email)
+            
+            
             if(user != nil){
+                
+                
                 DispatchQueue.main.async(){
                     
                     self.performSegue(withIdentifier: "login", sender: self)

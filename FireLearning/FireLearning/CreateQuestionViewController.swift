@@ -31,7 +31,9 @@ class CreateQuestionViewController: UIViewController {
         }
         else{
             var question = Question(question: questionText.text!, answerIndex: 0, answers: answers)
-            questions.append(question)
+            
+            exerciseQuestions[exerciseQuestionCounter] = question
+            exerciseQuestionCounter = exerciseQuestionCounter + 1
             self.performSegue(withIdentifier: "backToCreateExercise", sender: self)
         }
     }
