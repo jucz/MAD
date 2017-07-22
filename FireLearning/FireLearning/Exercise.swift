@@ -4,17 +4,14 @@ import Foundation
 
 
 struct Exercise {
-    
-    static var eids: Int = 0
-    
-    let eid: Int
+        
+    var eid: Int
     var title: String
     var questions = [Int:Question]()
     
     //Constructors
     init(title: String) {
-        self.eid = Exercise.eids
-        Exercise.eids += 1
+        self.eid = Helpers.getNewEid()
         self.title = title
     }
     
@@ -43,7 +40,11 @@ struct Exercise {
     
     
     //Setter
-    /*public mutating func setTitle(title: String){
+    /*public mutating func setEid(eid: Int) {
+        self.eid = eid
+    }
+    
+    public mutating func setTitle(title: String){
         self.title = title
     }
     

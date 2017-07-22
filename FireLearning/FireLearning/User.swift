@@ -7,7 +7,7 @@ struct User {
     let email: String
     let firstname: String
     let lastname: String
-    var exercisesOwned = [Int:String]()
+    var exercisesOwned = [Int:Exercise]()
     var blocked = [String]()
     var roomsAsTeacher = [Int]() //speichert rids der Raeume
     var roomsAsStudent = [Int]() //speichert rids der Raeume
@@ -41,6 +41,10 @@ struct User {
         //TESTDATEN
         let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
         //ENDE TESTDATEN
+        var exercisesOwned = [String:Any]()
+        for element in self.exercisesOwned {
+            exercisesOwned["\(element.key)"] = element.value.toAny()
+        }
         let blocked = Helpers.toAny(array: self.blocked)
         let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
         let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
@@ -49,7 +53,7 @@ struct User {
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
-            "exercisesOwned": self.exercisesOwned,
+            "exercisesOwned": exercisesOwned,
             "blocked": blockedUsers, //blocked
             "roomsAsTeacher": roomsAsTeacher,
             "roomsAsStudent": roomsAsStudent
