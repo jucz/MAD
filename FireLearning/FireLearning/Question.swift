@@ -4,19 +4,16 @@ import Foundation
 
 struct Question {
     
-    static var qids: Int = 0
-    
     let qid: Int
     var question: String
     var answerIndex: Int
     var answers = [String]()
     
     init(question: String, answerIndex: Int, answers: [String]) {
-        self.qid = Question.qids
-        Question.qids += 1
         self.question = question
         self.answerIndex = answerIndex
         self.answers = answers
+        self.qid = self.getNewQid()
     }
     
     init(question: Question) {
@@ -42,6 +39,15 @@ struct Question {
         ]
     }
     
+    
+    public func getNewQid() -> Int {
+        var qidTmp: Int = 0
+        Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
+            qidTmp = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("eids").setValue(qidTmp+1)
+        return qidTmp
+    }
     
     
     //Setter

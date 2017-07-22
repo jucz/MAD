@@ -3,8 +3,6 @@ import Foundation
 
 struct Room {
     
-    static var rids: Int = 0
-    
     let rid: Int
     var title: String
     var admin: String //email of admin
@@ -15,10 +13,9 @@ struct Room {
     
     
     init(title: String, email: String){
-        self.rid = Room.rids
-        Room.rids += 1
         self.title = title
         self.admin = email
+        self.rid = self.getNewRid()
     }
     
     init(room: Room){
@@ -60,6 +57,15 @@ struct Room {
             "students": students,
             "exercises": exercises
         ]
+    }
+    
+    public func getNewRid() -> Int {
+        var ridTmp: Int = 0
+        Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
+            ridTmp = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("rids").setValue(ridTmp+1)
+        return ridTmp
     }
     
 }

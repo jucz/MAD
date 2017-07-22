@@ -64,12 +64,4 @@ class Helpers {
         return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }
     
-    public static func getNewEid() -> Int {
-        var eidTmp: Int = 0
-        rootRef.child("eids").observe(.value, with: { snapshot in
-            eidTmp = snapshot.value as! Int
-        })
-        Helpers.rootRef.child("eids").setValue(eidTmp+1)
-        return eidTmp
-    }
 }
