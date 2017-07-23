@@ -16,19 +16,13 @@ struct Question {
         self.answers = answers
     }
     
-    init(qid: Int, question: String, answerIndex: Int, answers: [String]) {
-        self.qid = qid
-        self.question = question
-        self.answerIndex = answerIndex
-        self.answers = answers
-    }
-    
     init(question: Question) {
         self.qid = question.qid
         self.question = question.question
         self.answerIndex = question.answerIndex
         self.answers = question.answers
     }
+    
     
     //Other
     public mutating func addAnswer(answer: String){

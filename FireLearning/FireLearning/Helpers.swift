@@ -13,6 +13,7 @@ import FirebaseDatabase
 class Helpers {
 
     static var rootRef = Database.database().reference()
+    static var userTmp: User?
 
     //Converts an Array to a directory which can be saved in Firebase as Any
     public static func toAny(array: [String]?) -> Any? {
@@ -62,6 +63,25 @@ class Helpers {
     //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {
         return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
+    }
+    
+    public static func initUser(withEmailAsPath: String) {
+        print("initUser")
+        Helpers.rootRef.child("users").child(withEmailAsPath).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let email = value?["email"] as? String ?? ""
+            let firstname = value?["firstname"] as? String ?? ""
+            let lastname = value?["lastname"] as? String ?? ""
+            var user = User(email: email, firstname: firstname, lastname: lastname)
+            user.blocked = User.getBlocked(fromNSDict: value)
+            User.getExercisesOwned(snapshot: snapshot)
+        })
+    }
+    
+    public static func getUser(withEmailAsPath: String) -> User? {
+        Helpers.initUser(withEmailAsPath: withEmailAsPath)
+        print("getUser")
+        return Helpers.userTmp
     }
     
 }

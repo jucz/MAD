@@ -1,9 +1,12 @@
 
 
 import Foundation
+import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 struct User {
-      
+    
     let email: String
     let firstname: String
     let lastname: String
@@ -73,15 +76,15 @@ struct User {
         return blocked
     }
     
-    public static func getExercisesOwned(fromNSDict: NSDictionary?) -> [Int:Exercise] {
-        let exercisesDict = fromNSDict?["exercisesOwned"] as? [Int:Any]
-        print("getExercisesOwned: \(exercisesDict)")
-        /*var exercises = [Int:Exercise]()
-        if let dict = exercisesDict {
-            for (key,value) in exercisesDict! {
-                print("\(key)___\(value)")
+    
+    public static func getExercisesOwned(snapshot: DataSnapshot) -> [Int:Exercise] {
+        let values = snapshot.value as? [String:AnyObject]
+        var exTmp = values?["exercisesOwned"] as? [[String:AnyObject]]
+        if exTmp != nil {
+            for element in exTmp! {
+                print("getExercisesOwned: \(((((element["questions"])![0])! as AnyObject)["question"]!)!)")
             }
-        }*/
+        }
         return [:]
     }
     

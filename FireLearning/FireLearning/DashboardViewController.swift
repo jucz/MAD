@@ -13,7 +13,12 @@ import FirebaseDatabase
 var globalUser: User!
 
 class DashboardViewController: UIViewController {
+    
+    var user: User?
+    var children: Int = 0
+    var blocked = [String]()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         var userMail = String()
@@ -35,35 +40,24 @@ class DashboardViewController: UIViewController {
                     let firstname = value?["firstname"] as? String ?? ""
                     
                     ///JULIAN
-                    let blocked = User.getBlocked(fromNSDict: value)
-                    print("____blocked: \(blocked)")
+                    let value2 = snapshot.value as? [String:AnyObject]
+                    print("NSDictionary: \(value!)")
+                    print("[String:AnyObject]: \(value2!)")
+                    
+                    self.blocked = User.getBlocked(fromNSDict: value)
+                    print("____blocked: \(self.blocked)")
 
-
-                    var childrenCount: Int = 0;
-                    let exRef = ref.child("users").child(userMail).child("exercisesOwned")
+                    User.getExercisesOwned(snapshot: snapshot)
+                    /*let exRef = ref.child("users").child(userMail).child("exercisesOwned")
                     exRef.observeSingleEvent(of: .value, with: { (snapshot: DataSnapshot!) in
-                        print("snapshot.childrenCount: \(snapshot.childrenCount)")
-                        childrenCount = Int("\(snapshot.childrenCount)")!
-                        if childrenCount > 0 {
-                            for index in 0...childrenCount-1 {
-                                exRef.child("\(index)").observeSingleEvent(of: .value, with: { snapshot in
-                                    
-                                    let value = snapshot.value as? NSDictionary
-                                    let eid = value?["eid"]
-                                    let title = value?["title"]
-                                    print("eid: \(eid!)___ title: \(title!)")
-                                    
-                                    let questions = value?["questions"]
-                                    print("questions: \(questions!)")
-                                    let dict = value?["questions"] as? NSDictionary
-                                    print("questions: \(dict)")
-                                    
-                                })
-                            }
-                        }
-
+                        self.children = Int("\(snapshot.childrenCount)")!
+                        print("children: \(self.children)")
                     })
-                    print("childrenCount: \(childrenCount)")
+                    if childrenCount > 0 {
+                        for index in 0...childrenCount-1 {
+                            
+                        }
+                    }*/
                     ///ENDE JULIAN
                     
                     let user = User(email: email, firstname: firstname, lastname: lastname)
