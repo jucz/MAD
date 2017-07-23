@@ -10,10 +10,17 @@ struct Question {
     var answers = [String]()
     
     init(question: String, answerIndex: Int, answers: [String]) {
+        self.qid = Question.getNewQid()
         self.question = question
         self.answerIndex = answerIndex
         self.answers = answers
-        self.qid = self.getNewQid()
+    }
+    
+    init(qid: Int, question: String, answerIndex: Int, answers: [String]) {
+        self.qid = qid
+        self.question = question
+        self.answerIndex = answerIndex
+        self.answers = answers
     }
     
     init(question: Question) {
@@ -22,7 +29,6 @@ struct Question {
         self.answerIndex = question.answerIndex
         self.answers = question.answers
     }
-    
     
     //Other
     public mutating func addAnswer(answer: String){
@@ -40,7 +46,7 @@ struct Question {
     }
     
     
-    public func getNewQid() -> Int {
+    public static func getNewQid() -> Int {
         var qidTmp: Int = 0
         Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
             qidTmp = snapshot.value as! Int

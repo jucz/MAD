@@ -112,10 +112,9 @@ class RegisterViewController: UIViewController {
                                         if error == nil {
                                             print("user erstellt")
                                             //JULIAN
-                                            let user = User(email: self.emailTextField.text!,
+                                            var user = User(email: self.emailTextField.text!,
                                                             firstname: self.vornameTextField.text!,
                                                             lastname: self.nachnameTextField.text!)
-                                            user.createUserInDB()
                                             
                                             //ROOM TESTEN
                                             var room = Room(title: "10L2", email: "j@app.de")
@@ -125,7 +124,9 @@ class RegisterViewController: UIViewController {
                                             let question = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
                                             var exercise = Exercise(title: "Evolution")
                                             exercise.addQuestion(question: question)
+                                            user.addExercise(exercise: exercise)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
+                                            user.createUserInDB()
                                             room.createRoomInDB()
                                             //ENDE ROOM TESTEN
                                             

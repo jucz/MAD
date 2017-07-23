@@ -26,15 +26,47 @@ class DashboardViewController: UIViewController {
                 userMail = Helpers.convertEmail(email: (user?.email)!)
                 
                 //user aus datenbank in globalUser laden
-                var ref = Database.database().reference()
+                let ref = Database.database().reference()
                 ref.child("users").child(userMail).observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
                     let value = snapshot.value as? NSDictionary
+                    let email = value?["email"] as? String ?? ""
                     let lastname = value?["lastname"] as? String ?? ""
                     let firstname = value?["firstname"] as? String ?? ""
-                    let email = value?["email"] as? String ?? ""
                     
-                    var user = User(email: email, firstname: firstname, lastname: lastname)
+                    ///JULIAN
+                    let blocked = User.getBlocked(fromNSDict: value)
+                    print("____blocked: \(blocked)")
+
+
+                    var childrenCount: Int = 0;
+                    let exRef = ref.child("users").child(userMail).child("exercisesOwned")
+                    exRef.observeSingleEvent(of: .value, with: { (snapshot: DataSnapshot!) in
+                        print("snapshot.childrenCount: \(snapshot.childrenCount)")
+                        childrenCount = Int("\(snapshot.childrenCount)")!
+                        if childrenCount > 0 {
+                            for index in 0...childrenCount-1 {
+                                exRef.child("\(index)").observeSingleEvent(of: .value, with: { snapshot in
+                                    
+                                    let value = snapshot.value as? NSDictionary
+                                    let eid = value?["eid"]
+                                    let title = value?["title"]
+                                    print("eid: \(eid!)___ title: \(title!)")
+                                    
+                                    let questions = value?["questions"]
+                                    print("questions: \(questions!)")
+                                    let dict = value?["questions"] as? NSDictionary
+                                    print("questions: \(dict)")
+                                    
+                                })
+                            }
+                        }
+
+                    })
+                    print("childrenCount: \(childrenCount)")
+                    ///ENDE JULIAN
+                    
+                    let user = User(email: email, firstname: firstname, lastname: lastname)
                     print(user.lastname)
                 }) { (error) in
                     print(error.localizedDescription)

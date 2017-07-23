@@ -22,12 +22,16 @@ struct User {
     
     //Wird benutzt, um User aus aus Firebase bezogenen Daten zu generieren
     init(email: String, firstname: String, lastname: String,
-         exercisesOwned: [Int:String], roomsAsTeacher: [Int],
+         exercisesOwned: [Int:Exercise], blocked: [String], roomsAsTeacher: [Int],
          roomsAsStudent: [Int]) {
         
         self.email = email
         self.firstname = firstname
         self.lastname = lastname
+        self.exercisesOwned = exercisesOwned
+        self.blocked = blocked
+        self.roomsAsTeacher = roomsAsTeacher
+        self.roomsAsStudent = roomsAsStudent
     }
     
     //Others
@@ -58,6 +62,31 @@ struct User {
             "roomsAsTeacher": roomsAsTeacher,
             "roomsAsStudent": roomsAsStudent
         ]
+    }
+    
+    public static func getBlocked(fromNSDict: NSDictionary?) -> [String] {
+        let blockedDict = fromNSDict?["blocked"] as? [String:String]
+        var blocked = [String]()
+        for element in blockedDict! {
+            blocked.append(element.value)
+        }
+        return blocked
+    }
+    
+    public static func getExercisesOwned(fromNSDict: NSDictionary?) -> [Int:Exercise] {
+        let exercisesDict = fromNSDict?["exercisesOwned"] as? [Int:Any]
+        print("getExercisesOwned: \(exercisesDict)")
+        /*var exercises = [Int:Exercise]()
+        if let dict = exercisesDict {
+            for (key,value) in exercisesDict! {
+                print("\(key)___\(value)")
+            }
+        }*/
+        return [:]
+    }
+    
+    public mutating func addExercise(exercise: Exercise) {
+        self.exercisesOwned[exercise.eid] = exercise
     }
     
     

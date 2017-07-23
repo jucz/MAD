@@ -13,9 +13,9 @@ struct Room {
     
     
     init(title: String, email: String){
+        self.rid = Room.getNewRid()
         self.title = title
         self.admin = email
-        self.rid = self.getNewRid()
     }
     
     init(room: Room){
@@ -59,7 +59,7 @@ struct Room {
         ]
     }
     
-    public func getNewRid() -> Int {
+    public static func getNewRid() -> Int {
         var ridTmp: Int = 0
         Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
             ridTmp = snapshot.value as! Int
