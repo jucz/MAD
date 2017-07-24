@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func createAccountButton(_ sender: Any) {
-        var success = createAccout()
+        let success = createAccout()
         
         if(success == true){
             performSegue(withIdentifier: "backToLogin", sender: self)
@@ -111,7 +111,7 @@ class RegisterViewController: UIViewController {
                                        password: passwortTextField.text!) { user, error in
                                         if error == nil {
                                             print("user erstellt")
-                                            //JULIAN
+                                            ///JULIAN
                                             var user = User(email: self.emailTextField.text!,
                                                             firstname: self.vornameTextField.text!,
                                                             lastname: self.nachnameTextField.text!)
@@ -124,14 +124,13 @@ class RegisterViewController: UIViewController {
                                             let questionA = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
                                             var exercise = Exercise(title: "Evolution")
                                             exercise.addQuestion(question: questionA)
-                                            user.addExercise(exercise: exercise)
+                                            //user.addExercise(exercise: exercise)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
                                             
                                             user.createUserInDB()
                                             room.createRoomInDB()
                                             //ENDE ROOM TESTEN
-                                            
-                                            //ENDE JULIAN
+                                            ///ENDE JULIAN
                                         }
             }
         

@@ -56,16 +56,22 @@ class DashboardViewController: UIViewController {
             print("NSDictionary: \(value!)")
     
             let blocked = User.getBlocked(snapshot: snapshot)
-            print("____blocked: \(blocked)")
             let roomsAsTeacher = User.getRoomsAsTeacher(snapshot: snapshot)
-            print("____asTeacher: \(roomsAsTeacher)")
             let roomsAsStudent = User.getRoomsAsStudent(snapshot: snapshot)
-            print("____asStudent: \(roomsAsStudent)")
             let exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
-            print("____exercisesOwned: \(exercisesOwned)")
-            self.user = User(email: email, firstname: firstname, lastname: lastname,
-            exercisesOwned: exercisesOwned, blocked: blocked,
-            roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
+            
+            self.user = User(email: "\(email)2", firstname: firstname, lastname: lastname,
+                             exercisesOwned: exercisesOwned, blocked: blocked,
+                             roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
+            
+            (self.user)?.createUserInDB()
+            
+            print("___User: \(self.user)____")
+            
+            /*print("____blocked: \(blocked)")
+            print("____asTeacher: \(roomsAsTeacher)")
+            print("____asStudent: \(roomsAsStudent)")
+            print("____exercisesOwned: \(exercisesOwned)")*/
             ///ENDE JULIAN
         })
     }

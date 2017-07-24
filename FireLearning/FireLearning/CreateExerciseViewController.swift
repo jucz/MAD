@@ -24,8 +24,8 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource {
     
     @IBAction func saveButton(_ sender: Any) {
         exerciseName = nameOutlet.text!
-        var exerciseID = 1
-        var exercise = Exercise(eid: exerciseID,title: exerciseName,questions: exerciseQuestions)
+        let exerciseID = 1
+        let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: exerciseQuestions)
         print(exercise.title)
         
     }

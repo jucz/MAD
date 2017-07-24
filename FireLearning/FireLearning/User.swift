@@ -47,26 +47,26 @@ struct User {
     //Convert Object to Any. Result can be saved to Firebase.
     public func toAny() -> Any {
         //TESTDATEN
-        let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
-        let asTeacher = Helpers.toAny(array: [4,5,6])
-        let asStudent = Helpers.toAny(array: [4,5,6])
+        //let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
+        //let asTeacher = Helpers.toAny(array: [4,5,6])
+        //let asStudent = Helpers.toAny(array: [4,5,6])
         //ENDE TESTDATEN
         var exercisesOwned = [String:Any]()
         for element in self.exercisesOwned {
             exercisesOwned["\(element.key)"] = element.value.toAny()
         }
-        //let blocked = Helpers.toAny(array: self.blocked)
-        //let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
-        //let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
+        let blocked = Helpers.toAny(array: self.blocked)
+        let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
+        let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
         
         return [
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "exercisesOwned": exercisesOwned,
-            "blocked": blockedUsers, //blocked
-            "roomsAsTeacher": asTeacher,//roomsAsTeacher
-            "roomsAsStudent": asStudent//roomsAsStudent
+            "blocked": blocked,
+            "roomsAsTeacher": roomsAsTeacher,
+            "roomsAsStudent": roomsAsStudent
         ]
     }
     
@@ -112,8 +112,10 @@ struct User {
         let fromNSDict = snapshot.value as? NSDictionary
         let blockedDict = fromNSDict?["blocked"] as? [String:String]
         var blocked = [String]()
-        for element in blockedDict! {
-            blocked.append(element.value)
+        if blockedDict != nil {
+            for element in blockedDict! {
+                blocked.append(element.value)
+            }
         }
         return blocked
     }
@@ -122,9 +124,11 @@ struct User {
         let fromNSDict = snapshot.value as? NSDictionary
         let asStudentDict = fromNSDict?["roomsAsStudent"] as? [String:String]
         var asStudent = [Int]()
-        for element in asStudentDict! {
-            print("element.value: \(element.value)")
-            asStudent.append(Int(element.value)!)
+        if asStudentDict != nil {
+            for element in asStudentDict! {
+                print("element.value: \(element.value)")
+                asStudent.append(Int(element.value)!)
+            }
         }
         return asStudent
     }
@@ -165,8 +169,8 @@ struct User {
                     
                     var answers = [String]()
                     if answersMapped != nil {
-                        for (key, value) in answersMapped! {
-                            answers.append(key)
+                        for answer in answersMapped! {
+                            answers.append(answer.value)
                         }
                     }
                     questions[qid] = Question(qid: qid, question: question, answerIndex: answerIndex, answers: answers)
