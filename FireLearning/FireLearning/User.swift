@@ -48,7 +48,7 @@ struct User {
     public func toAny() -> Any {
         //TESTDATEN
         let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
-        let asTeacher = Helpers.toAny(array: [3,4,5])
+        let asTeacher = Helpers.toAny(array: [4,5,6])
         let asStudent = Helpers.toAny(array: [4,5,6])
         //ENDE TESTDATEN
         var exercisesOwned = [String:Any]()
@@ -93,6 +93,18 @@ struct User {
         } as AnyObject
     }*/
     
+    public static func getEmail(fromNSDict: NSDictionary?) -> String {
+        return fromNSDict?["email"] as? String ?? ""
+    }
+    
+    public static func getFirstname(fromNSDict: NSDictionary?) -> String {
+        return fromNSDict?["firstname"] as? String ?? ""
+    }
+    
+    public static func getLastname(fromNSDict: NSDictionary?) -> String {
+        return fromNSDict?["lastname"] as? String ?? ""
+    }
+    
     public static func getBlocked(fromNSDict: NSDictionary?) -> [String] {
         let blockedDict = fromNSDict?["blocked"] as? [String:String]
         var blocked = [String]()
@@ -125,8 +137,6 @@ struct User {
     }
     
     
-    
-    
     public static func getExercisesOwned(snapshot: DataSnapshot) -> [Int:Exercise] {
         let values = snapshot.value as? [String:AnyObject]
         let exTmp = values?["exercisesOwned"] as? [[String:AnyObject]]
@@ -138,6 +148,7 @@ struct User {
                 let title = (exerciseElement["title"])! as! String
                 
                 //Loop durch alle Fragen:
+                print("Questions: \((exerciseElement["questions"])!)")
                 let allQuestions = (exerciseElement["questions"])! as! [AnyObject]
                 var questions = [Int:Question]()
                 for questionElement in allQuestions {

@@ -12,8 +12,8 @@ struct Question {
     var answers = [String]()
     
     init(question: String, answerIndex: Int, answers: [String]) {
-        self.qid = Question.qids//Question.getNewQid()
-        Question.qids += 1
+        Question.getActualQid()
+        self.qid = Question.qids
         self.question = question
         self.answerIndex = answerIndex
         self.answers = answers
@@ -61,13 +61,11 @@ struct Question {
     }*/
     
     
-    public static func getNewQid() -> Int {
-        var qidTmp: Int = 0
+    public static func getActualQid() {
         Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
-            qidTmp = snapshot.value as! Int
+            Question.qids = snapshot.value as! Int
         })
-        Helpers.rootRef.child("eids").setValue(qidTmp+1)
-        return qidTmp
+        Helpers.rootRef.child("qids").setValue(Question.qids+1)
     }
     
     

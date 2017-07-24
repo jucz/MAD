@@ -13,9 +13,8 @@ struct Exercise {
     
     //Constructors
     init(title: String) {
-        //self.eid = Exercise.getNewEid()
+        Exercise.getActualEid()
         self.eid = Exercise.eids
-        Exercise.eids += 1
         self.title = title
     }
     
@@ -25,11 +24,6 @@ struct Exercise {
         self.questions = questions
     }
     
-    init(eid: Int, title: String, questions: [Int:Any]) {
-        self.eid = eid
-        self.title = title
-        //todo
-    }
     
     //Other
     public mutating func addQuestion(question: Question){
@@ -46,6 +40,13 @@ struct Exercise {
             "title": self.title,
             "questions": questions
         ]
+    }
+    
+    public static func getActualEid() {
+        Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
+            Exercise.eids = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("eids").setValue(Exercise.eids+1)
     }
     
     /*public func toAnyObject() -> AnyObject {
