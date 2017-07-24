@@ -28,6 +28,25 @@ class Helpers {
         return list
     }
     
+    public static func toAny_orderedByAlphabet(array: [String]?) -> Any? {
+        if array == nil {
+            return nil
+        }
+        let alphabet: [String] = [
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+        ]
+        var index = 0;
+        var list: [String:String] = [:]
+        for element in array! {
+            if index > 26 {
+                return list
+            }
+            list[alphabet[index]] = element
+            index += 1
+        }
+        return list
+    }
+    
     /*public static func toAnyObject(array: [String]?) -> AnyObject? {
         if array == nil {
             return nil

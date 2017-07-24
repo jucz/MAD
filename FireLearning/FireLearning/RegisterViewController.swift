@@ -121,9 +121,9 @@ class RegisterViewController: UIViewController {
                                             room.description = "Latein Blatt 1"
                                             room.news = "leer"
                                             room.addStudent(email: "purschke@hs-osnabrueck.de")
-                                            let question = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
+                                            let questionA = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
                                             var exercise = Exercise(title: "Evolution")
-                                            exercise.addQuestion(question: question)
+                                            exercise.addQuestion(question: questionA)
                                             user.addExercise(exercise: exercise)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
                                             

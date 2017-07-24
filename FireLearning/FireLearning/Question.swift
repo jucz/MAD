@@ -3,6 +3,8 @@ import Foundation
 
 
 struct Question {
+
+    static var qids = 0
     
     let qid: Int
     var question: String
@@ -10,7 +12,8 @@ struct Question {
     var answers = [String]()
     
     init(question: String, answerIndex: Int, answers: [String]) {
-        self.qid = Question.getNewQid()
+        self.qid = Question.qids//Question.getNewQid()
+        Question.qids += 1
         self.question = question
         self.answerIndex = answerIndex
         self.answers = answers
@@ -37,7 +40,8 @@ struct Question {
     }
     
     public func toAny() -> Any {
-        let answers = Helpers.toAny(array: self.answers)
+        //let answers = Helpers.toAny(array: self.answers)
+        let answers = Helpers.toAny_orderedByAlphabet(array: self.answers)
         return [
             "qid": self.qid,
             "question": self.question,

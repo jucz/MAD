@@ -4,6 +4,8 @@ import Foundation
 
 
 struct Exercise {
+    
+    static var eids = 0;
         
     var eid: Int
     var title: String
@@ -11,7 +13,9 @@ struct Exercise {
     
     //Constructors
     init(title: String) {
-        self.eid = Exercise.getNewEid()
+        //self.eid = Exercise.getNewEid()
+        self.eid = Exercise.eids
+        Exercise.eids += 1
         self.title = title
     }
     
@@ -56,14 +60,14 @@ struct Exercise {
         } as AnyObject
     }*/
     
-    public static func getNewEid() -> Int {
-        var eidTmp: Int = 0
+    /*public static func getNewEid() -> Int {
         Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
-            eidTmp = snapshot.value as! Int
+            let values = snapshot.value as? [String:AnyObject]
+            let eidTmp = values?["eids"] as! Int
+            Helpers.rootRef.child("eids").setValue("\(eidTmp+1)")
         })
-        Helpers.rootRef.child("eids").setValue(eidTmp+1)
-        return eidTmp
-    }
+        return Int(eid)
+    }*/
     
     
     //Setter

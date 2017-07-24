@@ -40,13 +40,13 @@ class DashboardViewController: UIViewController {
                     print("NSDictionary: \(value!)")
                     
                     let blocked = User.getBlocked(fromNSDict: value)
-                    print("____blocked: \(self.blocked)")
+                    print("____blocked: \(blocked)")
                     let roomsAsTeacher = User.getRoomsAsTeacher(fromNSDict: value)
-                    print("____asTeacher: \(self.asTeacher)")
+                    print("____asTeacher: \(roomsAsTeacher)")
                     let roomsAsStudent = User.getRoomsAsStudent(fromNSDict: value)
-                    print("____asStudent: \(self.asStudent)")
+                    print("____asStudent: \(roomsAsStudent)")
                     let exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
-                    print("____exercisesOwned: \(self.exercisesOwned)")
+                    print("____exercisesOwned: \(exercisesOwned)")
                     self.user = User(email: email, firstname: firstname, lastname: lastname,
                                      exercisesOwned: exercisesOwned, blocked: blocked,
                                      roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
