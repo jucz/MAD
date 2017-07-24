@@ -41,6 +41,7 @@ struct User {
     public func createUserInDB() {
         let email: String = Helpers.convertEmail(email: self.email)
         Helpers.rootRef.child("users").child(email).setValue(self.toAny())
+        //Helpers.rootRef.child("users").child(email).setValue(self.toAnyObject())
     }
     
     //Convert Object to Any. Result can be saved to Firebase.
@@ -67,6 +68,29 @@ struct User {
         ]
     }
     
+    public func toAnyObject() -> AnyObject {
+        //TESTDATEN
+        let blockedUsers = Helpers.toAnyObject(array: ["olaf@app.de", "peter@app.de"])
+        //ENDE TESTDATEN
+        var exercisesOwned = [String:AnyObject]()
+        for element in self.exercisesOwned {
+            exercisesOwned["\(element.key)"] = element.value.toAnyObject()
+        }
+        let blocked = Helpers.toAnyObject(array: self.blocked)
+        let roomsAsTeacher = Helpers.toAnyObject(array: self.roomsAsTeacher)
+        let roomsAsStudent = Helpers.toAnyObject(array: self.roomsAsStudent)
+        
+        return {
+            var email = self.email;
+            var firstname = self.firstname;
+            var lastname = self.lastname;
+            var exercisesOwned = exercisesOwned;
+            var blocked = blockedUsers; //blocked
+            var roomsAsTeacher = roomsAsTeacher;
+            var roomsAsStudent = roomsAsStudent;
+        } as AnyObject
+    }
+    
     public static func getBlocked(fromNSDict: NSDictionary?) -> [String] {
         let blockedDict = fromNSDict?["blocked"] as? [String:String]
         var blocked = [String]()
@@ -79,11 +103,35 @@ struct User {
     
     public static func getExercisesOwned(snapshot: DataSnapshot) -> [Int:Exercise] {
         let values = snapshot.value as? [String:AnyObject]
-        var exTmp = values?["exercisesOwned"] as? [[String:AnyObject]]
+        let exTmp = values?["exercisesOwned"] as? [[String:AnyObject]]
+        var exercises = [Int:Exercise]()
         if exTmp != nil {
-            for element in exTmp! {
-                print("getExercisesOwned: \(((((element["questions"])![0])! as AnyObject)["question"]!)!)")
+            //Questions holen
+            for exerciseElement in exTmp! {
+                let eid = (exerciseElement["eid"])! as! Int
+                let title = (exerciseElement["title"])! as! String
+                
+                //Loop durch alle Fragen:
+                let allQuestions = (exerciseElement["questions"])! as! [AnyObject]
+                var questions = [Int:Question]()
+                for questionElement in allQuestions {
+                    let qid = questionElement["qid"] as! Int
+                    let question = questionElement["question"] as! String
+                    let answerIndex = questionElement["answerIndex"] as! Int
+                    let answersMapped = questionElement["answers"] as? [String:String]
+                    
+                    var answers = [String]()
+                    if answersMapped != nil {
+                        for (key, value) in answersMapped! {
+                            answers.append(key)
+                        }
+                    }
+                    questions[qid] = Question(qid: qid, question: question, answerIndex: answerIndex, answers: answers)
+                }
+                exercises[eid] = Exercise(eid: eid, title: title, questions: questions)
+                //Ende Questions holen
             }
+            print("Exercises: \(exercises)")
         }
         return [:]
     }

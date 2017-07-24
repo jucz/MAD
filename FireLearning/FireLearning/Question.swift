@@ -16,6 +16,13 @@ struct Question {
         self.answers = answers
     }
     
+    init(qid: Int, question: String, answerIndex: Int, answers: [String]) {
+        self.qid = qid
+        self.question = question
+        self.answerIndex = answerIndex
+        self.answers = answers
+    }
+    
     init(question: Question) {
         self.qid = question.qid
         self.question = question.question
@@ -37,6 +44,16 @@ struct Question {
             "answerIndex": self.answerIndex,
             "answers": answers
         ]
+    }
+    
+    public func toAnyObject() -> AnyObject {
+        let answers = Helpers.toAnyObject(array: self.answers)
+        return {
+            var qid = self.qid;
+            var question = self.question;
+            var answerIndex = self.answerIndex;
+            var answers = answers;
+        } as AnyObject
     }
     
     

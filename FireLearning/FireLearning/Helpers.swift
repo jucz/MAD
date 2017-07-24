@@ -16,6 +16,7 @@ class Helpers {
     static var userTmp: User?
 
     //Converts an Array to a directory which can be saved in Firebase as Any
+    ///1
     public static func toAny(array: [String]?) -> Any? {
         if array == nil {
             return nil
@@ -27,6 +28,19 @@ class Helpers {
         return list
     }
     
+    public static func toAnyObject(array: [String]?) -> AnyObject? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:String] = [:]
+        for element in array! {
+            list[Helpers.convertEmail(email: element)] = element
+        }
+        return list as AnyObject?
+    }
+    ///ENDE 1
+    
+    ///2
     public static func toAny(array: [Int]?) -> Any? {
         if array == nil {
             return nil
@@ -38,6 +52,19 @@ class Helpers {
         return list
     }
     
+    public static func toAnyObject(array: [Int]?) -> AnyObject? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:Int] = [:]
+        for element in array! {
+            list["\(element)"] = element
+        }
+        return list as AnyObject?
+    }
+    ///ENDE 2
+    
+    ///3
     public static func toAny(array: [Any]?) -> Any? {
         if array == nil {
             return nil
@@ -49,6 +76,19 @@ class Helpers {
         return list
     }
     
+    public static func toAnyObject(array: [AnyObject]?) -> AnyObject? {
+        if array == nil {
+            return nil
+        }
+        var list: [String:String] = [:]
+        for element in array! {
+            list["\(element)"] = "\(element)"
+        }
+        return list as AnyObject?
+    }
+    ///ENDE 3
+    
+    ///4
     public static func toAny(dict: [String:Any]?) -> Any? {
         if dict == nil {
             return nil
@@ -59,6 +99,18 @@ class Helpers {
         }
         return res
     }
+    
+    public static func toAnyObject(dict: [String:AnyObject]?) -> AnyObject? {
+        if dict == nil {
+            return nil
+        }
+        var res = [String:String]()
+        for element in dict! {
+            res[element.key] = "\(element.value)"
+        }
+        return res as AnyObject?
+    }
+    ///ENDE 4
     
     //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {

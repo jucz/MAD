@@ -59,6 +59,23 @@ struct Room {
         ]
     }
     
+    public func toAnyObject() -> AnyObject {
+        let students = Helpers.toAnyObject(array: self.students)
+        var exercises = [AnyObject]()
+        for element in self.exercises {
+            exercises.append(element.toAnyObject())
+        }
+        return {
+            var rid = self.rid;
+            var title = self.title;
+            var admin = self.admin;
+            var description = self.description!;
+            var news = self.news!;
+            var students = students;
+            var exercises = exercises;
+        } as AnyObject
+    }
+    
     public static func getNewRid() -> Int {
         var ridTmp: Int = 0
         Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
