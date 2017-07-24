@@ -15,10 +15,7 @@ var globalUser: User!
 class DashboardViewController: UIViewController {
     
     var user: User?
-    var children: Int = 0
-    var blocked = [String]()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         var userMail = String()
@@ -40,24 +37,19 @@ class DashboardViewController: UIViewController {
                     let firstname = value?["firstname"] as? String ?? ""
                     
                     ///JULIAN
-                    let value2 = snapshot.value as? [String:AnyObject]
                     print("NSDictionary: \(value!)")
-                    print("[String:AnyObject]: \(value2!)")
                     
-                    self.blocked = User.getBlocked(fromNSDict: value)
+                    let blocked = User.getBlocked(fromNSDict: value)
                     print("____blocked: \(self.blocked)")
-
-                    User.getExercisesOwned(snapshot: snapshot)
-                    /*let exRef = ref.child("users").child(userMail).child("exercisesOwned")
-                    exRef.observeSingleEvent(of: .value, with: { (snapshot: DataSnapshot!) in
-                        self.children = Int("\(snapshot.childrenCount)")!
-                        print("children: \(self.children)")
-                    })
-                    if childrenCount > 0 {
-                        for index in 0...childrenCount-1 {
-                            
-                        }
-                    }*/
+                    let roomsAsTeacher = User.getRoomsAsTeacher(fromNSDict: value)
+                    print("____asTeacher: \(self.asTeacher)")
+                    let roomsAsStudent = User.getRoomsAsStudent(fromNSDict: value)
+                    print("____asStudent: \(self.asStudent)")
+                    let exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
+                    print("____exercisesOwned: \(self.exercisesOwned)")
+                    self.user = User(email: email, firstname: firstname, lastname: lastname,
+                                     exercisesOwned: exercisesOwned, blocked: blocked,
+                                     roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
                     ///ENDE JULIAN
                     
                     let user = User(email: email, firstname: firstname, lastname: lastname)

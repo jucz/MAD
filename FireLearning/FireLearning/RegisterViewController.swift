@@ -126,6 +126,7 @@ class RegisterViewController: UIViewController {
                                             exercise.addQuestion(question: question)
                                             user.addExercise(exercise: exercise)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
+                                            
                                             user.createUserInDB()
                                             room.createRoomInDB()
                                             //ENDE ROOM TESTEN

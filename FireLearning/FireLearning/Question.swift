@@ -46,7 +46,7 @@ struct Question {
         ]
     }
     
-    public func toAnyObject() -> AnyObject {
+    /*public func toAnyObject() -> AnyObject {
         let answers = Helpers.toAnyObject(array: self.answers)
         return {
             var qid = self.qid;
@@ -54,7 +54,7 @@ struct Question {
             var answerIndex = self.answerIndex;
             var answers = answers;
         } as AnyObject
-    }
+    }*/
     
     
     public static func getNewQid() -> Int {

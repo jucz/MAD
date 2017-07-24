@@ -28,7 +28,7 @@ class Helpers {
         return list
     }
     
-    public static func toAnyObject(array: [String]?) -> AnyObject? {
+    /*public static func toAnyObject(array: [String]?) -> AnyObject? {
         if array == nil {
             return nil
         }
@@ -37,7 +37,7 @@ class Helpers {
             list[Helpers.convertEmail(email: element)] = element
         }
         return list as AnyObject?
-    }
+    }*/
     ///ENDE 1
     
     ///2
@@ -45,14 +45,14 @@ class Helpers {
         if array == nil {
             return nil
         }
-        var list: [String:Int] = [:]
+        var list: [String:String] = [:]
         for element in array! {
-            list["\(element)"] = element
+            list["\(element)"] = "\(element)"
         }
         return list
     }
     
-    public static func toAnyObject(array: [Int]?) -> AnyObject? {
+    /*public static func toAnyObject(array: [Int]?) -> AnyObject? {
         if array == nil {
             return nil
         }
@@ -61,7 +61,7 @@ class Helpers {
             list["\(element)"] = element
         }
         return list as AnyObject?
-    }
+    }*/
     ///ENDE 2
     
     ///3
@@ -76,7 +76,7 @@ class Helpers {
         return list
     }
     
-    public static func toAnyObject(array: [AnyObject]?) -> AnyObject? {
+    /*public static func toAnyObject(array: [AnyObject]?) -> AnyObject? {
         if array == nil {
             return nil
         }
@@ -85,7 +85,7 @@ class Helpers {
             list["\(element)"] = "\(element)"
         }
         return list as AnyObject?
-    }
+    }*/
     ///ENDE 3
     
     ///4
@@ -100,7 +100,7 @@ class Helpers {
         return res
     }
     
-    public static func toAnyObject(dict: [String:AnyObject]?) -> AnyObject? {
+    /*public static func toAnyObject(dict: [String:AnyObject]?) -> AnyObject? {
         if dict == nil {
             return nil
         }
@@ -109,7 +109,7 @@ class Helpers {
             res[element.key] = "\(element.value)"
         }
         return res as AnyObject?
-    }
+    }*/
     ///ENDE 4
     
     //Convert all not allowed characters to alternative substrings

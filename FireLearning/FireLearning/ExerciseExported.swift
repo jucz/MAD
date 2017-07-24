@@ -39,7 +39,7 @@ struct ExerciseExported {
         ]
     }
     
-    public func toAnyObject() -> AnyObject {
+    /*public func toAnyObject() -> AnyObject {
         let eidCopy = self.eidCopy.toAnyObject()
         let statistics = self.statistics.toAnyObject()
         return {
@@ -48,7 +48,7 @@ struct ExerciseExported {
             var end = self.end;
             var statistics = statistics;
         } as AnyObject
-    }
+    }*/
     
     public mutating func createRoomInDB() {
         Helpers.rootRef.child("rooms").setValue(self.toAny())

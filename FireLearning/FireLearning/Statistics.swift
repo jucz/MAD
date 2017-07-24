@@ -60,7 +60,7 @@ struct Statistics {
         ]
     }
     
-    public func toAnyObject() -> AnyObject {
+    /*public func toAnyObject() -> AnyObject {
         let notDone = Helpers.toAnyObject(array: self.notDone)
         var done = [String:String]()
         for element in self.done {
@@ -72,7 +72,7 @@ struct Statistics {
             var resultComplete = self.resultComplete;
             var resultDone = self.resultDone;
         } as AnyObject
-    }
+    }*/
     
     //Setter
     //not necessary yet

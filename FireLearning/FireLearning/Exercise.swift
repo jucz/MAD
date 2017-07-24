@@ -44,7 +44,7 @@ struct Exercise {
         ]
     }
     
-    public func toAnyObject() -> AnyObject {
+    /*public func toAnyObject() -> AnyObject {
         var questions = [String:AnyObject]()
         for element in self.questions {
             questions["\(element.key)"] = element.value.toAnyObject()
@@ -54,7 +54,7 @@ struct Exercise {
             var title = self.title;
             var questions = questions;
         } as AnyObject
-    }
+    }*/
     
     public static func getNewEid() -> Int {
         var eidTmp: Int = 0

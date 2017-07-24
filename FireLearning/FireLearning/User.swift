@@ -48,14 +48,16 @@ struct User {
     public func toAny() -> Any {
         //TESTDATEN
         let blockedUsers = Helpers.toAny(array: ["olaf@app.de", "peter@app.de"])
+        let asTeacher = Helpers.toAny(array: [3,4,5])
+        let asStudent = Helpers.toAny(array: [4,5,6])
         //ENDE TESTDATEN
         var exercisesOwned = [String:Any]()
         for element in self.exercisesOwned {
             exercisesOwned["\(element.key)"] = element.value.toAny()
         }
-        let blocked = Helpers.toAny(array: self.blocked)
-        let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
-        let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
+        //let blocked = Helpers.toAny(array: self.blocked)
+        //let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
+        //let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
         
         return [
             "email": self.email,
@@ -63,12 +65,12 @@ struct User {
             "lastname": self.lastname,
             "exercisesOwned": exercisesOwned,
             "blocked": blockedUsers, //blocked
-            "roomsAsTeacher": roomsAsTeacher,
-            "roomsAsStudent": roomsAsStudent
+            "roomsAsTeacher": asTeacher,//roomsAsTeacher
+            "roomsAsStudent": asStudent//roomsAsStudent
         ]
     }
     
-    public func toAnyObject() -> AnyObject {
+    /*public func toAnyObject() -> AnyObject {
         //TESTDATEN
         let blockedUsers = Helpers.toAnyObject(array: ["olaf@app.de", "peter@app.de"])
         //ENDE TESTDATEN
@@ -89,7 +91,7 @@ struct User {
             var roomsAsTeacher = roomsAsTeacher;
             var roomsAsStudent = roomsAsStudent;
         } as AnyObject
-    }
+    }*/
     
     public static func getBlocked(fromNSDict: NSDictionary?) -> [String] {
         let blockedDict = fromNSDict?["blocked"] as? [String:String]
@@ -99,6 +101,30 @@ struct User {
         }
         return blocked
     }
+    
+    public static func getRoomsAsStudent(fromNSDict: NSDictionary?) -> [Int] {
+        let asStudentDict = fromNSDict?["roomsAsStudent"] as? [String:String]
+        var asStudent = [Int]()
+        for element in asStudentDict! {
+            print("element.value: \(element.value)")
+            asStudent.append(Int(element.value)!)
+        }
+        return asStudent
+    }
+    
+    public static func getRoomsAsTeacher(fromNSDict: NSDictionary?) -> [Int] {
+        let asTeacherDict = fromNSDict?["roomsAsTeacher"] as? [String:String]
+        var asTeacher = [Int]()
+        if asTeacherDict != nil {
+            for element in asTeacherDict! {
+                print("element.value: \(element.value)")
+                asTeacher.append(Int(element.value)!)
+            }
+        }
+        return asTeacher
+    }
+    
+    
     
     
     public static func getExercisesOwned(snapshot: DataSnapshot) -> [Int:Exercise] {
@@ -133,7 +159,7 @@ struct User {
             }
             print("Exercises: \(exercises)")
         }
-        return [:]
+        return exercises
     }
     
     public mutating func addExercise(exercise: Exercise) {
