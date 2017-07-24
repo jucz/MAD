@@ -144,7 +144,7 @@ class Helpers {
             let firstname = value?["firstname"] as? String ?? ""
             let lastname = value?["lastname"] as? String ?? ""
             var user = User(email: email, firstname: firstname, lastname: lastname)
-            user.blocked = User.getBlocked(fromNSDict: value)
+            user.blocked = User.getBlocked(snapshot: snapshot)
             User.getExercisesOwned(snapshot: snapshot)
         })
     }

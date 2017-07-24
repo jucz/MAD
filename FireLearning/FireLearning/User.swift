@@ -93,19 +93,23 @@ struct User {
         } as AnyObject
     }*/
     
-    public static func getEmail(fromNSDict: NSDictionary?) -> String {
+    public static func getEmail(snapshot: DataSnapshot) -> String {
+        let fromNSDict = snapshot.value as? NSDictionary
         return fromNSDict?["email"] as? String ?? ""
     }
     
-    public static func getFirstname(fromNSDict: NSDictionary?) -> String {
+    public static func getFirstname(snapshot: DataSnapshot) -> String {
+        let fromNSDict = snapshot.value as? NSDictionary
         return fromNSDict?["firstname"] as? String ?? ""
     }
     
-    public static func getLastname(fromNSDict: NSDictionary?) -> String {
+    public static func getLastname(snapshot: DataSnapshot) -> String {
+        let fromNSDict = snapshot.value as? NSDictionary
         return fromNSDict?["lastname"] as? String ?? ""
     }
     
-    public static func getBlocked(fromNSDict: NSDictionary?) -> [String] {
+    public static func getBlocked(snapshot: DataSnapshot) -> [String] {
+        let fromNSDict = snapshot.value as? NSDictionary
         let blockedDict = fromNSDict?["blocked"] as? [String:String]
         var blocked = [String]()
         for element in blockedDict! {
@@ -114,7 +118,8 @@ struct User {
         return blocked
     }
     
-    public static func getRoomsAsStudent(fromNSDict: NSDictionary?) -> [Int] {
+    public static func getRoomsAsStudent(snapshot: DataSnapshot) -> [Int] {
+        let fromNSDict = snapshot.value as? NSDictionary
         let asStudentDict = fromNSDict?["roomsAsStudent"] as? [String:String]
         var asStudent = [Int]()
         for element in asStudentDict! {
@@ -124,7 +129,8 @@ struct User {
         return asStudent
     }
     
-    public static func getRoomsAsTeacher(fromNSDict: NSDictionary?) -> [Int] {
+    public static func getRoomsAsTeacher(snapshot: DataSnapshot) -> [Int] {
+        let fromNSDict = snapshot.value as? NSDictionary
         let asTeacherDict = fromNSDict?["roomsAsTeacher"] as? [String:String]
         var asTeacher = [Int]()
         if asTeacherDict != nil {
