@@ -3,7 +3,7 @@ import Foundation
 
 struct Room {
     
-    static var rids: Int = 0
+    static var rids = 0
     
     let rid: Int
     var title: String
@@ -15,8 +15,8 @@ struct Room {
     
     
     init(title: String, email: String){
+        Room.getActualRid()
         self.rid = Room.rids
-        Room.rids += 1
         self.title = title
         self.admin = email
     }
@@ -51,49 +51,39 @@ struct Room {
         for element in self.exercises {
             exercises.append(element.toAny())
         }
-        let description = self.description
-        let news = self.news
-        if description != nil && news != nil {
-            print("\n__________________OKAY________________\n")
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "description": self.description!,
-                "news": self.news!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else if description != nil && news == nil {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "description": self.description!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else if description == nil && news != nil {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "news": self.news!,
-                "students": students,
-                "exercises": exercises
-            ]
-        } else {
-            return [
-                "rid": self.rid,
-                "title": self.title,
-                "admin": self.admin,
-                "students": students,
-                "exercises": exercises
-            ]
-        }
+        return [
+            "rid": self.rid,
+            "title": self.title,
+            "admin": self.admin,
+            "description": self.description!,
+            "news": self.news!,
+            "students": students,
+            "exercises": exercises
+        ]
     }
     
-
+    /*public func toAnyObject() -> AnyObject {
+        let students = Helpers.toAnyObject(array: self.students)
+        var exercises = [AnyObject]()
+        for element in self.exercises {
+            exercises.append(element.toAnyObject())
+        }
+        return {
+            var rid = self.rid;
+            var title = self.title;
+            var admin = self.admin;
+            var description = self.description!;
+            var news = self.news!;
+            var students = students;
+            var exercises = exercises;
+        } as AnyObject
+    }*/
     
+    public static func getActualRid() {
+        Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
+            Room.rids = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("rids").setValue(Room.rids+1)
+    }
     
 }

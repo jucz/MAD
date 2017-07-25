@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func createAccountButton(_ sender: Any) {
-        var success = createAccout()
+        let success = createAccout()
         
         if(success == true){
             performSegue(withIdentifier: "backToLogin", sender: self)
@@ -111,30 +111,36 @@ class RegisterViewController: UIViewController {
                                        password: passwortTextField.text!) { user, error in
                                         if error == nil {
                                             print("user erstellt")
-                                            //JULIAN
-                                            let user = User(email: self.emailTextField.text!,
+                                            ///JULIAN
+                                            var user = User(email: self.emailTextField.text!,
                                                             firstname: self.vornameTextField.text!,
                                                             lastname: self.nachnameTextField.text!)
-                                            user.createUserInDB()
                                             
                                             //ROOM TESTEN
                                            /* var room = Room(title: "10L2", email: "j@app.de")
                                             room.description = "Latein Blatt 1"
                                             room.news = "leer"
                                             room.addStudent(email: "purschke@hs-osnabrueck.de")
+
                                             //let question = Question(question: "Ei oder Huhn?", answer: "Ei", possibilities: ["Huhn"])
+
+                                            let questionA = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
+
                                             var exercise = Exercise(title: "Evolution")
-                                            exercise.addQuestion(question: question)
+                                            exercise.addQuestion(question: questionA)
+                                            //user.addExercise(exercise: exercise)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
+                                            
+                                            user.createUserInDB()
                                             room.createRoomInDB()
+
                                             //ENDE ROOM TESTEN*/
                                             
                                             //ENDE JULIAN
+
                                         }
             }
-            
-            
-            
+        
             return true
         }
     }

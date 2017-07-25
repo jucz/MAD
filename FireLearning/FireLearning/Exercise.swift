@@ -5,16 +5,16 @@ import FirebaseDatabase
 
 struct Exercise {
     
-    static var eids: Int = 0
-    
-    let eid: Int
+    static var eids = 0;
+        
+    var eid: Int
     var title: String
     var questions = [Int:Question]()
     
     //Constructors
     init(title: String) {
+        Exercise.getActualEid()
         self.eid = Exercise.eids
-        Exercise.eids += 1
         self.title = title
     }
     
@@ -66,9 +66,41 @@ struct Exercise {
         ]
     }
     
+    public static func getActualEid() {
+        Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
+            Exercise.eids = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("eids").setValue(Exercise.eids+1)
+    }
+    
+    /*public func toAnyObject() -> AnyObject {
+        var questions = [String:AnyObject]()
+        for element in self.questions {
+            questions["\(element.key)"] = element.value.toAnyObject()
+        }
+        return {
+            var eid = self.eid;
+            var title = self.title;
+            var questions = questions;
+        } as AnyObject
+    }*/
+    
+    /*public static func getNewEid() -> Int {
+        Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
+            let values = snapshot.value as? [String:AnyObject]
+            let eidTmp = values?["eids"] as! Int
+            Helpers.rootRef.child("eids").setValue("\(eidTmp+1)")
+        })
+        return Int(eid)
+    }*/
+    
     
     //Setter
-    /*public mutating func setTitle(title: String){
+    /*public mutating func setEid(eid: Int) {
+        self.eid = eid
+    }
+    
+    public mutating func setTitle(title: String){
         self.title = title
     }
     

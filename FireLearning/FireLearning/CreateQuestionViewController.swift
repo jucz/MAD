@@ -47,8 +47,7 @@ class CreateQuestionViewController: UIViewController {
             print("nicht alles fuer Fragen ausgefuellt!")
         }
         else{
-            var question = Question(question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
-            
+            let question = Question(question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
             print(exerciseQuestions)
             exerciseQuestions[exerciseQuestionCounter] = question
             exerciseQuestionCounter = exerciseQuestionCounter + 1

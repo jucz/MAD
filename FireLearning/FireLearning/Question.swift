@@ -3,8 +3,8 @@ import Foundation
 
 
 struct Question {
-    
-    static var qids: Int = 0
+
+    static var qids = 0
     
     let qid: Int
     var question: String
@@ -12,8 +12,17 @@ struct Question {
     var possibilities = [String]()
     
     init(question: String, answer: String, possibilities: [String]) {
+    //init(question: String, answerIndex: Int, answers: [String]) {
+        Question.getActualQid()
+//>>>>>>> dfc84ca1f5d39b27d989bd695afa04e46e951beb
         self.qid = Question.qids
-        Question.qids += 1
+        self.question = question
+        self.answer = answer
+        self.possibilities = possibilities
+    }
+    
+    init(qid: Int, question: String, answer: String, possibilities: [String]) {
+        self.qid = qid
         self.question = question
         self.answer = answer
         self.possibilities = possibilities
@@ -34,6 +43,8 @@ struct Question {
     
     public func toAny() -> Any {
         let possibilities = Helpers.toAny(array: self.possibilities)
+        //let answers = Helpers.toAny(array: self.answers)
+        //let answers = Helpers.toAny_orderedByAlphabet(array: self.answers)
         return [
             "qid": self.qid,
             "question": self.question,
@@ -42,6 +53,23 @@ struct Question {
         ]
     }
     
+    /*public func toAnyObject() -> AnyObject {
+        let answers = Helpers.toAnyObject(array: self.answers)
+        return {
+            var qid = self.qid;
+            var question = self.question;
+            var answerIndex = self.answerIndex;
+            var answers = answers;
+        } as AnyObject
+    }*/
+    
+    
+    public static func getActualQid() {
+        Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
+            Question.qids = snapshot.value as! Int
+        })
+        Helpers.rootRef.child("qids").setValue(Question.qids+1)
+    }
     
     
     //Setter
