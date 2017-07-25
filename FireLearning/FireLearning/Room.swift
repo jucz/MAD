@@ -1,5 +1,6 @@
 
 import Foundation
+import FirebaseDatabase
 
 struct Room {
     
@@ -15,7 +16,7 @@ struct Room {
     
     
     init(title: String, email: String){
-        Room.getActualRid()
+        Room.getRecentRid()
         self.rid = Room.rids
         self.title = title
         self.admin = email
@@ -79,11 +80,62 @@ struct Room {
         } as AnyObject
     }*/
     
-    public static func getActualRid() {
+    public static func getRecentRid() {
         Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
             Room.rids = snapshot.value as! Int
         })
         Helpers.rootRef.child("rids").setValue(Room.rids+1)
     }
     
+    public static func getAdmin(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["admin"] as? String ?? ""
+    }
+    
+    public static func getDescription(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["description"] as? String ?? ""
+    }
+    
+    public static func getNews(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["news"] as? String ?? ""
+    }
+    
+    public static func getRid(snapshot: DataSnapshot) -> Int {
+        let values = snapshot.value as? NSDictionary
+        return values?["rid"] as? Int ?? -1
+    }
+    
+    public static func getTitle(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["title"] as? String ?? ""
+    }
+
+    
+    public static func getStudents(snapshot: DataSnapshot) -> [String] {
+        let values = snapshot.value as? NSDictionary
+        let studentsDict = values?["students"] as? [String:String]
+        var students = [String]()
+        if studentsDict != nil {
+            for element in studentsDict! {
+                students.append(element.value)
+            }
+        }
+        return students
+    }
+    
+    public static func getExercises(snapshot: DataSnapshot) -> [ExerciseExported] {
+        let values = snapshot.value as? NSDictionary
+    }
 }
+
+
+
+
+
+
+
+
+
+

@@ -68,10 +68,10 @@ class DashboardViewController: UIViewController {
             
             print("___User: \(self.user)____")
             
-            /*print("____blocked: \(blocked)")
-            print("____asTeacher: \(roomsAsTeacher)")
-            print("____asStudent: \(roomsAsStudent)")
-            print("____exercisesOwned: \(exercisesOwned)")*/
+//            print("____blocked: \(blocked)")
+//            print("____asTeacher: \(roomsAsTeacher)")
+//            print("____asStudent: \(roomsAsStudent)")
+//            print("____exercisesOwned: \(exercisesOwned)")
             ///ENDE JULIAN
         })
     }

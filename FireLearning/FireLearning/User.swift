@@ -93,23 +93,23 @@ struct User {
     }*/
     
     public static func getEmail(snapshot: DataSnapshot) -> String {
-        let fromNSDict = snapshot.value as? NSDictionary
-        return fromNSDict?["email"] as? String ?? ""
+        let values = snapshot.value as? NSDictionary
+        return values?["email"] as? String ?? ""
     }
     
     public static func getFirstname(snapshot: DataSnapshot) -> String {
-        let fromNSDict = snapshot.value as? NSDictionary
-        return fromNSDict?["firstname"] as? String ?? ""
+        let values = snapshot.value as? NSDictionary
+        return values?["firstname"] as? String ?? ""
     }
     
     public static func getLastname(snapshot: DataSnapshot) -> String {
-        let fromNSDict = snapshot.value as? NSDictionary
-        return fromNSDict?["lastname"] as? String ?? ""
+        let values = snapshot.value as? NSDictionary
+        return values?["lastname"] as? String ?? ""
     }
     
     public static func getBlocked(snapshot: DataSnapshot) -> [String] {
-        let fromNSDict = snapshot.value as? NSDictionary
-        let blockedDict = fromNSDict?["blocked"] as? [String:String]
+        let values = snapshot.value as? NSDictionary
+        let blockedDict = values?["blocked"] as? [String:String]
         var blocked = [String]()
         if blockedDict != nil {
             for element in blockedDict! {
@@ -120,8 +120,8 @@ struct User {
     }
     
     public static func getRoomsAsStudent(snapshot: DataSnapshot) -> [Int] {
-        let fromNSDict = snapshot.value as? NSDictionary
-        let asStudentDict = fromNSDict?["roomsAsStudent"] as? [String:String]
+        let values = snapshot.value as? NSDictionary
+        let asStudentDict = values?["roomsAsStudent"] as? [String:String]
         var asStudent = [Int]()
         if asStudentDict != nil {
             for element in asStudentDict! {
@@ -133,8 +133,8 @@ struct User {
     }
     
     public static func getRoomsAsTeacher(snapshot: DataSnapshot) -> [Int] {
-        let fromNSDict = snapshot.value as? NSDictionary
-        let asTeacherDict = fromNSDict?["roomsAsTeacher"] as? [String:String]
+        let values = snapshot.value as? NSDictionary
+        let asTeacherDict = values?["roomsAsTeacher"] as? [String:String]
         var asTeacher = [Int]()
         if asTeacherDict != nil {
             for element in asTeacherDict! {

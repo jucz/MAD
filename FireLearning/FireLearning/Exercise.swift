@@ -13,7 +13,7 @@ struct Exercise {
     
     //Constructors
     init(title: String) {
-        Exercise.getActualEid()
+        Exercise.getRecentEid()
         self.eid = Exercise.eids
         self.title = title
     }
@@ -42,7 +42,7 @@ struct Exercise {
         ]
     }
     
-    public static func getActualEid() {
+    public static func getRecentEid() {
         Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
             Exercise.eids = snapshot.value as! Int
         })
