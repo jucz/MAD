@@ -10,53 +10,50 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class ExercisesViewController: UIViewController, UITableViewDataSource {
+import UIKit
+
+class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
+    var user: User?
     var name = ""
+    var chosenExercise: Exercise?
     
+    //UI
     @IBAction func addButton(_ sender: Any) {
-        let alert = UIAlertController(title: "neue Aufgabe",
-                                      message: "Namen festlegen",
-                                      preferredStyle: .alert)
-        
-        
-        
-        let cancelAction = UIAlertAction(title: "Abbrechen",
-                                         style: .default)
-        let saveAction = UIAlertAction(title: "Weiter",
-                                       style: .default) { _ in
-                                        
-                                        self.name = (alert.textFields?.first?.text)!
-                                        
-                                        if( self.name != ""){
-                                            exerciseName = self.name
-                                            self.performSegue(withIdentifier: "createExercise", sender: self)
-                                        }
-        }
-        
-        alert.addTextField()
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-        
+        performSegue(withIdentifier: "createExercise", sender: self)
     }
     @IBOutlet var tableView: UITableView!
-    var data = [String]()
+    var exercises = [Exercise]()
     
-    
+    //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
+            let tmpExercises = snapshot.value as? [String: AnyObject]
+            
+            if(tmpExercises != nil){
+                for exercise in tmpExercises!{
+                    let tmpExercise = Exercise(_value: exercise.value)
+                    self.exercises.append(tmpExercise)
+                }
+            }
+            self.tableView.reloadData()
+            
+        })
+        //Offline-Modus
+        //exercises = (globalUser?.user?.exercisesOwned)!
         
-        for i in 0...20 {
-            data.append("aufgabe\(i)")
-        }
         
+        tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
+        tableView.delegate = self
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "toDetailExercise"){
+            let detailViewController = segue.destination as? DetailExerciseViewController
+            detailViewController?.exercise = chosenExercise
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -67,16 +64,34 @@ class ExercisesViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return exercises.count
     }
     
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         
-        let text = data[indexPath.row]
+        let text = exercises[indexPath.row].title
         
         cell.textLabel?.text = text
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosenExercise = exercises[indexPath.row]
+        self.performSegue(withIdentifier: "toDetailExercise", sender: nil)
+ 
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("delete")
+        }
+    }
+    
+    
 }

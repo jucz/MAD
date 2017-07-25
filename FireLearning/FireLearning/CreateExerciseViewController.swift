@@ -10,48 +10,44 @@ import UIKit
 
 var exerciseQuestionCounter = 0
 var exerciseQuestions = [Int:Question]()
-var exerciseName = String()
 
-class CreateExerciseViewController: UIViewController, UITableViewDataSource {
+class CreateExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //View Verbindungen
+    //View-Verbindungen
     @IBOutlet var nameOutlet: UITextField!
+    
+    
+    @IBOutlet var questionsTableView: UITableView!
+    @IBAction func saveButton(_ sender: Any) {
+        let exerciseName = nameOutlet.text!
+        if(exerciseName != ""){
+            print(exerciseName)
+            let exerciseID = 1
+            let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: exerciseQuestions)
+            //globalUser?.addExerciseToDatabaseForGlobalUser(_exercise: exercise)
+            self.navigationController?.popViewController(animated: true)
+            
+        }
+    }
     
     @IBAction func createQuestionButton(_ sender: UIButton) {
         self.performSegue(withIdentifier: "createQuestion", sender: self)
     }
-    @IBOutlet var questionsTableView: UITableView!
-    
-    @IBAction func saveButton(_ sender: Any) {
-        exerciseName = nameOutlet.text!
-        var exerciseID = 1
-        var exercise = Exercise(eid: exerciseID,title: exerciseName,questions: exerciseQuestions)
-        print(exercise.title)
-        
-    }
-    
-    @IBAction func backButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "backToAllExercises", sender: self)
-    }
-    
     
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
         questionsTableView.dataSource = self
-        nameOutlet.text = exerciseName
-        print(exerciseName)
+        questionsTableView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //questions-Methoden
-    
-
-    //table methoden
+    //Table-Methoden
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -62,12 +58,12 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell")!
-        
         let question = exerciseQuestions[indexPath.row]?.question
-        
         cell.textLabel?.text = question
-        
         return cell
     }
-
+    //ReloadData from Child View Controller
+    func loadList(){
+        questionsTableView.reloadData()
+    }
 }

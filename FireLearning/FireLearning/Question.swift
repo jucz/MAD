@@ -8,37 +8,37 @@ struct Question {
     
     let qid: Int
     var question: String
-    var answerIndex: Int
-    var answers = [String]()
+    var answer: String
+    var possibilities = [String]()
     
-    init(question: String, answerIndex: Int, answers: [String]) {
+    init(question: String, answer: String, possibilities: [String]) {
         self.qid = Question.qids
         Question.qids += 1
         self.question = question
-        self.answerIndex = answerIndex
-        self.answers = answers
+        self.answer = answer
+        self.possibilities = possibilities
     }
     
     init(question: Question) {
         self.qid = question.qid
         self.question = question.question
-        self.answerIndex = question.answerIndex
-        self.answers = question.answers
+        self.answer = question.answer
+        self.possibilities = question.possibilities
     }
     
     
     //Other
-    public mutating func addAnswer(answer: String){
-        self.answers.append(answer)
+    public mutating func addAnswer(possibility: String){
+        self.possibilities.append(possibility)
     }
     
     public func toAny() -> Any {
-        let answers = Helpers.toAny(array: self.answers)
+        let possibilities = Helpers.toAny(array: self.possibilities)
         return [
             "qid": self.qid,
             "question": self.question,
-            "answerIndex": self.answerIndex,
-            "answers": answers
+            "answer": self.answer,
+            "possibilities": possibilities
         ]
     }
     

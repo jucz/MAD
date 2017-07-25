@@ -1,13 +1,14 @@
 
 
 import Foundation
+import FirebaseDatabase
 
 struct User {
       
     let email: String
     let firstname: String
     let lastname: String
-    var exercisesOwned = [Int:String]()
+    var exercisesOwned = [Exercise]()
     var blocked = [String]()
     var roomsAsTeacher = [Int]() //speichert rids der Raeume
     var roomsAsStudent = [Int]() //speichert rids der Raeume
@@ -22,12 +23,74 @@ struct User {
     
     //Wird benutzt, um User aus aus Firebase bezogenen Daten zu generieren
     init(email: String, firstname: String, lastname: String,
-         exercisesOwned: [Int:String], roomsAsTeacher: [Int],
+         exercisesOwned: [String], roomsAsTeacher: [Int],
          roomsAsStudent: [Int]) {
         
         self.email = email
         self.firstname = firstname
         self.lastname = lastname
+    }
+    init(snapshot: DataSnapshot) {
+        //key = snapshot.key
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        self.email = snapshotValue["email"] as! String
+        self.firstname = snapshotValue["firstname"] as! String
+        self.lastname = snapshotValue["lastname"] as! String
+        
+        //exercisesOwned = (snapshotValue["exercisesOwned"] as? [Int:String])
+        //Aufgaben holen
+        if let exercisesDict = snapshotValue["exercisesOwned"] as? [String:AnyObject]{
+            for each in exercisesDict{
+                
+                let title = each.value["title"] as! String
+                let eid = each.value["eid"] as! Int
+                
+                
+                let questions = each.value["questions"] as? [String:AnyObject]
+                print(type(of: questions))
+                for q in questions!{
+                    let question = q.value["question"] as! String
+                    print(question)
+                }
+                
+                var tmp = Exercise(title: title)
+                print(tmp.title)
+                //self.exercisesOwned.append(each.value as! Exercise)
+            }
+            
+        }else{
+            print("exercisesDict is null")
+        }
+        //Blocked holen
+        if let blockedDict = snapshotValue["blocked"] as? [String:AnyObject]{
+            
+            for each in blockedDict{
+                self.blocked.append(each.value as! String)
+            }
+            
+        }else{
+            print("blockedDict is null")
+        }
+        //roomsAsTeacher holen
+        if let roomsAsTeacherDict = snapshotValue["roomsAsTeacher"] as? [String:AnyObject]{
+            
+            for each in roomsAsTeacherDict{
+                self.roomsAsTeacher.append(each.value as! Int)
+            }
+            
+        }else{
+            print("roomsAsTeacherDict is null")
+        }
+        //roomsAsStudent holen
+        if let roomsAsStudentDict = snapshotValue["roomsAsStudent"] as? [String:AnyObject]{
+            
+            for each in roomsAsStudentDict{
+                self.roomsAsStudent.append(each.value as! Int)
+            }
+            
+        }else{
+            print("roomsAsStudentDict is null")
+        }
     }
     
     //Others

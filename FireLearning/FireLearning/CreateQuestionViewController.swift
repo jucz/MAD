@@ -9,19 +9,36 @@
 import UIKit
 
 class CreateQuestionViewController: UIViewController {
-
-    @IBAction func backButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "backToCreateExercise", sender: self)
-    }
+    //View-Verbindungen
+    @IBOutlet var questionText: UITextField!
+    @IBOutlet var rightAnswerText: UITextField!
+    @IBOutlet var firstPossText: UITextField!
+    @IBOutlet var secPossText: UITextField!
+    @IBOutlet var thrdPossText: UITextField!
     
     @IBAction func saveButton(_ sender: Any) {
+        saveQuestion()
+    }
+    
+    
+    //System-Methoden
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        
-        var answers = [String]()
-        answers.append(rightAnswerText.text!)
-        answers.append(firstPossText.text!)
-        answers.append(secPossText.text!)
-        answers.append(thrdPossText.text!)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    
+    //Methoden:
+    func saveQuestion(){
+        var possibilities = [String]()
+        possibilities.append(firstPossText.text!)
+        possibilities.append(secPossText.text!)
+        possibilities.append(thrdPossText.text!)
         if( (questionText.text?.isEmpty)! ||
             (rightAnswerText.text?.isEmpty)! ||
             (firstPossText.text?.isEmpty)! ||
@@ -30,30 +47,14 @@ class CreateQuestionViewController: UIViewController {
             print("nicht alles fuer Fragen ausgefuellt!")
         }
         else{
-            var question = Question(question: questionText.text!, answerIndex: 0, answers: answers)
+            var question = Question(question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
             
+            print(exerciseQuestions)
             exerciseQuestions[exerciseQuestionCounter] = question
             exerciseQuestionCounter = exerciseQuestionCounter + 1
-            self.performSegue(withIdentifier: "backToCreateExercise", sender: self)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
+            
+            self.navigationController?.popViewController(animated: true)
         }
     }
-    //Question Outlets
-    @IBOutlet var questionText: UITextField!
-    
-    @IBOutlet var rightAnswerText: UITextField!
-    
-    @IBOutlet var firstPossText: UITextField!
-    @IBOutlet var secPossText: UITextField!
-    @IBOutlet var thrdPossText: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
 }
