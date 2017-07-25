@@ -117,11 +117,15 @@ class RegisterViewController: UIViewController {
                                                             lastname: self.nachnameTextField.text!)
                                             
                                             //ROOM TESTEN
-                                            var room = Room(title: "10L2", email: "j@app.de")
+                                           /* var room = Room(title: "10L2", email: "j@app.de")
                                             room.description = "Latein Blatt 1"
                                             room.news = "leer"
                                             room.addStudent(email: "purschke@hs-osnabrueck.de")
+
+                                            //let question = Question(question: "Ei oder Huhn?", answer: "Ei", possibilities: ["Huhn"])
+
                                             let questionA = Question(question: "Ei oder Huhn?", answerIndex: 1, answers: ["Ei", "Huhn"])
+
                                             var exercise = Exercise(title: "Evolution")
                                             exercise.addQuestion(question: questionA)
                                             //user.addExercise(exercise: exercise)
@@ -129,8 +133,11 @@ class RegisterViewController: UIViewController {
                                             
                                             user.createUserInDB()
                                             room.createRoomInDB()
-                                            //ENDE ROOM TESTEN
-                                            ///ENDE JULIAN
+
+                                            //ENDE ROOM TESTEN*/
+                                            
+                                            //ENDE JULIAN
+
                                         }
             }
         

@@ -10,6 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
+var globalUser: GlobalUser?
+
 class ViewController: UIViewController {
 
     @IBOutlet var mailOutlet: UITextField!
@@ -30,6 +33,10 @@ class ViewController: UIViewController {
             
             if(user != nil){
                 
+                let userMail = Helpers.convertEmail(email: (user?.email)!)
+                globalUser = GlobalUser(_email: userMail)
+                //globalUser.createChangeListener(_email: userMail)
+                //globalUser.test(_email: userMail)
                 
                 DispatchQueue.main.async(){
                     
@@ -41,11 +48,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
-        let mail = mailOutlet.text!
-        let password = passwordOutlet.text!
+        //let mail = mailOutlet.text!
+        let mail = "leo@swag.com"
+        //let password = passwordOutlet.text!
+        let password = "swag12"
+        
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,
                                password: password)
+        //Offline Modus:
+        //globalUser = GlobalUser()
+        //globalUser?.createStaticUserForOfflineLogin()
+        
+        //self.performSegue(withIdentifier: "login", sender: self)
     }
     
     @IBAction func getAccountButton(_ sender: Any) {

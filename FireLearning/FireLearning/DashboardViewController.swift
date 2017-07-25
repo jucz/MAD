@@ -10,31 +10,12 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-var globalUser: User!
-
 class DashboardViewController: UIViewController {
     
     var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var userMail = String()
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            
-            
-            if(user != nil){
-                
-                userMail = Helpers.convertEmail(email: (user?.email)!)
-                
-                //user aus datenbank in globalUser laden
-                self.retrieveUserFromFIR(withEmail: userMail)
-            }
-        }
-        
-        
-        
-        //
 
     }
 
@@ -60,9 +41,9 @@ class DashboardViewController: UIViewController {
             let roomsAsStudent = User.getRoomsAsStudent(snapshot: snapshot)
             let exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
             
-            self.user = User(email: "\(email)2", firstname: firstname, lastname: lastname,
-                             exercisesOwned: exercisesOwned, blocked: blocked,
-                             roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
+            //self.user = User(email: "\(email)2", firstname: firstname, lastname: lastname,
+             //                exercisesOwned: exercisesOwned, blocked: blocked,
+            //                 roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
             
             (self.user)?.createUserInDB()
             

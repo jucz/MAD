@@ -10,7 +10,7 @@ struct User {
     let email: String
     let firstname: String
     let lastname: String
-    var exercisesOwned = [Int:Exercise]()
+    var exercisesOwned = [Exercise]()
     var blocked = [String]()
     var roomsAsTeacher = [Int]() //speichert rids der Raeume
     var roomsAsStudent = [Int]() //speichert rids der Raeume
@@ -25,7 +25,7 @@ struct User {
     
     //Wird benutzt, um User aus aus Firebase bezogenen Daten zu generieren
     init(email: String, firstname: String, lastname: String,
-         exercisesOwned: [Int:Exercise], blocked: [String], roomsAsTeacher: [Int],
+         exercisesOwned: [Exercise], blocked: [String], roomsAsTeacher: [Int],
          roomsAsStudent: [Int]) {
         
         self.email = email
@@ -35,6 +35,68 @@ struct User {
         self.blocked = blocked
         self.roomsAsTeacher = roomsAsTeacher
         self.roomsAsStudent = roomsAsStudent
+    }
+    init(snapshot: DataSnapshot) {
+        //key = snapshot.key
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        self.email = snapshotValue["email"] as! String
+        self.firstname = snapshotValue["firstname"] as! String
+        self.lastname = snapshotValue["lastname"] as! String
+        
+        //exercisesOwned = (snapshotValue["exercisesOwned"] as? [Int:String])
+        //Aufgaben holen
+        if let exercisesDict = snapshotValue["exercisesOwned"] as? [String:AnyObject]{
+            for each in exercisesDict{
+                
+                let title = each.value["title"] as! String
+                let eid = each.value["eid"] as! Int
+                
+                
+                let questions = each.value["questions"] as? [String:AnyObject]
+                print(type(of: questions))
+                for q in questions!{
+                    let question = q.value["question"] as! String
+                    print(question)
+                }
+                
+                var tmp = Exercise(title: title)
+                print(tmp.title)
+                //self.exercisesOwned.append(each.value as! Exercise)
+            }
+            
+        }else{
+            print("exercisesDict is null")
+        }
+        //Blocked holen
+        if let blockedDict = snapshotValue["blocked"] as? [String:AnyObject]{
+            
+            for each in blockedDict{
+                self.blocked.append(each.value as! String)
+            }
+            
+        }else{
+            print("blockedDict is null")
+        }
+        //roomsAsTeacher holen
+        if let roomsAsTeacherDict = snapshotValue["roomsAsTeacher"] as? [String:AnyObject]{
+            
+            for each in roomsAsTeacherDict{
+                self.roomsAsTeacher.append(each.value as! Int)
+            }
+            
+        }else{
+            print("roomsAsTeacherDict is null")
+        }
+        //roomsAsStudent holen
+        if let roomsAsStudentDict = snapshotValue["roomsAsStudent"] as? [String:AnyObject]{
+            
+            for each in roomsAsStudentDict{
+                self.roomsAsStudent.append(each.value as! Int)
+            }
+            
+        }else{
+            print("roomsAsStudentDict is null")
+        }
     }
     
     //Others
@@ -52,7 +114,7 @@ struct User {
         //ENDE TESTDATEN
         var exercisesOwned = [String:Any]()
         for element in self.exercisesOwned {
-            exercisesOwned["\(element.key)"] = element.value.toAny()
+            exercisesOwned["\(element.eid)"] = element.toAny()
         }
         let blocked = Helpers.toAny(array: self.blocked)
         let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
@@ -172,7 +234,7 @@ struct User {
                             answers.append(answer.value)
                         }
                     }
-                    questions[qid] = Question(qid: qid, question: question, answerIndex: answerIndex, answers: answers)
+                    //questions[qid] = Question(qid: qid, question: question, answer: answer, possibilities: answerIndex)
                 }
                 exercises[eid] = Exercise(eid: eid, title: title, questions: questions)
                 //Ende Questions holen

@@ -17,6 +17,8 @@
 		6433E8C4C5AB20C4D119DDC9 /* Pods_FireLearningTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7653224ED6B044F898DF7D1 /* Pods_FireLearningTests.framework */; };
 		84777D581F1C89FA004324A2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84777D571F1C89FA004324A2 /* RegisterViewController.swift */; };
 		84777D5A1F1C941C004324A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84777D591F1C941C004324A2 /* User.swift */; };
+		84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C211F2277950014CA78 /* DetailExerciseViewController.swift */; };
+		84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C231F2289660014CA78 /* DetailQuestionViewController.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
 		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
@@ -32,6 +34,7 @@
 		84DC14691F1F74B200ACBD89 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */; };
 		84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */; };
 		84DC146D1F1F94BC00ACBD89 /* CreateQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */; };
+		84FC237A1F21F57400077C9B /* GlobalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FC23791F21F57400077C9B /* GlobalUser.swift */; };
 		FEDF341CBEAC00BAC75E61AD /* Pods_FireLearning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3D891403BBA863A4B17041 /* Pods_FireLearning.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,8 @@
 		84777D571F1C89FA004324A2 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		84777D591F1C941C004324A2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84777D5B1F1C9841004324A2 /* FireLearning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireLearning.entitlements; sourceTree = "<group>"; };
+		84968C211F2277950014CA78 /* DetailExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailExerciseViewController.swift; sourceTree = "<group>"; };
+		84968C231F2289660014CA78 /* DetailQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailQuestionViewController.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateExerciseViewController.swift; sourceTree = "<group>"; };
 		84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionViewController.swift; sourceTree = "<group>"; };
+		84FC23791F21F57400077C9B /* GlobalUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalUser.swift; sourceTree = "<group>"; };
 		AD0C968B93A9E31AED3EDD1D /* Pods-FireLearningTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningTests/Pods-FireLearningTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF724BA208622254D54AF103 /* Pods-FireLearningTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningTests/Pods-FireLearningTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB0725389C1A092183785B04 /* Pods-FireLearningUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearningUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearningUITests/Pods-FireLearningUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 				0AD406961F1D24F600FD2533 /* Question.swift */,
 				0AD406981F1D253400FD2533 /* Room.swift */,
 				0A033DDF1F1F6D83008967BE /* Helpers.swift */,
+				84FC23791F21F57400077C9B /* GlobalUser.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -213,6 +220,8 @@
 		84DC14591F1F5D5300ACBD89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84968C231F2289660014CA78 /* DetailQuestionViewController.swift */,
+				84968C211F2277950014CA78 /* DetailExerciseViewController.swift */,
 				84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */,
 				84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */,
 				84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */,
@@ -540,14 +549,17 @@
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
+				84FC237A1F21F57400077C9B /* GlobalUser.swift in Sources */,
 				84777D5A1F1C941C004324A2 /* User.swift in Sources */,
 				84777D581F1C89FA004324A2 /* RegisterViewController.swift in Sources */,
 				84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */,
+				84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */,
 				84DC146D1F1F94BC00ACBD89 /* CreateQuestionViewController.swift in Sources */,
 				0AD4069B1F1D2E9700FD2533 /* ExerciseExported.swift in Sources */,
 				84DC14611F1F5F1700ACBD89 /* RoomsViewController.swift in Sources */,
 				84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */,
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,
+				84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */,
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
 				0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,

@@ -8,45 +8,53 @@ struct Question {
     
     let qid: Int
     var question: String
-    var answerIndex: Int
-    var answers = [String]()
+    var answer: String
+    var possibilities = [String]()
     
+<<<<<<< HEAD
     init(question: String, answerIndex: Int, answers: [String]) {
         Question.getRecentQid()
+=======
+    init(question: String, answer: String, possibilities: [String]) {
+    //init(question: String, answerIndex: Int, answers: [String]) {
+        Question.getActualQid()
+//>>>>>>> dfc84ca1f5d39b27d989bd695afa04e46e951beb
+>>>>>>> 2eace52cbf33b8e1d151473927ff4431d71725c3
         self.qid = Question.qids
         self.question = question
-        self.answerIndex = answerIndex
-        self.answers = answers
+        self.answer = answer
+        self.possibilities = possibilities
     }
     
-    init(qid: Int, question: String, answerIndex: Int, answers: [String]) {
+    init(qid: Int, question: String, answer: String, possibilities: [String]) {
         self.qid = qid
         self.question = question
-        self.answerIndex = answerIndex
-        self.answers = answers
+        self.answer = answer
+        self.possibilities = possibilities
     }
     
     init(question: Question) {
         self.qid = question.qid
         self.question = question.question
-        self.answerIndex = question.answerIndex
-        self.answers = question.answers
+        self.answer = question.answer
+        self.possibilities = question.possibilities
     }
     
     
     //Other
-    public mutating func addAnswer(answer: String){
-        self.answers.append(answer)
+    public mutating func addAnswer(possibility: String){
+        self.possibilities.append(possibility)
     }
     
     public func toAny() -> Any {
+        let possibilities = Helpers.toAny(array: self.possibilities)
         //let answers = Helpers.toAny(array: self.answers)
-        let answers = Helpers.toAny_orderedByAlphabet(array: self.answers)
+        //let answers = Helpers.toAny_orderedByAlphabet(array: self.answers)
         return [
             "qid": self.qid,
             "question": self.question,
-            "answerIndex": self.answerIndex,
-            "answers": answers
+            "answer": self.answer,
+            "possibilities": possibilities
         ]
     }
     
