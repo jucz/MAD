@@ -9,7 +9,7 @@ struct Exercise {
         
     var eid: Int
     var title: String
-    var questions = [Int:Question]()
+    var questions = [Question]()
     
     //Constructors
     init(title: String) {
@@ -18,20 +18,20 @@ struct Exercise {
         self.title = title
     }
     
-    init(eid: Int, title: String, questions: [Int:Question]) {
+    init(eid: Int, title: String, questions: [Question]) {
         self.eid = eid
         self.title = title
         self.questions = questions
     }
     
-    init(anyObject: AnyObject){
+    init(anyObject: AnyObject) {
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
-        let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
+        let allQuestions = (anyObject["questions"])! as! [AnyObject]
         for q in allQuestions {
-            let qTmp = Question(anyObject: q.value)
-            self.questions[qTmp.qid] = qTmp
+            let qTmp = Question(anyObject: q)
+            self.questions.append(qTmp)
         }
     }
     
@@ -41,44 +41,40 @@ struct Exercise {
         self.questions = _exercise.questions
     }
     
-    init(_value: AnyObject){
-        self.title = _value["title"] as! String
-        self.eid = _value["eid"] as! Int
-        var tmpQuestions = [Int:Question]()
-        
-        var counter = 0
-        //Fragen
-        var questionArray = _value["questions"] as? [String:AnyObject]
-        print(questionArray)
-        if(questionArray != nil){
-            for eachQuestion in questionArray! {
-                let tmpQuestionTitle = eachQuestion.value["question"] as! String
-                let tmpAnswer = eachQuestion.value["answer"] as! String
-                
-                //antworten
-                var tmpPossibilites = [String]()
-                for eachPossibility in (eachQuestion.value["possibilities"] as? [String:String])!{
-                    tmpPossibilites.append(eachPossibility.value)
-                }
-                
-                let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
-                tmpQuestions[counter] = (tmpQuestion)
-                counter += 1
-            }
-        }
-        self.questions = tmpQuestions
-
-    }
-    
+/*
+//    init(_value: AnyObject){
+//        self.title = _value["title"] as! String
+//        self.eid = _value["eid"] as! Int
+//        var tmpQuestions = [Question]()
+//        
+//        var counter = 0
+//        //Fragen
+//        for eachQuestion in (_value["questions"] as? [AnyObject])! {
+//            let tmpQuestionTitle = eachQuestion["question"] as! String
+//            let tmpAnswer = eachQuestion["answer"] as! String
+//            
+//            //antworten
+//            var tmpPossibilites = [String]()
+//            for eachPossibility in (eachQuestion["possibilities"] as? [String:String])!{
+//                tmpPossibilites.append(eachPossibility.value)
+//            }
+//            
+//            let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
+//            tmpQuestions.append(tmpQuestion)
+//            counter += 1
+//        }
+//        self.questions = tmpQuestions
+//    }
+*/
     //Other
     public mutating func addQuestion(question: Question){
-        self.questions[question.qid] = question
+        self.questions.append(question)
     }
     
     public func toAny() -> Any {
-        var questions = [String:Any]()
+        var questions = [Any]()
         for element in self.questions {
-            questions["qid\(element.key)"] = element.value.toAny()
+            questions.append(element.toAny())
         }
         return [
             "eid": self.eid,

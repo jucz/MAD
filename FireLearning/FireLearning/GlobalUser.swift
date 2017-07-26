@@ -33,7 +33,8 @@ class GlobalUser{
     }
     
     public func addExerciseToDatabaseForGlobalUser(_exercise: Exercise){
-        Database.database().reference().child("eids").observeSingleEvent(of: .value, with: { snapshot in
+        var eidRef = Database.database().reference().child("eids")
+        eidRef.observeSingleEvent(of: .value, with: { snapshot in
             
             var id = snapshot.value as! Int
             
@@ -43,7 +44,7 @@ class GlobalUser{
                 "eid\(tmpExercise.eid)": tmpExercise.toAny()
             ])
             
-            Database.database().reference().child("eids").setValue(id+1)
+            eidRef.setValue(id+1)
             
         })
 

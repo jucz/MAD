@@ -57,7 +57,7 @@ struct Room {
     
     //Others
     public func createRoomInDB() {
-        Helpers.rootRef.child("rooms").child("\(self.rid)").setValue(self.toAny())
+        Helpers.rootRef.child("rooms").child("rid\(self.rid)").setValue(self.toAny())
     }
     
     public func toAny() -> Any {

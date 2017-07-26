@@ -27,10 +27,10 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             let exerciseID = 1
             
             //array to Dict
-            var tmpQuestions = [Int:Question]()
+            var tmpQuestions = [Question]()
             
             for each in exerciseQuestions{
-                tmpQuestions[each.qid] = each
+                tmpQuestions.append(each)
             }
             
             let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: tmpQuestions)

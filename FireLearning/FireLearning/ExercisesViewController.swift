@@ -35,13 +35,13 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let tmpExercises = snapshot.value as? [String: AnyObject]
             if(tmpExercises != nil){
                 for exercise in tmpExercises!{
-                    let tmpExercise = Exercise(_value: exercise.value)
+                    let tmpExercise = Exercise(anyObject: exercise.value)
                     self.exercises.append(tmpExercise)
                 }
             }
             self.tableView.reloadData()
         })
- 
+
         //Offline-Modus
         //exercises = (globalUser?.user?.exercisesOwned)!
         
