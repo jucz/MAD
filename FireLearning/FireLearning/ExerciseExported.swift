@@ -3,7 +3,7 @@ import Foundation
 
 struct ExerciseExported {
     
-    var eidCopy: Exercise
+    var exportedExercise: Exercise
     var start: Date
     var end: Date
     var statistics: Statistics
@@ -12,7 +12,7 @@ struct ExerciseExported {
     //Wird benutzt, um ein ExerciseExported-Objekt zu generieren und dieses unter den exercises
     //eines Rooms abzuspeichern
     init(exercise: Exercise, start: Date, end: Date) {
-        self.eidCopy = Exercise(eid: exercise.eid,
+        self.exportedExercise = Exercise(eid: exercise.eid,
                                 title: exercise.title,
                                 questions: exercise.questions)
         self.start = start
@@ -21,7 +21,7 @@ struct ExerciseExported {
     }
     
     init(exerciseOwned: ExerciseExported) {
-        self.eidCopy = exerciseOwned.eidCopy
+        self.exportedExercise = exerciseOwned.exportedExercise
         self.start = exerciseOwned.start
         self.end = exerciseOwned.end
         self.statistics = exerciseOwned.statistics
@@ -29,7 +29,7 @@ struct ExerciseExported {
     
     ///JULIAN
     init(anyObject: AnyObject){
-        self.eidCopy = Exercise(anyObject: (anyObject["eidCopy"])! as AnyObject)
+        self.exportedExercise = Exercise(anyObject: (anyObject["exportedExercise"])! as AnyObject)
         //ToDo: Datum richtig konvertieren
         //let dateFormatter = DateFormatter()
         self.start = Date()//dateFormatter.date(from: (anyObject["start"] as! String))!
@@ -42,10 +42,10 @@ struct ExerciseExported {
     
     //Others
     public func toAny() -> Any {
-        let eidCopy = self.eidCopy.toAny()
+        let exportedExercise = self.exportedExercise.toAny()
         let statistics = self.statistics.toAny()
         return [
-            "eidCopy": eidCopy,
+            "exportedExercise": exportedExercise,
             "start": "\(self.start)",
             "end": "\(self.end)",
             "statistics": statistics
@@ -62,8 +62,8 @@ struct ExerciseExported {
     
     
     //Getter
-    /*public func getEidCopy() -> Exercise {
-        return self.eidCopy
+    /*public func getexportedExercise() -> Exercise {
+        return self.exportedExercise
     }
     
     public func getStart() -> Date {
