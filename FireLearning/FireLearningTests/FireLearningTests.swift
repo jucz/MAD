@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import FireLearning
+//@testable import FireLearning
 
 class FireLearningTests: XCTestCase {
     

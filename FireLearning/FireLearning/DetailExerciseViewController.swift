@@ -25,7 +25,7 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         for each in exercise.questions{
-            questions.append(each.value)
+            questions.append(each)
         }
         tableView.delegate = self
         tableView.dataSource = self

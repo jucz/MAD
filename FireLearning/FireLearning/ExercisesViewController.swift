@@ -29,7 +29,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*
+        
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
             let tmpExercises = snapshot.value as? [String: AnyObject]
             
@@ -42,7 +42,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             self.tableView.reloadData()
             
         })
-        */
+        
         //Offline-Modus
         //exercises = (globalUser?.user?.exercisesOwned)!
         

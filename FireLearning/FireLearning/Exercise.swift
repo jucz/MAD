@@ -9,7 +9,7 @@ struct Exercise {
         
     var eid: Int
     var title: String
-    var questions = [Int:Question]()
+    var questions = [Question]()
     
     //Constructors
     init(title: String) {
@@ -18,27 +18,27 @@ struct Exercise {
         self.title = title
     }
     
-    init(eid: Int, title: String, questions: [Int:Question]) {
+    init(eid: Int, title: String, questions: [Question]) {
         self.eid = eid
         self.title = title
         self.questions = questions
     }
     
-    init(anyObject: AnyObject){
+    init(anyObject: AnyObject) {
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
         let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
         for q in allQuestions {
             let qTmp = Question(anyObject: q.value)
-            self.questions[qTmp.qid] = qTmp
+            self.questions.append(qTmp)
         }
     }
     
     init(_value: AnyObject){
         self.title = _value["title"] as! String
         self.eid = _value["eid"] as! Int
-        var tmpQuestions = [Int:Question]()
+        var tmpQuestions = [Question]()
         
         var counter = 0
         //Fragen
@@ -53,7 +53,7 @@ struct Exercise {
             }
             
             let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
-            tmpQuestions[counter] = (tmpQuestion)
+            tmpQuestions.append(tmpQuestion)
             counter += 1
         }
         self.questions = tmpQuestions
@@ -62,13 +62,13 @@ struct Exercise {
     
     //Other
     public mutating func addQuestion(question: Question){
-        self.questions[question.qid] = question
+        self.questions.append(question)
     }
     
     public func toAny() -> Any {
-        var questions = [String:Any]()
+        var questions = [Any]()
         for element in self.questions {
-            questions["qid\(element.key)"] = element.value.toAny()
+            questions.append(element.toAny())
         }
         return [
             "eid": self.eid,

@@ -134,7 +134,7 @@ struct User {
         //ENDE TESTDATEN
         var exercisesOwned = [String:Any]()
         for element in self.exercisesOwned {
-            exercisesOwned["\(element.eid)"] = element.toAny()
+            exercisesOwned["eid\(element.eid)"] = element.toAny()
         }
         let blocked = Helpers.toAny(array: self.blocked)
         let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
