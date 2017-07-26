@@ -48,8 +48,7 @@ class CreateQuestionViewController: UIViewController {
         }
         else{
             let question = Question(question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
-            print(exerciseQuestions)
-            exerciseQuestions[exerciseQuestionCounter] = question
+            exerciseQuestions.append(question)
             exerciseQuestionCounter = exerciseQuestionCounter + 1
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
             

@@ -49,6 +49,9 @@ class GlobalUser{
         self.user?.exercisesOwned.append(exercise)
     }
     
+    public func updateQuestionInExercise(){
+        
+    }
     public func retrieveUserFromFIR(withEmail: String) {
         userRef?.observeSingleEvent(of: .value, with: { snapshot in
             self.user = User(snapshot: snapshot)
