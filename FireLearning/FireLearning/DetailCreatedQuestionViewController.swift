@@ -1,16 +1,17 @@
 //
-//  DetailQuestionViewController.swift
+//  DetailCreatedQuestionViewController.swift
 //  FireLearning
 //
-//  Created by Admin on 21.07.17.
+//  Created by Admin on 25.07.17.
 //  Copyright © 2017 HS Osnabrueck. All rights reserved.
 //
 
 import UIKit
 
-class DetailQuestionViewController: UIViewController {
-    var isEditingQuestion = false
+class DetailCreatedQuestionViewController: UIViewController {
+    var indexOfQuestion: Int!
     var question: Question!
+    var isEditingQuestion = false
     
     //View-Verbindungen
     @IBOutlet var questionTitleText: UILabel!
@@ -25,30 +26,31 @@ class DetailQuestionViewController: UIViewController {
     @IBOutlet var secPossTextField: UITextField!
     @IBOutlet var thrdPossTextField: UITextField!
     
+    
     @IBOutlet var saveEditButton: UIBarButtonItem!
     @IBAction func saveEditButton(_ sender: Any) {
         editQuestion()
     }
-    
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initView()
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    //Hilfs-Methoden
     func initView(){
         questionTitleText.text = question.question
         rightAnswerText.text = question.answer
         firstPossText.text = question.possibilities[0]
         secPossText.text = question.possibilities[1]
         thrdPossText.text = question.possibilities[2]
-        
+    
         questionTitleTextField.text = question.question
         rightAnswerTextField.text = question.answer
         firstPossTextField.text = question.possibilities[0]
@@ -56,8 +58,6 @@ class DetailQuestionViewController: UIViewController {
         thrdPossTextField.text = question.possibilities[2]
     }
     
-    
-    //Edit-Methoden
     func editQuestion(){
         toggleUIforEdit()
         if(isEditingQuestion == true){
@@ -79,15 +79,12 @@ class DetailQuestionViewController: UIViewController {
             question.possibilities[0] = firstPossTextField.text!
             question.possibilities[1] = secPossTextField.text!
             question.possibilities[2] = thrdPossTextField.text!
+            
+            exerciseQuestions[indexOfQuestion] = question
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
             initView()
-            
-            //update this question for the exercise chosen in parent controller
-            // -> update parent controller data
-            //    via a singleEvent observe of that modified exercise
-            // 
-            //  ---> globalUser.updateQuestionFor(_eid: Int, _question: Question)
-            //                 (( func has to be modified to sth like this)
-            
+            //self.navigationController?.popViewController(animated: true)
         }
     }
     func toggleUIforEdit(){

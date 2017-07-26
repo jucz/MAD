@@ -48,6 +48,9 @@ class GlobalUser{
         self.user?.exercisesOwned.append(exercise)
     }
     
+    public func updateQuestionInExercise(){
+        
+    }
     
     
     

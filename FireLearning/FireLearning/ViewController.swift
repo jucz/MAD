@@ -35,8 +35,6 @@ class ViewController: UIViewController {
                 
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 globalUser = GlobalUser(_email: userMail)
-                //globalUser.createChangeListener(_email: userMail)
-                //globalUser.test(_email: userMail)
                 
                 DispatchQueue.main.async(){
                     

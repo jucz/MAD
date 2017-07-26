@@ -19,6 +19,7 @@
 		84777D5A1F1C941C004324A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84777D591F1C941C004324A2 /* User.swift */; };
 		84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C211F2277950014CA78 /* DetailExerciseViewController.swift */; };
 		84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C231F2289660014CA78 /* DetailQuestionViewController.swift */; };
+		849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
 		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		84777D5B1F1C9841004324A2 /* FireLearning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireLearning.entitlements; sourceTree = "<group>"; };
 		84968C211F2277950014CA78 /* DetailExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailExerciseViewController.swift; sourceTree = "<group>"; };
 		84968C231F2289660014CA78 /* DetailQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailQuestionViewController.swift; sourceTree = "<group>"; };
+		849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCreatedQuestionViewController.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				84968C231F2289660014CA78 /* DetailQuestionViewController.swift */,
 				84968C211F2277950014CA78 /* DetailExerciseViewController.swift */,
+				849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */,
 				84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */,
 				84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */,
 				84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */,
@@ -562,6 +565,7 @@
 				84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */,
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
 				0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */,
+				849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,
 				84DC14691F1F74B200ACBD89 /* ExercisesViewController.swift in Sources */,
 			);
