@@ -27,6 +27,19 @@ struct ExerciseExported {
         self.statistics = exerciseOwned.statistics
     }
     
+    ///JULIAN
+    init(anyObject: AnyObject){
+        self.eidCopy = Exercise(anyObject: (anyObject["eidCopy"])! as AnyObject)
+        //ToDo: Datum richtig konvertieren
+        //let dateFormatter = DateFormatter()
+        self.start = Date()//dateFormatter.date(from: (anyObject["start"] as! String))!
+        self.end = Date()//dateFormatter.date(from: (anyObject["end"] as! String))!
+        //Ende ToDo
+        self.statistics = Statistics(anyObject: anyObject)
+    }
+    ///
+
+    
     //Others
     public func toAny() -> Any {
         let eidCopy = self.eidCopy.toAny()
@@ -38,17 +51,6 @@ struct ExerciseExported {
             "statistics": statistics
         ]
     }
-    
-    /*public func toAnyObject() -> AnyObject {
-        let eidCopy = self.eidCopy.toAnyObject()
-        let statistics = self.statistics.toAnyObject()
-        return {
-            var eidCopy = eidCopy;
-            var start = self.start;
-            var end = self.end;
-            var statistics = statistics;
-        } as AnyObject
-    }*/
     
     public mutating func createRoomInDB() {
         Helpers.rootRef.child("rooms").setValue(self.toAny())

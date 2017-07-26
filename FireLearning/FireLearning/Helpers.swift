@@ -45,17 +45,6 @@ class Helpers {
         }
         return list
     }
-    
-    /*public static func toAnyObject(array: [String]?) -> AnyObject? {
-        if array == nil {
-            return nil
-        }
-        var list: [String:String] = [:]
-        for element in array! {
-            list[Helpers.convertEmail(email: element)] = element
-        }
-        return list as AnyObject?
-    }*/
     ///ENDE 1
     
     ///2
@@ -69,17 +58,6 @@ class Helpers {
         }
         return list
     }
-    
-    /*public static func toAnyObject(array: [Int]?) -> AnyObject? {
-        if array == nil {
-            return nil
-        }
-        var list: [String:Int] = [:]
-        for element in array! {
-            list["\(element)"] = element
-        }
-        return list as AnyObject?
-    }*/
     ///ENDE 2
     
     ///3
@@ -93,17 +71,6 @@ class Helpers {
         }
         return list
     }
-    
-    /*public static func toAnyObject(array: [AnyObject]?) -> AnyObject? {
-        if array == nil {
-            return nil
-        }
-        var list: [String:String] = [:]
-        for element in array! {
-            list["\(element)"] = "\(element)"
-        }
-        return list as AnyObject?
-    }*/
     ///ENDE 3
     
     ///4
@@ -117,17 +84,6 @@ class Helpers {
         }
         return list
     }
-    
-    /*public static func toAnyObject(dict: [String:AnyObject]?) -> AnyObject? {
-        if dict == nil {
-            return nil
-        }
-        var res = [String:String]()
-        for element in dict! {
-            res[element.key] = "\(element.value)"
-        }
-        return res as AnyObject?
-    }*/
     ///ENDE 4
     
     //Convert all not allowed characters to alternative substrings

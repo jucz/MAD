@@ -5,8 +5,8 @@ struct Statistics {
 
     var done = [String:Int]() //key: email, value: rounded percent value
     var notDone = [String]() //emails of not done users
-    var resultComplete: Int
-    var resultDone: Int
+    var resultComplete: Int = 0
+    var resultDone: Int = 0
     
     //Construtors
     init() {
@@ -29,6 +29,25 @@ struct Statistics {
         self.notDone = statistics.notDone
         self.resultComplete = statistics.resultComplete
         self.resultDone = statistics.resultDone
+    }
+    
+    init(anyObject: AnyObject) {
+        if let resultDone = anyObject["resultDone"] as? Int {
+            self.resultDone = resultDone
+        }
+        if let resultComplete = anyObject["resultComplete"] as? Int {
+            self.resultComplete = resultComplete
+        }
+        if let done = anyObject["done"] as? [String:Int] {
+            for s in done {
+                self.done[s.key] = s.value
+            }
+        }
+        if let notDone = anyObject["notDone"] as? [String] {
+            for s in notDone {
+                self.notDone.append(s)
+            }
+        }
     }
     
     //Others
@@ -59,20 +78,6 @@ struct Statistics {
             "resultDone": self.resultDone
         ]
     }
-    
-    /*public func toAnyObject() -> AnyObject {
-        let notDone = Helpers.toAnyObject(array: self.notDone)
-        var done = [String:String]()
-        for element in self.done {
-            done[element.key] = "\(element.value)"
-        }
-        return {
-            var done = done;
-            var notDone = notDone;
-            var resultComplete = self.resultComplete;
-            var resultDone = self.resultDone;
-        } as AnyObject
-    }*/
     
     //Setter
     //not necessary yet

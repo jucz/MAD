@@ -1,5 +1,6 @@
 
 import Foundation
+import FirebaseDatabase
 
 struct Room {
     
@@ -15,7 +16,7 @@ struct Room {
     
     
     init(title: String, email: String){
-        Room.getActualRid()
+        Room.getRecentRid()
         self.rid = Room.rids
         self.title = title
         self.admin = email
@@ -31,6 +32,20 @@ struct Room {
         self.exercises = room.exercises
     }
     
+    ///JULIAN
+    init(snapshot: DataSnapshot) {
+        self.rid = Room.getRid(snapshot: snapshot)
+        self.title = Room.getTitle(snapshot: snapshot)
+        self.admin = Room.getAdmin(snapshot: snapshot)
+        self.description = Room.getDescription(snapshot: snapshot)
+        self.news = Room.getNews(snapshot: snapshot)
+        self.students = Room.getStudents(snapshot: snapshot)
+        self.exercises = Room.getExercises(snapshot: snapshot)
+        
+        print("___Room: \(self)____")
+    }
+    ///ENDE JULIAN
+    
     //Others
     public mutating func addStudent(email: String) {
         self.students.append(email)
@@ -42,7 +57,7 @@ struct Room {
     
     //Others
     public func createRoomInDB() {
-        Helpers.rootRef.child("rooms").setValue(self.toAny())
+        Helpers.rootRef.child("rooms").child("\(self.rid)").setValue(self.toAny())
     }
     
     public func toAny() -> Any {
@@ -62,28 +77,70 @@ struct Room {
         ]
     }
     
-    /*public func toAnyObject() -> AnyObject {
-        let students = Helpers.toAnyObject(array: self.students)
-        var exercises = [AnyObject]()
-        for element in self.exercises {
-            exercises.append(element.toAnyObject())
-        }
-        return {
-            var rid = self.rid;
-            var title = self.title;
-            var admin = self.admin;
-            var description = self.description!;
-            var news = self.news!;
-            var students = students;
-            var exercises = exercises;
-        } as AnyObject
-    }*/
-    
-    public static func getActualRid() {
+    public static func getRecentRid() {
         Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
             Room.rids = snapshot.value as! Int
         })
         Helpers.rootRef.child("rids").setValue(Room.rids+1)
     }
     
+    public static func getAdmin(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["admin"] as? String ?? ""
+    }
+    
+    public static func getDescription(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["description"] as? String ?? ""
+    }
+    
+    public static func getNews(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["news"] as? String ?? ""
+    }
+    
+    public static func getRid(snapshot: DataSnapshot) -> Int {
+        let values = snapshot.value as? NSDictionary
+        return values?["rid"] as? Int ?? -1
+    }
+    
+    public static func getTitle(snapshot: DataSnapshot) -> String {
+        let values = snapshot.value as? NSDictionary
+        return values?["title"] as? String ?? ""
+    }
+
+    
+    public static func getStudents(snapshot: DataSnapshot) -> [String] {
+        let values = snapshot.value as? NSDictionary
+        var students = [String]()
+        if let anyObject = values?["students"] as? [AnyObject] {
+            for element in anyObject {
+                students.append(element.value)
+            }
+        }
+        return students
+    }
+    
+    public static func getExercises(snapshot: DataSnapshot) -> [ExerciseExported] {
+        let values = snapshot.value as? NSDictionary
+        var exercises = [ExerciseExported]()
+        if let anyObject = values?["exercises"] as? [AnyObject] {
+            for element in anyObject {
+                let eTmp = ExerciseExported(anyObject: element)
+                exercises.append(eTmp)
+            }
+        }
+        return exercises
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

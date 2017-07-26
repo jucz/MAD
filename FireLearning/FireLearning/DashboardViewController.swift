@@ -12,11 +12,15 @@ import FirebaseDatabase
 
 class DashboardViewController: UIViewController {
     
-    var user: User?
+    ///JULIAN
+    var room: Room?
+    ///ENDE JULIAN
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ///JULIAN TEST
+        retrieveRoomFromFIR(withRid: 0)
+        ///ENDE JULIAN TEST
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,38 +28,14 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    public func retrieveUserFromFIR(withEmail: String) {
+    ///JULIAN
+    public func retrieveRoomFromFIR(withRid: Int) {
         let ref = Database.database().reference()
-        ref.child("users").child(withEmail).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let email = value?["email"] as? String ?? ""
-            let lastname = value?["lastname"] as? String ?? ""
-            let firstname = value?["firstname"] as? String ?? ""
-    
-            ///JULIAN
-            print("NSDictionary: \(value!)")
-    
-            let blocked = User.getBlocked(snapshot: snapshot)
-            let roomsAsTeacher = User.getRoomsAsTeacher(snapshot: snapshot)
-            let roomsAsStudent = User.getRoomsAsStudent(snapshot: snapshot)
-            let exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
-            
-            //self.user = User(email: "\(email)2", firstname: firstname, lastname: lastname,
-             //                exercisesOwned: exercisesOwned, blocked: blocked,
-            //                 roomsAsTeacher: roomsAsTeacher, roomsAsStudent: roomsAsStudent)
-            
-            (self.user)?.createUserInDB()
-            
-            print("___User: \(self.user)____")
-            
-            /*print("____blocked: \(blocked)")
-            print("____asTeacher: \(roomsAsTeacher)")
-            print("____asStudent: \(roomsAsStudent)")
-            print("____exercisesOwned: \(exercisesOwned)")*/
-            ///ENDE JULIAN
+        ref.child("rooms").child("\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
+            self.room = Room(snapshot: snapshot)
         })
     }
+    ///ENDE JULIAN
     
 
     /*
