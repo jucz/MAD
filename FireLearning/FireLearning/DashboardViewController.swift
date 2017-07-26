@@ -19,7 +19,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ///JULIAN TEST
-        retrieveRoomFromFIR(withRid: 0)
+        //retrieveRoomFromFIR(withRid: 0)
         ///ENDE JULIAN TEST
     }
 
@@ -36,16 +36,4 @@ class DashboardViewController: UIViewController {
         })
     }
     ///ENDE JULIAN
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

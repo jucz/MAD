@@ -35,6 +35,12 @@ struct Exercise {
         }
     }
     
+    init(_exercise: Exercise){
+        self.eid = _exercise.eid
+        self.title = _exercise.title
+        self.questions = _exercise.questions
+    }
+    
     init(_value: AnyObject){
         self.title = _value["title"] as! String
         self.eid = _value["eid"] as! Int
@@ -42,19 +48,23 @@ struct Exercise {
         
         var counter = 0
         //Fragen
-        for eachQuestion in (_value["questions"] as? [String:AnyObject])! {
-            let tmpQuestionTitle = eachQuestion.value["question"] as! String
-            let tmpAnswer = eachQuestion.value["answer"] as! String
-            
-            //antworten
-            var tmpPossibilites = [String]()
-            for eachPossibility in (eachQuestion.value["possibilities"] as? [String:String])!{
-                tmpPossibilites.append(eachPossibility.value)
+        var questionArray = _value["questions"] as? [String:AnyObject]
+        print(questionArray)
+        if(questionArray != nil){
+            for eachQuestion in questionArray! {
+                let tmpQuestionTitle = eachQuestion.value["question"] as! String
+                let tmpAnswer = eachQuestion.value["answer"] as! String
+                
+                //antworten
+                var tmpPossibilites = [String]()
+                for eachPossibility in (eachQuestion.value["possibilities"] as? [String:String])!{
+                    tmpPossibilites.append(eachPossibility.value)
+                }
+                
+                let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
+                tmpQuestions[counter] = (tmpQuestion)
+                counter += 1
             }
-            
-            let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
-            tmpQuestions[counter] = (tmpQuestion)
-            counter += 1
         }
         self.questions = tmpQuestions
 

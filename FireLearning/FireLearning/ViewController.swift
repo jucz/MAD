@@ -37,9 +37,7 @@ class ViewController: UIViewController {
                 globalUser = GlobalUser(_email: userMail)
                 
                 DispatchQueue.main.async(){
-                    
                     self.performSegue(withIdentifier: "login", sender: self)
-                    
                 }
             }
         }

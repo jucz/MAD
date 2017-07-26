@@ -23,6 +23,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
         let exerciseName = nameOutlet.text!
         if(exerciseName != ""){
             print(exerciseName)
+            
             let exerciseID = 1
             
             //array to Dict
@@ -33,7 +34,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             }
             
             let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: tmpQuestions)
-            //globalUser?.addExerciseToDatabaseForGlobalUser(_exercise: exercise)
+            globalUser?.addExerciseToDatabaseForGlobalUser(_exercise: exercise)
             self.navigationController?.popViewController(animated: true)
             
         }
