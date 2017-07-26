@@ -36,6 +36,13 @@ struct Exercise {
         }
     }
     
+    init(_exercise: Exercise){
+        self.eid = _exercise.eid
+        self.title = _exercise.title
+        self.questions = _exercise.questions
+    }
+    
+/*
 //    init(_value: AnyObject){
 //        self.title = _value["title"] as! String
 //        self.eid = _value["eid"] as! Int
@@ -59,7 +66,7 @@ struct Exercise {
 //        }
 //        self.questions = tmpQuestions
 //    }
-    
+*/
     //Other
     public mutating func addQuestion(question: Question){
         self.questions.append(question)

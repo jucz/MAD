@@ -31,8 +31,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
+            self.exercises = []
             let tmpExercises = snapshot.value as? [String: AnyObject]
-            
             if(tmpExercises != nil){
                 for exercise in tmpExercises!{
                     let tmpExercise = Exercise(anyObject: exercise.value)
@@ -40,9 +40,8 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
             self.tableView.reloadData()
-            
         })
-        
+
         //Offline-Modus
         //exercises = (globalUser?.user?.exercisesOwned)!
         

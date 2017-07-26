@@ -33,9 +33,21 @@ class GlobalUser{
     }
     
     public func addExerciseToDatabaseForGlobalUser(_exercise: Exercise){
-        userRef?.child("exercisesOwned").updateChildValues([
-            "eid\(_exercise.eid)": _exercise.toAny()
+        var eidRef = Database.database().reference().child("eids")
+        eidRef.observeSingleEvent(of: .value, with: { snapshot in
+            
+            var id = snapshot.value as! Int
+            
+            var tmpExercise = Exercise(_exercise: _exercise)
+            tmpExercise.eid = id
+            self.userRef?.child("exercisesOwned").updateChildValues([
+                "eid\(tmpExercise.eid)": tmpExercise.toAny()
             ])
+            
+            eidRef.setValue(id+1)
+            
+        })
+
     }
     
     public func createStaticUserForOfflineLogin(){
@@ -49,6 +61,7 @@ class GlobalUser{
         self.user?.exercisesOwned.append(exercise)
     }
     
+ 
     public func updateQuestionInExercise(){
         
     }
@@ -57,7 +70,4 @@ class GlobalUser{
             self.user = User(snapshot: snapshot)
         })
     }
-    
-    
-    
 }
