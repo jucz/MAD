@@ -24,6 +24,17 @@ struct Exercise {
         self.questions = questions
     }
     
+    init(anyObject: AnyObject){
+        self.eid = (anyObject["eid"])! as! Int
+        self.title = (anyObject["title"])! as! String
+        //Loop durch alle Fragen:
+        let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
+        for q in allQuestions {
+            let qTmp = Question(anyObject: q.value)
+            self.questions[qTmp.qid] = qTmp
+        }
+    }
+    
     init(_value: AnyObject){
         self.title = _value["title"] as! String
         self.eid = _value["eid"] as! Int
@@ -72,27 +83,6 @@ struct Exercise {
         })
         Helpers.rootRef.child("eids").setValue(Exercise.eids+1)
     }
-    
-    /*public func toAnyObject() -> AnyObject {
-        var questions = [String:AnyObject]()
-        for element in self.questions {
-            questions["\(element.key)"] = element.value.toAnyObject()
-        }
-        return {
-            var eid = self.eid;
-            var title = self.title;
-            var questions = questions;
-        } as AnyObject
-    }*/
-    
-    /*public static func getNewEid() -> Int {
-        Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
-            let values = snapshot.value as? [String:AnyObject]
-            let eidTmp = values?["eids"] as! Int
-            Helpers.rootRef.child("eids").setValue("\(eidTmp+1)")
-        })
-        return Int(eid)
-    }*/
     
     
     //Setter

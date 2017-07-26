@@ -32,6 +32,20 @@ struct Room {
         self.exercises = room.exercises
     }
     
+    ///JULIAN
+    init(snapshot: DataSnapshot) {
+        self.rid = Room.getRid(snapshot: snapshot)
+        self.title = Room.getTitle(snapshot: snapshot)
+        self.admin = Room.getAdmin(snapshot: snapshot)
+        self.description = Room.getDescription(snapshot: snapshot)
+        self.news = Room.getNews(snapshot: snapshot)
+        self.students = Room.getStudents(snapshot: snapshot)
+        self.exercises = Room.getExercises(snapshot: snapshot)
+        
+        print("___Room: \(self)____")
+    }
+    ///ENDE JULIAN
+    
     //Others
     public mutating func addStudent(email: String) {
         self.students.append(email)
@@ -43,7 +57,7 @@ struct Room {
     
     //Others
     public func createRoomInDB() {
-        Helpers.rootRef.child("rooms").setValue(self.toAny())
+        Helpers.rootRef.child("rooms").child("\(self.rid)").setValue(self.toAny())
     }
     
     public func toAny() -> Any {
@@ -62,23 +76,6 @@ struct Room {
             "exercises": exercises
         ]
     }
-    
-    /*public func toAnyObject() -> AnyObject {
-        let students = Helpers.toAnyObject(array: self.students)
-        var exercises = [AnyObject]()
-        for element in self.exercises {
-            exercises.append(element.toAnyObject())
-        }
-        return {
-            var rid = self.rid;
-            var title = self.title;
-            var admin = self.admin;
-            var description = self.description!;
-            var news = self.news!;
-            var students = students;
-            var exercises = exercises;
-        } as AnyObject
-    }*/
     
     public static func getRecentRid() {
         Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
@@ -115,10 +112,9 @@ struct Room {
     
     public static func getStudents(snapshot: DataSnapshot) -> [String] {
         let values = snapshot.value as? NSDictionary
-        let studentsDict = values?["students"] as? [String:String]
         var students = [String]()
-        if studentsDict != nil {
-            for element in studentsDict! {
+        if let anyObject = values?["students"] as? [AnyObject] {
+            for element in anyObject {
                 students.append(element.value)
             }
         }
@@ -127,7 +123,16 @@ struct Room {
     
     public static func getExercises(snapshot: DataSnapshot) -> [ExerciseExported] {
         let values = snapshot.value as? NSDictionary
+        var exercises = [ExerciseExported]()
+        if let anyObject = values?["exercises"] as? [AnyObject] {
+            for element in anyObject {
+                let eTmp = ExerciseExported(anyObject: element)
+                exercises.append(eTmp)
+            }
+        }
+        return exercises
     }
+
 }
 
 

@@ -5,6 +5,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+
 struct User {
     
     let email: String
@@ -36,70 +37,89 @@ struct User {
         self.roomsAsTeacher = roomsAsTeacher
         self.roomsAsStudent = roomsAsStudent
     }
-    init(snapshot: DataSnapshot) {
-        //key = snapshot.key
-        let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.email = snapshotValue["email"] as! String
-        self.firstname = snapshotValue["firstname"] as! String
-        self.lastname = snapshotValue["lastname"] as! String
-        
-        //exercisesOwned = (snapshotValue["exercisesOwned"] as? [Int:String])
-        //Aufgaben holen
-        if let exercisesDict = snapshotValue["exercisesOwned"] as? [String:AnyObject]{
-            for each in exercisesDict{
-                
-                let title = each.value["title"] as! String
-                let eid = each.value["eid"] as! Int
-                
-                
-                let questions = each.value["questions"] as? [String:AnyObject]
-                print(type(of: questions))
-                for q in questions!{
-                    let question = q.value["question"] as! String
-                    print(question)
-                }
-                
-                var tmp = Exercise(title: title)
-                print(tmp.title)
-                //self.exercisesOwned.append(each.value as! Exercise)
-            }
-            
-        }else{
-            print("exercisesDict is null")
-        }
-        //Blocked holen
-        if let blockedDict = snapshotValue["blocked"] as? [String:AnyObject]{
-            
-            for each in blockedDict{
-                self.blocked.append(each.value as! String)
-            }
-            
-        }else{
-            print("blockedDict is null")
-        }
-        //roomsAsTeacher holen
-        if let roomsAsTeacherDict = snapshotValue["roomsAsTeacher"] as? [String:AnyObject]{
-            
-            for each in roomsAsTeacherDict{
-                self.roomsAsTeacher.append(each.value as! Int)
-            }
-            
-        }else{
-            print("roomsAsTeacherDict is null")
-        }
-        //roomsAsStudent holen
-        if let roomsAsStudentDict = snapshotValue["roomsAsStudent"] as? [String:AnyObject]{
-            
-            for each in roomsAsStudentDict{
-                self.roomsAsStudent.append(each.value as! Int)
-            }
-            
-        }else{
-            print("roomsAsStudentDict is null")
-        }
-    }
     
-    //Others
+    ///JULIAN
+    init(snapshot: DataSnapshot) {
+        let value = snapshot.value as? NSDictionary
+        self.email = value?["email"] as? String ?? ""
+        self.lastname = value?["lastname"] as? String ?? ""
+        self.firstname = value?["firstname"] as? String ?? ""
+        
+        print("NSDictionary: \(value!)")
+        
+        self.blocked = User.getBlocked(snapshot: snapshot)
+        self.roomsAsTeacher = User.getRoomsAsTeacher(snapshot: snapshot)
+        self.roomsAsStudent = User.getRoomsAsStudent(snapshot: snapshot)
+        self.exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
+        
+        print("___User: \(self)____")
+    }
+    ///ENDE JULIAN
+    
+//    init(snapshot: DataSnapshot) {
+//        //key = snapshot.key
+//        let snapshotValue = snapshot.value as! [String: AnyObject]
+//        self.email = snapshotValue["email"] as! String
+//        self.firstname = snapshotValue["firstname"] as! String
+//        self.lastname = snapshotValue["lastname"] as! String
+//        
+//        //exercisesOwned = (snapshotValue["exercisesOwned"] as? [Int:String])
+//        //Aufgaben holen
+//        if let exercisesDict = snapshotValue["exercisesOwned"] as? [String:AnyObject]{
+//            for each in exercisesDict{
+//                
+//                let title = each.value["title"] as! String
+//                let eid = each.value["eid"] as! Int
+//                
+//                
+//                let questions = each.value["questions"] as? [String:AnyObject]
+//                print(type(of: questions))
+//                for q in questions!{
+//                    let question = q.value["question"] as! String
+//                    print(question)
+//                }
+//                
+//                var tmp = Exercise(title: title)
+//                print(tmp.title)
+//                //self.exercisesOwned.append(each.value as! Exercise)
+//            }
+//            
+//        }else{
+//            print("exercisesDict is null")
+//        }
+//        //Blocked holen
+//        if let blockedDict = snapshotValue["blocked"] as? [String:AnyObject]{
+//            
+//            for each in blockedDict{
+//                self.blocked.append(each.value as! String)
+//            }
+//            
+//        }else{
+//            print("blockedDict is null")
+//        }
+//        //roomsAsTeacher holen
+//        if let roomsAsTeacherDict = snapshotValue["roomsAsTeacher"] as? [String:AnyObject]{
+//            
+//            for each in roomsAsTeacherDict{
+//                self.roomsAsTeacher.append(each.value as! Int)
+//            }
+//            
+//        }else{
+//            print("roomsAsTeacherDict is null")
+//        }
+//        //roomsAsStudent holen
+//        if let roomsAsStudentDict = snapshotValue["roomsAsStudent"] as? [String:AnyObject]{
+//            
+//            for each in roomsAsStudentDict{
+//                self.roomsAsStudent.append(each.value as! Int)
+//            }
+//            
+//        }else{
+//            print("roomsAsStudentDict is null")
+//        }
+//    }
+    
+    ///Others
     public func createUserInDB() {
         let email: String = Helpers.convertEmail(email: self.email)
         Helpers.rootRef.child("users").child(email).setValue(self.toAny())
@@ -131,29 +151,44 @@ struct User {
         ]
     }
     
-    /*public func toAnyObject() -> AnyObject {
-        //TESTDATEN
-        let blockedUsers = Helpers.toAnyObject(array: ["olaf@app.de", "peter@app.de"])
-        //ENDE TESTDATEN
-        var exercisesOwned = [String:AnyObject]()
-        for element in self.exercisesOwned {
-            exercisesOwned["\(element.key)"] = element.value.toAnyObject()
-        }
-        let blocked = Helpers.toAnyObject(array: self.blocked)
-        let roomsAsTeacher = Helpers.toAnyObject(array: self.roomsAsTeacher)
-        let roomsAsStudent = Helpers.toAnyObject(array: self.roomsAsStudent)
-        
-        return {
-            var email = self.email;
-            var firstname = self.firstname;
-            var lastname = self.lastname;
-            var exercisesOwned = exercisesOwned;
-            var blocked = blockedUsers; //blocked
-            var roomsAsTeacher = roomsAsTeacher;
-            var roomsAsStudent = roomsAsStudent;
-        } as AnyObject
-    }*/
+    public mutating func addExercise(exercise: Exercise) {
+        self.exercisesOwned.append(exercise)
+    }
     
+    public func checkIfBlocked(email: String) -> Bool {
+        for mail in self.blocked {
+            if mail == email {
+                return true
+            }
+        }
+        return false
+    }
+
+    public func checkIfAdmin(rid: Int) -> Bool {
+        for room in self.roomsAsTeacher {
+            if room == rid {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    
+    
+    
+    
+    
+    ///Setter
+    //Not necessary yet
+    
+    
+    
+    
+    
+    
+    
+    ///Getter
     public static func getEmail(snapshot: DataSnapshot) -> String {
         let values = snapshot.value as? NSDictionary
         return values?["email"] as? String ?? ""
@@ -208,52 +243,21 @@ struct User {
     }
     
     
-    public static func getExercisesOwned(snapshot: DataSnapshot) -> [Int:Exercise] {
+    public static func getExercisesOwned(snapshot: DataSnapshot) -> [Exercise] {
         let values = snapshot.value as? [String:AnyObject]
-        let exTmp = values?["exercisesOwned"] as? [[String:AnyObject]]
-        var exercises = [Int:Exercise]()
-        if exTmp != nil {
-            //Questions holen
-            for exerciseElement in exTmp! {
-                let eid = (exerciseElement["eid"])! as! Int
-                let title = (exerciseElement["title"])! as! String
-                
-                //Loop durch alle Fragen:
-                print("Questions: \((exerciseElement["questions"])!)")
-                let allQuestions = (exerciseElement["questions"])! as! [AnyObject]
-                var questions = [Int:Question]()
-                for questionElement in allQuestions {
-                    let qid = questionElement["qid"] as! Int
-                    let question = questionElement["question"] as! String
-                    let answerIndex = questionElement["answerIndex"] as! Int
-                    let answersMapped = questionElement["answers"] as? [String:String]
-                    
-                    var answers = [String]()
-                    if answersMapped != nil {
-                        for answer in answersMapped! {
-                            answers.append(answer.value)
-                        }
-                    }
-                    //questions[qid] = Question(qid: qid, question: question, answer: answer, possibilities: answerIndex)
-                }
-                exercises[eid] = Exercise(eid: eid, title: title, questions: questions)
+        let allExercises = values?["exercisesOwned"] as? [AnyObject]
+        var exercises = [Exercise]()
+        if allExercises != nil {
+            //Exercises holen
+            for e in allExercises! {
+                //Questions holen
+                exercises.append(Exercise(anyObject: e))
                 //Ende Questions holen
             }
+            //Ende Exercises holen
             print("Exercises: \(exercises)")
         }
         return exercises
     }
-    
-    public mutating func addExercise(exercise: Exercise) {
-        self.exercisesOwned[exercise.eid] = exercise
-    }
-    
-    
-    //Setter
-    //Not necessary yet
-    
-    
-    //Getter
-    //Not necessary yet
   
 }

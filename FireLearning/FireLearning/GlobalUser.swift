@@ -10,17 +10,18 @@ import Foundation
 import FirebaseDatabase
 
 class GlobalUser{
-    public var user: User?
     
+    public var user: User?
     public var userRef: DatabaseReference?
     public var userMail: String?
     
     
     init(_email: String){
         userRef = Database.database().reference().child("users").child(_email)
-        
         userMail = _email
+        self.retrieveUserFromFIR(withEmail: _email)
     }
+    
     init(){
         user = nil
     }
@@ -48,6 +49,11 @@ class GlobalUser{
         self.user?.exercisesOwned.append(exercise)
     }
     
+    public func retrieveUserFromFIR(withEmail: String) {
+        userRef?.observeSingleEvent(of: .value, with: { snapshot in
+            self.user = User(snapshot: snapshot)
+        })
+    }
     
     
     

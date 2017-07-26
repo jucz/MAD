@@ -1,6 +1,6 @@
 
 import Foundation
-
+import FirebaseDatabase
 
 struct Question {
 
@@ -11,15 +11,20 @@ struct Question {
     var answer: String
     var possibilities = [String]()
     
-<<<<<<< HEAD
-    init(question: String, answerIndex: Int, answers: [String]) {
-        Question.getRecentQid()
-=======
+    init(anyObject: AnyObject) {
+        self.qid = anyObject["qid"] as! Int
+        self.question = anyObject["question"] as! String
+        self.answer = anyObject["answer"] as! String
+        
+        if let answers = anyObject["possibilities"] as? [String:String] {
+            for answer in answers {
+                self.possibilities.append(answer.value)
+            }
+        }
+    }
+
     init(question: String, answer: String, possibilities: [String]) {
-    //init(question: String, answerIndex: Int, answers: [String]) {
-        Question.getActualQid()
-//>>>>>>> dfc84ca1f5d39b27d989bd695afa04e46e951beb
->>>>>>> 2eace52cbf33b8e1d151473927ff4431d71725c3
+        Question.getRecentQid()
         self.qid = Question.qids
         self.question = question
         self.answer = answer
@@ -47,9 +52,7 @@ struct Question {
     }
     
     public func toAny() -> Any {
-        let possibilities = Helpers.toAny(array: self.possibilities)
-        //let answers = Helpers.toAny(array: self.answers)
-        //let answers = Helpers.toAny_orderedByAlphabet(array: self.answers)
+        let possibilities = Helpers.toAny_orderedByAlphabet(array: self.possibilities)
         return [
             "qid": self.qid,
             "question": self.question,
@@ -57,17 +60,6 @@ struct Question {
             "possibilities": possibilities
         ]
     }
-    
-    /*public func toAnyObject() -> AnyObject {
-        let answers = Helpers.toAnyObject(array: self.answers)
-        return {
-            var qid = self.qid;
-            var question = self.question;
-            var answerIndex = self.answerIndex;
-            var answers = answers;
-        } as AnyObject
-    }*/
-    
     
     public static func getRecentQid() {
         Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
