@@ -28,37 +28,36 @@ struct Exercise {
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
-        let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
+        let allQuestions = (anyObject["questions"])! as! [AnyObject]
         for q in allQuestions {
-            let qTmp = Question(anyObject: q.value)
+            let qTmp = Question(anyObject: q)
             self.questions.append(qTmp)
         }
     }
     
-    init(_value: AnyObject){
-        self.title = _value["title"] as! String
-        self.eid = _value["eid"] as! Int
-        var tmpQuestions = [Question]()
-        
-        var counter = 0
-        //Fragen
-        for eachQuestion in (_value["questions"] as? [String:AnyObject])! {
-            let tmpQuestionTitle = eachQuestion.value["question"] as! String
-            let tmpAnswer = eachQuestion.value["answer"] as! String
-            
-            //antworten
-            var tmpPossibilites = [String]()
-            for eachPossibility in (eachQuestion.value["possibilities"] as? [String:String])!{
-                tmpPossibilites.append(eachPossibility.value)
-            }
-            
-            let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
-            tmpQuestions.append(tmpQuestion)
-            counter += 1
-        }
-        self.questions = tmpQuestions
-
-    }
+//    init(_value: AnyObject){
+//        self.title = _value["title"] as! String
+//        self.eid = _value["eid"] as! Int
+//        var tmpQuestions = [Question]()
+//        
+//        var counter = 0
+//        //Fragen
+//        for eachQuestion in (_value["questions"] as? [AnyObject])! {
+//            let tmpQuestionTitle = eachQuestion["question"] as! String
+//            let tmpAnswer = eachQuestion["answer"] as! String
+//            
+//            //antworten
+//            var tmpPossibilites = [String]()
+//            for eachPossibility in (eachQuestion["possibilities"] as? [String:String])!{
+//                tmpPossibilites.append(eachPossibility.value)
+//            }
+//            
+//            let tmpQuestion = Question(question: tmpQuestionTitle, answer: tmpAnswer, possibilities: tmpPossibilites)
+//            tmpQuestions.append(tmpQuestion)
+//            counter += 1
+//        }
+//        self.questions = tmpQuestions
+//    }
     
     //Other
     public mutating func addQuestion(question: Question){

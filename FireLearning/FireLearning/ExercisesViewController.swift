@@ -35,7 +35,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             
             if(tmpExercises != nil){
                 for exercise in tmpExercises!{
-                    let tmpExercise = Exercise(_value: exercise.value)
+                    let tmpExercise = Exercise(anyObject: exercise.value)
                     self.exercises.append(tmpExercise)
                 }
             }
