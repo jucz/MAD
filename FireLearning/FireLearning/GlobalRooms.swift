@@ -17,11 +17,13 @@ class GlobalRooms {
     
     init(_email: String){
         if globalUser != nil {
-            for room in globalUser.user.roomsAsTeacher {
-                self.addRoomAsTeacherFromFIR(withRid: room)
-            }
-            for room in globalUser.user.roomsAsStudent {
-                self.addRoomAsStudentFromFIR(withRid: room)
+            if globalUser?.user != nil {
+                for room in globalUser!.user!.roomsAsTeacher {
+                    self.addRoomAsTeacherFromFIR(withRid: room)
+                }
+                for room in globalUser!.user!.roomsAsStudent {
+                    self.addRoomAsStudentFromFIR(withRid: room)
+                }
             }
         }
     }

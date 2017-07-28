@@ -27,17 +27,8 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        globalUser?.userRef?.observe(.value, with: { snapshot in
-            globalRooms?.roomsAsTeacher.append(Room(snapshot: snapshot))
-            self.tableView.reloadData()
-        })
-        
-        globalUser?.userRef?.observe(.value, with: { snapshot in
-            globalRooms?.roomsAsStudent.append(Room(snapshot: snapshot))
-        })
-        
-        //Offline-Modus
-        //exercises = (globalUser?.user?.exercisesOwned)!
+        self.rooms = globalRooms?.roomsAsTeacher
+        self.tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
