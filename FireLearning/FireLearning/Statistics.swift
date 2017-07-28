@@ -62,7 +62,7 @@ struct Statistics {
         resultDone /= self.done.count
         
         //TODO
-        //resultComplete /= ANZAHL ALLER SCHUELER DES ZUGEHOERIGEN RAUMS
+        //resultComplete /= Room.getStudents(snapshot: <#T##DataSnapshot#>)
     }
     
     public func toAny() -> Any {
@@ -78,6 +78,18 @@ struct Statistics {
             "resultDone": self.resultDone
         ]
     }
+    
+    public mutating func moveUserToDone(email: String, result: Int) {
+        self.done[email] = result
+        for index in 0...self.notDone.count-1 {
+            if self.notDone[index] == email {
+                self.notDone.remove(at: index)
+                return
+            }
+        }
+    }
+    
+    
     
     //Setter
     //not necessary yet

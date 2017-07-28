@@ -68,6 +68,13 @@ struct Question {
         Helpers.rootRef.child("qids").setValue(Question.qids+1)
     }
     
+    public func checkIfCorrect(answer: String) -> Bool {
+        if answer == self.answer {
+            return true
+        }
+        return false
+    }
+    
     
     //Setter
     /*public mutating func setQuestion(question: String){
