@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080642B27EA272218375ED5F /* Pods_FireLearningUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517B1AF995A6913D0073600 /* Pods_FireLearningUITests.framework */; };
 		0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A033DDF1F1F6D83008967BE /* Helpers.swift */; };
+		0AC36F641F289ADF00592810 /* GlobalRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC36F631F289ADF00592810 /* GlobalRooms.swift */; };
 		0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406941F1D24CF00FD2533 /* Exercise.swift */; };
 		0AD406971F1D24F600FD2533 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406961F1D24F600FD2533 /* Question.swift */; };
 		0AD406991F1D253400FD2533 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406981F1D253400FD2533 /* Room.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		0A033DDF1F1F6D83008967BE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		0AC36F631F289ADF00592810 /* GlobalRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalRooms.swift; sourceTree = "<group>"; };
 		0AD406941F1D24CF00FD2533 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0AD406961F1D24F600FD2533 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		0AD406981F1D253400FD2533 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				0AD406981F1D253400FD2533 /* Room.swift */,
 				0A033DDF1F1F6D83008967BE /* Helpers.swift */,
 				84FC23791F21F57400077C9B /* GlobalUser.swift */,
+				0AC36F631F289ADF00592810 /* GlobalRooms.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,
 				84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */,
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
+				0AC36F641F289ADF00592810 /* GlobalRooms.swift in Sources */,
 				0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */,
 				849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,

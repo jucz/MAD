@@ -28,9 +28,10 @@ struct Exercise {
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
-        let allQuestions = (anyObject["questions"])! as! [AnyObject]
+        let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
+        print("allQuestions: \(allQuestions)")
         for q in allQuestions {
-            let qTmp = Question(anyObject: q)
+            let qTmp = Question(anyObject: q.value)
             self.questions.append(qTmp)
         }
     }
@@ -72,9 +73,9 @@ struct Exercise {
     }
     
     public func toAny() -> Any {
-        var questions = [Any]()
+        var questions = [String:Any]()
         for element in self.questions {
-            questions.append(element.toAny())
+            questions["qid\(element.qid)"] = element.toAny()
         }
         return [
             "eid": self.eid,

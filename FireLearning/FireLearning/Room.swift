@@ -62,9 +62,9 @@ struct Room {
     
     public func toAny() -> Any {
         let students = Helpers.toAny(array: self.students)
-        var exercises = [Any]()
+        var exercises = [String:Any]()
         for element in self.exercises {
-            exercises.append(element.toAny())
+            exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
         }
         return [
             "rid": self.rid,
