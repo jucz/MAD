@@ -136,18 +136,18 @@ struct User {
         for element in self.exercisesOwned {
             exercisesOwned["eid\(element.eid)"] = element.toAny()
         }
-        let blocked = Helpers.toAny(array: self.blocked)
-        let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
-        let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
+//        let blocked = Helpers.toAny(array: self.blocked)
+//        let roomsAsTeacher = Helpers.toAny(array: self.roomsAsTeacher)
+//        let roomsAsStudent = Helpers.toAny(array: self.roomsAsStudent)
         
         return [
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "exercisesOwned": exercisesOwned,
-            "blocked": blocked,
-            "roomsAsTeacher": roomsAsTeacher,
-            "roomsAsStudent": roomsAsStudent
+            "blocked": self.blocked,
+            "roomsAsTeacher": self.roomsAsTeacher,
+            "roomsAsStudent": self.roomsAsStudent
         ]
     }
     

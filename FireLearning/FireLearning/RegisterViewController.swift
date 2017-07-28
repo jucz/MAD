@@ -118,13 +118,17 @@ class RegisterViewController: UIViewController {
                                             var room = Room(title: "10L2", email: "j@app.de")
                                             room.description = "Latein Blatt 1"
                                             room.news = "leer"
-                                            room.addStudent(email: "purschke@hs-osnabrueck.de")
+                                            room.admin = "j@app.de"
 
                                             let question = Question(question: "Ei oder Huhn?", answer: "Ei", possibilities: ["Huhn"])
 
                                             var exercise = Exercise(title: "Evolution")
                                             exercise.addQuestion(question: question)
                                             user.addExercise(exercise: exercise)
+                                            user.blocked.append("leo@app.de")
+                                            user.blocked.append("purschke@app.de")
+                                            user.roomsAsTeacher.append(room.rid)
+                                            user.roomsAsStudent.append(room.rid)
                                             room.addExercise(exercise: exercise, start: Date(), end: Date())
                                             
                                             user.createUserInDB()

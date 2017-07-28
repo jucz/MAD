@@ -42,7 +42,7 @@ struct Room {
         self.students = Room.getStudents(snapshot: snapshot)
         self.exercises = Room.getExercises(snapshot: snapshot)
         
-        print("___Room: \(self)____")
+        //print("___Room: \(self)____")
     }
     ///ENDE JULIAN
     
@@ -84,6 +84,7 @@ struct Room {
         Helpers.rootRef.child("rids").setValue(Room.rids+1)
     }
     
+    ///GETTER
     public static func getAdmin(snapshot: DataSnapshot) -> String {
         let values = snapshot.value as? NSDictionary
         return values?["admin"] as? String ?? ""
@@ -101,7 +102,11 @@ struct Room {
     
     public static func getRid(snapshot: DataSnapshot) -> Int {
         let values = snapshot.value as? NSDictionary
-        return values?["rid"] as? Int ?? -1
+        if let rid = values?["rid"] as? Int {
+            return rid
+        } else {
+            return -1
+        }
     }
     
     public static func getTitle(snapshot: DataSnapshot) -> String {
@@ -124,13 +129,18 @@ struct Room {
     public static func getExercises(snapshot: DataSnapshot) -> [ExerciseExported] {
         let values = snapshot.value as? NSDictionary
         var exercises = [ExerciseExported]()
-        if let anyObject = values?["exercises"] as? [AnyObject] {
+        if let anyObject = values?["exercises"] as? [String:AnyObject] {
             for element in anyObject {
-                let eTmp = ExerciseExported(anyObject: element)
+                let eTmp = ExerciseExported(anyObject: element.value)
                 exercises.append(eTmp)
             }
         }
         return exercises
+    }
+    
+    ///SETTER
+    public mutating func setAdmin(email: String) {
+        self.admin = email
     }
     
 }

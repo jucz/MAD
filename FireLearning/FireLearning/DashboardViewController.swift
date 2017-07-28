@@ -14,6 +14,12 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ///JULIAN
+//        Database.database().reference().child("rooms").child("rid0").observe(.value, with: { snapshot in
+//            //let room = Room(snapshot: snapshot)
+//            print("_____DATABASE-ROOM: \(Room(snapshot: snapshot))_____")
+//        })
+        ///
     }
 
     override func didReceiveMemoryWarning() {

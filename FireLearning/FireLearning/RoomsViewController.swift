@@ -27,19 +27,24 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.rooms = globalRooms?.roomsAsTeacher
+        if globalRooms != nil {
+            self.rooms = globalRooms!.roomsAsTeacher
+        }
+        
         self.tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toDetailRoom"){
             //let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
             //detailViewController?.exercise = chosenRoom
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
