@@ -469,7 +469,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QuY-k5-inR" id="4af-An-iac">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1020,7 +1020,6 @@
                         <segue destination="kMR-SH-ck6" kind="relationship" relationship="viewControllers" id="ycA-8A-Vpe"/>
                         <segue destination="ljm-Iz-0Ft" kind="relationship" relationship="viewControllers" id="8HK-7m-Ko9"/>
                         <segue destination="KGs-bC-XGR" kind="relationship" relationship="viewControllers" id="vti-6m-lHa"/>
-                        <segue destination="kjB-uN-cAa" kind="relationship" relationship="viewControllers" id="jz3-UW-v74"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mok-OQ-qYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
