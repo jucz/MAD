@@ -19,17 +19,21 @@ class GlobalUser{
     init(_email: String){
         userRef = Database.database().reference().child("users").child(_email)
         userMail = _email
-        self.retrieveUserFromFIR(withEmail: _email)
+        self.retrieveUserFromFIR()
     }
     
     init(){
         user = nil
     }
     
-    public func updateName(_name: String){
+    public func updateUser(_firstname: String, _lastname: String, _blocked: [String] ){
+        let blocked = Helpers.toAny(array: _blocked)
         userRef?.updateChildValues([
-            "lastname": _name
+            "lastname": _lastname,
+            "firstname": _firstname,
+            "blocked": blocked
         ])
+        retrieveUserFromFIR()
     }
     
     public func addExerciseToDatabaseForGlobalUser(_exercise: Exercise){
@@ -65,7 +69,7 @@ class GlobalUser{
     public func updateQuestionInExercise(){
         
     }
-    public func retrieveUserFromFIR(withEmail: String) {
+    public func retrieveUserFromFIR() {
         userRef?.observeSingleEvent(of: .value, with: { snapshot in
             self.user = User(snapshot: snapshot)
         })

@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+
         let mail = mailOutlet.text!
         //let mail = "j@app.de"//"leo@swag.com"
         let password = passwordOutlet.text!
