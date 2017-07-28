@@ -28,11 +28,13 @@ struct Exercise {
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
-        let allQuestions = (anyObject["questions"])! as! [String:AnyObject]
-        print("allQuestions: \(allQuestions)")
-        for q in allQuestions {
-            let qTmp = Question(anyObject: q.value)
-            self.questions.append(qTmp)
+        let allQuestions = (anyObject["questions"]) as? [String:AnyObject]
+        if(allQuestions != nil){
+            print("allQuestions: \(allQuestions)")
+            for q in allQuestions! {
+                let qTmp = Question(anyObject: q.value)
+                self.questions.append(qTmp)
+            }
         }
     }
     
