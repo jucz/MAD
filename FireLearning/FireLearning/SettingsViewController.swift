@@ -36,9 +36,6 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         else{
             blockedUsers = (globalUser?.user?.blocked)!
         }
-        
-        print("globalblock\(globalUser?.user?.blocked)")
-
         blockedTableView.reloadData()
     }
     
@@ -89,9 +86,9 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             blockedUsers.remove(at: indexPath.row)
             let tmpBlocked = blockedUsers
             saveChanges()
-            blockedUsers = tmpBlocked
-            print(blockedUsers)
             initUI()
+            blockedUsers = tmpBlocked
+            blockedTableView.reloadData()
         }
     }
 }
