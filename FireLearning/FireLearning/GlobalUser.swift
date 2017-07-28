@@ -69,6 +69,7 @@ class GlobalUser{
     public func updateQuestionInExercise(){
         
     }
+    
     public func retrieveUserFromFIR() {
         userRef?.observeSingleEvent(of: .value, with: { snapshot in
             self.user = User(snapshot: snapshot)

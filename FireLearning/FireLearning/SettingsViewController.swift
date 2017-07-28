@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     }
     
     @IBAction func addUserToBlocked(_ sender: Any) {
-        print("addUser")
+        addUserToBlockList()
     }
     
     
@@ -45,13 +45,81 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         globalUser?.updateUser(_firstname: (firstnameTextField?.text)!, _lastname: (lastnameTextField?.text)!, _blocked: blockedUsers)
         
     }
+    
+    func addUserToBlockList(){
+        presentEnterUserAlert()
+        
+    }
+    
+    func presentEnterUserAlert(){
+        var alert = UIAlertController(title: "Nutzer zu Blockierliste hinzufügen", message:
+            "E-Mail des Nutzers eingeben", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let saveAction = UIAlertAction(title: "Hinzufügen",
+                                       style: .default) { _ in
+                                        guard let textField = alert.textFields?.first,
+                                            let user = textField.text else {
+                                                return
+                                        }
+                                        if(user != ""){
+                                            var userEmail = Helpers.convertEmail(email: user)
+                                            Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
+                                                let value = snapshot.value as? [String: AnyObject]
+                                                for each in value!{
+                                                    if( userEmail == each.key){
+                                                        print("gefunden")
+                                                        
+                                                        globalUser?.userRef?.child("blocked").updateChildValues([
+                                                            "\(userEmail)": user
+                                                        ])
+                            
+                                                        return
+                                                    }
+                                                }
+                                                
+                                                
+                                                let alertController = UIAlertController(title: "Fehler", message:
+                                                    "Kein Nutzer mit der Email gefunden!", preferredStyle: UIAlertControllerStyle.alert)
+                                                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                                                
+                                                self.present(alertController, animated: true, completion: nil)
+                                                
+                                            })
+                                        }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Abbrechen",
+                                         style: .default)
+        alert.addTextField()
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        globalUser?.userRef?.observe(.value, with: { (snapshot) in
+            globalUser?.user = User(snapshot: snapshot)
+            print("ausgeloest")
+            self.lastnameTextField?.text = globalUser?.user?.lastname
+            self.firstnameTextField?.text = globalUser?.user?.firstname
+            if(globalUser?.user?.blocked == nil){
+                self.blockedUsers = []
+            }
+            else{
+                self.blockedUsers = (globalUser?.user?.blocked)!
+            }
+            self.blockedTableView.reloadData()
+        })
+        
         blockedTableView.dataSource = self
         blockedTableView.delegate = self
-        initUI()
+        //initUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,11 +154,11 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             blockedUsers.remove(at: indexPath.row)
-            let tmpBlocked = blockedUsers
+           // let tmpBlocked = blockedUsers
             saveChanges()
-            initUI()
-            blockedUsers = tmpBlocked
-            blockedTableView.reloadData()
+           // initUI()
+           // blockedUsers = tmpBlocked
+            //blockedTableView.reloadData()
         }
     }
 }

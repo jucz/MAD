@@ -1,0 +1,210 @@
+
+/* Class = "UINavigationItem"; title = "Einstellungen"; ObjectID = "1xr-ic-Dzk"; */
+"1xr-ic-Dzk.title" = "Einstellungen";
+
+/* Class = "UITabBarItem"; title = "Einstellungen"; ObjectID = "2hP-8O-19z"; */
+"2hP-8O-19z.title" = "Einstellungen";
+
+/* Class = "UIBarButtonItem"; title = "Speichern"; ObjectID = "2zW-gl-Za1"; */
+"2zW-gl-Za1.title" = "Speichern";
+
+/* Class = "UITextField"; placeholder = "richtige Antwort"; ObjectID = "3Rq-FW-9Y8"; */
+"3Rq-FW-9Y8.placeholder" = "richtige Antwort";
+
+/* Class = "UIButton"; normalTitle = "Speichern"; ObjectID = "3pA-Z4-Hrf"; */
+"3pA-Z4-Hrf.normalTitle" = "Speichern";
+
+/* Class = "UILabel"; text = "thrdPoss"; ObjectID = "4Jh-Bd-JvC"; */
+"4Jh-Bd-JvC.text" = "thrdPoss";
+
+/* Class = "UILabel"; text = "Fragen:"; ObjectID = "4zO-rQ-Yc3"; */
+"4zO-rQ-Yc3.text" = "Fragen:";
+
+/* Class = "UILabel"; text = "questionTitle"; ObjectID = "6J3-pQ-j4U"; */
+"6J3-pQ-j4U.text" = "questionTitle";
+
+/* Class = "UINavigationItem"; title = "Aufgaben"; ObjectID = "6pA-f9-KiP"; */
+"6pA-f9-KiP.title" = "Aufgaben";
+
+/* Class = "UILabel"; text = "questionTitle"; ObjectID = "73h-WV-LDV"; */
+"73h-WV-LDV.text" = "questionTitle";
+
+/* Class = "UIButton"; normalTitle = "< Back"; ObjectID = "Auh-yp-Wv6"; */
+"Auh-yp-Wv6.normalTitle" = "< Back";
+
+/* Class = "UILabel"; text = "Passwort"; ObjectID = "Aum-uQ-eAg"; */
+"Aum-uQ-eAg.text" = "Passwort";
+
+/* Class = "UILabel"; text = "Nutzer"; ObjectID = "BVo-UJ-nF5"; */
+"BVo-UJ-nF5.text" = "Nutzer";
+
+/* Class = "UILabel"; text = "Entworfen"; ObjectID = "CRj-lQ-A2t"; */
+"CRj-lQ-A2t.text" = "Entworfen";
+
+/* Class = "UILabel"; text = "firstPoss"; ObjectID = "CUP-SR-Rg0"; */
+"CUP-SR-Rg0.text" = "firstPoss";
+
+/* Class = "UINavigationItem"; title = "Aufgabe erstellen"; ObjectID = "En7-gM-7ac"; */
+"En7-gM-7ac.title" = "Aufgabe erstellen";
+
+/* Class = "UITabBarItem"; title = "Dashboard"; ObjectID = "Fnn-1d-QTg"; */
+"Fnn-1d-QTg.title" = "Dashboard";
+
+/* Class = "UILabel"; text = "falsche Antwort"; ObjectID = "HMC-qN-EGc"; */
+"HMC-qN-EGc.text" = "falsche Antwort";
+
+/* Class = "UITabBarItem"; title = "Aufgaben"; ObjectID = "HUl-yI-dau"; */
+"HUl-yI-dau.title" = "Aufgaben";
+
+/* Class = "UINavigationItem"; title = "Aufgabe"; ObjectID = "J2B-xc-bh4"; */
+"J2B-xc-bh4.title" = "Aufgabe";
+
+/* Class = "UINavigationItem"; title = "Aufgaben"; ObjectID = "JBs-Ie-qMe"; */
+"JBs-Ie-qMe.title" = "Aufgaben";
+
+/* Class = "UILabel"; text = "Als Lehrer"; ObjectID = "Lk5-bv-E3g"; */
+"Lk5-bv-E3g.text" = "Als Lehrer";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "MJa-QC-VaT"; */
+"MJa-QC-VaT.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Hinzufügen"; ObjectID = "Mef-iy-WRV"; */
+"Mef-iy-WRV.normalTitle" = "Hinzufügen";
+
+/* Class = "UILabel"; text = "falsche Antwort"; ObjectID = "OmA-gS-FlP"; */
+"OmA-gS-FlP.text" = "falsche Antwort";
+
+/* Class = "UILabel"; text = "Frage"; ObjectID = "Ows-Nj-Qfh"; */
+"Ows-Nj-Qfh.text" = "Frage";
+
+/* Class = "UILabel"; text = "Nachname"; ObjectID = "Pns-xU-MIe"; */
+"Pns-xU-MIe.text" = "Nachname";
+
+/* Class = "UILabel"; text = "Registrieren"; ObjectID = "PwE-oy-Niq"; */
+"PwE-oy-Niq.text" = "Registrieren";
+
+/* Class = "UIBarButtonItem"; title = "Sichern"; ObjectID = "QmK-gP-tZP"; */
+"QmK-gP-tZP.title" = "Sichern";
+
+/* Class = "UIBarButtonItem"; title = "Speichern"; ObjectID = "RhW-X4-Wcz"; */
+"RhW-X4-Wcz.title" = "Speichern";
+
+/* Class = "UILabel"; text = "Ausstehend"; ObjectID = "VuG-Ta-CIF"; */
+"VuG-Ta-CIF.text" = "Ausstehend";
+
+/* Class = "UILabel"; text = "falsche Antwort"; ObjectID = "Wv3-TC-pgh"; */
+"Wv3-TC-pgh.text" = "falsche Antwort";
+
+/* Class = "UIButton"; normalTitle = "Noch nicht registriert?"; ObjectID = "XRN-cT-8Mf"; */
+"XRN-cT-8Mf.normalTitle" = "Noch nicht registriert?";
+
+/* Class = "UINavigationItem"; title = "Aufgabe erstellen"; ObjectID = "XiW-aV-3Yn"; */
+"XiW-aV-3Yn.title" = "Aufgabe erstellen";
+
+/* Class = "UILabel"; text = "richtige Antwort"; ObjectID = "Xy9-hH-gqp"; */
+"Xy9-hH-gqp.text" = "richtige Antwort";
+
+/* Class = "UILabel"; text = "E-Mail"; ObjectID = "YOf-1b-jqR"; */
+"YOf-1b-jqR.text" = "E-Mail";
+
+/* Class = "UIBarButtonItem"; title = "Ändern"; ObjectID = "Z4l-Ty-sLE"; */
+"Z4l-Ty-sLE.title" = "Ändern";
+
+/* Class = "UILabel"; text = "secPoss"; ObjectID = "ZF8-Z2-nd5"; */
+"ZF8-Z2-nd5.text" = "secPoss";
+
+/* Class = "UILabel"; text = "Wiederholen"; ObjectID = "ZSq-YL-6gK"; */
+"ZSq-YL-6gK.text" = "Wiederholen";
+
+/* Class = "UIButton"; normalTitle = "Account erstellen!"; ObjectID = "aWT-Rg-Utv"; */
+"aWT-Rg-Utv.normalTitle" = "Account erstellen!";
+
+/* Class = "UIBarButtonItem"; title = "Zurück"; ObjectID = "dgr-zF-bfR"; */
+"dgr-zF-bfR.title" = "Zurück";
+
+/* Class = "UILabel"; text = "firstPoss"; ObjectID = "dxs-qX-ie0"; */
+"dxs-qX-ie0.text" = "firstPoss";
+
+/* Class = "UITabBarItem"; title = "Klassenräume"; ObjectID = "esO-UT-DT4"; */
+"esO-UT-DT4.title" = "Klassenräume";
+
+/* Class = "UITextField"; placeholder = "Frage"; ObjectID = "evN-1y-yba"; */
+"evN-1y-yba.placeholder" = "Frage";
+
+/* Class = "UILabel"; text = "FireLearning"; ObjectID = "ezf-kF-o6l"; */
+"ezf-kF-o6l.text" = "FireLearning";
+
+/* Class = "UILabel"; text = "Name:"; ObjectID = "fNq-zz-99n"; */
+"fNq-zz-99n.text" = "Name:";
+
+/* Class = "UITextField"; placeholder = "richtige Antwort"; ObjectID = "fPT-9j-ETM"; */
+"fPT-9j-ETM.placeholder" = "richtige Antwort";
+
+/* Class = "UILabel"; text = "Vorname"; ObjectID = "fpw-J9-3Au"; */
+"fpw-J9-3Au.text" = "Vorname";
+
+/* Class = "UILabel"; text = "thrdPoss"; ObjectID = "gkp-qU-ekF"; */
+"gkp-qU-ekF.text" = "thrdPoss";
+
+/* Class = "UILabel"; text = "Nachname"; ObjectID = "gmH-NE-cNY"; */
+"gmH-NE-cNY.text" = "Nachname";
+
+/* Class = "UILabel"; text = "secPoss"; ObjectID = "hR6-in-kef"; */
+"hR6-in-kef.text" = "secPoss";
+
+/* Class = "UITextField"; placeholder = "erste falsche Antwort"; ObjectID = "i1O-Sw-y26"; */
+"i1O-Sw-y26.placeholder" = "erste falsche Antwort";
+
+/* Class = "UIButton"; normalTitle = "Hinzufügen"; ObjectID = "iKR-tu-HRt"; */
+"iKR-tu-HRt.normalTitle" = "Hinzufügen";
+
+/* Class = "UITextField"; placeholder = "erste falsche Antwort"; ObjectID = "iWC-wZ-fsn"; */
+"iWC-wZ-fsn.placeholder" = "erste falsche Antwort";
+
+/* Class = "UITextField"; placeholder = "zweite falsche Antwort"; ObjectID = "k58-9K-366"; */
+"k58-9K-366.placeholder" = "zweite falsche Antwort";
+
+/* Class = "UILabel"; text = "Vorname"; ObjectID = "k9Q-JW-lLj"; */
+"k9Q-JW-lLj.text" = "Vorname";
+
+/* Class = "UINavigationItem"; title = "Frage erstellen"; ObjectID = "kvh-D5-lk5"; */
+"kvh-D5-lk5.title" = "Frage erstellen";
+
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "lBh-Rm-E1J"; */
+"lBh-Rm-E1J.normalTitle" = "+";
+
+/* Class = "UIBarButtonItem"; title = "Zurück"; ObjectID = "lCw-Va-lgB"; */
+"lCw-Va-lgB.title" = "Zurück";
+
+/* Class = "UILabel"; text = "rightAnswer"; ObjectID = "lpj-nq-b03"; */
+"lpj-nq-b03.text" = "rightAnswer";
+
+/* Class = "UITextField"; placeholder = "zweite falsche Antwort"; ObjectID = "ls7-E3-Jhb"; */
+"ls7-E3-Jhb.placeholder" = "zweite falsche Antwort";
+
+/* Class = "UILabel"; text = "rightAnswer"; ObjectID = "nS8-G2-Avw"; */
+"nS8-G2-Avw.text" = "rightAnswer";
+
+/* Class = "UITextField"; placeholder = "Frage"; ObjectID = "rj4-qF-6hR"; */
+"rj4-qF-6hR.placeholder" = "Frage";
+
+/* Class = "UINavigationItem"; title = "Frage erstellen"; ObjectID = "sKX-N8-xnb"; */
+"sKX-N8-xnb.title" = "Frage erstellen";
+
+/* Class = "UITextField"; placeholder = "dritte falsche Antwort"; ObjectID = "sgu-nx-q9V"; */
+"sgu-nx-q9V.placeholder" = "dritte falsche Antwort";
+
+/* Class = "UITextField"; placeholder = "dritte falsche Antwort"; ObjectID = "snF-Ij-o9z"; */
+"snF-Ij-o9z.placeholder" = "dritte falsche Antwort";
+
+/* Class = "UILabel"; text = "Als Schüler"; ObjectID = "tAZ-C4-Qty"; */
+"tAZ-C4-Qty.text" = "Als Schüler";
+
+/* Class = "UIBarButtonItem"; title = "Ändern"; ObjectID = "wIX-v4-7gz"; */
+"wIX-v4-7gz.title" = "Ändern";
+
+/* Class = "UILabel"; text = "blockierte Nutzer"; ObjectID = "x3e-yJ-tfZ"; */
+"x3e-yJ-tfZ.text" = "blockierte Nutzer";
+
+/* Class = "UIButton"; normalTitle = "neue Frage"; ObjectID = "zXi-Uo-BhO"; */
+"zXi-Uo-BhO.normalTitle" = "neue Frage";
