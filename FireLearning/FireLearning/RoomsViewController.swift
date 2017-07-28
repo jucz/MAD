@@ -27,7 +27,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.rooms = globalRooms?.roomsAsTeacher
+        //self.rooms = globalRooms?.roomsAsTeacher
         self.tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false

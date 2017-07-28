@@ -16,13 +16,15 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     //View-Verbindungen
     @IBOutlet var firstnameTextField: UITextField!
     @IBOutlet var lastnameTextField: UITextField!
-    
     @IBOutlet var blockedTableView: UITableView!
-    
     
     @IBAction func saveButton(_ sender: Any) {
         saveChanges()
         initUI()
+    }
+    
+    @IBAction func addUserToBlocked(_ sender: Any) {
+        print("addUser")
     }
     
     
@@ -36,9 +38,6 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         else{
             blockedUsers = (globalUser?.user?.blocked)!
         }
-        
-        print("globalblock\(globalUser?.user?.blocked)")
-
         blockedTableView.reloadData()
     }
     
@@ -89,9 +88,9 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             blockedUsers.remove(at: indexPath.row)
             let tmpBlocked = blockedUsers
             saveChanges()
-            blockedUsers = tmpBlocked
-            print(blockedUsers)
             initUI()
+            blockedUsers = tmpBlocked
+            blockedTableView.reloadData()
         }
     }
 }
