@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1039,14 +1039,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Klassenräume" id="esO-UT-DT4"/>
+                    <navigationItem key="navigationItem" id="xaF-0o-ccl"/>
                     <connections>
                         <outlet property="tableView" destination="oQN-Ee-6a5" id="q00-gB-b3Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQ5-33-WIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="4023"/>
+            <point key="canvasLocation" x="3283.125" y="4022.5352112676055"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="idS-Vh-uQw">
@@ -1080,7 +1080,7 @@
                         <segue destination="kMR-SH-ck6" kind="relationship" relationship="viewControllers" id="ycA-8A-Vpe"/>
                         <segue destination="ljm-Iz-0Ft" kind="relationship" relationship="viewControllers" id="8HK-7m-Ko9"/>
                         <segue destination="KGs-bC-XGR" kind="relationship" relationship="viewControllers" id="vti-6m-lHa"/>
-                        <segue destination="kjB-uN-cAa" kind="relationship" relationship="viewControllers" id="jz3-UW-v74"/>
+                        <segue destination="zqy-75-5wD" kind="relationship" relationship="viewControllers" id="f9e-FM-OPs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mok-OQ-qYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1106,6 +1106,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fe7-4U-AUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2285.625" y="783.80281690140851"/>
+        </scene>
+        <!--Klassenräume-->
+        <scene sceneID="LeR-JR-EKN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqy-75-5wD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Klassenräume" id="esO-UT-DT4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FbF-a6-dM8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kjB-uN-cAa" kind="relationship" relationship="rootViewController" id="36M-s8-vqC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Vl-px-Cgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285.625" y="4022.5352112676055"/>
         </scene>
     </scenes>
 </document>

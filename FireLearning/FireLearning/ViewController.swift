@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 
 var globalUser: GlobalUser?
+var globalRooms: GlobalRooms?
 
 class ViewController: UIViewController {
 
@@ -36,6 +37,11 @@ class ViewController: UIViewController {
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 globalUser = GlobalUser(_email: userMail)
                 
+                ///JULIAN
+                globalRooms = GlobalRooms(_email: userMail)
+                ///ENDE JULIAN
+                
+                
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
                 }
@@ -44,10 +50,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
-        //let mail = mailOutlet.text!
-        let mail = "leo@swag.com"
-        //let password = passwordOutlet.text!
-        let password = "swag12"
+
+        let mail = mailOutlet.text!
+        //let mail = "j@app.de"//"leo@swag.com"
+        let password = passwordOutlet.text!
+        //let password = "j@app.de"//"swag12"
         
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,

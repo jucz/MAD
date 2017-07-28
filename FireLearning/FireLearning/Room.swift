@@ -132,7 +132,7 @@ struct Room {
         }
         return exercises
     }
-
+    
 }
 
 

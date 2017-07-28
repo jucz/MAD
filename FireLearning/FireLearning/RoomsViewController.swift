@@ -27,23 +27,8 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
-//         let tmpExercises = snapshot.value as? [String: AnyObject]
-//         
-//         if(tmpExercises != nil){
-//         for exercise in tmpExercises!{
-//         let tmpExercise = Exercise(_value: exercise.value)
-//         self.roomsAsTeacher.append(tmpExercise)
-//         }
-//         }
-//         self.tableView.reloadData()
-//         
-//         })
-        
-        //Offline-Modus
-        //exercises = (globalUser?.user?.exercisesOwned)!
-        
+        self.rooms = globalRooms?.roomsAsTeacher
+        self.tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
@@ -65,14 +50,14 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rooms.count
+        return (globalRooms?.roomsAsTeacher.count)!
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         
-        let text = rooms[indexPath.row].title
+        let text = globalRooms?.roomsAsTeacher[indexPath.row].title
         
         cell.textLabel?.text = text
         
@@ -80,8 +65,8 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenRoom = rooms[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailExercise", sender: nil)
+        chosenRoom = globalRooms?.roomsAsTeacher[indexPath.row]
+        self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
         
     }
     

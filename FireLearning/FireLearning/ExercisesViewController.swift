@@ -14,8 +14,8 @@ import UIKit
 
 class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var user: User?
-    var name = ""
+    //var user: User?
+    //var name = ""
     var chosenExercise: Exercise?
     
     //UI

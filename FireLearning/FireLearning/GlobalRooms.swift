@@ -16,11 +16,15 @@ class GlobalRooms {
     public var roomsAsStudent = [Room]()
     
     init(_email: String){
-        for room in (globalUser?.user?.roomsAsTeacher)! {
-            self.addRoomAsTeacherFromFIR(withRid: room)
-        }
-        for room in (globalUser?.user?.roomsAsStudent)! {
-            self.addRoomAsStudentFromFIR(withRid: room)
+        if globalUser != nil {
+            if globalUser?.user != nil {
+                for room in globalUser!.user!.roomsAsTeacher {
+                    self.addRoomAsTeacherFromFIR(withRid: room)
+                }
+                for room in globalUser!.user!.roomsAsStudent {
+                    self.addRoomAsStudentFromFIR(withRid: room)
+                }
+            }
         }
     }
    
@@ -32,18 +36,16 @@ class GlobalRooms {
     }
     
     public func addRoomAsTeacherFromFIR(withRid: Int) {
-        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
+        globalUser?.userRef?.observe(.value, with: { snapshot in
             self.roomsAsTeacher.append(Room(snapshot: snapshot))
         })
     }
     
     public func addRoomAsStudentFromFIR(withRid: Int) {
-        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
+        globalUser?.userRef?.observe(.value, with: { snapshot in
             self.roomsAsStudent.append(Room(snapshot: snapshot))
         })
     }
-    
-    
     
     
 }
