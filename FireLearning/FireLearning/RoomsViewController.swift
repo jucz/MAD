@@ -20,16 +20,42 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBOutlet var tableView: UITableView!
-    //var roomsAsTeacher = [Room]()
+    var roomsAsTeacher = [Room]()
+    //var roomsAsStudent = [Room]()
     
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
         
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
-            globalRooms?.retrieveRoomsFromFIR(globalUser: globalUser)
-            self.tableView.reloadData()
+            self.roomsAsTeacher = [Room]()
+            if let rooms = snapshot.value as? [Int] {
+                for room in rooms {
+                    globalRooms?.roomsRef.child("rid\(room)").observe(.value, with: { snapshot in
+                        let room = Room(snapshot: snapshot)
+                        self.roomsAsTeacher.append(room)
+                        self.tableView.reloadData()
+                        print("++++++++++\nROOMS VIEW – Room added to roomsAsTeacher: \n\(room)\n++++++++++")
+                    })
+                }
+            }
         })
+        print("\(globalUser?.userRef?.child("roomsAsTeacher"))")
+        
+//        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
+//            self.roomsAsStudent = [Room]()
+//            if let rooms = snapshot.value as? [Int] {
+//                for room in rooms {
+//                    globalRooms?.roomsRef.child("rid\(room)").observe(.value, with: { snapshot in
+//                        let room = Room(snapshot: snapshot)
+//                        self.roomsAsStudent.append(room)
+//                        print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
+//                    })
+//                }
+//            }
+//        })
+        
+//        tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
@@ -53,28 +79,20 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if globalRooms != nil {
-            //print("\nZEILEN: \((globalRooms?.roomsAsTeacher.count)!)\n")
-            return (globalRooms?.roomsAsTeacher.count)!
-        } else {
-            //print("\nZEILEN: 0\n")
-            return 0
-        }
+        return self.roomsAsTeacher.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
-            let text = (globalRooms?.roomsAsTeacher[indexPath.row].title)! as String
-            print("\nTEXT: \(text)\n")
-            cell.textLabel?.text = text
-        }
+        let text = self.roomsAsTeacher[indexPath.row].title
+        cell.textLabel?.text = text
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenRoom =  globalRooms?.roomsAsTeacher[indexPath.row]
+        chosenRoom =  self.roomsAsTeacher[indexPath.row]
         self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
         self.tableView.reloadData()
     }

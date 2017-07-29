@@ -21,26 +21,38 @@ class GlobalRooms {
     }
     
     public func retrieveRoomsFromFIR(globalUser: GlobalUser?) {
-        globalUser?.userRef?.observe(.value, with: { snapshot in
+        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
             if let values = snapshot.value as? NSDictionary {
+                
                 self.roomsAsTeacher = [Room]()
                 self.roomsAsStudent = [Room]()
+                
                 if let roomsAsTeacher = values["roomsAsTeacher"] as? [Int] {
-                    for room in roomsAsTeacher {
-                        self.addRoomAsTeacherFromFIR(withRid: room)
-                    }
+                    self.retrieveRoomsAsTeacherFromFIR(rooms: roomsAsTeacher)
                 }
                 if let roomsAsStudent = values["roomsAsStudent"] as? [Int] {
-                    for room in roomsAsStudent {
-                        self.addRoomAsStudentFromFIR(withRid: room)
-                    }
+                    self.retrieveRoomsAsStudentFromFIR(rooms: roomsAsStudent)
                 }
             }
         })
     }
     
+    public func retrieveRoomsAsTeacherFromFIR(rooms: [Int]) {
+        self.roomsAsTeacher = [Room]()
+        for room in rooms {
+            self.addRoomAsTeacherFromFIR(withRid: room)
+        }
+    }
+    
+    public func retrieveRoomsAsStudentFromFIR(rooms: [Int]) {
+        self.roomsAsStudent = [Room]()
+        for room in rooms {
+            self.addRoomAsStudentFromFIR(withRid: room)
+        }
+    }
+    
     public func addRoomAsTeacherFromFIR(withRid: Int) {
-        self.roomsRef.child("rid\(withRid)").observe(.value, with: { snapshot in
+        self.roomsRef.child("rid\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
             let room = Room(snapshot: snapshot)
             self.roomsAsTeacher.append(room)
             print("++++++++++\nGlobalRooms – Room added to roomsAsTeacher: \n\(room)\n++++++++++")
@@ -48,31 +60,11 @@ class GlobalRooms {
     }
     
     public func addRoomAsStudentFromFIR(withRid: Int) {
-        self.roomsRef.child("rid\(withRid)").observe(.value, with: { snapshot in
+        self.roomsRef.child("rid\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
             let room = Room(snapshot: snapshot)
             self.roomsAsStudent.append(room)
             print("++++++++++\nGlobalRooms – Room added to roomsAsStudent: \n\(room)\n++++++++++")
         })
     }
-    
-    //    public func retrieveRecentRoomFromFIR(withRid: Int) {
-    //        self.roomsRef.child("\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
-    //            self.recentRoom = Room(snapshot: snapshot)
-    //        })
-    //    }
-    //
-    //    public func retrieveRoomAsTeacherFromFIR(withRid: Int) {
-    //        self.roomsRef.child("\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
-    //            self.roomsAsTeacher.append(Room(snapshot: snapshot))
-    //        })
-    //    }
-    //
-    //    public func retrieveRoomAsStudentFromFIR(withRid: Int) {
-    //        self.roomsRef.child("\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
-    //            self.roomsAsStudent.append(Room(snapshot: snapshot))
-    //        })
-    //    }
-
-    
     
 }
