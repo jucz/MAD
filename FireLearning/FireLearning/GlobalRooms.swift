@@ -22,20 +22,18 @@ class GlobalRooms {
     
     public func retrieveRoomsFromFIR(globalUser: GlobalUser?) {
         globalUser?.userRef?.observe(.value, with: { snapshot in
-            let values = snapshot.value as? NSDictionary
-            print("values: \(values!)")
-            print("room as teacher: \(values!["roomsAsTeacher"] as? [Int])")
-            if let roomsAsTeacher = values!["roomsAsTeacher"] as? [Int] {
-                for room in roomsAsTeacher {
-                    print("room as teacher: \(room)")
-                    self.addRoomAsTeacherFromFIR(withRid: room)
-                    print("roomAsTeacher: \(self.roomsAsTeacher)")
+            if let values = snapshot.value as? NSDictionary {
+                self.roomsAsTeacher = [Room]()
+                self.roomsAsStudent = [Room]()
+                if let roomsAsTeacher = values["roomsAsTeacher"] as? [Int] {
+                    for room in roomsAsTeacher {
+                        self.addRoomAsTeacherFromFIR(withRid: room)
+                    }
                 }
-            }
-            if let roomsAsStudent = values?["roomsAsStudent"] as? [Int] {
-                for room in roomsAsStudent {
-                    print("room as student: \(room)")
-                    self.addRoomAsStudentFromFIR(withRid: room)
+                if let roomsAsStudent = values["roomsAsStudent"] as? [Int] {
+                    for room in roomsAsStudent {
+                        self.addRoomAsStudentFromFIR(withRid: room)
+                    }
                 }
             }
         })

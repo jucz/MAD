@@ -12,7 +12,6 @@ import FirebaseDatabase
 
 class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var rooms = [Room]()
     var name = ""
     var chosenRoom: Room?
     
@@ -21,15 +20,17 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBOutlet var tableView: UITableView!
-    var roomsAsTeacher = [Room]()
+    //var roomsAsTeacher = [Room]()
     
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if globalRooms != nil {
-            self.rooms = globalRooms!.roomsAsTeacher
-        }
+        globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
+            globalRooms?.retrieveRoomsFromFIR(globalUser: globalUser)
+            //self.roomsAsTeacher = globalRooms!.roomsAsTeacher
+            self.tableView.reloadData()
+        })
         
         self.tableView.reloadData()
         
@@ -55,24 +56,29 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (globalRooms?.roomsAsTeacher.count)!
+        return  (globalRooms?.roomsAsTeacher.count)!
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         
-        let text = globalRooms?.roomsAsTeacher[indexPath.row].title
-        
+        var text = ""
+        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
+            text = globalRooms?.roomsAsTeacher[indexPath.row].title as! String!
+        }
         cell.textLabel?.text = text
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenRoom = globalRooms?.roomsAsTeacher[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
-        
+        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
+            chosenRoom =  globalRooms?.roomsAsTeacher[indexPath.row]
+            self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
+        } else {
+            self.tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
