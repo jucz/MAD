@@ -62,23 +62,20 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-        
-        var text = ""
-        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
-            text = globalRooms?.roomsAsTeacher[indexPath.row].title as! String!
-        }
+//        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
+//            text = globalRooms?.roomsAsTeacher[indexPath.row].title as! String!
+//        }
+        let text = (globalRooms?.roomsAsTeacher[indexPath.row].title)! as String 
+
         cell.textLabel?.text = text
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
-            chosenRoom =  globalRooms?.roomsAsTeacher[indexPath.row]
-            self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
-        } else {
-            self.tableView.reloadData()
-        }
+        chosenRoom =  globalRooms?.roomsAsTeacher[indexPath.row]
+        self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
+        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

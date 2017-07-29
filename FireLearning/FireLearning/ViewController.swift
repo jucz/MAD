@@ -35,13 +35,10 @@ class ViewController: UIViewController {
             if(user != nil){
                 
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
-                print("globalUser: \(globalUser = GlobalUser(_email: userMail))")
 
-                
-                ///JULIAN
+                /*ACHTUNG, BITTE SO LASSEN, DAMIT FUNKTIONEN SYNCHRON AUFGERUFEN WERDEN!!
+                 ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
                 print("globalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))")
-                //globalRooms = GlobalRooms(globalUser: globalUser!)
-                ///ENDE JULIAN
                 
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
