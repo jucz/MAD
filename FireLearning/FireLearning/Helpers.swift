@@ -49,12 +49,12 @@ class Helpers {
     
     ///2
     public static func toAny(array: [Int]?) -> Any? {
-        var list: [String:String] = [:]
+        var list: [String:Int] = [:]
         if array == nil {
             return list
         }
         for element in array! {
-            list["\(element)"] = "\(element)"
+            list["\(element)"] = element
         }
         return list
     }

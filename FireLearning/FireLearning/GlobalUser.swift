@@ -24,23 +24,24 @@ class GlobalUser{
     
     init(){
         user = nil
+        
     }
     
     public func updateUser(_firstname: String, _lastname: String, _blocked: [String] ){
-        let blocked = Helpers.toAny(array: _blocked)
+        //let blocked = Helpers.toAny(array: _blocked)
         userRef?.updateChildValues([
             "lastname": _lastname,
             "firstname": _firstname,
-            "blocked": blocked
+            "blocked": _blocked
         ])
         retrieveUserFromFIR()
     }
     
     public func addExerciseToDatabaseForGlobalUser(_exercise: Exercise){
-        var eidRef = Database.database().reference().child("eids")
+        let eidRef = Database.database().reference().child("eids")
         eidRef.observeSingleEvent(of: .value, with: { snapshot in
             
-            var id = snapshot.value as! Int
+            let id = snapshot.value as! Int
             
             var tmpExercise = Exercise(_exercise: _exercise)
             tmpExercise.eid = id

@@ -11,41 +11,60 @@ import FirebaseDatabase
 
 class GlobalRooms {
     
+    public let roomsRef = Database.database().reference().child("rooms")
     public var recentRoom: Room?
     public var roomsAsTeacher = [Room]()
     public var roomsAsStudent = [Room]()
     
-    init(_email: String){
-        if globalUser != nil {
-            if globalUser?.user != nil {
-                for room in globalUser!.user!.roomsAsTeacher {
-                    self.addRoomAsTeacherFromFIR(withRid: room)
+    init(globalUser: GlobalUser?){
+        self.retrieveRoomsFromFIR(globalUser: globalUser)
+    }
+    
+    public func retrieveRoomsFromFIR(globalUser: GlobalUser?) {
+        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
+            if let values = snapshot.value as? NSDictionary {
+                
+                self.roomsAsTeacher = [Room]()
+                self.roomsAsStudent = [Room]()
+                
+                if let roomsAsTeacher = values["roomsAsTeacher"] as? [Int] {
+                    self.retrieveRoomsAsTeacherFromFIR(rooms: roomsAsTeacher)
                 }
-                for room in globalUser!.user!.roomsAsStudent {
-                    self.addRoomAsStudentFromFIR(withRid: room)
+                if let roomsAsStudent = values["roomsAsStudent"] as? [Int] {
+                    self.retrieveRoomsAsStudentFromFIR(rooms: roomsAsStudent)
                 }
             }
-        }
-    }
-   
-    public func retrieveRoomFromFIR(withRid: Int) {
-        let ref = Database.database().reference()
-        ref.child("rooms").child("\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
-            self.recentRoom = Room(snapshot: snapshot)
         })
     }
     
+    public func retrieveRoomsAsTeacherFromFIR(rooms: [Int]) {
+        self.roomsAsTeacher = [Room]()
+        for room in rooms {
+            self.addRoomAsTeacherFromFIR(withRid: room)
+        }
+    }
+    
+    public func retrieveRoomsAsStudentFromFIR(rooms: [Int]) {
+        self.roomsAsStudent = [Room]()
+        for room in rooms {
+            self.addRoomAsStudentFromFIR(withRid: room)
+        }
+    }
+    
     public func addRoomAsTeacherFromFIR(withRid: Int) {
-        globalUser?.userRef?.observe(.value, with: { snapshot in
-            self.roomsAsTeacher.append(Room(snapshot: snapshot))
+        self.roomsRef.child("rid\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
+            let room = Room(snapshot: snapshot)
+            self.roomsAsTeacher.append(room)
+            print("++++++++++\nGlobalRooms – Room added to roomsAsTeacher: \n\(room)\n++++++++++")
         })
     }
     
     public func addRoomAsStudentFromFIR(withRid: Int) {
-        globalUser?.userRef?.observe(.value, with: { snapshot in
-            self.roomsAsStudent.append(Room(snapshot: snapshot))
+        self.roomsRef.child("rid\(withRid)").observeSingleEvent(of: .value, with: { snapshot in
+            let room = Room(snapshot: snapshot)
+            self.roomsAsStudent.append(room)
+            print("++++++++++\nGlobalRooms – Room added to roomsAsStudent: \n\(room)\n++++++++++")
         })
     }
-    
     
 }

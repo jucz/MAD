@@ -29,18 +29,17 @@ class ViewController: UIViewController {
         }
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("StateFired")
-            print(user?.email)
+            print("\nMAIL: \(user?.email)\n")
             
             
             if(user != nil){
                 
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
+
+                /*ACHTUNG, BITTE SO LASSEN, DAMIT FUNKTIONEN SYNCHRON AUFGERUFEN WERDEN!!
+                 ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
                 globalUser = GlobalUser(_email: userMail)
-                
-                ///JULIAN
-                globalRooms = GlobalRooms(_email: userMail)
-                ///ENDE JULIAN
-                
+                print("\nglobalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))\n")
                 
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
@@ -52,12 +51,12 @@ class ViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
 
         //let mail = mailOutlet.text!
-        let mail = "leo@swag.com"
-        //let mail = "j@app.de"
+        //let mail = "leo@swag.com"
+        let mail = "j@app.de"
         
         //let password = passwordOutlet.text!
-        let password = "swag12"
-        //let password = "j@app.de"
+        //let password = "swag12"
+        let password = "j@app.de"
         
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,
