@@ -89,7 +89,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("delete")
+            let exerciseKey = "eid\(exercises[indexPath.row].eid)"
+            exercises.remove(at: indexPath.row)
+            globalUser?.userRef?.child("exercisesOwned").child(exerciseKey).removeValue()
         }
     }
     
