@@ -63,15 +63,21 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
                                         }
                                         if(user != ""){
                                             var userEmail = Helpers.convertEmail(email: user)
+                                            
                                             Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
                                                 let value = snapshot.value as? [String: AnyObject]
                                                 for each in value!{
-                                                    if( userEmail == each.key){
+                                                    if(userEmail == each.key){
                                                         print("gefunden")
-                                                        
-                                                        globalUser?.userRef?.child("blocked").updateChildValues([
-                                                            "\(userEmail)": user
-                                                        ])
+                                                        ///JULIAN
+                                                        globalUser?.user?.blocked.append(user)
+                                                        ///
+///                                                        SO NICHT MEHR, DA FIREBASE-EINTRAG JETZT ARRAY UND NICHT MEHR DICTIONARY
+//                                                        globalUser?.userRef?.child("blocked").updateChildValues([
+//                                                            "\(userEmail)": user
+//                                                        ])
+///                                                        ...
+                                                        globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
                             
                                                         return
                                                     }
