@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         }
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("StateFired")
-            print("\(user?.email)")
+            print("\nMAIL: \(user?.email)\n")
             
             
             if(user != nil){
@@ -38,7 +38,8 @@ class ViewController: UIViewController {
 
                 /*ACHTUNG, BITTE SO LASSEN, DAMIT FUNKTIONEN SYNCHRON AUFGERUFEN WERDEN!!
                  ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
-                print("globalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))")
+                globalUser = GlobalUser(_email: userMail)
+                print("\nglobalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))\n")
                 
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
