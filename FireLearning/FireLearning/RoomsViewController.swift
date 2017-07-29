@@ -92,7 +92,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenRoom =  self.roomsAsTeacher[indexPath.row]
+        self.chosenRoom =  self.roomsAsTeacher[indexPath.row]
         self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
         self.tableView.reloadData()
     }

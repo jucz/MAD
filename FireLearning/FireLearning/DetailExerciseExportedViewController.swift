@@ -8,15 +8,17 @@
 
 import UIKit
 
-class DetailRoomViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class DetailExerciseExportedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     var wasEdited = false
-    var editingRoom = false
-    var room: Room!
-    var chosenExercise: ExerciseExported?
+    var editingExercise = false
+    var exercise: Exercise!
+    var start: Date?
+    var end: Date?
+    var chosenQuestion: Question?
     
     //UI
     @IBOutlet var tableView: UITableView!
-    var exercises = [ExerciseExported]()
+    var questions = [Question]()
     
     
     
@@ -24,8 +26,8 @@ class DetailRoomViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for e in self.room.exercises {
-            self.exercises.append(e)
+        for each in exercise.questions{
+            questions.append(each)
         }
         tableView.delegate = self
         tableView.dataSource = self
@@ -36,10 +38,10 @@ class DetailRoomViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "toDetailExerciseExported"){
-            let detailViewController = segue.destination as? DetailExerciseExportedViewController
-            detailViewController?.exercise = self.chosenExercise?.exportedExercise
-            print(detailViewController?.exercise ?? "")
+        if(segue.identifier == "toDetailQuestion"){
+            let detailViewController = segue.destination as? DetailQuestionViewController
+            detailViewController?.question = chosenQuestion
+            print(detailViewController?.question ?? "")
         }
     }
     //Table
@@ -48,19 +50,19 @@ class DetailRoomViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.exercises.count
+        return questions.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath)
-        let text = self.exercises[indexPath.row].exportedExercise.title
+        let text = questions[indexPath.row].question
         cell.textLabel?.text = text
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenExercise = self.exercises[indexPath.row]
+        chosenQuestion = questions[indexPath.row]
         performSegue(withIdentifier: "toDetailQuestion", sender: self)
     }
     
