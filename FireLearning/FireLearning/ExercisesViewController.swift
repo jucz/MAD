@@ -30,6 +30,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
+            print("observe on ExercisesOwned for User triggered")
             self.exercises = []
             let tmpExercises = snapshot.value as? [String: AnyObject]
             if(tmpExercises != nil){
