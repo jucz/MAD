@@ -28,11 +28,8 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
             globalRooms?.retrieveRoomsFromFIR(globalUser: globalUser)
-            //self.roomsAsTeacher = globalRooms!.roomsAsTeacher
             self.tableView.reloadData()
         })
-        
-        self.tableView.reloadData()
         
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
@@ -56,19 +53,23 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  (globalRooms?.roomsAsTeacher.count)!
+        if globalRooms != nil {
+            //print("\nZEILEN: \((globalRooms?.roomsAsTeacher.count)!)\n")
+            return (globalRooms?.roomsAsTeacher.count)!
+        } else {
+            //print("\nZEILEN: 0\n")
+            return 0
+        }
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-//        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
-//            text = globalRooms?.roomsAsTeacher[indexPath.row].title as! String!
-//        }
-        let text = (globalRooms?.roomsAsTeacher[indexPath.row].title)! as String 
-
-        cell.textLabel?.text = text
-        
+        if globalUser != nil && (globalRooms?.roomsAsTeacher.count)! > 0 {
+            let text = (globalRooms?.roomsAsTeacher[indexPath.row].title)! as String
+            print("\nTEXT: \(text)\n")
+            cell.textLabel?.text = text
+        }
         return cell
     }
     
@@ -81,6 +82,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("delete")
