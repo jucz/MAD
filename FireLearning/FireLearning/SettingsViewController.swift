@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
                                                 return
                                         }
                                         if(user != ""){
-                                            var userEmail = Helpers.convertEmail(email: user)
+                                            let userEmail = Helpers.convertEmail(email: user)
                                             
                                             Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
                                                 let value = snapshot.value as? [String: AnyObject]
@@ -76,7 +76,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
 //                                                        globalUser?.userRef?.child("blocked").updateChildValues([
 //                                                            "\(userEmail)": user
 //                                                        ])
-///                                                        ...
+///                                                       ENDE JULIAN
                                                         globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
                             
                                                         return
