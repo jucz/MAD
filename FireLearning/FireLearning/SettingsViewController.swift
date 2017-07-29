@@ -52,7 +52,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     }
     
     func presentEnterUserAlert(){
-        var alert = UIAlertController(title: "Nutzer zu Blockierliste hinzufügen", message:
+        let alert = UIAlertController(title: "Nutzer zu Blockierliste hinzufügen", message:
             "E-Mail des Nutzers eingeben", preferredStyle: UIAlertControllerStyle.alert)
         
         let saveAction = UIAlertAction(title: "Hinzufügen",
@@ -76,8 +76,8 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
 //                                                        globalUser?.userRef?.child("blocked").updateChildValues([
 //                                                            "\(userEmail)": user
 //                                                        ])
-///                                                       ENDE JULIAN
                                                         globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
+///                                                       ENDE JULIAN
                             
                                                         return
                                                     }
