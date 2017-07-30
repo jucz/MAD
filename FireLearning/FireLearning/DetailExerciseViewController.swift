@@ -35,10 +35,6 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
             }
             self.tableView.reloadData()
         })
-        /*
-        for each in exercise.questions{
-            questions.append(each)
-        }*/
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -51,7 +47,7 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
         if(segue.identifier == "toDetailQuestion"){
             let detailViewController = segue.destination as? DetailQuestionViewController
             detailViewController?.question = chosenQuestion
-            print(detailViewController?.question)
+            detailViewController?.eidForExercise = exercise.eid
         }
     }
     //Table

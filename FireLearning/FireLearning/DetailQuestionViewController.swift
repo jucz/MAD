@@ -10,6 +10,7 @@ import UIKit
 
 class DetailQuestionViewController: UIViewController {
     var isEditingQuestion = false
+    var eidForExercise: Int!
     var question: Question!
     
     //View-Verbindungen
@@ -33,9 +34,15 @@ class DetailQuestionViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        globalUser?.userRef?.child("exercisesOwned").child("eid\(eidForExercise!)").child("questions").observe(.value, with: { (snapshot) in
+            print("observe on detailquestions triggered")
+            let tmpQuestions = snapshot.value as? [String: AnyObject]
+            if(tmpQuestions != nil){
+                self.question = Question(anyObject: tmpQuestions!["qid\(self.question.qid)"]!)
+                self.initView()
+            }
+        })
         initView()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,15 +86,10 @@ class DetailQuestionViewController: UIViewController {
             question.possibilities[0] = firstPossTextField.text!
             question.possibilities[1] = secPossTextField.text!
             question.possibilities[2] = thrdPossTextField.text!
-            initView()
-            
-            //update this question for the exercise chosen in parent controller
-            // -> update parent controller data
-            //    via a singleEvent observe of that modified exercise
-            // 
-            //  ---> globalUser.updateQuestionFor(_eid: Int, _question: Question)
-            //                 (( func has to be modified to sth like this)
-            
+            globalUser?.userRef?.child("exercisesOwned").child("eid\(eidForExercise!)").child("questions").updateChildValues([
+                "qid\(question.qid)" : self.question.toAny()
+            ])
+
         }
     }
     func toggleUIforEdit(){
