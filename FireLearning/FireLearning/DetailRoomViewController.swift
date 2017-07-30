@@ -14,9 +14,10 @@ class DetailRoomViewController: UIViewController, UITableViewDataSource, UITable
     var room: Room!
     var chosenExercise: ExerciseExported?
     
+    var exercises = [ExerciseExported]()
+    
     //UI
     @IBOutlet var tableView: UITableView!
-    var exercises = [ExerciseExported]()
     
     
     
