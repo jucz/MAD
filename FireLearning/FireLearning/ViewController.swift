@@ -51,12 +51,39 @@ class ViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
 
         //let mail = mailOutlet.text!
-        let mail = "leo@swag.com"
-        //let mail = "j@app.de"
+        //let mail = "leo@swag.com"
+        let mail = "j@app.de"
         
         //let password = passwordOutlet.text!
-        let password = "swag12"
-        //let password = "j@app.de"
+        //let password = "swag12"
+        let password = "j@app.de"
+        
+        ///JULIAN TESTDATEN
+        var userObj = User(email: "j@app.de",
+                        firstname: "Julian",
+                        lastname: "Czech")
+        var room = Room(title: "10L2", email: "j@app.de")
+        room.description = "Latein Blatt 1"
+        room.news = "leer"
+        room.admin = "j@app.de"
+        
+        let question = Question(question: "Welche Inselgruppe hat Darwin entdeckt?", answer: "Galapagos", possibilities: ["Seychellen", "Osterinseln", "Falklandinseln"])
+        
+        var exercise = Exercise(title: "Evolution")
+        exercise.addQuestion(question: question)
+        userObj.addExercise(exercise: exercise)
+        userObj.blocked.append("leo@app.de")
+        userObj.blocked.append("purschke@app.de")
+        userObj.roomsAsTeacher.append(room.rid)
+        userObj.roomsAsStudent.append(room.rid)
+        room.addStudent(email: "j@app.de")
+        room.addStudent(email: "leo@swag.com")
+        room.addExercise(exercise: exercise, start: Date(), end: Date())
+        
+        userObj.createUserInDB()
+        room.createRoomInDB()
+        ///ENDE JULIAN
+
         
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,

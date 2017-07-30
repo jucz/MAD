@@ -28,7 +28,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
             print("observe on ExercisesOwned for User triggered")
             self.exercises = []

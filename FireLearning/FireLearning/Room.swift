@@ -61,7 +61,6 @@ struct Room {
     }
     
     public func toAny() -> Any {
-        let students = Helpers.toAny(array: self.students)
         var exercises = [String:Any]()
         for element in self.exercises {
             exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
@@ -72,7 +71,7 @@ struct Room {
             "admin": self.admin,
             "description": self.description!,
             "news": self.news!,
-            "students": students,
+            "students": self.students,
             "exercises": exercises
         ]
     }
@@ -118,9 +117,9 @@ struct Room {
     public static func getStudents(snapshot: DataSnapshot) -> [String] {
         let values = snapshot.value as? NSDictionary
         var students = [String]()
-        if let anyObject = values?["students"] as? [AnyObject] {
-            for element in anyObject {
-                students.append(element.value)
+        if let allStudents = values?["students"] as? [String] {
+            for s in allStudents {
+                students.append(s)
             }
         }
         return students

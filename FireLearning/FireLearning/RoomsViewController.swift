@@ -26,7 +26,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
@@ -63,9 +63,9 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "toDetailRoom"){
-            //let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
-            //detailViewController?.exercise = chosenRoom
+        if(segue.identifier == "toDetailRoomAsTeacher"){
+            let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
+            detailViewController?.room = self.chosenRoom
         }
     }
     
@@ -93,8 +93,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.chosenRoom =  self.roomsAsTeacher[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailRoom", sender: nil)
-        self.tableView.reloadData()
+        self.performSegue(withIdentifier: "toDetailRoomAsTeacher", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

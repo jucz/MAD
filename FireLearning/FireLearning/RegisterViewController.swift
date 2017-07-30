@@ -111,30 +111,12 @@ class RegisterViewController: UIViewController {
                                        password: passwortTextField.text!) { user, error in
                                         if error == nil {
                                             print("user erstellt")
-                                            ///JULIAN
-                                            var user = User(email: self.emailTextField.text!,
-                                                            firstname: self.vornameTextField.text!,
-                                                            lastname: self.nachnameTextField.text!)
-                                            var room = Room(title: "10L2", email: "j@app.de")
-                                            room.description = "Latein Blatt 1"
-                                            room.news = "leer"
-                                            room.admin = "j@app.de"
+                                            let userObj = User(email: self.emailTextField!.text!,
+                                                               firstname: self.vornameTextField!.text!,
+                                                               lastname: self.nachnameTextField!.text!)
+                                            userObj.createUserInDB()
 
-                                            let question = Question(question: "Ei oder Huhn?", answer: "Ei", possibilities: ["Huhn"])
-
-                                            var exercise = Exercise(title: "Evolution")
-                                            exercise.addQuestion(question: question)
-                                            user.addExercise(exercise: exercise)
-                                            user.blocked.append("leo@app.de")
-                                            user.blocked.append("purschke@app.de")
-                                            user.roomsAsTeacher.append(room.rid)
-                                            user.roomsAsStudent.append(room.rid)
-                                            room.addExercise(exercise: exercise, start: Date(), end: Date())
                                             
-                                            user.createUserInDB()
-                                            room.createRoomInDB()
-                                            ///ENDE JULIAN
-
                                         }
             }
         
