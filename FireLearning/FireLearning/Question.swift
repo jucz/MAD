@@ -17,9 +17,9 @@ struct Question {
         self.answer = anyObject["answer"] as! String
         
         if let answers = anyObject["possibilities"] as? [String:String] {
-            for answer in answers {
-                self.possibilities.append(answer.value)
-            }
+            self.possibilities.append(answers["a"]!)
+            self.possibilities.append(answers["b"]!)
+            self.possibilities.append(answers["c"]!)
         }
     }
 
