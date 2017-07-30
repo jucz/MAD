@@ -30,6 +30,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
+            print("observe on ExercisesOwned for User triggered")
             self.exercises = []
             let tmpExercises = snapshot.value as? [String: AnyObject]
             if(tmpExercises != nil){
@@ -89,7 +90,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("delete")
+            let exerciseKey = "eid\(exercises[indexPath.row].eid)"
+            exercises.remove(at: indexPath.row)
+            globalUser?.userRef?.child("exercisesOwned").child(exerciseKey).removeValue()
         }
     }
     

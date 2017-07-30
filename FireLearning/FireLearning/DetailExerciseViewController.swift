@@ -23,10 +23,22 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("questions").observe(.value, with: { (snapshot) in
+            print("observe on questions for User exercises triggered")
+            self.questions = []
+            let tmpQuestions = snapshot.value as? [String: AnyObject]
+            if(tmpQuestions != nil){
+                for question in tmpQuestions!{
+                    let tmpQuestion = Question(anyObject: question.value)
+                    self.questions.append(tmpQuestion)
+                }
+            }
+            self.tableView.reloadData()
+        })
+        /*
         for each in exercise.questions{
             questions.append(each)
-        }
+        }*/
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -69,7 +81,15 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("delete")
+            let questionKey = "qid\(questions[indexPath.row].qid)"
+            questions.remove(at: indexPath.row)
+            globalUser?.userRef?
+                .child("exercisesOwned")
+                .child("eid\(exercise.eid)")
+                .child("questions")
+                .child(questionKey)
+                .removeValue()
+            
         }
     }
     
