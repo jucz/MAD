@@ -42,7 +42,7 @@ struct Room {
         self.students = Room.getStudents(snapshot: snapshot)
         self.exercises = Room.getExercises(snapshot: snapshot)
         
-        //print("___Room: \(self)____")
+        print("___Room: \(self)____")
     }
     ///ENDE JULIAN
     

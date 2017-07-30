@@ -10,13 +10,14 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var name = ""
     var chosenRoom: Room?
     
     //UI
-    @IBAction func addRoom(_ sender: UIButton) {
+    @IBAction func toStudents(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toRoomsAsStudent", sender: nil)
     }
     
     @IBOutlet var tableView: UITableView!
@@ -31,7 +32,7 @@ class RoomsViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
                 for room in rooms {
-                    globalRooms?.roomsRef.child("rid\(room)").observe(.value, with: { snapshot in
+                    globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                         let room = Room(snapshot: snapshot)
                         self.roomsAsTeacher.append(room)
                         self.tableView.reloadData()
