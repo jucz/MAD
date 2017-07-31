@@ -54,6 +54,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let detailViewController = segue.destination as? DetailExerciseViewController
             detailViewController?.exercise = chosenExercise
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

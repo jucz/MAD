@@ -12,11 +12,11 @@ struct Exercise {
     var questions = [Question]()
     
     //Constructors
-    init(title: String) {
+    /*init(title: String) {
         Exercise.getRecentEid()
         self.eid = Exercise.eids
         self.title = title
-    }
+    }*/
     
     init(eid: Int, title: String, questions: [Question]) {
         self.eid = eid
@@ -59,13 +59,13 @@ struct Exercise {
             "questions": questions
         ]
     }
-    
+    /*
     public static func getRecentEid() {
         Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
             Exercise.eids = snapshot.value as! Int
         })
         Helpers.rootRef.child("eids").setValue(Exercise.eids+1)
-    }
+    }*/
     
     
     //Setter
