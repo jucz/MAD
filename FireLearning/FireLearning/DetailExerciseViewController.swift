@@ -9,14 +9,16 @@
 import UIKit
 
 class DetailExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+    
+    var noQuestions = false
     var wasEdited = false
     var editingExercise = false
     var exercise: Exercise!
     var chosenQuestion: Question?
+    var questions = [Question]()
     
     //UI
     @IBOutlet var tableView: UITableView!
-    var questions = [Question]()
     
     @IBAction func addQuestionToExerciseBtn(_ sender: Any) {
         performSegue(withIdentifier: "toCreateQuestion", sender: self)
@@ -31,10 +33,17 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
             self.questions = []
             let tmpQuestions = snapshot.value as? [String: AnyObject]
             if(tmpQuestions != nil){
+                self.noQuestions = false
                 for question in tmpQuestions!{
                     let tmpQuestion = Question(anyObject: question.value)
                     self.questions.append(tmpQuestion)
                 }
+            }
+            else{
+                self.noQuestions = true
+                
+                let tmpQuestion = Question(qid: 1, question: "Keine Fragen vorhanden", answer: " ", possibilities: [])
+                self.questions.append(tmpQuestion)
             }
             self.tableView.reloadData()
         })
@@ -71,19 +80,32 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath)        
         let text = questions[indexPath.row].question
         cell.textLabel?.text = text
+        if(noQuestions == true){
+            cell.textLabel?.textColor = UIColor.lightGray
+        }
+        else{
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenQuestion = questions[indexPath.row]
-        performSegue(withIdentifier: "toDetailQuestion", sender: self)
+        if(noQuestions == false){
+            chosenQuestion = questions[indexPath.row]
+            performSegue(withIdentifier: "toDetailQuestion", sender: self)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if(noQuestions == false){
+            return true
+        }
+        else{
+            return false
+        }
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if(editingStyle == .delete && noQuestions == false) {
             let questionKey = "qid\(questions[indexPath.row].qid)"
             questions.remove(at: indexPath.row)
             globalUser?.userRef?

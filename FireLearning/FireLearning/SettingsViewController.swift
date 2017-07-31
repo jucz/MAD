@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SettingsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+    var noBlockedUsers = false
     var blockedUsers = [String]()
     
     //View-Verbindungen
@@ -20,7 +21,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     
     @IBAction func saveButton(_ sender: Any) {
         saveChanges()
-        initUI()
+        //initUI()
     }
     
     @IBAction func addUserToBlocked(_ sender: Any) {
@@ -29,17 +30,6 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     
     
     //Help-Methoden
-    func initUI(){
-        lastnameTextField?.text = globalUser?.user?.lastname
-        firstnameTextField?.text = globalUser?.user?.firstname
-        if(globalUser?.user?.blocked == nil){
-            blockedUsers = []
-        }
-        else{
-            blockedUsers = (globalUser?.user?.blocked)!
-        }
-        blockedTableView.reloadData()
-    }
     
     func saveChanges(){
         globalUser?.updateUser(_firstname: (firstnameTextField?.text)!, _lastname: (lastnameTextField?.text)!, _blocked: blockedUsers)
@@ -68,22 +58,11 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
                                                 let value = snapshot.value as? [String: AnyObject]
                                                 for each in value!{
                                                     if(userEmail == each.key){
-                                                        print("gefunden")
-                                                        ///JULIAN
                                                         globalUser?.user?.blocked.append(user)
-                                                        ///
-///                                                        SO NICHT MEHR, DA FIREBASE-EINTRAG JETZT ARRAY UND NICHT MEHR DICTIONARY
-//                                                        globalUser?.userRef?.child("blocked").updateChildValues([
-//                                                            "\(userEmail)": user
-//                                                        ])
                                                         globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
-///                                                       ENDE JULIAN
-                            
                                                         return
                                                     }
                                                 }
-                                                
-                                                
                                                 let alertController = UIAlertController(title: "Fehler", message:
                                                     "Kein Nutzer mit der Email gefunden!", preferredStyle: UIAlertControllerStyle.alert)
                                                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
@@ -116,16 +95,22 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             self.firstnameTextField?.text = globalUser?.user?.firstname
             if(globalUser?.user?.blocked == nil){
                 self.blockedUsers = []
+                self.noBlockedUsers = true
             }
             else{
-                self.blockedUsers = (globalUser?.user?.blocked)!
+                if(globalUser?.user?.blocked.count == 0){
+                    self.blockedUsers = ["kein Nutzer in der Blockierliste"]
+                    self.noBlockedUsers = true
+                }
+                else{
+                    self.blockedUsers = (globalUser?.user?.blocked)!
+                    self.noBlockedUsers = false
+                }
             }
             self.blockedTableView.reloadData()
         })
-        
         blockedTableView.dataSource = self
         blockedTableView.delegate = self
-        //initUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,22 +134,28 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         let text = blockedUsers[indexPath.row]
         
         cell.textLabel?.text = text
-        
+        if(noBlockedUsers == true){
+            cell.textLabel?.textColor = UIColor.lightGray
+        }
+        else{
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if(noBlockedUsers == false){
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if (editingStyle == .delete && noBlockedUsers == false) {
             blockedUsers.remove(at: indexPath.row)
-           // let tmpBlocked = blockedUsers
             saveChanges()
-           // initUI()
-           // blockedUsers = tmpBlocked
-            //blockedTableView.reloadData()
         }
     }
 }
