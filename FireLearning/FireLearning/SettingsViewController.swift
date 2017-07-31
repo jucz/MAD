@@ -94,20 +94,21 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             self.lastnameTextField?.text = globalUser?.user?.lastname
             self.firstnameTextField?.text = globalUser?.user?.firstname
             if(globalUser?.user?.blocked == nil){
-                print("keine NUtzer")
-                self.blockedUsers = ["kein Nutzer auf der Blockierliste"]
+                self.blockedUsers = []
                 self.noBlockedUsers = true
             }
             else{
-                
-                print("doch NUtzer")
-
-                self.blockedUsers = (globalUser?.user?.blocked)!
-                self.noBlockedUsers = false
+                if(globalUser?.user?.blocked.count == 0){
+                    self.blockedUsers = ["kein Nutzer in der Blockierliste"]
+                    self.noBlockedUsers = true
+                }
+                else{
+                    self.blockedUsers = (globalUser?.user?.blocked)!
+                    self.noBlockedUsers = false
+                }
             }
             self.blockedTableView.reloadData()
         })
-        
         blockedTableView.dataSource = self
         blockedTableView.delegate = self
     }
