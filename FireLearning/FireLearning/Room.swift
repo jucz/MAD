@@ -61,10 +61,10 @@ struct Room {
     }
     
     public func toAny() -> Any {
-        var exercises = [String:Any]()
-        for element in self.exercises {
-            exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
-        }
+//        var exercises = [String:Any]()
+//        for element in self.exercises {
+//            exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
+//        }
         return [
             "rid": self.rid,
             "title": self.title,
@@ -72,7 +72,7 @@ struct Room {
             "description": self.description!,
             "news": self.news!,
             "students": self.students,
-            "exercises": exercises
+            "exercises": self.exercisesToAny()//exercises
         ]
     }
     
@@ -133,6 +133,14 @@ struct Room {
                 let eTmp = ExerciseExported(anyObject: element.value)
                 exercises.append(eTmp)
             }
+        }
+        return exercises
+    }
+    
+    public func exercisesToAny() -> Any {
+        var exercises = [String:Any]()
+        for element in self.exercises {
+            exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
         }
         return exercises
     }

@@ -61,9 +61,9 @@ class GlobalUser{
         self.user?.blocked.append("blocked@blocked.de")
         //Aufgaben
         let question = Question(qid: 1, question: "Wie spät?", answer: "19Uhr", possibilities: ["20Uhr","21Uhr","22Uhr"])
-        var exercise = Exercise(title: "offline Aufgabe")
-        exercise.addQuestion(question: question)
-        self.user?.exercisesOwned.append(exercise)
+//        var exercise = Exercise(title: "offline Aufgabe")
+//        exercise.addQuestion(question: question)
+//        self.user?.exercisesOwned.append(exercise)
     }
     
  

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 
 class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+    
     var wasEdited = false
     var editingRoom = false
     var room: Room!
@@ -21,6 +22,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         self.performSegue(withIdentifier: "toAddExercise", sender: nil)
 //        self.presentAddExerciseAlert()
     }
+    
     @IBAction func addStudent(_ sender: UIButton) {
         self.presentAddStudentAlert()
     }
@@ -30,6 +32,8 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.roomTitle.title = self.room.title
         
         globalRooms?.roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
@@ -54,6 +58,13 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "toAddExercise"){
+            let detailViewController = segue.destination as? AddExerciseViewController
+            detailViewController?.room = self.room
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,7 +134,6 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         
         globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
             let exercises = User.getExercisesOwned(snapshot: snapshot)
-            var choices = [UIAlertAction]()
             for e in exercises {
                 //choices.append(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
                 alert.addAction(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
