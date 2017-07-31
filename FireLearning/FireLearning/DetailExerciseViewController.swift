@@ -52,6 +52,10 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
             detailViewController?.question = chosenQuestion
             detailViewController?.eidForExercise = exercise.eid
         }
+        else if(segue.identifier == "toCreateQuestion"){
+            let createQuestionViewController = segue.destination as? CreateQuestionForExistingExerciseViewController
+            createQuestionViewController?.exercise = exercise
+        }
     }
     //Table
     func numberOfSections(in tableView: UITableView) -> Int {

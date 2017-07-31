@@ -35,10 +35,6 @@ class CreateQuestionViewController: UIViewController {
     
     //Methoden:
     func saveQuestion(){
-        var possibilities = [String]()
-        possibilities.append(firstPossText.text!)
-        possibilities.append(secPossText.text!)
-        possibilities.append(thrdPossText.text!)
         if( (questionText.text?.isEmpty)! ||
             (rightAnswerText.text?.isEmpty)! ||
             (firstPossText.text?.isEmpty)! ||
@@ -47,7 +43,11 @@ class CreateQuestionViewController: UIViewController {
             print("nicht alles fuer Fragen ausgefuellt!")
         }
         else{
-            let question = Question(question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
+            var possibilities = [String]()
+            possibilities.append(firstPossText.text!)
+            possibilities.append(secPossText.text!)
+            possibilities.append(thrdPossText.text!)
+            let question = Question(qid: exerciseQuestionCounter, question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
             exerciseQuestions.append(question)
             exerciseQuestionCounter = exerciseQuestionCounter + 1
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
