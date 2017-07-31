@@ -16,9 +16,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     var noRooms = true
     var chosenRoom: Room?
     
-    //UI
-    @IBAction func addRoom(_ sender: UIButton) {
-    }
+
     @IBAction func toAsTeacher(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: false)
     }
