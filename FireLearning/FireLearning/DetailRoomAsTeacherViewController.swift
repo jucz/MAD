@@ -15,10 +15,12 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     var room: Room!
     var chosenExercise: ExerciseExported?
     
-    //var exercises = [ExerciseExported]()
-    
     @IBOutlet var roomTitle: UINavigationItem!
-    
+
+    @IBAction func addExercise(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "toAddExercise", sender: nil)
+//        self.presentAddExerciseAlert()
+    }
     @IBAction func addStudent(_ sender: UIButton) {
         self.presentAddStudentAlert()
     }
@@ -114,6 +116,29 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         }
     }
     
+    //Exercise hinzufügen
+    func presentAddExerciseAlert(){
+        let alert = UIAlertController(title: "Fragebogen zum Raum hinzufügen",
+                                      message: "Fragebogen auswählen", preferredStyle: .actionSheet)
+        
+        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
+            let exercises = User.getExercisesOwned(snapshot: snapshot)
+            var choices = [UIAlertAction]()
+            for e in exercises {
+                //choices.append(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
+                alert.addAction(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
+            }
+            alert.addAction(UIAlertAction(title: "Abbrechen", style: .default))
+            //alert.addTextField()
+            //        alert.addAction(cancelAction)
+            //        alert.addAction(saveAction)
+            self.present(alert, animated: true, completion: nil)
+        })
+
+    }
+
+    
+    //Schüler hinzufügen
     func presentAddStudentAlert(){
         let alert = UIAlertController(title: "Nutzer zum Raum hinzufügen", message:
             "E-Mail des Nutzers eingeben", preferredStyle: UIAlertControllerStyle.alert)

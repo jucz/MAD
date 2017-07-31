@@ -28,6 +28,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated:false);
         
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
             self.roomsAsStudent = [Room]()
