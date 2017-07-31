@@ -70,8 +70,8 @@ class DetailCreatedQuestionViewController: UIViewController {
             (rightAnswerTextField.text?.isEmpty)! ||
             (firstPossTextField.text?.isEmpty)! ||
             (secPossTextField.text?.isEmpty)! ||
-            (thrdPossTextField.text?.isEmpty)!){
-            print("nicht alles fuer Frage ausgefuellt!")
+            (thrdPossTextField.text?.isEmpty)!) {
+                self.present(AlertHelper.getSimpleQuestionErrorAlert(), animated: true, completion: nil)
         }
         else{
             question.question = questionTitleTextField.text!

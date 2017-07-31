@@ -31,7 +31,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
             (firstPossText.text?.isEmpty)! ||
             (secPossText.text?.isEmpty)! ||
             (thrdPossText.text?.isEmpty)!){
-            print("nicht alles fuer Fragen ausgefuellt!")
+                self.present(AlertHelper.getSimpleQuestionErrorAlert(), animated: true, completion: nil)
         }
         else{
             var qidRef = Database.database().reference().child("qids")

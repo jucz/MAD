@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PendingExercisesViewController: UIViewController {
-
+class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    var noPendingExercises = false
     var pendingExercises = [Exercise]()
+    
     //View-Verbindungen
     @IBAction func switchToCreatedExercisesBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
@@ -19,10 +20,21 @@ class PendingExercisesViewController: UIViewController {
     
     //System-Methoden
     override func viewDidLoad() {
+        
+        //pendingExercises retrieve from Database
+        //empty Data:
         pendingExercises = []
+        noPendingExercises = true
+        let tmpExercise = Exercise(eid: 1, title: "Keine ausstehenden Aufgaben", questions: [])
+        pendingExercises.append(tmpExercise)
+        
+        
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:false);
         
+        pendingExercisesTable.reloadData()
+        pendingExercisesTable.dataSource = self
+        pendingExercisesTable.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,9 +57,34 @@ class PendingExercisesViewController: UIViewController {
         let text = pendingExercises[indexPath.row].title
         
         cell.textLabel?.text = text
-        
+        if(noPendingExercises == true){
+            cell.textLabel?.textColor = UIColor.lightGray
+        }
+        else{
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(noPendingExercises == false){
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if(noPendingExercises == false){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete && noPendingExercises == false) {
+            
+        }
+    }
 
 }

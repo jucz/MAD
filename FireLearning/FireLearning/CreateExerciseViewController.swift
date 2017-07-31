@@ -39,6 +39,9 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             self.navigationController?.popViewController(animated: true)
             
         }
+        else{
+            self.present(AlertHelper.getSimpleExerciseErrorAlert(), animated: true, completion: nil)
+        }
     }
     
     @IBAction func createQuestionButton(_ sender: UIButton) {
