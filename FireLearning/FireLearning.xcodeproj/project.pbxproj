@@ -24,6 +24,7 @@
 		84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C211F2277950014CA78 /* DetailExerciseViewController.swift */; };
 		84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84968C231F2289660014CA78 /* DetailQuestionViewController.swift */; };
 		849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */; };
+		849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
 		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		84968C211F2277950014CA78 /* DetailExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailExerciseViewController.swift; sourceTree = "<group>"; };
 		84968C231F2289660014CA78 /* DetailQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailQuestionViewController.swift; sourceTree = "<group>"; };
 		849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCreatedQuestionViewController.swift; sourceTree = "<group>"; };
+		849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionForExistingExerciseViewController.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,56 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		849CD4841F2F1B0A00C4E08E /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				84968C231F2289660014CA78 /* DetailQuestionViewController.swift */,
+				849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */,
+				84968C211F2277950014CA78 /* DetailExerciseViewController.swift */,
+				84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */,
+				84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */,
+				84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */,
+				849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */,
+			);
+			name = Exercise;
+			sourceTree = "<group>";
+		};
+		849CD4851F2F1B3800C4E08E /* PreApp */ = {
+			isa = PBXGroup;
+			children = (
+				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
+				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
+			);
+			name = PreApp;
+			sourceTree = "<group>";
+		};
+		849CD4861F2F1B5E00C4E08E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		849CD4871F2F1B6600C4E08E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		849CD4881F2F1B7400C4E08E /* Classrooms */ = {
+			isa = PBXGroup;
+			children = (
+				0A286D201F2CF46A00587420 /* DetailExerciseExportedViewController.swift */,
+				0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */,
+				84DC14601F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift */,
+				0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */,
+			);
+			name = Classrooms;
+			sourceTree = "<group>";
+		};
 		849FF9111F1A5A64006D99F3 = {
 			isa = PBXGroup;
 			children = (
@@ -233,20 +285,11 @@
 		84DC14591F1F5D5300ACBD89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				84968C231F2289660014CA78 /* DetailQuestionViewController.swift */,
-				849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */,
-				84968C211F2277950014CA78 /* DetailExerciseViewController.swift */,
-				0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */,
-				0A286D201F2CF46A00587420 /* DetailExerciseExportedViewController.swift */,
-				84DC146C1F1F94BC00ACBD89 /* CreateQuestionViewController.swift */,
-				84DC146A1F1F89EE00ACBD89 /* CreateExerciseViewController.swift */,
-				84DC14681F1F74B200ACBD89 /* ExercisesViewController.swift */,
-				84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */,
-				84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */,
-				84DC14601F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift */,
-				0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */,
-				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
-				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
+				849CD4841F2F1B0A00C4E08E /* Exercise */,
+				849CD4881F2F1B7400C4E08E /* Classrooms */,
+				849CD4861F2F1B5E00C4E08E /* Dashboard */,
+				849CD4871F2F1B6600C4E08E /* Settings */,
+				849CD4851F2F1B3800C4E08E /* PreApp */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -574,6 +617,7 @@
 				84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */,
 				84DC146D1F1F94BC00ACBD89 /* CreateQuestionViewController.swift in Sources */,
 				0AD4069B1F1D2E9700FD2533 /* ExerciseExported.swift in Sources */,
+				849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */,
 				84DC14611F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift in Sources */,
 				84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */,
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,

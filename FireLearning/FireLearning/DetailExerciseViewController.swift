@@ -18,6 +18,9 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet var tableView: UITableView!
     var questions = [Question]()
     
+    @IBAction func addQuestionToExerciseBtn(_ sender: Any) {
+        performSegue(withIdentifier: "toCreateQuestion", sender: self)
+    }
     
     
     //System

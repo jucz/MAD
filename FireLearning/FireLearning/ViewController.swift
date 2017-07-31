@@ -51,14 +51,15 @@ class ViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
 
         //let mail = mailOutlet.text!
-        //let mail = "leo@swag.com"
-        let mail = "j@app.de"
+        let mail = "leo@swag.com"
+        //let mail = "j@app.de"
         
         //let password = passwordOutlet.text!
-        //let password = "swag12"
-        let password = "j@app.de"
+        let password = "swag12"
+        //let password = "j@app.de"
         
         ///JULIAN TESTDATEN
+        /*
         var userObj = User(email: "j@app.de",
                         firstname: "Julian",
                         lastname: "Czech")
@@ -82,6 +83,7 @@ class ViewController: UIViewController {
         
         userObj.createUserInDB()
         room.createRoomInDB()
+ */
         ///ENDE JULIAN
 
         
