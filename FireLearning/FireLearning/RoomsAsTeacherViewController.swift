@@ -42,22 +42,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
             }
         })
         print("\(globalUser?.userRef?.child("roomsAsTeacher"))")
-        
-//        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
-//            self.roomsAsStudent = [Room]()
-//            if let rooms = snapshot.value as? [Int] {
-//                for room in rooms {
-//                    globalRooms?.roomsRef.child("rid\(room)").observe(.value, with: { snapshot in
-//                        let room = Room(snapshot: snapshot)
-//                        self.roomsAsStudent.append(room)
-//                        print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
-//                    })
-//                }
-//            }
-//        })
-        
-//        tableView.reloadData()
-        
+                
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -105,5 +90,28 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         if editingStyle == .delete {
             print("delete")
         }
+    }
+    
+    func deleteRoom(index: Int) {
+        let roomTmp = self.roomsAsTeacher[index]
+        self.roomsAsTeacher.remove(at: index)
+        globalRooms?.roomsRef.child("rid\(roomTmp.rid)").child("students").setValue(self.room.students)
+        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            print("\n\(snapshot)\n")
+            var roomsAsStudent = snapshot.value as? [Int]
+            if roomsAsStudent != nil {
+                var index = 0
+                for r in roomsAsStudent! {
+                    if r == self.room.rid {
+                        roomsAsStudent!.remove(at: index)
+                        userRef.setValue(roomsAsStudent)
+                        return
+                    }
+                    index += 1
+                }
+            }
+            
+        })
     }
 }

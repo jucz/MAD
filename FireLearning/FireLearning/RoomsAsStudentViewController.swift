@@ -13,6 +13,7 @@ import FirebaseDatabase
 class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var name = ""
+    var noRooms = true
     var chosenRoom: Room?
     
     //UI
@@ -33,13 +34,22 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
             self.roomsAsStudent = [Room]()
             if let rooms = snapshot.value as? [Int] {
-                for room in rooms {
-                    globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
-                        let room = Room(snapshot: snapshot)
-                        self.roomsAsStudent.append(room)
-                        self.tableView.reloadData()
-                        print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
-                    })
+                if rooms.count > 0 {
+                    self.noRooms = false
+                    print("\nnoRooms: \(self.noRooms)")
+                    for room in rooms {
+                        globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
+                            let room = Room(snapshot: snapshot)
+                            self.roomsAsStudent.append(room)
+                            self.tableView.reloadData()
+                            print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
+                        })
+                    }
+                } else {
+                    print("\nnoRooms: \(self.noRooms)")
+                    self.noRooms = true
+                    let tmpRoom = Room(title: "Keine Räume vorhanden", email: (globalUser?.user?.email)!)
+                    self.roomsAsStudent.append(tmpRoom)
                 }
             }
         })
@@ -80,8 +90,10 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenRoom =  self.roomsAsStudent[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
+        if self.noRooms == false {
+            self.chosenRoom =  self.roomsAsStudent[indexPath.row]
+            self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

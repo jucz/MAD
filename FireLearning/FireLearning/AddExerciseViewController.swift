@@ -44,13 +44,13 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
         super.didReceiveMemoryWarning()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "toDetailQuestion"){
-//            let detailViewController = segue.destination as? DetailQuestionViewController
-//            detailViewController?.question = chosenQuestion
-//            detailViewController?.eidForExercise = exercise.eid
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "toDatePicker"){
+            let detailViewController = segue.destination as? DatePickerViewController
+            detailViewController?.exercise = self.chosenExercise
+            detailViewController?.room = self.room
+        }
+    }
     
     //Table
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,7 +80,8 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
         self.room.addExercise(exercise: chosenExercise!, start: Date(), end: Date())
         globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.room.exercisesToAny())
         //self.room.createRoomInDB()
-        self.navigationController?.popViewController(animated: true)
+        self.performSegue(withIdentifier: "toDatePicker", sender: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
