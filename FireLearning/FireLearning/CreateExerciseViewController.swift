@@ -10,11 +10,12 @@ import UIKit
 
 var exerciseQuestionCounter = 0
 var exerciseQuestions = [Question]()
+var noQuestionsInTmpExercise = true
 
 class CreateExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    //chosenQuestion
     var chosenQuestion: Question?
     var indexOfChosenQuestion: Int?
+    
     
     //View-Verbindungen
     @IBOutlet var nameOutlet: UITextField!
@@ -47,6 +48,10 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        exerciseQuestions = []
+        noQuestionsInTmpExercise = true
+        let tmpQuestion = Question(qid: 1, question: "bisher keine Frage erstellt", answer: " ", possibilities: [])
+        exerciseQuestions.append(tmpQuestion)
         questionsTableView.dataSource = self
         questionsTableView.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "reloadQuestions"), object: nil)
@@ -76,27 +81,46 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell")!
         let question = exerciseQuestions[indexPath.row]
         cell.textLabel?.text = question.question
+        
+        if(noQuestionsInTmpExercise == true){
+            cell.textLabel?.textColor = UIColor.lightGray
+        }
+        else{
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenQuestion = exerciseQuestions[indexPath.row]
-        indexOfChosenQuestion = indexPath.row
-        self.performSegue(withIdentifier: "showDetailCreatedQuestion", sender: nil)
-        
+        if(noQuestionsInTmpExercise == false){
+            chosenQuestion = exerciseQuestions[indexPath.row]
+            indexOfChosenQuestion = indexPath.row
+            self.performSegue(withIdentifier: "showDetailCreatedQuestion", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if(noQuestionsInTmpExercise == false){
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
+        if(editingStyle == .delete && noQuestionsInTmpExercise == false){
             exerciseQuestions.remove(at: indexPath.row)
+            if(exerciseQuestions.count == 0){
+                noQuestionsInTmpExercise = true
+                let tmpQuestion = Question(qid: 1, question: "bisher keine Frage erstellt", answer: " ", possibilities: [])
+                exerciseQuestions.append(tmpQuestion)
+            }
             questionsTableView.reloadData()
         }
     }
+    
+    //NotificationCenter-Methode
     //ReloadData from Child View Controller
     func loadList(){
         questionsTableView.reloadData()

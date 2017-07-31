@@ -30,10 +30,7 @@ class ViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("StateFired")
             print("\nMAIL: \(user?.email)\n")
-            
-            
             if(user != nil){
-                
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 /*ACHTUNG, BITTE SO LASSEN, DAMIT FUNKTIONEN SYNCHRON AUFGERUFEN WERDEN!!
                  ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
@@ -93,15 +90,9 @@ class ViewController: UIViewController {
     @IBAction func getAccountButton(_ sender: Any) {
         performSegue(withIdentifier: "getAccount", sender: self)
     }
-    
-    
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

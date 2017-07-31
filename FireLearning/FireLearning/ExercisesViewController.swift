@@ -14,18 +14,21 @@ import UIKit
 
 class ExercisesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //var user: User?
-    //var name = ""
+    var noExercises = false
     var chosenExercise: Exercise?
+    var exercises = [Exercise]()
     
-    //UI
+    //View-Verbindungen
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "createExercise", sender: self)
     }
     @IBOutlet var tableView: UITableView!
-    var exercises = [Exercise]()
     
-    //System
+    @IBAction func switchToPendingExercisesBtn(_ sender: Any) {
+        performSegue(withIdentifier: "toPendingExercises", sender: self)
+    
+    }
+    //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -34,17 +37,20 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             self.exercises = []
             let tmpExercises = snapshot.value as? [String: AnyObject]
             if(tmpExercises != nil){
+                self.noExercises = false
                 for exercise in tmpExercises!{
                     let tmpExercise = Exercise(anyObject: exercise.value)
                     self.exercises.append(tmpExercise)
                 }
             }
+            else{
+                self.noExercises = true
+                let tmpExercise = Exercise(eid: 1, title: "Keine Aufgaben vorhanden", questions: [])
+                self.exercises.append(tmpExercise)
+            }
             self.tableView.reloadData()
         })
 
-        //Offline-Modus
-        //exercises = (globalUser?.user?.exercisesOwned)!
-        
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -72,25 +78,35 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-        
         let text = exercises[indexPath.row].title
-        
         cell.textLabel?.text = text
-        
+        if(noExercises == true){
+            cell.textLabel?.textColor = UIColor.lightGray
+        }
+        else{
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenExercise = exercises[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailExercise", sender: nil)
- 
+        if(noExercises == false){
+            chosenExercise = exercises[indexPath.row]
+            self.performSegue(withIdentifier: "toDetailExercise", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if(noExercises == false){
+            return true
+        }
+        else{
+            return false
+        }
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if (editingStyle == .delete && noExercises == false) {
             let exerciseKey = "eid\(exercises[indexPath.row].eid)"
             exercises.remove(at: indexPath.row)
             globalUser?.userRef?.child("exercisesOwned").child(exerciseKey).removeValue()
