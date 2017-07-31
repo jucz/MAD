@@ -121,7 +121,8 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             
             if tableView == self.tableViewStudents {
                 
-                self.removeStudent(index: indexPath.row)
+                //self.removeStudent(index: indexPath.row)
+                GlobalRooms.removeStudent(room: self.room, index: indexPath.row)
             }
             
         }
@@ -198,28 +199,28 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         self.present(alert, animated: true, completion: nil)
     }
     
-    func removeStudent(index: Int) {
-        let userEmail = Helpers.convertEmail(email: self.room.students[index])
-        self.room.students.remove(at: index)
-        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
-        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
-        userRef.observeSingleEvent(of: .value, with: { snapshot in
-            print("\n\(snapshot)\n")
-            var roomsAsStudent = snapshot.value as? [Int]
-            if roomsAsStudent != nil {
-                var index = 0
-                for r in roomsAsStudent! {
-                    if r == self.room.rid {
-                        roomsAsStudent!.remove(at: index)
-                        userRef.setValue(roomsAsStudent)
-                        return
-                    }
-                    index += 1
-                }
-            }
-            
-        })
-    }
+//    func removeStudent(index: Int) {
+//        let userEmail = Helpers.convertEmail(email: self.room.students[index])
+//        self.room.students.remove(at: index)
+//        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
+//        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+//        userRef.observeSingleEvent(of: .value, with: { snapshot in
+//            print("\n\(snapshot)\n")
+//            var roomsAsStudent = snapshot.value as? [Int]
+//            if roomsAsStudent != nil {
+//                var index = 0
+//                for r in roomsAsStudent! {
+//                    if r == self.room.rid {
+//                        roomsAsStudent!.remove(at: index)
+//                        userRef.setValue(roomsAsStudent)
+//                        return
+//                    }
+//                    index += 1
+//                }
+//            }
+//            
+//        })
+//    }
     
     
     

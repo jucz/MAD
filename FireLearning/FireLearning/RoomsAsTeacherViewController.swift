@@ -89,29 +89,38 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("delete")
+            self.deleteRoom(index: indexPath.row)
         }
     }
     
     func deleteRoom(index: Int) {
-        let roomTmp = self.roomsAsTeacher[index]
+        let room = Room(room: self.roomsAsTeacher[index])
+        print("STUDENTS: \(room.students)")
         self.roomsAsTeacher.remove(at: index)
-        globalRooms?.roomsRef.child("rid\(roomTmp.rid)").child("students").setValue(self.room.students)
-        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
-        userRef.observeSingleEvent(of: .value, with: { snapshot in
-            print("\n\(snapshot)\n")
-            var roomsAsStudent = snapshot.value as? [Int]
-            if roomsAsStudent != nil {
+        var index = 0
+        for _ in room.students {
+            GlobalRooms.removeStudent(room: room, index: index)
+            index += 1
+        }
+        globalRooms?.roomsRef.child("rid\(room.rid)").removeValue()
+        globalUser?.userRef?.child("roomsAsTeacher").observeSingleEvent(of: .value, with: { snapshot in
+            if var rooms = snapshot.value as? [Int] {
                 var index = 0
-                for r in roomsAsStudent! {
-                    if r == self.room.rid {
-                        roomsAsStudent!.remove(at: index)
-                        userRef.setValue(roomsAsStudent)
+                for r in rooms {
+                    if r == room.rid {
+                        rooms.remove(at: index)
+                        print("ROOMS.COUNT: \(rooms.count)")
+                        globalUser?.userRef?.child("roomsAsTeacher").setValue(rooms)
+                        if rooms.count == 0 {
+                            self.tableView.reloadData()
+                        }
                         return
                     }
                     index += 1
                 }
             }
-            
+        
         })
     }
+    
 }

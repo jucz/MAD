@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         userObj.roomsAsTeacher.append(room.rid)
         userObj.roomsAsStudent.append(room.rid)
         room.addStudent(email: "j@app.de")
-        room.addStudent(email: "leo@swag.com")
+        room.addStudent(email: "max@app.de")
         room.addExercise(exercise: exercise, start: Date(), end: Date())
         
         userObj.createUserInDB()
