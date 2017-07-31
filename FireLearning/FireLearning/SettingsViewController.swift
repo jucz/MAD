@@ -63,11 +63,8 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
                                                         return
                                                     }
                                                 }
-                                                let alertController = UIAlertController(title: "Fehler", message:
-                                                    "Kein Nutzer mit der Email gefunden!", preferredStyle: UIAlertControllerStyle.alert)
-                                                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
                                                 
-                                                self.present(alertController, animated: true, completion: nil)
+                                                self.present(AlertHelper.getUserNotFoundForBlocked(), animated: true, completion: nil)
                                                 
                                             })
                                         }

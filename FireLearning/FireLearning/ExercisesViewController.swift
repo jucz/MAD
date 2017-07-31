@@ -45,12 +45,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             }
             else{
                 self.noExercises = true
-                let tmpExercise = Exercise(eid: 1, title: "Keine Aufgaben vorhanden", questions: [])
+                let tmpExercise = Exercise(eid: 1, title: "Keine eigenen Aufgaben", questions: [])
                 self.exercises.append(tmpExercise)
             }
             self.tableView.reloadData()
         })
-
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -75,7 +74,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         return exercises.count
     }
     
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         let text = exercises[indexPath.row].title

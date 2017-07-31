@@ -28,6 +28,7 @@
 		849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */; };
 		849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */; };
 		849CD48A1F2F3C3C00C4E08E /* PendingExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4891F2F3C3C00C4E08E /* PendingExercisesViewController.swift */; };
+		849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD48B1F2F676500C4E08E /* AlertHelper.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
 		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		849B59261F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCreatedQuestionViewController.swift; sourceTree = "<group>"; };
 		849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionForExistingExerciseViewController.swift; sourceTree = "<group>"; };
 		849CD4891F2F3C3C00C4E08E /* PendingExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingExercisesViewController.swift; sourceTree = "<group>"; };
+		849CD48B1F2F676500C4E08E /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				0A033DDF1F1F6D83008967BE /* Helpers.swift */,
 				84FC23791F21F57400077C9B /* GlobalUser.swift */,
 				0AC36F631F289ADF00592810 /* GlobalRooms.swift */,
+				849CD48B1F2F676500C4E08E /* AlertHelper.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 			files = (
 				849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */,
 				849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */,
+				849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */,
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
