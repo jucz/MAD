@@ -42,22 +42,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
             }
         })
         print("\(globalUser?.userRef?.child("roomsAsTeacher"))")
-        
-//        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
-//            self.roomsAsStudent = [Room]()
-//            if let rooms = snapshot.value as? [Int] {
-//                for room in rooms {
-//                    globalRooms?.roomsRef.child("rid\(room)").observe(.value, with: { snapshot in
-//                        let room = Room(snapshot: snapshot)
-//                        self.roomsAsStudent.append(room)
-//                        print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
-//                    })
-//                }
-//            }
-//        })
-        
-//        tableView.reloadData()
-        
+                
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -104,6 +89,38 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("delete")
+            self.deleteRoom(index: indexPath.row)
         }
     }
+    
+    func deleteRoom(index: Int) {
+        let room = Room(room: self.roomsAsTeacher[index])
+        print("STUDENTS: \(room.students)")
+        self.roomsAsTeacher.remove(at: index)
+        var index = 0
+        for _ in room.students {
+            GlobalRooms.removeStudent(room: room, index: index)
+            index += 1
+        }
+        globalRooms?.roomsRef.child("rid\(room.rid)").removeValue()
+        globalUser?.userRef?.child("roomsAsTeacher").observeSingleEvent(of: .value, with: { snapshot in
+            if var rooms = snapshot.value as? [Int] {
+                var index = 0
+                for r in rooms {
+                    if r == room.rid {
+                        rooms.remove(at: index)
+                        print("ROOMS.COUNT: \(rooms.count)")
+                        globalUser?.userRef?.child("roomsAsTeacher").setValue(rooms)
+                        if rooms.count == 0 {
+                            self.tableView.reloadData()
+                        }
+                        return
+                    }
+                    index += 1
+                }
+            }
+        
+        })
+    }
+    
 }

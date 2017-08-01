@@ -12,11 +12,11 @@ struct Exercise {
     var questions = [Question]()
     
     //Constructors
-    /*init(title: String) {
-        Exercise.getRecentEid()
-        self.eid = Exercise.eids
-        self.title = title
-    }*/
+//    init(title: String) {
+//        Exercise.getRecentEid()
+//        self.eid = Exercise.eids
+//        self.title = title
+//    }
     
     init(eid: Int, title: String, questions: [Question]) {
         self.eid = eid

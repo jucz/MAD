@@ -67,4 +67,28 @@ class GlobalRooms {
         })
     }
     
+    public static func removeStudent(room: Room, index: Int) {
+        let userEmail = Helpers.convertEmail(email: room.students[index])
+        var students = room.students
+        students.remove(at: index)
+        globalRooms?.roomsRef.child("rid\(room.rid)").child("students").setValue(students)
+        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            print("\n\(snapshot)\n")
+            var roomsAsStudent = snapshot.value as? [Int]
+            if roomsAsStudent != nil {
+                var index = 0
+                for r in roomsAsStudent! {
+                    if r == room.rid {
+                        roomsAsStudent!.remove(at: index)
+                        userRef.setValue(roomsAsStudent)
+                        return
+                    }
+                    index += 1
+                }
+            }
+            
+        })
+    }
+    
 }
