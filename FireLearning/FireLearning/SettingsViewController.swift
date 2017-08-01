@@ -28,6 +28,15 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         addUserToBlockList()
     }
     
+    @IBAction func logOutButton(_ sender: Any) {
+        do{
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "toLogin", sender: self)
+            
+        }catch{
+            print("Error while signing out!")
+        }
+    }
     
     //Help-Methoden
     

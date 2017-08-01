@@ -236,6 +236,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Einstellungen" id="1xr-ic-Dzk">
+                                        <barButtonItem key="leftBarButtonItem" title="Ausloggen" id="3Uz-z2-cxe">
+                                            <connections>
+                                                <action selector="logOutButton:" destination="ljm-Iz-0Ft" id="Rew-We-smh"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Speichern" id="RhW-X4-Wcz">
                                             <connections>
                                                 <action selector="saveButton:" destination="ljm-Iz-0Ft" id="gaa-fr-wVZ"/>
@@ -328,6 +333,7 @@
                         <outlet property="blockedTableView" destination="0Bt-PH-iMe" id="Lig-US-Ch2"/>
                         <outlet property="firstnameTextField" destination="wJJ-Ca-6o6" id="Gxx-jm-rDG"/>
                         <outlet property="lastnameTextField" destination="f07-CK-QMs" id="cZO-qI-zR2"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="He5-zv-c0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0s4-yp-Pgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1331,7 +1337,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="637-ok-X6v" id="do3-2C-rgV">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1399,7 +1405,7 @@
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tdd-wq-AMq" id="bhB-yT-QZg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1833,4 +1839,7 @@
             <point key="canvasLocation" x="2285.625" y="4022.5352112676055"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="He5-zv-c0G"/>
+    </inferredMetricsTieBreakers>
 </document>
