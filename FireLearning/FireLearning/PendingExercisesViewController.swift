@@ -12,6 +12,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     var noPendingExercises = false
     var pendingExercises = [Exercise]()
     
+    var loggedRoomIDs = [Int:Int]()
+    
     //View-Verbindungen
     @IBAction func switchToCreatedExercisesBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
@@ -21,13 +23,39 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     //System-Methoden
     override func viewDidLoad() {
         
-        //pendingExercises retrieve from Database
-        //empty Data:
-        pendingExercises = []
-        noPendingExercises = true
-        let tmpExercise = Exercise(eid: 1, title: "Keine ausstehenden Aufgaben", questions: [])
-        pendingExercises.append(tmpExercise)
+        var roomIDsAsStudent = [Int:Int]()
         
+        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
+            var tmpRoomIDs = snapshot.value as? [Int]
+            if(tmpRoomIDs != nil){
+                //momentane IDs holen
+                for eachRoomID in tmpRoomIDs!{
+                    roomIDsAsStudent[eachRoomID] = eachRoomID
+                }
+                //neue Observer registireren
+                for eachRoomID in roomIDsAsStudent{
+                   // var loggedValueForId
+                }
+                
+                //alte Observer deregistrieren
+                
+                
+                self.loggedRoomIDs = roomIDsAsStudent
+            }
+            else{
+                self.pendingExercises = []
+                self.noPendingExercises = true
+                self.loggedRoomIDs = [:]
+                
+                let tmpExercise = Exercise(eid: 1, title: "Keine ausstehenden Aufgaben", questions: [])
+                self.pendingExercises.append(tmpExercise)
+            }
+            
+        })
+        
+        
+        
+        //---
         
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:false);

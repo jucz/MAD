@@ -28,11 +28,17 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             let exerciseID = 1
             
             //array to Dict
-            var tmpQuestions = [Question]()
             
-            for each in exerciseQuestions{
-                tmpQuestions.append(each)
+            var tmpQuestions = [Question]()
+            if(noQuestionsInTmpExercise == false){
+                for each in exerciseQuestions{
+                    tmpQuestions.append(each)
+                }
             }
+            else{
+                tmpQuestions = []
+            }
+            
             
             let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: tmpQuestions)
             globalUser?.addExerciseToDatabaseForGlobalUser(_exercise: exercise)
