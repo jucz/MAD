@@ -5,8 +5,8 @@ import FirebaseDatabase
 
 struct Exercise {
     
-    static var qids: Int = 0
-        
+    //static var qids: Int = 0
+    var qids:Int = 0
     var eid: Int
     var title: String
     var questions = [Question]()
@@ -18,20 +18,22 @@ struct Exercise {
 //        self.title = title
 //    }
     
-    init(title: String) {
+    init(title: String, qids: Int) {
         self.eid = User.eids
         User.eids += 1
+        self.qids = qids
         self.title = title
     }
     
-    init(eid: Int, title: String, questions: [Question]) {
+    init(eid: Int,qids: Int, title: String, questions: [Question]) {
         self.eid = eid
+        self.qids = qids
         self.title = title
         self.questions = questions
     }
     
     init(anyObject: AnyObject) {
-        Exercise.qids = (anyObject["qids"])! as! Int
+        self.qids = (anyObject["qids"])! as! Int
         self.eid = (anyObject["eid"])! as! Int
         self.title = (anyObject["title"])! as! String
         //Loop durch alle Fragen:
@@ -46,6 +48,7 @@ struct Exercise {
     
     init(_exercise: Exercise){
         self.eid = _exercise.eid
+        self.qids = _exercise.qids
         self.title = _exercise.title
         self.questions = _exercise.questions
     }
@@ -61,7 +64,7 @@ struct Exercise {
             questions["qid\(element.qid)"] = element.toAny()
         }
         return [
-            "qids": Exercise.qids,
+            "qids": self.qids,
             "eid": self.eid,
             "title": self.title,
             "questions": questions

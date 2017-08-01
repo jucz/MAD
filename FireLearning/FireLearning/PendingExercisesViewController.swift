@@ -47,7 +47,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                 self.noPendingExercises = true
                 self.loggedRoomIDs = [:]
                 
-                let tmpExercise = Exercise(eid: 1, title: "Keine ausstehenden Aufgaben", questions: [])
+                let tmpExercise = Exercise(eid: 1, qids:0, title: "Keine ausstehenden Aufgaben", questions: [])
                 self.pendingExercises.append(tmpExercise)
             }
             

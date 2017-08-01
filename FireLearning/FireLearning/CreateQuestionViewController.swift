@@ -47,7 +47,7 @@ class CreateQuestionViewController: UIViewController {
             possibilities.append(firstPossText.text!)
             possibilities.append(secPossText.text!)
             possibilities.append(thrdPossText.text!)
-            let question = Question(qid: exerciseQuestionCounter, question: questionText.text!, answer: rightAnswerText.text!, possibilities: possibilities)
+            let question = Question(question: questionText.text!, qid: exerciseQuestionCounter, answer: rightAnswerText.text!, possibilities: possibilities)
             if(noQuestionsInTmpExercise == true){
                 exerciseQuestions.remove(at: 0)
                 noQuestionsInTmpExercise = false

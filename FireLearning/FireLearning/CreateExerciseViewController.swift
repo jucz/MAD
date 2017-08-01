@@ -40,7 +40,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             }
             
             
-            let exercise = Exercise(eid: exerciseID,title: exerciseName,questions: tmpQuestions)
+            let exercise = Exercise(eid: exerciseID,qids: exerciseQuestionCounter ,title: exerciseName,questions: tmpQuestions)
             globalUser?.addExerciseToDatabaseForGlobalUser(_exercise: exercise)
             self.navigationController?.popViewController(animated: true)
             
@@ -59,7 +59,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         exerciseQuestions = []
         noQuestionsInTmpExercise = true
-        let tmpQuestion = Question(qid: 1, question: "bisher keine Frage erstellt", answer: " ", possibilities: [])
+        let tmpQuestion = Question( question: "bisher keine Frage erstellt", qid: 1, answer: " ", possibilities: [])
         exerciseQuestions.append(tmpQuestion)
         questionsTableView.dataSource = self
         questionsTableView.delegate = self
@@ -122,7 +122,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             exerciseQuestions.remove(at: indexPath.row)
             if(exerciseQuestions.count == 0){
                 noQuestionsInTmpExercise = true
-                let tmpQuestion = Question(qid: 1, question: "bisher keine Frage erstellt", answer: " ", possibilities: [])
+                let tmpQuestion = Question(question: "bisher keine Frage erstellt", qid: 1, answer: " ", possibilities: [])
                 exerciseQuestions.append(tmpQuestion)
             }
             questionsTableView.reloadData()

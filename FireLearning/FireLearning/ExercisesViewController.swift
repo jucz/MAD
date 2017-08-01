@@ -45,7 +45,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             }
             else{
                 self.noExercises = true
-                let tmpExercise = Exercise(eid: 1, title: "Keine eigenen Aufgaben", questions: [])
+                let tmpExercise = Exercise(eid: 1, qids: 1, title: "Keine eigenen Aufgaben", questions: [])
                 self.exercises.append(tmpExercise)
             }
             self.tableView.reloadData()

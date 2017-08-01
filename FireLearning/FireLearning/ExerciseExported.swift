@@ -13,8 +13,9 @@ struct ExerciseExported {
     //eines Rooms abzuspeichern
     init(exercise: Exercise, start: Date, end: Date) {
         self.exportedExercise = Exercise(eid: exercise.eid,
-                                title: exercise.title,
-                                questions: exercise.questions)
+                                         qids: exercise.qids,
+                                         title: exercise.title,
+                                         questions: exercise.questions)
         self.start = start
         self.end = end
         self.statistics = Statistics()
