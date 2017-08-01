@@ -18,6 +18,10 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     var chosenExercise: Exercise?
     var exercises = [Exercise]()
     
+    //Observer:
+    //var exercisesObserverHandle: UInt = 0
+    //var exercisesRef: DatabaseReference?
+    
     //View-Verbindungen
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "createExercise", sender: self)
@@ -25,13 +29,15 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet var tableView: UITableView!
     
     @IBAction func switchToPendingExercisesBtn(_ sender: Any) {
+        //exercisesRef?.removeObserver(withHandle: exercisesObserverHandle)
         performSegue(withIdentifier: "toPendingExercises", sender: self)
     
     }
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        //exercisesRef = globalUser?.userRef?.child("exercisesOwned")
+        //exercisesObserverHandle = (exercisesRef?.observe(.value, with: { snapshot in
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
             print("observe on ExercisesOwned for User triggered")
             self.exercises = []
@@ -49,7 +55,9 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 self.exercises.append(tmpExercise)
             }
             self.tableView.reloadData()
+        //}))!
         })
+        
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
