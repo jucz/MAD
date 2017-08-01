@@ -1640,14 +1640,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="zNK-fk-VHj"/>
+                    <navigationItem key="navigationItem" title="Title" id="12F-f4-e4M"/>
                     <connections>
                         <outlet property="doneCount" destination="wMa-U7-e36" id="EUw-AH-lVv"/>
                         <outlet property="end" destination="biR-H2-jEh" id="BOM-t2-4yy"/>
+                        <outlet property="exerciseTitle" destination="12F-f4-e4M" id="uL2-1U-5vV"/>
                         <outlet property="result" destination="b9a-J4-4gl" id="xeM-LB-huE"/>
                         <outlet property="start" destination="vOg-H9-UPA" id="k9w-yC-lCe"/>
                         <outlet property="tableViewDone" destination="cP2-ch-SOM" id="EyP-7u-Wcy"/>
-                        <outlet property="title" destination="zNK-fk-VHj" id="5Nd-m1-OAM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQb-k6-lmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1841,6 +1841,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="He5-zv-c0G"/>
+        <segue reference="sFg-5i-0Ym"/>
     </inferredMetricsTieBreakers>
 </document>
