@@ -53,11 +53,6 @@ class ViewController: UIViewController {
         //let password = "swag12"
         let password = "j@app.de"
         
-        ///JULIAN TESTDATEN
-        //self.testdaten()
-        ///ENDE JULIAN
-
-        
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,
                                password: password)
@@ -69,32 +64,6 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func testdaten() {
-        var userObj = User(email: "j@app.de",
-                           firstname: "Julian",
-                           lastname: "Czech")
-        var room = Room(title: "10L2", email: "j@app.de")
-        room.description = "Latein Blatt 1"
-        room.news = "leer"
-        room.admin = "j@app.de"
-        
-        let question = Question(question: "Welche Inselgruppe hat Darwin entdeckt?", qid: 0, answer: "Galapagos", possibilities: ["Seychellen", "Osterinseln", "Falklandinseln"])
-        
-        let exercise = Exercise(eid: 1,qids: 1, title: "Evolution", questions: [question])
-        //exercise.addQuestion(question: question)
-        userObj.addExercise(exercise: exercise)
-        userObj.blocked.append("leo@app.de")
-        userObj.blocked.append("purschke@app.de")
-        userObj.roomsAsTeacher.append(room.rid)
-        userObj.roomsAsStudent.append(room.rid)
-        room.addStudent(email: "j@app.de")
-        room.addStudent(email: "max@app.de")
-        room.addExercise(exercise: exercise, start: Date(), end: Date())
-        
-        userObj.createUserInDB()
-        room.createRoomInDB()
     }
 }
 

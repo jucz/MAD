@@ -35,6 +35,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
+                print("---------\nROOMS VIEW – snapshot: \n\(rooms)\n---------")
                 for room in rooms {
                     globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                         let room = Room(snapshot: snapshot)
@@ -101,33 +102,58 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     }
     
     func deleteRoom(index: Int) {
-        let room = Room(room: self.roomsAsTeacher[index])
-        print("STUDENTS: \(room.students)")
-        self.roomsAsTeacher.remove(at: index)
-        var index = 0
-        for _ in room.students {
-            GlobalRooms.removeStudent(room: room, index: index)
-            index += 1
-        }
-        globalRooms?.roomsRef.child("rid\(room.rid)").removeValue()
-        globalUser?.userRef?.child("roomsAsTeacher").observeSingleEvent(of: .value, with: { snapshot in
-            if var rooms = snapshot.value as? [Int] {
-                var index = 0
-                for r in rooms {
-                    if r == room.rid {
-                        rooms.remove(at: index)
-                        print("ROOMS.COUNT: \(rooms.count)")
-                        globalUser?.userRef?.child("roomsAsTeacher").setValue(rooms)
-                        if rooms.count == 0 {
-                            self.tableView.reloadData()
-                        }
-                        return
-                    }
-                    index += 1
-                }
-            }
+
+        //globalUser?.userRef?.child("roomsAsTeacher").removeValue()
+        globalRooms?.roomsRef.child("rid\(self.roomsAsTeacher[index].rid)").removeValue()
         
-        })
+        print("STUDENTS: \(self.roomsAsTeacher[index].students)")
+        
+        var i = 0
+        for _ in self.roomsAsTeacher[index].students {
+            GlobalRooms.removeStudent(room: self.roomsAsTeacher[index], index: i)
+            i += 1
+        }
+        let ridToRemove = self.roomsAsTeacher[index].rid
+        self.roomsAsTeacher.remove(at: index)
+        if self.roomsAsTeacher.count == 0 {
+            self.roomsAsTeacher = []
+            self.tableView.reloadData()
+        }
+        
+        self.removeRoomAsTeacher(rid: ridToRemove)
+        
+//        globalUser?.userRef?.child("roomsAsTeacher").observeSingleEvent(of: .value, with: { snapshot in
+//            //print("\n_____ROOMS AS TEACHER AKTUALISIEREN____\n")
+//            if var rooms = snapshot.value as? [Int] {
+//                for _ in rooms {
+//                    if rooms[i] == ridToRemove {
+//                        rooms.remove(at: i)
+//                        i = -1
+//                        if i == -1 {
+//                            print("\n_____AKTUALISIERE____\n")
+//                            //globalUser?.userRef?.child("roomsAsTeacher").setValue(rooms)
+//                        }
+//                    }
+//                }
+//            }
+//        })
     }
     
+    func removeRoomAsTeacher(rid: Int) -> [Int] {
+        var newRooms = [Int]()
+        globalUser?.userRef?.child("roomsAsTeacher").observeSingleEvent(of: .value, with: { snapshot in
+            if let rooms = snapshot.value as? [Int] {
+                print("\n********rooms: \(rooms)\n********")
+                newRooms = rooms
+                print("\n********rooms: \(newRooms)\n********")
+                for _ in newRooms {
+                    if newRooms[i] == rid {
+                        newRooms.remove(at: i)
+                        break
+                    }
+                }
+            }
+        })
+        return newRooms
+    }
 }

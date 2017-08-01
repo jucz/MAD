@@ -22,10 +22,15 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.exerciseTitle.title = self.exported.exportedExercise.title
-        self.start.text = "\(self.exported.start)"
-        self.end.text = "\(self.exported.end)"
+        let dateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = "MM-dd-yyyy"
+        if let start = self.exported.start {
+            self.start.text = dateFormatter.string(from: start)
+        } else {
+            self.start.text = "unbekannt"
+        }
         self.result.text = "\(self.exported.statistics.resultComplete)"
-        self.result.text = "\(self.exported.statistics.done.count)"
+        self.doneCount.text = "\(self.exported.statistics.done.count)"
     }
     
     override func didReceiveMemoryWarning() {

@@ -3,10 +3,10 @@ import Foundation
 
 struct ExerciseExported {
     
-    var exportedExercise: Exercise
-    var start: Date
-    var end: Date
-    var statistics: Statistics
+    var exportedExercise: Exercise!
+    var start: Date?
+    var end: Date?
+    var statistics: Statistics!
     
     //Constructors
     //Wird benutzt, um ein ExerciseExported-Objekt zu generieren und dieses unter den exercises
@@ -32,9 +32,14 @@ struct ExerciseExported {
     init(anyObject: AnyObject){
         self.exportedExercise = Exercise(anyObject: (anyObject["exportedExercise"])! as AnyObject)
         //ToDo: Datum richtig konvertieren
-        //let dateFormatter = DateFormatter()
-        self.start = Date()//dateFormatter.date(from: (anyObject["start"] as! String))!
-        self.end = Date()//dateFormatter.date(from: (anyObject["end"] as! String))!
+        let dateFormatter = DateFormatter()
+        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]!!)")
+        if let start = anyObject["start"] {
+            self.start = dateFormatter.date(from: start as! String)
+        }
+        if let end = anyObject["end"] {
+            self.start = dateFormatter.date(from: end as! String)
+        }
         //Ende ToDo
         self.statistics = Statistics(anyObject: anyObject)
     }
@@ -47,8 +52,8 @@ struct ExerciseExported {
         let statistics = self.statistics.toAny()
         return [
             "exportedExercise": exportedExercise,
-            "start": "\(self.start)",
-            "end": "\(self.end)",
+            "start": "\(self.start!)",
+            "end": "\(self.end!)",
             "statistics": statistics
         ]
     }
