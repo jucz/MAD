@@ -42,7 +42,7 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
             else{
                 self.noQuestions = true
                 
-                let tmpQuestion = Question(qid: 1, question: "Keine Fragen vorhanden", answer: " ", possibilities: [])
+                let tmpQuestion = Question(question: "Keine Fragen vorhanden", qid: 1, answer: " ", possibilities: [])
                 self.questions.append(tmpQuestion)
             }
             self.tableView.reloadData()

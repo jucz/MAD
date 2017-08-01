@@ -88,29 +88,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FireLearning/GlobalUser.swift"
-            timestampString = "523274580.528739"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "addExerciseToDatabaseForGlobalUser(_exercise:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "FireLearning/Exercise.swift"
-            timestampString = "522927252.967003"
+            timestampString = "523276222.735642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "toAny()"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "init(_exercise:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

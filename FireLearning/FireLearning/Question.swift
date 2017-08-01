@@ -21,15 +21,7 @@ struct Question {
         }
     }
 
-    init(question: String, answer: String, possibilities: [String]) {
-        self.qid = Exercise.qids
-        Exercise.qids += 1
-        self.question = question
-        self.answer = answer
-        self.possibilities = possibilities
-    }
-    
-    init(qid: Int, question: String, answer: String, possibilities: [String]) {
+    init(question: String,qid: Int, answer: String, possibilities: [String]) {
         self.qid = qid
         self.question = question
         self.answer = answer
@@ -37,8 +29,8 @@ struct Question {
     }
     
     init(question: Question) {
-        self.qid = question.qid
         self.question = question.question
+        self.qid = question.qid
         self.answer = question.answer
         self.possibilities = question.possibilities
     }

@@ -41,7 +41,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
                 possibilities.append(self.firstPossText.text!)
                 possibilities.append(self.secPossText.text!)
                 possibilities.append(self.thrdPossText.text!)
-                let question = Question(question: self.questionTitleText.text!, answer: self.rightAnswerText.text!, possibilities: possibilities)
+                let question = Question(question: self.questionTitleText.text!, qid: qid, answer: self.rightAnswerText.text!, possibilities: possibilities)
                 
                 
                 globalUser?.userRef?.child("exercisesOwned").child("eid\(self.exercise.eid)").child("questions").updateChildValues([

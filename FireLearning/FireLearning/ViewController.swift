@@ -80,9 +80,9 @@ class ViewController: UIViewController {
         room.news = "leer"
         room.admin = "j@app.de"
         
-        let question = Question(question: "Welche Inselgruppe hat Darwin entdeckt?", answer: "Galapagos", possibilities: ["Seychellen", "Osterinseln", "Falklandinseln"])
+        let question = Question(question: "Welche Inselgruppe hat Darwin entdeckt?", qid: 0, answer: "Galapagos", possibilities: ["Seychellen", "Osterinseln", "Falklandinseln"])
         
-        let exercise = Exercise(eid: 1, title: "Evolution", questions: [question])
+        let exercise = Exercise(eid: 1,qids: 1, title: "Evolution", questions: [question])
         //exercise.addQuestion(question: question)
         userObj.addExercise(exercise: exercise)
         userObj.blocked.append("leo@app.de")
