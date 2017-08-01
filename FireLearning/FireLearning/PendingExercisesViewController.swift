@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     var noPendingExercises = false
     var pendingExercises = [Exercise]()
     
     var loggedRoomIDs = [Int:Int]()
+    
+    //Observer:
+    var handle: UInt = 0
     
     //View-Verbindungen
     @IBAction func switchToCreatedExercisesBtn(_ sender: Any) {
@@ -24,23 +28,54 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     override func viewDidLoad() {
         
         var roomIDsAsStudent = [Int:Int]()
-        
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
+            //tableData reset:
+            self.pendingExercises = []
+            
+            
             var tmpRoomIDs = snapshot.value as? [Int]
+            
+            print("\(tmpRoomIDs)")
             if(tmpRoomIDs != nil){
-                //momentane IDs holen
-                for eachRoomID in tmpRoomIDs!{
-                    roomIDsAsStudent[eachRoomID] = eachRoomID
+                self.noPendingExercises = false
+                var recentStudentRoomIDs = [Int:Int]()
+                for each in tmpRoomIDs!{
+                    recentStudentRoomIDs[each] = each
                 }
+                
+                
                 //neue Observer registireren
-                for eachRoomID in roomIDsAsStudent{
-                   // var loggedValueForId
+                print("\(recentStudentRoomIDs.count)")
+                for eachRoomID in recentStudentRoomIDs {
+                    let loggedValueForID = self.loggedRoomIDs[eachRoomID.key]
+                    if(loggedValueForID != nil){
+                        print("nicht nil\(eachRoomID.key)")
+                        //Database.database().reference().child("rooms").child("rid\(logged)")
+                    }
+                    else{
+                        print("nil")
+                        Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observeSingleEvent(of: .value, with: { (snapshot) in
+                            var tmpExportedExercises = [ExerciseExported]()
+                            
+                            let tmpData = snapshot.value as? [String : AnyObject]
+                            
+                            for each in tmpData!{
+                                let tmpExportedExercise = ExerciseExported(anyObject: each.value)
+                                tmpExportedExercises.append(tmpExportedExercise)
+                                self.pendingExercises.append(tmpExportedExercise.exportedExercise)
+                            }
+                            
+                            
+                            self.pendingExercisesTable.reloadData()
+                            
+                        })
+                
+                    }
                 }
                 
                 //alte Observer deregistrieren
                 
-                
-                self.loggedRoomIDs = roomIDsAsStudent
+                self.loggedRoomIDs = recentStudentRoomIDs
             }
             else{
                 self.pendingExercises = []
@@ -99,7 +134,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
             
         }
     }
-    
+    /* nicht editierbar als schueler: sosnt wiweder einkommentieren
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if(noPendingExercises == false){
             return true
@@ -114,5 +149,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
             
         }
     }
+ */
 
 }
