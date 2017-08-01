@@ -89,11 +89,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FireLearning/GlobalUser.swift"
-            timestampString = "522759503.866616"
+            timestampString = "523274580.528739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "addExerciseToDatabaseForGlobalUser(_exercise:)"
             landmarkType = "7">
          </BreakpointContent>

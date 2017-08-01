@@ -34,8 +34,8 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
                 self.present(AlertHelper.getSimpleQuestionErrorAlert(), animated: true, completion: nil)
         }
         else{
-            var qidRef = Database.database().reference().child("qids")
-            qidRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            var qidRef = globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("qids")
+            qidRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                 let qid = snapshot.value as! Int
                 var possibilities = [String]()
                 possibilities.append(self.firstPossText.text!)
@@ -49,7 +49,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
                 ])
                 
                 self.navigationController?.popViewController(animated: true)
-                qidRef.setValue(qid+1)
+                qidRef?.setValue(qid+1)
             })
         }
     }
