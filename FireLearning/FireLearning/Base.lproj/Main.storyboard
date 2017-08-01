@@ -1223,7 +1223,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="addRoom:" destination="kjB-uN-cAa" eventType="touchUpInside" id="GIY-0Y-Th8"/>
+                                            <action selector="createRoom:" destination="kjB-uN-cAa" eventType="touchUpInside" id="bPD-5j-aft"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1289,6 +1289,7 @@
                         <outlet property="tableView" destination="oQN-Ee-6a5" id="q00-gB-b3Q"/>
                         <segue destination="FR5-zm-AUc" kind="show" identifier="toDetailRoomAsTeacher" id="Y8t-Lz-CIG"/>
                         <segue destination="RAs-8t-ZDn" kind="show" identifier="toRoomsAsStudent" animates="NO" id="Di5-ed-ctd"/>
+                        <segue destination="vkF-Jf-dPU" kind="show" identifier="toCreateRoom" id="36U-Yj-Lyq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQ5-33-WIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1371,9 +1372,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQZ-As-bYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3283" y="5992"/>
+            <point key="canvasLocation" x="4433" y="5800"/>
         </scene>
-        <!--Title-->
+        <!--RoomAsStudentDetail-->
         <scene sceneID="56O-xt-rwR">
             <objects>
                 <viewController id="wKK-a8-cWf" sceneMemberID="viewController">
@@ -1429,13 +1430,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="77d-Oe-tNt"/>
+                    <navigationItem key="navigationItem" title="RoomAsStudentDetail" id="77d-Oe-tNt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdl-2a-uFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4433" y="5992"/>
+            <point key="canvasLocation" x="5535" y="5799"/>
         </scene>
-        <!--Title-->
+        <!--RoomAsTeacherDetail-->
         <scene sceneID="tRC-dg-aM5">
             <objects>
                 <viewController id="FR5-zm-AUc" customClass="DetailRoomAsTeacherViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -1534,7 +1535,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="bRU-t6-KqB">
+                    <navigationItem key="navigationItem" title="RoomAsTeacherDetail" id="bRU-t6-KqB">
                         <barButtonItem key="rightBarButtonItem" title="Ändern" id="jUi-jR-eZ5"/>
                     </navigationItem>
                     <connections>
@@ -1549,7 +1550,7 @@
             </objects>
             <point key="canvasLocation" x="4433" y="4020"/>
         </scene>
-        <!--Title-->
+        <!--ExportedExerciseDetail-->
         <scene sceneID="DN4-Nf-fQu">
             <objects>
                 <viewController id="gwx-Ul-q5g" customClass="ExportedAsTeacherViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -1640,7 +1641,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="12F-f4-e4M"/>
+                    <navigationItem key="navigationItem" title="ExportedExerciseDetail" id="12F-f4-e4M"/>
                     <connections>
                         <outlet property="doneCount" destination="wMa-U7-e36" id="EUw-AH-lVv"/>
                         <outlet property="end" destination="biR-H2-jEh" id="BOM-t2-4yy"/>
@@ -1653,6 +1654,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQb-k6-lmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4434" y="4893"/>
+        </scene>
+        <!--Neuen Raum anlegen-->
+        <scene sceneID="ydU-Jj-3Ac">
+            <objects>
+                <viewController id="vkF-Jf-dPU" customClass="CreateRoomViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iPm-ek-t94"/>
+                        <viewControllerLayoutGuide type="bottom" id="KcZ-Gm-pv1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gLv-Er-gh8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn7-5H-FAh">
+                                <rect key="frame" x="16" y="87" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Beschreibung" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh5-ss-DSp">
+                                <rect key="frame" x="16" y="190" width="171" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dNR-7F-7xw">
+                                <rect key="frame" x="16" y="219" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Rc-EX-E1E">
+                                <rect key="frame" x="16" y="116" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qri-E0-jUp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7U-Z4-mmK">
+                                <rect key="frame" x="132" y="383" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Anlegen"/>
+                                <connections>
+                                    <action selector="submit:" destination="vkF-Jf-dPU" eventType="touchUpInside" id="x1U-PC-w0n"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Neuen Raum anlegen" id="kj3-lE-UkO"/>
+                    <connections>
+                        <outlet property="descriptionForm" destination="dNR-7F-7xw" id="3hv-Id-GFe"/>
+                        <outlet property="nameForm" destination="1Rc-EX-E1E" id="mCb-WH-UuO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C21-LL-o0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4432.5" y="6662.3239436619715"/>
         </scene>
         <!--Fragebogen hinzufügen-->
         <scene sceneID="khj-G1-mxV">

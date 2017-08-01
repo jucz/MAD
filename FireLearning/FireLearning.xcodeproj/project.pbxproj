@@ -15,6 +15,7 @@
 		0A286D291F2F5DC200587420 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D281F2F5DC200587420 /* DatePickerViewController.swift */; };
 		0A286D2B1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2A1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift */; };
 		0A286D2D1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */; };
+		0A286D2F1F30954F00587420 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */; };
 		0AC36F641F289ADF00592810 /* GlobalRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC36F631F289ADF00592810 /* GlobalRooms.swift */; };
 		0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406941F1D24CF00FD2533 /* Exercise.swift */; };
 		0AD406971F1D24F600FD2533 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406961F1D24F600FD2533 /* Question.swift */; };
@@ -74,6 +75,7 @@
 		0A286D281F2F5DC200587420 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		0A286D2A1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportedAsTeacherViewController.swift; sourceTree = "<group>"; };
 		0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRoomAsStudentViewController.swift; sourceTree = "<group>"; };
+		0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
 		0AC36F631F289ADF00592810 /* GlobalRooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalRooms.swift; sourceTree = "<group>"; };
 		0AD406941F1D24CF00FD2533 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0AD406961F1D24F600FD2533 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				0A286D281F2F5DC200587420 /* DatePickerViewController.swift */,
 				0A286D2A1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift */,
 				0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */,
+				0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */,
 			);
 			name = Classrooms;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				0A286D271F2F2C9200587420 /* AddExerciseViewController.swift in Sources */,
 				0AC36F641F289ADF00592810 /* GlobalRooms.swift in Sources */,
 				0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */,
+				0A286D2F1F30954F00587420 /* CreateRoomViewController.swift in Sources */,
 				849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,
 				84DC14691F1F74B200ACBD89 /* ExercisesViewController.swift in Sources */,

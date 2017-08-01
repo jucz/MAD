@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         let password = "j@app.de"
         
         ///JULIAN TESTDATEN
-        self.testdaten()
+        //self.testdaten()
         ///ENDE JULIAN
 
         

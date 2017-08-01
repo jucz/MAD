@@ -16,6 +16,10 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     var chosenRoom: Room?
     
     //UI
+    @IBAction func createRoom(_ sender: Any) {
+        self.performSegue(withIdentifier: "toCreateRoom", sender: nil)
+    }
+
     @IBAction func toStudents(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toRoomsAsStudent", sender: nil)
     }
@@ -49,6 +53,9 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "toCreateRoom"){
+            let detailViewController = segue.destination as? CreateRoomViewController
+        }
         if(segue.identifier == "toDetailRoomAsTeacher"){
             let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
             detailViewController?.room = self.chosenRoom
