@@ -11,6 +11,7 @@ import UIKit
 class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var exported: ExerciseExported!
+    //@IBOutlet var title: UINavigationItem!
     @IBOutlet var start: UILabel!
     @IBOutlet var end: UILabel!
     @IBOutlet var result: UILabel!
@@ -21,6 +22,7 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.title.title = "\(self.exported.exportedExercise.title)"
         self.start.text = "\(self.exported.start)"
         self.end.text = "\(self.exported.end)"
         self.result.text = "\(self.exported.statistics.resultComplete)"
