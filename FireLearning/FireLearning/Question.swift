@@ -3,8 +3,6 @@ import Foundation
 import FirebaseDatabase
 
 struct Question {
-
-    static var qids = 0
     
     let qid: Int
     var question: String
@@ -24,8 +22,8 @@ struct Question {
     }
 
     init(question: String, answer: String, possibilities: [String]) {
-        Question.getRecentQid()
-        self.qid = Question.qids
+        self.qid = Exercise.qids
+        Exercise.qids += 1
         self.question = question
         self.answer = answer
         self.possibilities = possibilities
@@ -61,12 +59,12 @@ struct Question {
         ]
     }
     
-    public static func getRecentQid() {
-        Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
-            Question.qids = snapshot.value as! Int
-        })
-        Helpers.rootRef.child("qids").setValue(Question.qids+1)
-    }
+//    public static func getRecentQid() {
+//        Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
+//            Question.qids = snapshot.value as! Int
+//        })
+//        Helpers.rootRef.child("qids").setValue(Question.qids+1)
+//    }
     
     public func checkIfCorrect(answer: String) -> Bool {
         if answer == self.answer {

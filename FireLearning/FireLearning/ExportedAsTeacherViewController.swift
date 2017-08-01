@@ -10,18 +10,21 @@ import UIKit
 
 class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var exported: ExerciseExported!
+    @IBOutlet var start: UILabel!
+    @IBOutlet var end: UILabel!
+    @IBOutlet var result: UILabel!
+    @IBOutlet var doneCount: UILabel!
+    @IBOutlet var tableViewDone: UITableView!
     
-    @IBOutlet weak var result: UILabel!
-    @IBOutlet weak var done: UILabel!
-    @IBOutlet weak var endDate: UILabel!
-    //UI
-    @IBOutlet weak var tableView: UITableViewCell!
-    @IBOutlet weak var startDate: UILabel!
     
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.start.text = "\(self.exported.start)"
+        self.end.text = "\(self.exported.end)"
+        self.result.text = "\(self.exported.statistics.resultComplete)"
+        self.result.text = "\(self.exported.statistics.done.count)"
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +58,6 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
     
 }

@@ -61,6 +61,10 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "toExerciseExportedDetail"){
+            let detailViewController = segue.destination as? ExportedAsTeacherViewController
+            detailViewController?.exported = self.chosenExercise
+        }
         if(segue.identifier == "toAddExercise"){
             let detailViewController = segue.destination as? AddExerciseViewController
             detailViewController?.room = self.room
@@ -95,7 +99,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.tableViewExercises {
             self.chosenExercise = self.room.exercises[indexPath.row]
-            //self.performSegue(withIdentifier: "toDetailExportedExercise", sender: nil)
+            self.performSegue(withIdentifier: "toExerciseExportedDetail", sender: nil)
         }
         
         if tableView == self.tableViewStudents {
@@ -116,12 +120,8 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
                 let exportedExerciseKey = "eid\(self.room.exercises[indexPath.row].exportedExercise.eid)"
                 self.room.exercises.remove(at: indexPath.row)
                 globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").child(exportedExerciseKey).removeValue()
-                //self.tableViewExercises.reloadData()
             }
-            
             if tableView == self.tableViewStudents {
-                
-                //self.removeStudent(index: indexPath.row)
                 GlobalRooms.removeStudent(room: self.room, index: indexPath.row)
             }
             
@@ -129,24 +129,24 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     }
     
     //Exercise hinzufügen
-    func presentAddExerciseAlert(){
-        let alert = UIAlertController(title: "Fragebogen zum Raum hinzufügen",
-                                      message: "Fragebogen auswählen", preferredStyle: .actionSheet)
-        
-        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
-            let exercises = User.getExercisesOwned(snapshot: snapshot)
-            for e in exercises {
-                //choices.append(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
-                alert.addAction(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
-            }
-            alert.addAction(UIAlertAction(title: "Abbrechen", style: .default))
-            //alert.addTextField()
-            //        alert.addAction(cancelAction)
-            //        alert.addAction(saveAction)
-            self.present(alert, animated: true, completion: nil)
-        })
-
-    }
+//    func presentAddExerciseAlert(){
+//        let alert = UIAlertController(title: "Fragebogen zum Raum hinzufügen",
+//                                      message: "Fragebogen auswählen", preferredStyle: .actionSheet)
+//        
+//        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
+//            let exercises = User.getExercisesOwned(snapshot: snapshot)
+//            for e in exercises {
+//                //choices.append(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
+//                alert.addAction(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
+//            }
+//            alert.addAction(UIAlertAction(title: "Abbrechen", style: .default))
+//            //alert.addTextField()
+//            //        alert.addAction(cancelAction)
+//            //        alert.addAction(saveAction)
+//            self.present(alert, animated: true, completion: nil)
+//        })
+//
+//    }
 
     
     //Schüler hinzufügen

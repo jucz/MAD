@@ -1642,11 +1642,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="u6W-YB-auN"/>
                     <connections>
-                        <outlet property="done" destination="wMa-U7-e36" id="zpl-vz-04h"/>
-                        <outlet property="endDate" destination="biR-H2-jEh" id="wBF-2a-NpU"/>
-                        <outlet property="exerciseTitle" destination="u6W-YB-auN" id="JCl-Oe-w7B"/>
-                        <outlet property="result" destination="b9a-J4-4gl" id="K8B-qi-AmZ"/>
-                        <outlet property="startDate" destination="biR-H2-jEh" id="rXu-zd-SoY"/>
+                        <outlet property="doneCount" destination="wMa-U7-e36" id="EUw-AH-lVv"/>
+                        <outlet property="end" destination="biR-H2-jEh" id="BOM-t2-4yy"/>
+                        <outlet property="result" destination="b9a-J4-4gl" id="xeM-LB-huE"/>
+                        <outlet property="start" destination="vOg-H9-UPA" id="k9w-yC-lCe"/>
+                        <outlet property="tableViewDone" destination="cP2-ch-SOM" id="EyP-7u-Wcy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQb-k6-lmf" userLabel="First Responder" sceneMemberID="firstResponder"/>

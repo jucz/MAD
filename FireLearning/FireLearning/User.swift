@@ -8,6 +8,7 @@ import FirebaseDatabase
 
 struct User {
     
+    static var eids: Int = 0
     let email: String
     let firstname: String
     let lastname: String
@@ -41,6 +42,7 @@ struct User {
     ///JULIAN
     init(snapshot: DataSnapshot) {
         let value = snapshot.value as? NSDictionary
+        User.eids = (value?["eids"] as? Int)!
         self.email = value?["email"] as? String ?? ""
         self.lastname = value?["lastname"] as? String ?? ""
         self.firstname = value?["firstname"] as? String ?? ""
@@ -69,6 +71,7 @@ struct User {
         }
     
         return [
+            "eids": User.eids,
             "email": self.email,
             "firstname": self.firstname,
             "lastname": self.lastname,
