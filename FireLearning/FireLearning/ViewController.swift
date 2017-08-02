@@ -36,11 +36,17 @@ class ViewController: UIViewController {
                  ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
                 globalUser = GlobalUser(_email: userMail)
                 print("\nglobalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))\n")
+                //globalRooms = GlobalRooms(globalUser: self.initGlobalUser(_userMail: userMail))
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
                 }
             }
         }
+    }
+    
+    func initGlobalUser(_userMail: String) -> GlobalUser? {
+        globalUser = GlobalUser(_email: _userMail)
+        return globalUser
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -65,5 +71,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }
 
