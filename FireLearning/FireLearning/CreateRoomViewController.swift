@@ -36,8 +36,12 @@ class CreateRoomViewController: UIViewController {
         room.description = self.descriptionForm.text!
         room.news = ""
         room.createRoomInDB()
-        globalUser?.user?.roomsAsTeacher.append(room.rid)
-        globalUser?.userRef?.child("roomsAsTeacher").setValue(globalUser?.user?.roomsAsTeacher)
+        globalUser?.userRef?.child("roomsAsTeacher").setValue(self.appendRoomToGlobalUser(rid: room.rid))
+    }
+    
+    func appendRoomToGlobalUser(rid: Int) -> [Int] {
+        globalUser?.user?.roomsAsTeacher.append(rid)
+        return (globalUser?.user?.roomsAsTeacher)!
     }
     
 }
