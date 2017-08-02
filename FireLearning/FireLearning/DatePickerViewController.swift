@@ -17,8 +17,7 @@ class DatePickerViewController: UIViewController  {
     
     @IBAction func submit(_ sender: UIButton) {
         
-        self.room.addExercise(exercise: self.exercise, start: self.startDatePicker.date, end: self.endDatePicker.date)
-        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.room.exercisesToAny())
+        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.addExercise().exercisesToAny())
         let ownIndex = self.navigationController?.viewControllers.count
         let viewController = (self.navigationController?.viewControllers[ownIndex!-3])!
         self.navigationController?.popToViewController(viewController, animated: true)
@@ -33,6 +32,15 @@ class DatePickerViewController: UIViewController  {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func addExercise() -> Room! {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let start = formatter.string(from: self.startDatePicker.date)
+        let end = formatter.string(from: self.endDatePicker.date)
+        self.room.addExercise(exercise: self.exercise, start: start, end: end)
+        return self.room
     }
     
     

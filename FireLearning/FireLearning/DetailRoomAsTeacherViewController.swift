@@ -128,27 +128,6 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         }
     }
     
-    //Exercise hinzufügen
-//    func presentAddExerciseAlert(){
-//        let alert = UIAlertController(title: "Fragebogen zum Raum hinzufügen",
-//                                      message: "Fragebogen auswählen", preferredStyle: .actionSheet)
-//        
-//        globalUser?.userRef?.observeSingleEvent(of: .value, with: { snapshot in
-//            let exercises = User.getExercisesOwned(snapshot: snapshot)
-//            for e in exercises {
-//                //choices.append(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
-//                alert.addAction(UIAlertAction(title: "\(e.title)", style: .default) { _ in })
-//            }
-//            alert.addAction(UIAlertAction(title: "Abbrechen", style: .default))
-//            //alert.addTextField()
-//            //        alert.addAction(cancelAction)
-//            //        alert.addAction(saveAction)
-//            self.present(alert, animated: true, completion: nil)
-//        })
-//
-//    }
-
-    
     //Schüler hinzufügen
     func presentAddStudentAlert(){
         let alert = UIAlertController(title: "Nutzer zum Raum hinzufügen", message:
@@ -199,28 +178,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         self.present(alert, animated: true, completion: nil)
     }
     
-//    func removeStudent(index: Int) {
-//        let userEmail = Helpers.convertEmail(email: self.room.students[index])
-//        self.room.students.remove(at: index)
-//        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
-//        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
-//        userRef.observeSingleEvent(of: .value, with: { snapshot in
-//            print("\n\(snapshot)\n")
-//            var roomsAsStudent = snapshot.value as? [Int]
-//            if roomsAsStudent != nil {
-//                var index = 0
-//                for r in roomsAsStudent! {
-//                    if r == self.room.rid {
-//                        roomsAsStudent!.remove(at: index)
-//                        userRef.setValue(roomsAsStudent)
-//                        return
-//                    }
-//                    index += 1
-//                }
-//            }
-//            
-//        })
-//    }
+
     
     
     

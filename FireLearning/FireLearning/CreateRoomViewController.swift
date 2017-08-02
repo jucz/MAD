@@ -32,12 +32,7 @@ class CreateRoomViewController: UIViewController {
     }
     
     func createRoom() {
-        var room = Room(title: self.nameForm.text!, email: (globalUser?.user?.email)!)
-        room.description = self.descriptionForm.text!
-        room.news = ""
-        room.createRoomInDB()
-        globalUser?.user?.roomsAsTeacher.append(room.rid)
-        globalUser?.userRef?.child("roomsAsTeacher").setValue(globalUser?.user?.roomsAsTeacher)
+        Room.createRoom(title: self.nameForm.text!, email: (globalUser?.user?.email)!, description: self.descriptionForm.text!)
     }
     
 }
