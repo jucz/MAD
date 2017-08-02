@@ -6,7 +6,7 @@ struct Room {
     
     static var rids = 0
     
-    let rid: Int
+    var rid: Int
     var title: String
     var admin: String //email of admin
     var description: String?
@@ -15,9 +15,15 @@ struct Room {
     var exercises = [ExerciseExported]()
     
     
+    //Plathalter-Konstruktor
     init(title: String, email: String){
-        Room.getRecentRid()
-        self.rid = Room.rids
+        self.rid = -1
+        self.title = title
+        self.admin = email
+    }
+    
+    init(title: String, email: String, rid: Int){
+        self.rid = rid
         self.title = title
         self.admin = email
     }
@@ -32,7 +38,6 @@ struct Room {
         self.exercises = room.exercises
     }
     
-    ///JULIAN
     init(snapshot: DataSnapshot) {
         self.rid = Room.getRid(snapshot: snapshot)
         self.title = Room.getTitle(snapshot: snapshot)
@@ -41,10 +46,19 @@ struct Room {
         self.news = Room.getNews(snapshot: snapshot)
         self.students = Room.getStudents(snapshot: snapshot)
         self.exercises = Room.getExercises(snapshot: snapshot)
-        
-        //print("___Room: \(self)____")
     }
-    ///ENDE JULIAN
+
+    public static func createRoom(title: String, email: String, description: String) {
+        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
+            let rid = snapshot.value as! Int
+            Helpers.rootRef.child("rids").setValue(rid+1)
+            var room = Room(title: title, email: email, rid: rid)
+            room.description = description
+            room.news = ""
+            room.createRoomInDB()
+            globalUser?.userRef?.child("roomsAsTeacher").setValue(room.appendRoomToGlobalUser(rid: rid))
+        })
+    }
     
     //Others
     public mutating func addStudent(email: String) {
@@ -61,10 +75,6 @@ struct Room {
     }
     
     public func toAny() -> Any {
-//        var exercises = [String:Any]()
-//        for element in self.exercises {
-//            exercises["eid\(element.exportedExercise.eid)"] = element.toAny()
-//        }
         return [
             "rid": self.rid,
             "title": self.title,
@@ -77,10 +87,25 @@ struct Room {
     }
     
     public static func getRecentRid() {
-        Helpers.rootRef.child("rids").observe(.value, with: { snapshot in
-            Room.rids = snapshot.value as! Int
+        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
+            let rids = snapshot.value as! Int
+            Room.rids = rids
+            Helpers.rootRef.child("rids").setValue(rids+1)
         })
-        Helpers.rootRef.child("rids").setValue(Room.rids+1)
+    }
+    
+//    public mutating func getRecentRid() {
+//        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
+//            let rids = snapshot.value as! Int
+//            self.rid = rids
+//            Helpers.rootRef.child("rids").setValue(rids+1)
+//            print(";;;;;;;;\nINIT ROOM rid: \(self.rid)\n;;;;;;;")
+//        })
+//    }
+    
+    func appendRoomToGlobalUser(rid: Int) -> [Int] {
+        globalUser?.user?.roomsAsTeacher.append(rid)
+        return (globalUser?.user?.roomsAsTeacher)!
     }
     
     ///GETTER
