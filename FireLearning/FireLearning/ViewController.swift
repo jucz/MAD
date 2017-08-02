@@ -12,7 +12,8 @@ import FirebaseDatabase
 
 
 var globalUser: GlobalUser?
-var globalRooms: GlobalRooms?
+let roomsRef = Database.database().reference().child("rooms")
+
 
 class ViewController: UIViewController {
 
@@ -32,11 +33,7 @@ class ViewController: UIViewController {
             print("\nMAIL: \(user?.email)\n")
             if(user != nil){
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
-                /*ACHTUNG, BITTE SO LASSEN, DAMIT FUNKTIONEN SYNCHRON AUFGERUFEN WERDEN!!
-                 ANSONSTEN WÄRE GLOBAL USER IM KONSTRUKTOR VON GLOBAL ROOMS == nil*/
-//                globalUser = GlobalUser(_email: userMail)
-//                print("\nglobalRooms: \(globalRooms = GlobalRooms(globalUser: GlobalUser(_email: userMail)))\n")
-                globalRooms = GlobalRooms(globalUser: self.initGlobalUser(_userMail: userMail))
+                globalUser = GlobalUser(_email: userMail)
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
                 }
@@ -44,11 +41,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func initGlobalUser(_userMail: String) -> GlobalUser? {
-        globalUser = GlobalUser(_email: _userMail)
-        return globalUser
-    }
-    
+
     @IBAction func loginButton(_ sender: Any) {
 
         //let mail = mailOutlet.text!
