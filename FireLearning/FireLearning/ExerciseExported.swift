@@ -4,20 +4,20 @@ import Foundation
 struct ExerciseExported {
     
     var exportedExercise: Exercise!
-    var start: Date?
-    var end: Date?
+    var start: String?
+    var end: String?
     var statistics: Statistics!
     
     //Constructors
     //Wird benutzt, um ein ExerciseExported-Objekt zu generieren und dieses unter den exercises
     //eines Rooms abzuspeichern
-    init(exercise: Exercise, start: Date, end: Date) {
+    init(exercise: Exercise, start: String?, end: String?) {
         self.exportedExercise = Exercise(eid: exercise.eid,
                                          qids: exercise.qids,
                                          title: exercise.title,
                                          questions: exercise.questions)
-        self.start = start
-        self.end = end
+        self.start = start ?? ""
+        self.end = end ?? ""
         self.statistics = Statistics()
     }
     
@@ -31,16 +31,9 @@ struct ExerciseExported {
     ///JULIAN
     init(anyObject: AnyObject){
         self.exportedExercise = Exercise(anyObject: (anyObject["exportedExercise"])! as AnyObject)
-        //ToDo: Datum richtig konvertieren
-        let dateFormatter = DateFormatter()
-        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]!!)")
-        if let start = anyObject["start"] {
-            self.start = dateFormatter.date(from: start as! String)
-        }
-        if let end = anyObject["end"] {
-            self.start = dateFormatter.date(from: end as! String)
-        }
-        //Ende ToDo
+        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]! as! String!)")
+        self.start = anyObject["start"] as? String ?? ""
+        self.end = anyObject["end"] as? String ?? ""
         self.statistics = Statistics(anyObject: anyObject)
     }
     ///
@@ -50,10 +43,14 @@ struct ExerciseExported {
     public func toAny() -> Any {
         let exportedExercise = self.exportedExercise.toAny()
         let statistics = self.statistics.toAny()
+        //let dateFormatter = DateFormatter()
+        print("START toAny(): \(self.start)")
+        print("END toAny(): \(self.end)")
+        
         return [
             "exportedExercise": exportedExercise,
-            "start": "\(self.start!)",
-            "end": "\(self.end!)",
+            "start": self.start ?? "",
+            "end": self.end ?? "",
             "statistics": statistics
         ]
     }
@@ -68,21 +65,45 @@ struct ExerciseExported {
     
     
     //Getter
-    /*public func getexportedExercise() -> Exercise {
-        return self.exportedExercise
+//    public func getexportedExercise() -> Exercise {
+//        return self.exportedExercise
+//    }
+    
+    public func getStart() -> String {
+        if self.start == nil {
+            return ""
+        }
+        return self.start!
     }
     
-    public func getStart() -> Date {
-        return self.start
+    public func getStartAsDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        if self.start == nil {
+            return nil
+        }
+        return formatter.date(from: self.start!)
     }
     
-    public func getEnd() -> Date {
-        return self.end
+    public func getEnd() -> String {
+        if self.end == nil {
+            return ""
+        }
+        return self.end!
     }
     
-    public func getStatistics() -> Statistics {
-        return self.statistics
-    }*/
+    public func getEndAsDate() -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        if self.end == nil {
+            return nil
+        }
+        return formatter.date(from: self.end!)
+    }
+    
+//    public func getStatistics() -> Statistics {
+//        return self.statistics
+//    }
     
     
 }

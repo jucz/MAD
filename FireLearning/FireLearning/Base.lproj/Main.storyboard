@@ -303,7 +303,7 @@
                                         <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fe6-0C-hGC" id="K9T-PU-Bes">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -340,7 +340,7 @@
             </objects>
             <point key="canvasLocation" x="2286" y="-907"/>
         </scene>
-        <!--Aufgaben-->
+        <!--Fragebögen-->
         <scene sceneID="lsB-g1-p3N">
             <objects>
                 <viewController id="e1g-Le-HpA" customClass="PendingExercisesViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -399,7 +399,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c1E-57-m59" id="Pde-oj-sjg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -409,7 +409,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Aufgaben" id="ODX-he-alj"/>
+                    <navigationItem key="navigationItem" title="Fragebögen" id="ODX-he-alj"/>
                     <connections>
                         <outlet property="pendingExercisesTable" destination="h7A-UH-OKQ" id="qBU-c7-y9d"/>
                     </connections>
@@ -490,7 +490,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0K4-hq-wYT" id="B7c-NE-dxw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -500,7 +500,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Aufgaben" id="6pA-f9-KiP"/>
+                    <navigationItem key="navigationItem" title="Fragebögen" id="6pA-f9-KiP"/>
                     <connections>
                         <outlet property="tableView" destination="uJZ-dp-jY0" id="7Mk-Sv-AVf"/>
                         <segue destination="Jgg-ne-lG6" kind="show" identifier="createExercise" id="GPG-kr-MiO"/>
@@ -512,7 +512,7 @@
             </objects>
             <point key="canvasLocation" x="3283.125" y="783.80281690140851"/>
         </scene>
-        <!--Aufgabe erstellen-->
+        <!--Fragebogen erstellen-->
         <scene sceneID="nUX-zx-hU7">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="Jgg-ne-lG6" customClass="CreateExerciseViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -574,7 +574,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eUg-P0-m4V" id="hY8-pt-oJC">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -597,7 +597,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Aufgabe erstellen" id="XiW-aV-3Yn">
+                    <navigationItem key="navigationItem" title="Fragebogen erstellen" id="XiW-aV-3Yn">
                         <barButtonItem key="rightBarButtonItem" title="Sichern" id="QmK-gP-tZP">
                             <connections>
                                 <action selector="saveButton:" destination="Jgg-ne-lG6" id="kN1-Ca-txb"/>
@@ -615,7 +615,7 @@
             </objects>
             <point key="canvasLocation" x="4031.25" y="783.80281690140851"/>
         </scene>
-        <!--Aufgabe-->
+        <!--Fragen-->
         <scene sceneID="H1A-Vv-13S">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="9mn-lu-Aeb" customClass="DetailExerciseViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -636,7 +636,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QuY-k5-inR" id="4af-An-iac">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -662,7 +662,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Aufgabe" id="J2B-xc-bh4"/>
+                    <navigationItem key="navigationItem" title="Fragen" id="J2B-xc-bh4"/>
                     <connections>
                         <outlet property="tableView" destination="c9E-l3-eds" id="HVP-Y9-WT7"/>
                         <segue destination="XgA-CS-K4C" kind="show" identifier="toDetailQuestion" id="N5K-Zq-A0b"/>
@@ -1338,7 +1338,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="637-ok-X6v" id="do3-2C-rgV">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1431,10 +1431,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="RoomAsStudentDetail" id="77d-Oe-tNt"/>
+                    <connections>
+                        <segue destination="r62-Ow-ncX" kind="show" id="iLn-9a-hxC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdl-2a-uFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5535" y="5799"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dye-IJ-FpN">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C5K-Iq-Red" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="r62-Ow-ncX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aep-eK-9px"/>
+                        <viewControllerLayoutGuide type="bottom" id="HaT-Ve-Gu7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ny8-vk-PKw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6687" y="5801"/>
         </scene>
         <!--RoomAsTeacherDetail-->
         <scene sceneID="tRC-dg-aM5">
@@ -1502,7 +1523,7 @@
                                 <rect key="frame" x="282" y="146" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.19415614008903503" green="0.53888314962387085" blue="0.99226838350296021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="addExercise:" destination="FR5-zm-AUc" eventType="touchUpInside" id="eTg-Ev-q2R"/>
@@ -1512,7 +1533,7 @@
                                 <rect key="frame" x="274" y="344" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.23445495963096619" green="0.55827367305755615" blue="0.99229532480239868" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="addStudent:" destination="FR5-zm-AUc" eventType="touchUpInside" id="vLy-dZ-zC1"/>
@@ -1532,12 +1553,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iY-f4-lv9">
+                                <rect key="frame" x="256" y="68" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ändern"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x34-pa-gEK">
+                                <rect key="frame" x="256" y="108" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ändern"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="RoomAsTeacherDetail" id="bRU-t6-KqB">
-                        <barButtonItem key="rightBarButtonItem" title="Ändern" id="jUi-jR-eZ5"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="RoomAsTeacherDetail" id="bRU-t6-KqB"/>
                     <connections>
                         <outlet property="roomTitle" destination="bRU-t6-KqB" id="ruS-Q1-w7N"/>
                         <outlet property="tableViewExercises" destination="sU8-Q4-Gya" id="mPK-UL-3AK"/>
@@ -1617,13 +1646,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOg-H9-UPA">
-                                <rect key="frame" x="170" y="72" width="14" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ende" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO7-On-vIx">
                                 <rect key="frame" x="16" y="101" width="126" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1631,8 +1653,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOg-H9-UPA">
+                                <rect key="frame" x="170" y="71" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biR-H2-jEh">
-                                <rect key="frame" x="170" y="101" width="14" height="21"/>
+                                <rect key="frame" x="170" y="100" width="125" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1644,16 +1673,16 @@
                     <navigationItem key="navigationItem" title="ExportedExerciseDetail" id="12F-f4-e4M"/>
                     <connections>
                         <outlet property="doneCount" destination="wMa-U7-e36" id="EUw-AH-lVv"/>
-                        <outlet property="end" destination="biR-H2-jEh" id="BOM-t2-4yy"/>
+                        <outlet property="endDate" destination="biR-H2-jEh" id="Ohr-xy-QSP"/>
                         <outlet property="exerciseTitle" destination="12F-f4-e4M" id="uL2-1U-5vV"/>
                         <outlet property="result" destination="b9a-J4-4gl" id="xeM-LB-huE"/>
-                        <outlet property="start" destination="vOg-H9-UPA" id="k9w-yC-lCe"/>
+                        <outlet property="startDate" destination="vOg-H9-UPA" id="KFK-t7-wQF"/>
                         <outlet property="tableViewDone" destination="cP2-ch-SOM" id="EyP-7u-Wcy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQb-k6-lmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4434" y="4893"/>
+            <point key="canvasLocation" x="4432.5" y="4892.9577464788736"/>
         </scene>
         <!--Neuen Raum anlegen-->
         <scene sceneID="ydU-Jj-3Ac">
@@ -1749,7 +1778,7 @@
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="STj-rW-35B" id="faH-kV-c5e">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

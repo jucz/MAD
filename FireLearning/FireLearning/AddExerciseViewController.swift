@@ -77,7 +77,7 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
         //self.view.addSubview(datepicker)
         //todo: Start- und Enddatum hinzufügen
         //ende todo
-        self.room.addExercise(exercise: chosenExercise!, start: Date(), end: Date())
+        self.room.addExercise(exercise: chosenExercise!, start: "", end: "")
         globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.room.exercisesToAny())
         //self.room.createRoomInDB()
         self.performSegue(withIdentifier: "toDatePicker", sender: nil)
