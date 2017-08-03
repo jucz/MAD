@@ -27,6 +27,7 @@ class Helpers {
         return list
     }
     
+    
     public static func toAny_orderedByAlphabet(array: [String]?) -> Any? {
         var index = 0;
         var list: [String:String] = [:]
@@ -45,9 +46,8 @@ class Helpers {
         }
         return list
     }
-    ///ENDE 1
+
     
-    ///2
     public static func toAny(array: [Int]?) -> Any? {
         var list: [String:Int] = [:]
         if array == nil {
@@ -58,9 +58,8 @@ class Helpers {
         }
         return list
     }
-    ///ENDE 2
+
     
-    ///3
     public static func toAny(array: [Any]?) -> Any? {
         var list: [String:String] = [:]
         if array == nil {
@@ -71,9 +70,8 @@ class Helpers {
         }
         return list
     }
-    ///ENDE 3
+
     
-    ///4
     public static func toAny(dict: [String:Any]?) -> Any? {
         var list: [String:String] = [:]
         if dict == nil {
@@ -84,11 +82,11 @@ class Helpers {
         }
         return list
     }
-    ///ENDE 4
     
     //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {
         return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
     }
+    
     
 }

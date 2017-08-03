@@ -51,13 +51,6 @@ struct Question {
         ]
     }
     
-//    public static func getRecentQid() {
-//        Helpers.rootRef.child("qids").observe(.value, with: { snapshot in
-//            Question.qids = snapshot.value as! Int
-//        })
-//        Helpers.rootRef.child("qids").setValue(Question.qids+1)
-//    }
-    
     public func checkIfCorrect(answer: String) -> Bool {
         if answer == self.answer {
             return true
@@ -65,32 +58,19 @@ struct Question {
         return false
     }
     
-    
-    //Setter
-    /*public mutating func setQuestion(question: String){
-        self.question = question
+    //Shuffle possibilities und answer zu neuem Array
+    public func shuffleQuestion() -> [String] {
+        var array = self.possibilities
+        array.append(self.answer)
+        for i in 0 ..< array.count - 1 {
+            let j = Int(arc4random_uniform(UInt32(array.count - i))) + i
+            if i != j {
+                swap(&array[i], &array[j])
+            }
+        }
+        return array
     }
-    
-    public mutating func setAnswerIndex(answerIndex: Int){
-        self.answerIndex = answerIndex
-    }*/
-    
-    //Getter
-    /*public func getQid() -> Int {
-        return self.qid
-    }
-    
-    public func getQuestion() -> String {
-        return self.question
-    }
-    
-    public func getAnswerIndex() -> Int {
-        return self.answerIndex
-    }
-    
-    public func getAnswers() -> [String] {
-        return self.answers
-    }*/
+
     
     
 }
