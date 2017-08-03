@@ -17,7 +17,7 @@ class DatePickerViewController: UIViewController  {
     
     @IBAction func submit(_ sender: UIButton) {
         
-        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.addExercise().exercisesToAny())
+        roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.addExercise().exercisesToAny())
         let ownIndex = self.navigationController?.viewControllers.count
         let viewController = (self.navigationController?.viewControllers[ownIndex!-3])!
         self.navigationController?.popToViewController(viewController, animated: true)

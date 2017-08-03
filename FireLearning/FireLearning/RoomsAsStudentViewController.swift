@@ -36,7 +36,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
                     self.noRooms = false
                     print("\nnoRooms: \(self.noRooms)")
                     for room in rooms {
-                        globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
+                        roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                             let room = Room(snapshot: snapshot)
                             self.roomsAsStudent.append(room)
                             self.tableView.reloadData()

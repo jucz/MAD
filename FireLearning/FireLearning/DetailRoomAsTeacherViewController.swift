@@ -20,7 +20,6 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
 
     @IBAction func addExercise(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toAddExercise", sender: nil)
-//        self.presentAddExerciseAlert()
     }
     
     @IBAction func addStudent(_ sender: UIButton) {
@@ -35,7 +34,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         
         self.roomTitle.title = self.room.title
         
-        globalRooms?.roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
+        roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
             print("\nDetailRoomAsTeacher: observe1")
             //self.roomTitle.title = self.room.title
@@ -119,10 +118,10 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
                 
                 let exportedExerciseKey = "eid\(self.room.exercises[indexPath.row].exportedExercise.eid)"
                 self.room.exercises.remove(at: indexPath.row)
-                globalRooms?.roomsRef.child("rid\(self.room.rid)").child("exercises").child(exportedExerciseKey).removeValue()
+                roomsRef.child("rid\(self.room.rid)").child("exercises").child(exportedExerciseKey).removeValue()
             }
             if tableView == self.tableViewStudents {
-                GlobalRooms.removeStudent(room: self.room, index: indexPath.row)
+                RoomsViewAsTeacherController.removeStudent(room: self.room, index: indexPath.row)
             }
             
         }
@@ -157,7 +156,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
                                                             userRef.child("roomsAsStudent").setValue(roomsAsStudent)
                                                             
                                                         })
-                                                        globalRooms?.roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
+                                                        roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
                                                         return
                                                     }
                                                 }

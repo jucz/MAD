@@ -36,7 +36,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
                 for room in rooms {
-                    globalRooms?.roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
+                    roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                         let room = Room(snapshot: snapshot)
                         self.roomsAsTeacher.append(room)
                         self.tableView.reloadData()
@@ -51,9 +51,6 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "toCreateRoom"){
-//            let detailViewController = segue.destination as? CreateRoomViewController
-//        }
         if(segue.identifier == "toDetailRoomAsTeacher"){
             let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
             detailViewController?.room = self.chosenRoom
@@ -137,16 +134,40 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
      **/
     func removeStudentsAndThenRoom(room: Room) {
         var roomTmp = room
-        globalRooms?.roomsRef.child("rid\(roomTmp.rid)").child("students").observeSingleEvent(of: .value, with: { snapshot in
+        roomsRef.child("rid\(roomTmp.rid)").child("students").observeSingleEvent(of: .value, with: { snapshot in
             if let students = snapshot.value as? [String] {
                 roomTmp.students = students
                 var i = 0
                 for _ in students {
-                    GlobalRooms.removeStudent(room: roomTmp, index: i)
+                    RoomsViewAsTeacherController.removeStudent(room: roomTmp, index: i)
                     i += 1
                 }
             }
-            globalRooms?.roomsRef.child("rid\(roomTmp.rid)").removeValue()
+            roomsRef.child("rid\(roomTmp.rid)").removeValue()
+        })
+    }
+    
+    public static func removeStudent(room: Room, index: Int) {
+        let userEmail = Helpers.convertEmail(email: room.students[index])
+        var students = room.students
+        students.remove(at: index)
+        roomsRef.child("rid\(room.rid)").child("students").setValue(students)
+        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            print("\n\(snapshot)\n")
+            var roomsAsStudent = snapshot.value as? [Int]
+            if roomsAsStudent != nil {
+                var index = 0
+                for r in roomsAsStudent! {
+                    if r == room.rid {
+                        roomsAsStudent!.remove(at: index)
+                        userRef.setValue(roomsAsStudent)
+                        return
+                    }
+                    index += 1
+                }
+            }
+            
         })
     }
     
