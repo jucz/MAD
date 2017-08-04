@@ -13,6 +13,9 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     var noPendingExercises = false
     var pendingExercises = [Exercise]()
     
+    var chosenExercise: Exercise?
+    
+    
     var loggedRoomIDs = [Int:Int]()
     
     //Observer:
@@ -26,8 +29,9 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     
     //System-Methoden
     override func viewDidLoad() {
-        
+        /*
         var roomIDsAsStudent = [Int:Int]()
+        
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
             //tableData reset:
             self.pendingExercises = []
@@ -91,6 +95,20 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         
         
         //---
+        */
+        
+        let tmpQuestion1 = Question(question: "Was ist Pinarello?", qid: 0, answer: "Fahrradmarke", possibilities: ["Automarke", "ital. König", "der neue Lamborghini"])
+        let tmpQuestion2 = Question(question: "Wie oft hat Chris Froome die Tour de France gewonnen?", qid: 0, answer: "4 mal", possibilities: ["3 mal", "nie", "mehr als 6 mal"])
+        let tmpQuestion3 = Question(question: "Wer ist Alberto Contador", qid: 0, answer: "Radfahrer", possibilities: ["Schauspieler", "Musiker", "Arzt"])
+        
+        var tmpQuestions1 = [Question]()
+        
+        
+        tmpQuestions1.append(tmpQuestion1)
+        tmpQuestions1.append(tmpQuestion2)
+        tmpQuestions1.append(tmpQuestion3)
+        var exercise1 = Exercise(eid: 1, qids: 2, title: "Sport", questions: tmpQuestions1)
+        self.pendingExercises.append(exercise1)
         
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:false);
@@ -104,6 +122,23 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         super.didReceiveMemoryWarning()
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //Data transfer to Test View Controller
+        if(segue.identifier == "startTest"){
+            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
+            //questionsInTestViewController?.questions = []
+            questionsInTest = []
+            
+            for each in (self.chosenExercise?.questions)!{
+                //question template convert to real question
+                let realQuestion = QuestionInTest(_question: each)
+                //questionsInTestViewController?.questions.append(realQuestion)
+                questionsInTest.append(realQuestion)
+            }
+        }
+    }
     //Table-Methoden
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -131,9 +166,12 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(noPendingExercises == false){
-            
+            self.chosenExercise = self.pendingExercises[indexPath.row]
+            self.performSegue(withIdentifier: "startTest", sender: self)
         }
     }
+    
+    
     /* nicht editierbar als schueler: sosnt wiweder einkommentieren
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if(noPendingExercises == false){

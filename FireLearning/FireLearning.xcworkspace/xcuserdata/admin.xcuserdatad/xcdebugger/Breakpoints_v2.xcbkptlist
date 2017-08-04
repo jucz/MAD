@@ -169,12 +169,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FireLearning/PendingExercisesViewController.swift"
-            timestampString = "523282545.057099"
+            timestampString = "523444502.038676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FireLearning/QuestionInTest.swift"
+            timestampString = "523469390.762884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "init(_question:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
