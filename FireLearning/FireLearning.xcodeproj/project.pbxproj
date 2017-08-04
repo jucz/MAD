@@ -33,6 +33,12 @@
 		849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */; };
 		849CD48A1F2F3C3C00C4E08E /* PendingExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4891F2F3C3C00C4E08E /* PendingExercisesViewController.swift */; };
 		849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD48B1F2F676500C4E08E /* AlertHelper.swift */; };
+		849CD48E1F331BF500C4E08E /* QuestionsInTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD48D1F331BF500C4E08E /* QuestionsInTestViewController.swift */; };
+		849CD4901F33226100C4E08E /* QuestionInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD48F1F33226100C4E08E /* QuestionInTest.swift */; };
+		849CD4921F33275E00C4E08E /* QuestionInTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4911F33275E00C4E08E /* QuestionInTestViewController.swift */; };
+		849CD4941F339A8A00C4E08E /* TestDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4931F339A8A00C4E08E /* TestDoneViewController.swift */; };
+		849CD4961F3466B300C4E08E /* ResultQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4951F3466B300C4E08E /* ResultQuestionsViewController.swift */; };
+		849CD4981F34672F00C4E08E /* DetailResultQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4971F34672F00C4E08E /* DetailResultQuestionsViewController.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
 		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
@@ -97,6 +103,12 @@
 		849CD4821F2F1ACA00C4E08E /* CreateQuestionForExistingExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuestionForExistingExerciseViewController.swift; sourceTree = "<group>"; };
 		849CD4891F2F3C3C00C4E08E /* PendingExercisesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingExercisesViewController.swift; sourceTree = "<group>"; };
 		849CD48B1F2F676500C4E08E /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		849CD48D1F331BF500C4E08E /* QuestionsInTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsInTestViewController.swift; sourceTree = "<group>"; };
+		849CD48F1F33226100C4E08E /* QuestionInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionInTest.swift; sourceTree = "<group>"; };
+		849CD4911F33275E00C4E08E /* QuestionInTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionInTestViewController.swift; sourceTree = "<group>"; };
+		849CD4931F339A8A00C4E08E /* TestDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDoneViewController.swift; sourceTree = "<group>"; };
+		849CD4951F3466B300C4E08E /* ResultQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultQuestionsViewController.swift; sourceTree = "<group>"; };
+		849CD4971F34672F00C4E08E /* DetailResultQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailResultQuestionsViewController.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +250,18 @@
 			name = Classrooms;
 			sourceTree = "<group>";
 		};
+		849CD4991F34742C00C4E08E /* TestAndResult */ = {
+			isa = PBXGroup;
+			children = (
+				849CD4951F3466B300C4E08E /* ResultQuestionsViewController.swift */,
+				849CD4971F34672F00C4E08E /* DetailResultQuestionsViewController.swift */,
+				849CD4911F33275E00C4E08E /* QuestionInTestViewController.swift */,
+				849CD48D1F331BF500C4E08E /* QuestionsInTestViewController.swift */,
+				849CD4931F339A8A00C4E08E /* TestDoneViewController.swift */,
+			);
+			name = TestAndResult;
+			sourceTree = "<group>";
+		};
 		849FF9111F1A5A64006D99F3 = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +326,7 @@
 				84FC23791F21F57400077C9B /* GlobalUser.swift */,
 				849CD48B1F2F676500C4E08E /* AlertHelper.swift */,
 				0A2310941F32195F00B03D90 /* Answers.swift */,
+				849CD48F1F33226100C4E08E /* QuestionInTest.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -309,6 +334,7 @@
 		84DC14591F1F5D5300ACBD89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				849CD4991F34742C00C4E08E /* TestAndResult */,
 				849CD4841F2F1B0A00C4E08E /* Exercise */,
 				849CD4881F2F1B7400C4E08E /* Classrooms */,
 				849CD4861F2F1B5E00C4E08E /* Dashboard */,
@@ -634,6 +660,7 @@
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
+				849CD4921F33275E00C4E08E /* QuestionInTestViewController.swift in Sources */,
 				0A286D2B1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift in Sources */,
 				84FC237A1F21F57400077C9B /* GlobalUser.swift in Sources */,
 				84777D5A1F1C941C004324A2 /* User.swift in Sources */,
@@ -643,6 +670,7 @@
 				0A286D2D1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift in Sources */,
 				84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */,
 				0A2310971F321ED000B03D90 /* QuestionsAsStudentViewController.swift in Sources */,
+				849CD4981F34672F00C4E08E /* DetailResultQuestionsViewController.swift in Sources */,
 				849CD48A1F2F3C3C00C4E08E /* PendingExercisesViewController.swift in Sources */,
 				84968C221F2277950014CA78 /* DetailExerciseViewController.swift in Sources */,
 				84DC146D1F1F94BC00ACBD89 /* CreateQuestionViewController.swift in Sources */,
@@ -650,8 +678,11 @@
 				849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */,
 				84DC14611F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift in Sources */,
 				84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */,
+				849CD4901F33226100C4E08E /* QuestionInTest.swift in Sources */,
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,
 				0A286D251F2E1E5A00587420 /* RoomsAsStudentViewController.swift in Sources */,
+				849CD4941F339A8A00C4E08E /* TestDoneViewController.swift in Sources */,
+				849CD4961F3466B300C4E08E /* ResultQuestionsViewController.swift in Sources */,
 				84968C241F2289660014CA78 /* DetailQuestionViewController.swift in Sources */,
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
 				0A286D271F2F2C9200587420 /* AddExerciseViewController.swift in Sources */,
@@ -661,6 +692,7 @@
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,
 				0A2310951F32195F00B03D90 /* Answers.swift in Sources */,
 				0A2310991F321F0600B03D90 /* AnswerQuestionViewController.swift in Sources */,
+				849CD48E1F331BF500C4E08E /* QuestionsInTestViewController.swift in Sources */,
 				84DC14691F1F74B200ACBD89 /* ExercisesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

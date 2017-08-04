@@ -52,6 +52,8 @@ class ViewController: UIViewController {
         //let password = "swag12"
         let password = "j@app.de"
         
+        self.performSegue(withIdentifier: "login", sender: self)
+        
         loginHit = true;
         Auth.auth().signIn(withEmail: mail,
                                password: password)
