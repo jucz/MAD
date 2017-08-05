@@ -52,7 +52,7 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
             let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
             //questionsInTestViewController?.questions = []
             questionsInTest = []
-            let recentExercise = self.chosenExercise
+//            let recentExercise = self.chosenExercise
             
             for each in (self.chosenExercise?.exportedExercise.questions)!{
                 //question template convert to real question
@@ -83,7 +83,12 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.tableViewExercises {
             self.chosenExercise = self.room.exercises[indexPath.row]
-            self.performSegue(withIdentifier: "startTestFromRooms", sender: nil)
+            recentExercise = RoomExercise(rid: self.room.rid, exercise: self.chosenExercise!)
+            if self.chosenExercise?.alreadyAnswered(email: (globalUser?.userMail)!) == false {
+                self.performSegue(withIdentifier: "startTestFromRooms", sender: nil)
+            } else {
+                self.present(AlertHelper.getAlreadyAnsweredErrorAlert(), animated: true, completion: nil)
+            }
         }
     }
     

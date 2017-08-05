@@ -10,6 +10,7 @@
 		080642B27EA272218375ED5F /* Pods_FireLearningUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517B1AF995A6913D0073600 /* Pods_FireLearningUITests.framework */; };
 		0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A033DDF1F1F6D83008967BE /* Helpers.swift */; };
 		0A041D9B1F34BCC00072D67A /* RoomsAsStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */; };
+		0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A041D9C1F366AF00072D67A /* RoomExercise.swift */; };
 		0A2310971F321ED000B03D90 /* QuestionsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */; };
 		0A286D1F1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */; };
 		0A286D251F2E1E5A00587420 /* RoomsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */; };
@@ -18,6 +19,7 @@
 		0A286D2B1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2A1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift */; };
 		0A286D2D1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */; };
 		0A286D2F1F30954F00587420 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */; };
+		0A80F6281F367BE90016B27A /* DoneUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80F6271F367BE90016B27A /* DoneUser.swift */; };
 		0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406941F1D24CF00FD2533 /* Exercise.swift */; };
 		0AD406971F1D24F600FD2533 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406961F1D24F600FD2533 /* Question.swift */; };
 		0AD406991F1D253400FD2533 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406981F1D253400FD2533 /* Room.swift */; };
@@ -77,6 +79,7 @@
 /* Begin PBXFileReference section */
 		0A033DDF1F1F6D83008967BE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsStudent.swift; sourceTree = "<group>"; };
+		0A041D9C1F366AF00072D67A /* RoomExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomExercise.swift; sourceTree = "<group>"; };
 		0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsAsStudentViewController.swift; sourceTree = "<group>"; };
 		0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRoomAsTeacherViewController.swift; sourceTree = "<group>"; };
 		0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsStudentViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		0A286D2A1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportedAsTeacherViewController.swift; sourceTree = "<group>"; };
 		0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRoomAsStudentViewController.swift; sourceTree = "<group>"; };
 		0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
+		0A80F6271F367BE90016B27A /* DoneUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneUser.swift; sourceTree = "<group>"; };
 		0AD406941F1D24CF00FD2533 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		0AD406961F1D24F600FD2533 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		0AD406981F1D253400FD2533 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 				849CD48B1F2F676500C4E08E /* AlertHelper.swift */,
 				849CD48F1F33226100C4E08E /* QuestionInTest.swift */,
 				0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */,
+				0A041D9C1F366AF00072D67A /* RoomExercise.swift */,
+				0A80F6271F367BE90016B27A /* DoneUser.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -653,10 +659,12 @@
 			files = (
 				849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */,
 				849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */,
+				0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */,
 				849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */,
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
+				0A80F6281F367BE90016B27A /* DoneUser.swift in Sources */,
 				849CD4921F33275E00C4E08E /* QuestionInTestViewController.swift in Sources */,
 				0A286D2B1F2F9B4C00587420 /* ExportedAsTeacherViewController.swift in Sources */,
 				84FC237A1F21F57400077C9B /* GlobalUser.swift in Sources */,

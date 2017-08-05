@@ -101,6 +101,13 @@ struct ExerciseExported {
         return formatter.date(from: self.end!)
     }
     
+    public func alreadyAnswered(email: String) -> Bool {
+        if self.statistics.done[email] == nil {
+            return false
+        }
+        return true
+    }
+    
 //    public func getStatistics() -> Statistics {
 //        return self.statistics
 //    }

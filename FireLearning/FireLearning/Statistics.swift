@@ -89,6 +89,17 @@ struct Statistics {
         }
     }
     
+    public func getIndexedMapOfDone() -> [Int:DoneUser]{
+        var doneIndexed = [Int:DoneUser]()
+        var i = 0
+        for s in self.done {
+            doneIndexed[i] = DoneUser(email: s.key, result: s.value)
+            i += 1
+        }
+        print("\nDONE INDEXED: \(doneIndexed)\n")
+        return doneIndexed
+    }
+    
     
     
     //Setter

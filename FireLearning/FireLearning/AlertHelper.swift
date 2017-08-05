@@ -71,6 +71,16 @@ class AlertHelper{
         return alertController
     }
     
+    //simple Alert for Create exercise
+    public static func getAlreadyAnsweredErrorAlert() ->UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: "Du hast diesen Fragebogen bereits beantwortet!",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
+    
     //settings Error Alert for invalid user email
     public static func getUserNotFoundForBlocked() ->UIAlertController {
         let alertController = UIAlertController(title: "Fehler", message:

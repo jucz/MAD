@@ -9,15 +9,15 @@
 import UIKit
 import FirebaseDatabase
 
-struct RoomExercise {
-    var rid: Int
-    var exercise: ExerciseExported
-    
-    init(rid: Int, exercise: ExerciseExported) {
-        self.rid = rid
-        self.exercise = exercise
-    }
-}
+//struct RoomExercise {
+//    var rid: Int
+//    var exercise: ExerciseExported
+//    
+//    init(rid: Int, exercise: ExerciseExported) {
+//        self.rid = rid
+//        self.exercise = exercise
+//    }
+//}
 
 class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     var noPendingExercises = false
@@ -106,7 +106,11 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                             //add recent room-exercises to data-array
                             for each in tmpData{
                                 let tmpExportedExercise = ExerciseExported(anyObject: each.value)
-                                let notExpired = tmpExportedExercise.getEndAsDate()! > Date()
+                                let endDate = tmpExportedExercise.getEndAsDate()
+                                var notExpired = false
+                                if endDate != nil && endDate! > Date() {
+                                    notExpired = true
+                                }
                                 let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
                                 //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
                                 if notExpired && notDone {

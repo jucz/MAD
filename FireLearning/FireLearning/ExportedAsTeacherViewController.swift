@@ -27,22 +27,24 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
         roomsRef.child("rid\(self.rid)")
             .child("exercises")
             .child("eid\(self.exported.exportedExercise.eid)")
-            .child("statistics")
             .observe(.value, with: { snapshot in
                 
-                let values = snapshot.value as? NSDictionary
+                let anyObject = snapshot.value as? AnyObject
+                if anyObject != nil && anyObject?["exportedExercise"] != nil {
+                    self.exported = ExerciseExported(anyObject: anyObject!)
                 
-                self.exerciseTitle.title = self.exported.exportedExercise.title
-                self.startDate.text = (self.exported.start)!
-                self.endDate.text = (self.exported.end)!
-                let resultComplete = values?["resultComplete"] as! Int
-                print("RESULT COMPLETE: \(resultComplete)")
-                self.result.text = "\(resultComplete)"
-                let done = values?["done"] as? [String:Int]
-                if done == nil {
-                    self.doneCount.text = "0"
-                } else {
-                    self.doneCount.text = "\(done?.count)"
+                    self.exerciseTitle.title = self.exported.exportedExercise.title
+                    self.startDate.text = (self.exported.start)!
+                    self.endDate.text = (self.exported.end)!
+                    let resultComplete = self.exported.statistics.resultComplete
+                    print("RESULT COMPLETE: \(resultComplete)")
+                    self.result.text = "\(resultComplete)"
+                    self.doneCount.text = "\(self.exported.statistics.done.count)"
+                    
+                    self.tableViewDone.reloadData()
+                    self.tableViewDone.allowsMultipleSelectionDuringEditing = false
+                    self.tableViewDone.dataSource = self
+                    self.tableViewDone.delegate = self
                 }
             })
         
@@ -62,8 +64,9 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let doneIndexed = self.exported.statistics.getIndexedMapOfDone()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-        cell.textLabel?.text = ""
+        cell.textLabel?.text = "\(Helpers.reconvertEmail(email:(doneIndexed[indexPath.row]?.email)!)): \((doneIndexed[indexPath.row]?.result)!) %"
         return cell
     }
     

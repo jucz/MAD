@@ -85,7 +85,11 @@ class Helpers {
     
     //Convert all not allowed characters to alternative substrings
     public static func convertEmail(email: String) -> String {
-        return email.replacingOccurrences(of: "@", with: "at").replacingOccurrences(of: ".", with: "dot")
+        return email.replacingOccurrences(of: "@", with: "%at").replacingOccurrences(of: ".", with: "%dot")
+    }
+    
+    public static func reconvertEmail(email: String) -> String {
+        return email.replacingOccurrences(of: "%at", with: "@").replacingOccurrences(of: "%dot", with: ".")
     }
     
     
