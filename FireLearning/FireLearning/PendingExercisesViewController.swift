@@ -48,11 +48,12 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         
         var roomIDsAsStudent = [Int:Int]()
         
+        self.pendingExercises = [:]
+        
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
             print("\nFIRE OBSERVE PENDING EXERCISES!!!\n")
             //tableData reset:
             self.pendingExercises = [:]
-            
             
             var tmpRoomIDs = snapshot.value as? [Int]
             
@@ -67,28 +68,22 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                 
                 //neue Observer registireren
                 print("\(recentStudentRoomIDs.count)")
+                var counter = 0
+                
+                var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
-                    let loggedValueForID = self.loggedRoomIDs[eachRoomID.key]
-                    if(loggedValueForID != nil){
-                        print("nicht nil\(eachRoomID.key)")
-                        //Database.database().reference().child("rooms").child("rid\(logged)")
-                    }
-                    else{
-                        print("nil")
+                        /*single
                         Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observeSingleEvent(of: .value, with: { (snapshot) in
-                            var tmpExportedExercises = [ExerciseExported]()
-                            
                             if let tmpData = snapshot.value as? [String : AnyObject] {
-                                var i = 0
+                                
                                 for each in tmpData{
                                     let tmpExportedExercise = ExerciseExported(anyObject: each.value)
                                     let notExpired = tmpExportedExercise.getEndAsDate()! > Date()
                                     let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
                                     //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
                                     if notExpired && notDone {
-                                        tmpExportedExercises.append(tmpExportedExercise)
-                                        self.pendingExercises[i] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        i += 1
+                                        self.pendingExercises[counter] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
+                                        counter = counter + 1
                                     }
                                 }
                             }
@@ -97,8 +92,42 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                             self.pendingExercisesTable.reloadData()
                             
                         })
-                
-                    }
+                     */
+                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
+                        if let tmpData = snapshot.value as? [String : AnyObject] {
+                            //delete old room-exercises from data-array
+                            for each in self.pendingExercises{
+                                freeCounters.append(each.key)
+                                if(each.value.rid == eachRoomID.key){
+                                    self.pendingExercises.removeValue(forKey: each.key)
+                                }
+                            }
+                            print(self.pendingExercises)
+                            
+                            //add recent room-exercises to data-array
+                            for each in tmpData{
+                                let tmpExportedExercise = ExerciseExported(anyObject: each.value)
+                                let notExpired = tmpExportedExercise.getEndAsDate()! > Date()
+                                let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
+                                //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
+                                if notExpired && notDone {
+                                    if(freeCounters.count > 0){
+                                        self.pendingExercises[freeCounters[0]] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
+                                        freeCounters.remove(at: 0)
+                                    }
+                                    else{
+                                        self.pendingExercises[counter] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
+                                        counter = counter + 1
+                                    }
+                                    print(self.pendingExercises)
+                                }
+                            }
+                        }
+                        
+                        
+                        self.pendingExercisesTable.reloadData()
+                        
+                    })
                 }
                 
                 //alte Observer deregistrieren
@@ -117,22 +146,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         })
         
         
-        
-        //---
-        
-        
-//        let tmpQuestion1 = Question(question: "Was ist Pinarello?", qid: 0, answer: "Fahrradmarke", possibilities: ["Automarke", "ital. König", "der neue Lamborghini"])
-//        let tmpQuestion2 = Question(question: "Wie oft hat Chris Froome die Tour de France gewonnen?", qid: 0, answer: "4 mal", possibilities: ["3 mal", "nie", "mehr als 6 mal"])
-//        let tmpQuestion3 = Question(question: "Wer ist Alberto Contador", qid: 0, answer: "Radfahrer", possibilities: ["Schauspieler", "Musiker", "Arzt"])
-//        
-//        var tmpQuestions1 = [Question]()
-//        
-//        
-//        tmpQuestions1.append(tmpQuestion1)
-//        tmpQuestions1.append(tmpQuestion2)
-//        tmpQuestions1.append(tmpQuestion3)
-//        var exercise1 = Exercise(eid: 1, qids: 2, title: "Sport", questions: tmpQuestions1)
-//        self.pendingExercises.append(exercise1)
         
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:false);
