@@ -48,19 +48,19 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "startTestFromRooms"){
-//            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
-//            //questionsInTestViewController?.questions = []
-//            questionsInTest = []
-//            let recentExercise = self.chosenExercise
-//            
-//            for each in (self.chosenExercise?.exercise.exportedExercise.questions)!{
-//                //question template convert to real question
-//                let realQuestion = QuestionInTest(_question: each)
-//                //questionsInTestViewController?.questions.append(realQuestion)
-//                questionsInTest.append(realQuestion)
-//            }
-//        }
+        if(segue.identifier == "startTestFromRooms"){
+            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
+            //questionsInTestViewController?.questions = []
+            questionsInTest = []
+            let recentExercise = self.chosenExercise
+            
+            for each in (self.chosenExercise?.exportedExercise.questions)!{
+                //question template convert to real question
+                let realQuestion = QuestionInTest(_question: each)
+                //questionsInTestViewController?.questions.append(realQuestion)
+                questionsInTest.append(realQuestion)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

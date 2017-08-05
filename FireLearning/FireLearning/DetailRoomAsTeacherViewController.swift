@@ -201,9 +201,9 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     }
     
     func toggleUIforEdit(){
-        if self.isEditingRoom {
+        if !self.isEditingRoom {
             
-            self.editButtonTitle.title = "Ändern"
+            self.editButtonTitle.title = "Speichern"
             self.descTextField.isHidden = false
             self.descTextField.text = self.room.description
             self.newsTextField.isHidden = false
@@ -211,17 +211,21 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             
         } else {
             
-            self.editButtonTitle.title = "Speichern"
+            self.editButtonTitle.title = "Ändern"
             self.descTextField.isHidden = true
             self.newsTextField.isHidden = true
         }
     }
     
     func processEditing(){
-        self.room.description = descTextField.text!
-        self.room.news = newsTextField.text!
-        roomsRef.child("rid\(self.room.rid)").setValue(self.room.toAny())
+//        self.room.description = descTextField.text!
+//        self.room.news = newsTextField.text!
+        roomsRef.child("rid\(self.room.rid)").updateChildValues([
+            "description": descTextField.text!,
+            "news": newsTextField.text!
+            ])
     }
+    
     
     
     
