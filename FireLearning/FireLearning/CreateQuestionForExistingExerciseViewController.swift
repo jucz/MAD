@@ -34,7 +34,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
                 self.present(AlertHelper.getSimpleQuestionErrorAlert(), animated: true, completion: nil)
         }
         else{
-            var qidRef = globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("qids")
+            let qidRef = globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("qids")
             qidRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                 let qid = snapshot.value as! Int
                 var possibilities = [String]()

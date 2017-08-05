@@ -45,6 +45,11 @@ class DetailResultQuestionsViewController: UIViewController {
         self.thrdPossText.text = self.question.possibilities[2]
         self.fthPossText.text = self.question.possibilities[3]
         
+        firstRightAnswerBorder.backgroundColor = UIColor(rgb: UsedColors.getColorOK())
+        secRightAnswerBorder.backgroundColor = UIColor(rgb: UsedColors.getColorOK())
+        thrdRightAnswerBorder.backgroundColor = UIColor(rgb: UsedColors.getColorOK())
+        fthRightAnswerBorder.backgroundColor = UIColor(rgb: UsedColors.getColorOK())
+        
         toggleBorderForUserChoice(_userChoice: self.question.userChoice)
         showRightAnswerBorder(_rightAnswer: self.question.answer)
     }
@@ -97,7 +102,7 @@ class DetailResultQuestionsViewController: UIViewController {
     }
     func showChosenButton(_uiLabel: UILabel){
         _uiLabel.layer.borderWidth = 3;
-        _uiLabel.layer.borderColor = UIColor.orange.cgColor
+        _uiLabel.layer.borderColor = UIColor(rgb: UsedColors.getColorDanger()).cgColor
         
     }
     

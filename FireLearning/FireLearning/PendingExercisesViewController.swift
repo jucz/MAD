@@ -44,10 +44,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     
     //System-Methoden
     override func viewDidLoad() {
-        
-        
-        var roomIDsAsStudent = [Int:Int]()
-        
         self.pendingExercises = [:]
         
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
@@ -55,9 +51,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
             //tableData reset:
             self.pendingExercises = [:]
             
-            var tmpRoomIDs = snapshot.value as? [Int]
+            let tmpRoomIDs = snapshot.value as? [Int]
             
-            print("\(tmpRoomIDs)")
             if(tmpRoomIDs != nil){
                 self.noPendingExercises = false
                 var recentStudentRoomIDs = [Int:Int]()
@@ -164,8 +159,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         
         //Data transfer to Test View Controller
         if(segue.identifier == "startTest"){
-            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
-            //questionsInTestViewController?.questions = []
             questionsInTest = []
             recentExercise = self.chosenExercise
             
@@ -193,6 +186,11 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         let text = pendingExercises[indexPath.row]?.exercise.exportedExercise.title
         
         cell.textLabel?.text = text
+        var endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+        
+        let daysLeft = getDays(_from: Date(), _to: endDate!)
+        print(daysLeft)
+        
         if(noPendingExercises == true){
             cell.textLabel?.textColor = UIColor.lightGray
         }
@@ -227,4 +225,13 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     }
  */
 
+    
+    //auslagerung spaeter:
+    
+    func getDays(_from: Date, _to: Date) -> Int{
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day], from: _from, to: _to)
+        return components.day!
+    
+    }
 }
