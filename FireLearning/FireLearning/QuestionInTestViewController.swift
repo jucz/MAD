@@ -109,7 +109,7 @@ class QuestionInTestViewController: UIViewController {
     }
     func showChosenButton(_buttonOutlet: UIButton){
         _buttonOutlet.layer.borderWidth = 3;
-        _buttonOutlet.layer.borderColor = UIColor.orange.cgColor
+        _buttonOutlet.layer.borderColor = UIColor(rgb: UsedColors.getColorAttention()).cgColor
         
     }
     

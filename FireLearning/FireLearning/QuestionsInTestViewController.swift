@@ -12,23 +12,7 @@ var recentExercise: RoomExercise?
 var questionsInTest = [QuestionInTest]()
 
 
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(rgb: Int) {
-        self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
-        )
-    }
-}
+
 
 extension Double{
     func roundTo(places: Int) -> Double{
@@ -122,16 +106,16 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
         cell.textLabel?.textColor = UIColor.black
         
         if let cellLabel = cell.viewWithTag(100) as? UILabel{
+            /*
             cellLabel.textColor = UIColor.black
             cellLabel.font.withSize(9)
             
             if(questionsInTest[indexPath.row].userChoice == -1){
-                cellLabel.backgroundColor = UIColor(rgb: 0xFF6666)
+                cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                 cellLabel.text = "ausstehend"
             }
             else{
-                cellLabel.backgroundColor = UIColor(rgb: 0xFFCC66)
-                //cellLabel.backgroundColor = UIColor(rgb: 0xCCFF66)
+                cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorAttention())
                 cellLabel.text = "beantwortet"
             }
             
@@ -139,30 +123,11 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
             cellLabel.textAlignment = .center
             cellLabel.layer.masksToBounds = true
             cellLabel.layer.cornerRadius = 10
-            
+            */
         }
         else{
             let cgrect = CGRect(x: 210, y: 8, width: 100, height: 30)
-            let cellLabel = UILabel(frame: cgrect)
-            cellLabel.tag = 100
-            cellLabel.textColor = UIColor.black
-            cellLabel.font.withSize(9)
-            
-            if(questionsInTest[indexPath.row].userChoice == -1){
-                cellLabel.backgroundColor = UIColor(rgb: 0xFF6666)
-                cellLabel.text = "ausstehend"
-            }
-            else{
-                cellLabel.backgroundColor = UIColor(rgb: 0xFFCC66)
-                //cellLabel.backgroundColor = UIColor(rgb: 0xCCFF66)
-                cellLabel.text = "beantwortet"
-            }
-            
-            
-            cellLabel.textAlignment = .center
-            cellLabel.layer.masksToBounds = true
-            cellLabel.layer.cornerRadius = 10
-            
+            let cellLabel = giveStyleForUserChoiceCellLabel(_cellLabel: UILabel(frame: cgrect), _userChoice: questionsInTest[indexPath.row].userChoice)
             cell.contentView.addSubview(cellLabel)
         }
 
@@ -173,12 +138,11 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.cellForRow(at: indexPath) as UITableViewCell?
         if let cellLabel = cell?.viewWithTag(100) as? UILabel{
             if(questionsInTest[indexPath.row].userChoice == -1){
-                cellLabel.backgroundColor = UIColor(rgb: 0xFF6666)
+                cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                 cellLabel.text = "ausstehend"
             }
             else{
-                cellLabel.backgroundColor = UIColor(rgb: 0xFFCC66)
-                //cellLabel.backgroundColor = UIColor(rgb: 0xCCFF66)
+                cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorAttention())
                 cellLabel.text = "beantwortet"
             }
         }
@@ -192,6 +156,26 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
     
     
     //Help-Methoden
+    func giveStyleForUserChoiceCellLabel(_cellLabel: UILabel, _userChoice: Int) ->UILabel{
+        _cellLabel.textColor = UIColor.black
+        _cellLabel.font.withSize(9)
+        _cellLabel.textAlignment = .center
+        _cellLabel.layer.masksToBounds = true
+        _cellLabel.layer.cornerRadius = 10
+        return giveCaseTextColorForUserChoiceCellLabel(_cellLabel: _cellLabel, _userChoice: _userChoice)
+    }
+    
+    func giveCaseTextColorForUserChoiceCellLabel(_cellLabel: UILabel, _userChoice: Int) ->UILabel{
+        if(_userChoice == -1){
+            _cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
+            _cellLabel.text = "ausstehend"
+        }
+        else{
+            _cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorAttention())
+            _cellLabel.text = "beantwortet"
+        }
+        return _cellLabel
+    }
     
     func realoadQuestionsInTest(){
         self.questionsTableView.reloadData()
