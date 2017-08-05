@@ -64,7 +64,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
             detailViewController?.room = self.chosenRoom
         }
     }
-    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -99,6 +99,15 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("delete")
+            var i = 0
+            let students = self.roomsAsStudent[indexPath.row].students
+            for s in students {
+                if s == globalUser?.user?.email {
+                    self.roomsAsStudent[indexPath.row].removeStudent(index: i)
+                    break
+                }
+                i += 1
+            }
         }
     }
 }

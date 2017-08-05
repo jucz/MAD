@@ -48,13 +48,18 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "toExerciseExportedDetail"){
-//            let detailViewController = segue.destination as? ExportedAsTeacherViewController
+//        if(segue.identifier == "startTestFromRooms"){
+//            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
+//            //questionsInTestViewController?.questions = []
+//            questionsInTest = []
+//            let recentExercise = self.chosenExercise
 //            
-//        }
-//        if(segue.identifier == "toAddExercise"){
-//            let detailViewController = segue.destination as? AddExerciseViewController
-//            detailViewController?.room = self.room
+//            for each in (self.chosenExercise?.exercise.exportedExercise.questions)!{
+//                //question template convert to real question
+//                let realQuestion = QuestionInTest(_question: each)
+//                //questionsInTestViewController?.questions.append(realQuestion)
+//                questionsInTest.append(realQuestion)
+//            }
 //        }
     }
     
@@ -78,7 +83,7 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.tableViewExercises {
             self.chosenExercise = self.room.exercises[indexPath.row]
-            self.performSegue(withIdentifier: "toExerciseExportedDetail", sender: nil)
+            self.performSegue(withIdentifier: "startTestFromRooms", sender: nil)
         }
     }
     

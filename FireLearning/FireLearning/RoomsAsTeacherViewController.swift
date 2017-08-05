@@ -33,6 +33,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
                 
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
+            print("\nOBERSVE ROOMS AS TEACHER\n")
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
                 for room in rooms {

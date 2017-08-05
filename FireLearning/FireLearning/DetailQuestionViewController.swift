@@ -61,10 +61,7 @@ class DetailQuestionViewController: UIViewController {
         firstPossTextField.text = question.possibilities[0]
         secPossTextField.text = question.possibilities[1]
         thrdPossTextField.text = question.possibilities[2]
-        
-        ///JULIAN
-        print("SHUFFLED: \(self.question.shuffleQuestion())")
-        ///ENDE JULIAN
+
     }
     
     

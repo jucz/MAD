@@ -170,6 +170,30 @@ struct Room {
         return exercises
     }
     
+    public func removeStudent(index: Int) {
+        let userEmail = Helpers.convertEmail(email: self.students[index])
+        var students = self.students
+        students.remove(at: index)
+        roomsRef.child("rid\(self.rid)").child("students").setValue(students)
+        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            print("\n\(snapshot)\n")
+            var roomsAsStudent = snapshot.value as? [Int]
+            if roomsAsStudent != nil {
+                var index = 0
+                for r in roomsAsStudent! {
+                    if r == self.rid {
+                        roomsAsStudent!.remove(at: index)
+                        userRef.setValue(roomsAsStudent)
+                        return
+                    }
+                    index += 1
+                }
+            }
+            
+        })
+    }
+    
     ///SETTER
     public mutating func setAdmin(email: String) {
         self.admin = email

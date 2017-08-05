@@ -12,12 +12,21 @@ import FirebaseDatabase
 class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var wasEdited = false
-    var editingRoom = false
+    var isEditingRoom = false
     var room: Room!
     var chosenExercise: ExerciseExported?
     
     @IBOutlet var roomTitle: UINavigationItem!
 
+    @IBOutlet var editButtonTitle: UIBarButtonItem!
+    @IBAction func editButton(_ sender: UIButton) {
+        self.editRoom()
+    }
+    
+    @IBOutlet var descLabel: UILabel!
+    @IBOutlet var descTextField: UITextField!
+    @IBOutlet var newsLabel: UILabel!
+    @IBOutlet var newsTextField: UITextField!
     @IBAction func addExercise(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toAddExercise", sender: nil)
     }
@@ -32,10 +41,13 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.roomTitle.title = self.room.title
-        
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
+            self.descTextField.isHidden = true
+            self.newsTextField.isHidden = true
             self.room = Room(snapshot: snapshot)
+            self.roomTitle.title = self.room.title
+            self.descLabel.text = self.room.description
+            self.newsLabel.text = self.room.news
             print("\nDetailRoomAsTeacher: observe1")
             //self.roomTitle.title = self.room.title
             self.tableViewExercises.reloadData()
@@ -179,6 +191,37 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     }
     
 
+    //Edit-Methoden
+    func editRoom(){
+        self.toggleUIforEdit()
+        if(isEditingRoom == true){
+            self.processEditing()
+        }
+        self.isEditingRoom = !self.isEditingRoom
+    }
+    
+    func toggleUIforEdit(){
+        if self.isEditingRoom {
+            
+            self.editButtonTitle.title = "Ändern"
+            self.descTextField.isHidden = false
+            self.descTextField.text = self.room.description
+            self.newsTextField.isHidden = false
+            self.newsTextField.text = self.room.news
+            
+        } else {
+            
+            self.editButtonTitle.title = "Speichern"
+            self.descTextField.isHidden = true
+            self.newsTextField.isHidden = true
+        }
+    }
+    
+    func processEditing(){
+        self.room.description = descTextField.text!
+        self.room.news = newsTextField.text!
+        roomsRef.child("rid\(self.room.rid)").setValue(self.room.toAny())
+    }
     
     
     

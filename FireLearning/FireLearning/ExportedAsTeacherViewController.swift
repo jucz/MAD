@@ -38,8 +38,12 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
                 let resultComplete = values?["resultComplete"] as! Int
                 print("RESULT COMPLETE: \(resultComplete)")
                 self.result.text = "\(resultComplete)"
-                let done = values?["done"] as! [String:Int]
-                self.doneCount.text = "\(done.count)"
+                let done = values?["done"] as? [String:Int]
+                if done == nil {
+                    self.doneCount.text = "0"
+                } else {
+                    self.doneCount.text = "\(done?.count)"
+                }
             })
         
     }

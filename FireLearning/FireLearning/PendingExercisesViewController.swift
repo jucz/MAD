@@ -84,7 +84,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                                     let tmpExportedExercise = ExerciseExported(anyObject: each.value)
                                     let notExpired = tmpExportedExercise.getEndAsDate()! > Date()
                                     let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
-                                    //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
                                     if notExpired && notDone {
                                         tmpExportedExercises.append(tmpExportedExercise)
                                         self.pendingExercises[i] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
