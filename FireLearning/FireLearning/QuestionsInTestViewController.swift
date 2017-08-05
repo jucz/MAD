@@ -8,6 +8,7 @@
 
 import UIKit
 
+var recentExercise: RoomExercise?
 var questionsInTest = [QuestionInTest]()
 
 
@@ -87,9 +88,18 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
             rightPercentage = (Double(rightAnswers) / Double(questionsInTest.count)) * 100
             rightPercentage = rightPercentage.roundTo(places: 2)
             //-----
-            
-            //TODO: write 'rightPercentage' in database
-            
+            roomsRef.child("rid\((recentExercise?.rid)!)").observeSingleEvent(of: .value, with: { snapshot in
+                let values = snapshot.value as? NSDictionary
+                let students = values?["students"] as? [String]
+                recentExercise?.exercise.statistics.moveUserToDone(email: (globalUser?.userMail)!, result: Int(rightPercentage))
+                recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
+                recentExercise?.exercise.statistics.resultComplete += Int(rightPercentage)/(students?.count)!
+                roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
+                    .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
+                    .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
+            })
+            globalUser?.userRef?.child("roomsAsStudent").removeValue()
+            globalUser?.userRef?.child("roomsAsStudent").setValue(globalUser?.user?.roomsAsStudent)
             //----
             
             testDoneViewController?.rightPercentage = rightPercentage
@@ -132,8 +142,8 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
             
         }
         else{
-            var cgrect = CGRect(x: 210, y: 8, width: 100, height: 30)
-            var cellLabel = UILabel(frame: cgrect)
+            let cgrect = CGRect(x: 210, y: 8, width: 100, height: 30)
+            let cellLabel = UILabel(frame: cgrect)
             cellLabel.tag = 100
             cellLabel.textColor = UIColor.black
             cellLabel.font.withSize(9)
@@ -160,8 +170,8 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! UITableViewCell
-        if let cellLabel = cell.viewWithTag(100) as? UILabel{
+        let cell = tableView.cellForRow(at: indexPath) as UITableViewCell?
+        if let cellLabel = cell?.viewWithTag(100) as? UILabel{
             if(questionsInTest[indexPath.row].userChoice == -1){
                 cellLabel.backgroundColor = UIColor(rgb: 0xFF6666)
                 cellLabel.text = "ausstehend"
@@ -187,3 +197,4 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
         self.questionsTableView.reloadData()
     }
 }
+

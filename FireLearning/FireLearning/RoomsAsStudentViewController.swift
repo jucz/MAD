@@ -40,7 +40,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
                             let room = Room(snapshot: snapshot)
                             self.roomsAsStudent.append(room)
                             self.tableView.reloadData()
-                            print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
+//                            print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
                         })
                     }
                 } else {
@@ -59,9 +59,9 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "toDetailRoomsAsStudent"){
-//            let detailViewController = segue.destination as? DetailRoomAsStudentViewController
-//            detailViewController?.room = self.chosenRoom
+        if(segue.identifier == "toDetailRoomAsStudent"){
+            let detailViewController = segue.destination as? DetailRoomAsStudentViewController
+            detailViewController?.room = self.chosenRoom
         }
     }
     
@@ -88,10 +88,8 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.noRooms == false {
-            self.chosenRoom =  self.roomsAsStudent[indexPath.row]
-            self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
-        }
+        self.chosenRoom =  self.roomsAsStudent[indexPath.row]
+        self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

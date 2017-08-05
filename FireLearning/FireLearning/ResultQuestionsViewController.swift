@@ -105,8 +105,8 @@ class ResultQuestionsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! UITableViewCell
-        if let cellLabel = cell.viewWithTag(100) as? UILabel{
+        let cell = tableView.cellForRow(at: indexPath) as UITableViewCell!
+        if let cellLabel = cell?.viewWithTag(100) as? UILabel{
             if(questions[indexPath.row].userChoice == questions[indexPath.row].answer){
                 cellLabel.backgroundColor = UIColor(rgb: 0x66FF66)
                 cellLabel.text = "richtig"

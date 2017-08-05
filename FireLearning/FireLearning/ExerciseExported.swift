@@ -31,10 +31,10 @@ struct ExerciseExported {
     ///JULIAN
     init(anyObject: AnyObject){
         self.exportedExercise = Exercise(anyObject: (anyObject["exportedExercise"])! as AnyObject)
-        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]! as! String!)")
+//        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]! as! String!)")
         self.start = anyObject["start"] as? String ?? ""
         self.end = anyObject["end"] as? String ?? ""
-        self.statistics = Statistics(anyObject: anyObject)
+        self.statistics = Statistics(anyObject: (anyObject["statistics"] as? AnyObject)!)
     }
     ///
 
@@ -43,9 +43,9 @@ struct ExerciseExported {
     public func toAny() -> Any {
         let exportedExercise = self.exportedExercise.toAny()
         let statistics = self.statistics.toAny()
-        //let dateFormatter = DateFormatter()
-        print("START toAny(): \(self.start)")
-        print("END toAny(): \(self.end)")
+//        let dateFormatter = DateFormatter()
+//        print("START toAny(): \(self.start)")
+//        print("END toAny(): \(self.end)")
         
         return [
             "exportedExercise": exportedExercise,

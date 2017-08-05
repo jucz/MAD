@@ -27,7 +27,7 @@ class QuestionInTest{
         //fill object with data
         self.question = _question.question
         
-        var loggRightAnswer = _question.answer
+        let loggRightAnswer = _question.answer
         
         self.possibilities = []
         self.possibilities.append(_question.answer)

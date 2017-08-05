@@ -38,6 +38,7 @@ struct Statistics {
         if let resultComplete = anyObject["resultComplete"] as? Int {
             self.resultComplete = resultComplete
         }
+        print("STATISTICS done: \(anyObject["done"] as? [String:Int])")
         if let done = anyObject["done"] as? [String:Int] {
             for s in done {
                 self.done[s.key] = s.value
@@ -67,12 +68,9 @@ struct Statistics {
     
     public func toAny() -> Any {
         let notDone = Helpers.toAny(array: self.notDone)
-        var done = [String:String]()
-        for element in self.done {
-            done[element.key] = "\(element.value)"
-        }
+
         return [
-            "done": done,
+            "done": self.done,
             "notDone": notDone,
             "resultComplete": self.resultComplete,
             "resultDone": self.resultDone
@@ -81,10 +79,12 @@ struct Statistics {
     
     public mutating func moveUserToDone(email: String, result: Int) {
         self.done[email] = result
-        for index in 0...self.notDone.count-1 {
-            if self.notDone[index] == email {
-                self.notDone.remove(at: index)
-                return
+        if self.notDone.count > 0 {
+            for index in 0...self.notDone.count-1 {
+                if self.notDone[index] == email {
+                    self.notDone.remove(at: index)
+                    return
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var rid: Int = -1
     var exported: ExerciseExported!
     var isEditingExercise = false
     //var noOneDone: true
@@ -23,13 +24,24 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.exerciseTitle.title = self.exported.exportedExercise.title
-        print("STARTDATUM: \((self.exported.start)!)")
-        print("ENDDATUM: \((self.exported.end)!)")
-        self.startDate.text = (self.exported.start)!
-        self.endDate.text = (self.exported.end)!
-        self.result.text = "\(self.exported.statistics.resultComplete)"
-        self.doneCount.text = "\(self.exported.statistics.done.count)"
+        roomsRef.child("rid\(self.rid)")
+            .child("exercises")
+            .child("eid\(self.exported.exportedExercise.eid)")
+            .child("statistics")
+            .observe(.value, with: { snapshot in
+                
+                let values = snapshot.value as? NSDictionary
+                
+                self.exerciseTitle.title = self.exported.exportedExercise.title
+                self.startDate.text = (self.exported.start)!
+                self.endDate.text = (self.exported.end)!
+                let resultComplete = values?["resultComplete"] as! Int
+                print("RESULT COMPLETE: \(resultComplete)")
+                self.result.text = "\(resultComplete)"
+                let done = values?["done"] as! [String:Int]
+                self.doneCount.text = "\(done.count)"
+            })
+        
     }
     
     override func didReceiveMemoryWarning() {

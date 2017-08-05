@@ -62,6 +62,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toExerciseExportedDetail"){
             let detailViewController = segue.destination as? ExportedAsTeacherViewController
+            detailViewController?.rid = self.room.rid
             detailViewController?.exported = self.chosenExercise
         }
         if(segue.identifier == "toAddExercise"){

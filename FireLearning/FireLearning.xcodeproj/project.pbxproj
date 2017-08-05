@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		080642B27EA272218375ED5F /* Pods_FireLearningUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517B1AF995A6913D0073600 /* Pods_FireLearningUITests.framework */; };
 		0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A033DDF1F1F6D83008967BE /* Helpers.swift */; };
-		0A2310951F32195F00B03D90 /* Answers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2310941F32195F00B03D90 /* Answers.swift */; };
+		0A041D9B1F34BCC00072D67A /* RoomsAsStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */; };
 		0A2310971F321ED000B03D90 /* QuestionsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */; };
-		0A2310991F321F0600B03D90 /* AnswerQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2310981F321F0600B03D90 /* AnswerQuestionViewController.swift */; };
 		0A286D1F1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */; };
 		0A286D251F2E1E5A00587420 /* RoomsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */; };
 		0A286D271F2F2C9200587420 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D261F2F2C9100587420 /* AddExerciseViewController.swift */; };
@@ -77,9 +76,8 @@
 
 /* Begin PBXFileReference section */
 		0A033DDF1F1F6D83008967BE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		0A2310941F32195F00B03D90 /* Answers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answers.swift; sourceTree = "<group>"; };
+		0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsStudent.swift; sourceTree = "<group>"; };
 		0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsAsStudentViewController.swift; sourceTree = "<group>"; };
-		0A2310981F321F0600B03D90 /* AnswerQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerQuestionViewController.swift; sourceTree = "<group>"; };
 		0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRoomAsTeacherViewController.swift; sourceTree = "<group>"; };
 		0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsStudentViewController.swift; sourceTree = "<group>"; };
 		0A286D261F2F2C9100587420 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */,
 				0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */,
 				0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */,
-				0A2310981F321F0600B03D90 /* AnswerQuestionViewController.swift */,
 			);
 			name = Classrooms;
 			sourceTree = "<group>";
@@ -325,8 +322,8 @@
 				0A033DDF1F1F6D83008967BE /* Helpers.swift */,
 				84FC23791F21F57400077C9B /* GlobalUser.swift */,
 				849CD48B1F2F676500C4E08E /* AlertHelper.swift */,
-				0A2310941F32195F00B03D90 /* Answers.swift */,
 				849CD48F1F33226100C4E08E /* QuestionInTest.swift */,
+				0A041D9A1F34BCC00072D67A /* RoomsAsStudent.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -678,6 +675,7 @@
 				849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */,
 				84DC14611F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift in Sources */,
 				84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */,
+				0A041D9B1F34BCC00072D67A /* RoomsAsStudent.swift in Sources */,
 				849CD4901F33226100C4E08E /* QuestionInTest.swift in Sources */,
 				0AD406971F1D24F600FD2533 /* Question.swift in Sources */,
 				0A286D251F2E1E5A00587420 /* RoomsAsStudentViewController.swift in Sources */,
@@ -690,8 +688,6 @@
 				0A286D2F1F30954F00587420 /* CreateRoomViewController.swift in Sources */,
 				849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */,
 				0AD406951F1D24CF00FD2533 /* Exercise.swift in Sources */,
-				0A2310951F32195F00B03D90 /* Answers.swift in Sources */,
-				0A2310991F321F0600B03D90 /* AnswerQuestionViewController.swift in Sources */,
 				849CD48E1F331BF500C4E08E /* QuestionsInTestViewController.swift in Sources */,
 				84DC14691F1F74B200ACBD89 /* ExercisesViewController.swift in Sources */,
 			);
