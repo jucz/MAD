@@ -71,10 +71,20 @@ class AlertHelper{
         return alertController
     }
     
-    //simple Alert for Create exercise
+    //if exercise already answered
     public static func getAlreadyAnsweredErrorAlert() ->UIAlertController {
         let alertController = UIAlertController(title: "Fehler",
                                                 message: "Du hast diesen Fragebogen bereits beantwortet!",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
+    
+    //if student got removed from room while answering
+    public static func getGotRemovedWhileAnsweringErrorAlert() ->UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: "Du wurdest zwischenzeitlich aus dem Raum entfernt!",
                                                 preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
         

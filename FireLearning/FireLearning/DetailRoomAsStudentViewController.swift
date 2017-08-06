@@ -29,7 +29,6 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
             print("\nDetailRoomAsStudent: observe1")
-            //self.roomTitle.title = self.room.title
             self.tableViewExercises.reloadData()
             self.tableViewExercises.allowsMultipleSelectionDuringEditing = false
             self.tableViewExercises.dataSource = self
@@ -94,18 +93,6 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            if tableView == self.tableViewExercises {
-                
-                let exportedExerciseKey = "eid\(self.room.exercises[indexPath.row].exportedExercise.eid)"
-                self.room.exercises.remove(at: indexPath.row)
-                roomsRef.child("rid\(self.room.rid)").child("exercises").child(exportedExerciseKey).removeValue()
-            }
-        }
     }
     
     

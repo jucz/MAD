@@ -134,7 +134,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
                 roomsRef.child("rid\(self.room.rid)").child("exercises").child(exportedExerciseKey).removeValue()
             }
             if tableView == self.tableViewStudents {
-                RoomsViewAsTeacherController.removeStudent(room: self.room, index: indexPath.row)
+                self.room.removeStudent(index: indexPath.row)
             }
             
         }

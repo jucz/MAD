@@ -75,15 +75,24 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
             roomsRef.child("rid\((recentExercise?.rid)!)").observeSingleEvent(of: .value, with: { snapshot in
                 let values = snapshot.value as? NSDictionary
                 let students = values?["students"] as? [String]
-                recentExercise?.exercise.statistics.moveUserToDone(email: (globalUser?.userMail)!, result: Int(rightPercentage))
-                recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
-                recentExercise?.exercise.statistics.resultComplete += Int(rightPercentage)/(students?.count)!
-                roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
-                    .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
-                    .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
+                //if, damit nicht Division durch 0
+                if students != nil && (students?.count)! > 0 {
+                    recentExercise?.exercise.statistics.moveUserToDone(email: (globalUser?.userMail)!, result: Int(rightPercentage))
+                    recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
+                    roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
+                        .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
+                        .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
+                } else {
+                    self.present(AlertHelper.getGotRemovedWhileAnsweringErrorAlert(), animated: true, completion: nil)
+                }
             })
-            //globalUser?.userRef?.child("roomsAsStudent").removeValue()
-            globalUser?.userRef?.child("roomsAsStudent").setValue(globalUser?.user?.roomsAsStudent)
+            
+            globalUser?.userRef?.child("roomsAsStudent").observeSingleEvent(of: .value, with: { snapshot in
+                let students = snapshot.value as? [Int]
+                if students != nil {
+                    globalUser?.userRef?.child("roomsAsStudent").setValue(students)
+                }
+            })
             //----
             
             testDoneViewController?.rightPercentage = rightPercentage

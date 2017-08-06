@@ -82,7 +82,7 @@ struct Room {
             "description": self.description!,
             "news": self.news!,
             "students": self.students,
-            "exercises": self.exercisesToAny()//exercises
+            "exercises": self.exercisesToAny()
         ]
     }
     
@@ -94,14 +94,6 @@ struct Room {
         })
     }
     
-//    public mutating func getRecentRid() {
-//        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
-//            let rids = snapshot.value as! Int
-//            self.rid = rids
-//            Helpers.rootRef.child("rids").setValue(rids+1)
-//            print(";;;;;;;;\nINIT ROOM rid: \(self.rid)\n;;;;;;;")
-//        })
-//    }
     
     func appendRoomToGlobalUser(rid: Int) -> [Int] {
         globalUser?.user?.roomsAsTeacher.append(rid)
@@ -193,6 +185,38 @@ struct Room {
             
         })
     }
+    
+    public func removeStudent(email: String) {
+        var i = 0
+        for s in self.students {
+            if s == email {
+                break
+            }
+            i += 1
+        }
+        let userEmail = Helpers.convertEmail(email: self.students[i])
+        var students = self.students
+        students.remove(at: i)
+        roomsRef.child("rid\(self.rid)").child("students").setValue(students)
+        let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
+        userRef.observeSingleEvent(of: .value, with: { snapshot in
+            print("\n\(snapshot)\n")
+            var roomsAsStudent = snapshot.value as? [Int]
+            if roomsAsStudent != nil {
+                var index = 0
+                for r in roomsAsStudent! {
+                    if r == self.rid {
+                        roomsAsStudent!.remove(at: index)
+                        userRef.setValue(roomsAsStudent)
+                        return
+                    }
+                    index += 1
+                }
+            }
+            
+        })
+    }
+
     
     ///SETTER
     public mutating func setAdmin(email: String) {
