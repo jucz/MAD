@@ -102,7 +102,7 @@ class DetailResultQuestionsViewController: UIViewController {
     }
     func showChosenButton(_uiLabel: UILabel){
         _uiLabel.layer.borderWidth = 3;
-        _uiLabel.layer.borderColor = UIColor(rgb: UsedColors.getColorDanger()).cgColor
+        _uiLabel.layer.borderColor = UIColor(rgb: UsedColors.getColorAttention()).cgColor
         
     }
     

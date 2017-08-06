@@ -59,9 +59,6 @@ class ResultQuestionsViewController: UIViewController, UITableViewDelegate, UITa
         cell.textLabel?.textColor = UIColor.black
         
         if let cellLabel = cell.viewWithTag(100) as? UILabel{
-            cellLabel.textColor = UIColor.black
-            cellLabel.font.withSize(9)
-            
             if(questions[indexPath.row].userChoice == questions[indexPath.row].answer){
                 cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorOK())
                 cellLabel.text = "richtig"
@@ -70,12 +67,6 @@ class ResultQuestionsViewController: UIViewController, UITableViewDelegate, UITa
                 cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                 cellLabel.text = "falsch"
             }
-            
-            
-            cellLabel.textAlignment = .center
-            cellLabel.layer.masksToBounds = true
-            cellLabel.layer.cornerRadius = 10
-            
         }
         else{
             let cgrect = CGRect(x: 210, y: 8, width: 100, height: 30)
@@ -92,8 +83,6 @@ class ResultQuestionsViewController: UIViewController, UITableViewDelegate, UITa
                 cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                 cellLabel.text = "falsch"
             }
-            
-            
             cellLabel.textAlignment = .center
             cellLabel.layer.masksToBounds = true
             cellLabel.layer.cornerRadius = 10
