@@ -47,12 +47,12 @@ class ViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
 
         //let mail = mailOutlet.text!
-//        let mail = "leo@swag.com"
-        let mail = "j@app.de"
+        let mail = "leo@swag.com"
+        //let mail = "j@app.de"
         
         //let password = passwordOutlet.text!
-//        let password = "swag12"
-        let password = "j@app.de"
+        let password = "swag12"
+        //let password = "j@app.de"
         
         //self.performSegue(withIdentifier: "login", sender: self)
         

@@ -11,16 +11,6 @@ import UIKit
 var recentExercise: RoomExercise?
 var questionsInTest = [QuestionInTest]()
 
-
-
-
-extension Double{
-    func roundTo(places: Int) -> Double{
-        let devisior = pow(10.0, Double(places))
-        return (self * devisior).rounded() / devisior
-    }
-}
-
 class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //var questions: [QuestionInTest]!
@@ -70,7 +60,7 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
             }
             var rightPercentage = 0.0
             rightPercentage = (Double(rightAnswers) / Double(questionsInTest.count)) * 100
-            rightPercentage = rightPercentage.roundTo(places: 2)
+            rightPercentage = rightPercentage.roundTo(_places: 2)
             //-----
             roomsRef.child("rid\((recentExercise?.rid)!)").observeSingleEvent(of: .value, with: { snapshot in
                 let values = snapshot.value as? NSDictionary

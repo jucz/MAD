@@ -35,9 +35,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     //System-Methoden
     override func viewDidLoad() {
-        super.viewDidLoad()
-        //exercisesRef = globalUser?.userRef?.child("exercisesOwned")
-        //exercisesObserverHandle = (exercisesRef?.observe(.value, with: { snapshot in
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
             print("observe on ExercisesOwned for User triggered")
             self.exercises = []
@@ -55,7 +52,6 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
                 self.exercises.append(tmpExercise)
             }
             self.tableView.reloadData()
-        //}))!
         })
         
         tableView.allowsMultipleSelectionDuringEditing = false
@@ -88,9 +84,17 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         cell.textLabel?.text = text
         if(noExercises == true){
             cell.textLabel?.textColor = UIColor.lightGray
+            cell.detailTextLabel?.text = ""
         }
         else{
             cell.textLabel?.textColor = UIColor.black
+            let questionsCounter = exercises[indexPath.row].questions.count
+            if(questionsCounter == 1){
+                cell.detailTextLabel?.text = "enthält eine Frage"
+            }
+            else{
+                cell.detailTextLabel?.text = "enthält \(questionsCounter) Fragen"
+            }
         }
         return cell
     }

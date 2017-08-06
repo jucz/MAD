@@ -31,11 +31,6 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     
     
     
-    var loggedRoomIDs = [Int:Int]()
-    
-    //Observer:
-    var handle: UInt = 0
-    
     //View-Verbindungen
     @IBAction func switchToCreatedExercisesBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
@@ -127,20 +122,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                         
                     })
                 }
-                
-                //alte Observer deregistrieren
-                
-                self.loggedRoomIDs = recentStudentRoomIDs
             }
-            else{
-                self.pendingExercises = [:]
-                self.noPendingExercises = true
-                self.loggedRoomIDs = [:]
-                
-                let tmpExercise = ExerciseExported(exercise: Exercise(eid: 1, qids:0, title: "Keine ausstehenden Aufgaben", questions: []), start: "", end: "")
-                self.pendingExercises[0] = RoomExercise(rid: -1, exercise: tmpExercise)
-            }
-            
         })
         
         
@@ -193,13 +175,20 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         
         if(noPendingExercises == true){
             cell.textLabel?.textColor = UIColor.lightGray
+            cell.detailTextLabel?.text = ""
         }
         else{
+            cell.detailTextLabel?.text = "aus Klassenraum"
+            Database.database().reference().child("rooms").child("rid\((pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
+                let roomTitle = snapshot.value as! String
+                cell.detailTextLabel?.text = "aus \(roomTitle)"
+            })
+            
             let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
             
             var daysLeft: Int
             if endDate != nil {
-                daysLeft = getDays(_from: Date(), _to: endDate!)
+                daysLeft = (endDate?.getDaysFromTodayToSelf())!
             } else {
                 daysLeft = 0
             }
@@ -248,7 +237,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
             
             var daysLeft: Int
             if endDate != nil {
-                daysLeft = getDays(_from: Date(), _to: endDate!)
+                daysLeft = (endDate?.getDaysFromTodayToSelf())!
             } else {
                 daysLeft = 0
             }
@@ -268,14 +257,5 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
             self.chosenExercise = self.pendingExercises[indexPath.row]
             self.performSegue(withIdentifier: "startTest", sender: self)
         }
-    }
-    
-    //auslagerung spaeter:
-    
-    func getDays(_from: Date, _to: Date) -> Int{
-        let calendar = NSCalendar.current
-        let components = calendar.dateComponents([.day], from: _from, to: _to)
-        return components.day!
-    
     }
 }
