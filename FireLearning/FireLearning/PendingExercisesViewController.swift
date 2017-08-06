@@ -189,9 +189,13 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         let text = pendingExercises[indexPath.row]?.exercise.exportedExercise.title
         
         cell.textLabel?.text = text
-        var endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
-        
-        let daysLeft = getDays(_from: Date(), _to: endDate!)
+        let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+        var daysLeft: String
+        if endDate != nil {
+            daysLeft = "\(getDays(_from: Date(), _to: endDate!))"
+        } else {
+            daysLeft = "Konnte nicht ermittelt werden."
+        }
         print(daysLeft)
         
         if(noPendingExercises == true){

@@ -82,7 +82,7 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
                     .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
                     .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
             })
-            globalUser?.userRef?.child("roomsAsStudent").removeValue()
+            //globalUser?.userRef?.child("roomsAsStudent").removeValue()
             globalUser?.userRef?.child("roomsAsStudent").setValue(globalUser?.user?.roomsAsStudent)
             //----
             
