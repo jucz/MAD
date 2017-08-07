@@ -26,9 +26,8 @@ class DetailCreatedQuestionViewController: UIViewController {
     @IBOutlet var secPossTextField: UITextField!
     @IBOutlet var thrdPossTextField: UITextField!
     
-    
     @IBOutlet var saveEditButton: UIBarButtonItem!
-    @IBAction func saveEditButton(_ sender: Any) {
+    @IBAction func SaveEditButton(_ sender: Any) {
         editQuestion()
     }
     //System-Methoden

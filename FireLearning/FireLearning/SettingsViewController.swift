@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     @IBAction func logOutButton(_ sender: Any) {
         do{
             try Auth.auth().signOut()
-            performSegue(withIdentifier: "toLogin", sender: self)
+            self.navigationController?.popViewController(animated: true)
             
         }catch{
             print("Error while signing out!")
@@ -93,7 +93,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         globalUser?.userRef?.observe(.value, with: { (snapshot) in
             globalUser?.user = User(snapshot: snapshot)
             print("ausgeloest")

@@ -42,7 +42,10 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+    }
 
     @IBAction func loginButton(_ sender: Any) {
 

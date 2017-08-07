@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="o5R-j3-csL">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,7 +34,7 @@
                                 <state key="normal" title="&lt; Back"/>
                                 <connections>
                                     <action selector="backButton:" destination="GrP-2j-zDv" eventType="touchUpInside" id="8Ir-fb-nPW"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="backToLogin" id="sFg-5i-0Ym"/>
+                                    <segue destination="o5R-j3-csL" kind="show" identifier="backToLogin" id="sFg-5i-0Ym"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLb-l1-mcI">
@@ -136,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRG-H6-hw7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.375" y="760.56338028169012"/>
+            <point key="canvasLocation" x="24" y="1018"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -202,15 +202,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="di3-p4-Pem"/>
                     <connections>
                         <outlet property="mailOutlet" destination="O3e-au-WBl" id="JAX-i8-vso"/>
                         <outlet property="passwordOutlet" destination="Acx-ue-Wwd" id="dx9-Te-DBu"/>
-                        <segue destination="DNL-wj-C9J" kind="show" identifier="login" id="2jc-CK-IzY"/>
+                        <segue destination="DNL-wj-C9J" kind="push" identifier="login" id="2jc-CK-IzY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="36.431784107946029"/>
+            <point key="canvasLocation" x="23" y="36"/>
         </scene>
         <!--Einstellungen View Controller-->
         <scene sceneID="xag-ct-dn8">
@@ -252,7 +253,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nutzer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVo-UJ-nF5">
                                 <rect key="frame" x="16" y="72" width="100" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -277,23 +278,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-LR-1eq">
-                                <rect key="frame" x="16" y="91" width="170" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="blockierte Nutzer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3e-yJ-tfZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Blockierliste" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3e-yJ-tfZ">
                                 <rect key="frame" x="16" y="201" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-QN-IHn">
-                                <rect key="frame" x="16" y="220" width="170" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Bt-PH-iMe">
                                 <rect key="frame" x="16" y="242" width="288" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -313,6 +304,8 @@
                                 <rect key="frame" x="276" y="192" width="28" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="2"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -333,7 +326,7 @@
                         <outlet property="blockedTableView" destination="0Bt-PH-iMe" id="Lig-US-Ch2"/>
                         <outlet property="firstnameTextField" destination="wJJ-Ca-6o6" id="Gxx-jm-rDG"/>
                         <outlet property="lastnameTextField" destination="f07-CK-QMs" id="cZO-qI-zR2"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="He5-zv-c0G"/>
+                        <segue destination="o5R-j3-csL" kind="show" identifier="toLogin" id="He5-zv-c0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0s4-yp-Pgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7V-P6-rfp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3292.5" y="35.91549295774648"/>
+            <point key="canvasLocation" x="3186" y="36"/>
         </scene>
         <!--Aufgaben View Controller-->
         <scene sceneID="eu7-eP-shN">
@@ -541,14 +534,14 @@
                     <navigationItem key="navigationItem" title="Fragebögen" id="6pA-f9-KiP"/>
                     <connections>
                         <outlet property="tableView" destination="uJZ-dp-jY0" id="7Mk-Sv-AVf"/>
-                        <segue destination="Jgg-ne-lG6" kind="show" identifier="createExercise" id="GPG-kr-MiO"/>
                         <segue destination="9mn-lu-Aeb" kind="show" identifier="toDetailExercise" id="X2f-JF-YuP"/>
                         <segue destination="e1g-Le-HpA" kind="show" identifier="toPendingExercises" animates="NO" id="ezR-my-vRE"/>
+                        <segue destination="Jgg-ne-lG6" kind="push" identifier="createExercise" id="eIj-NW-BWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orU-6W-qBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3283.125" y="783.80281690140851"/>
+            <point key="canvasLocation" x="3186" y="784"/>
         </scene>
         <!--Fragebogen erstellen-->
         <scene sceneID="nUX-zx-hU7">
@@ -562,24 +555,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uQh-0Z-naW">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Aufgabe erstellen" id="En7-gM-7ac">
-                                        <barButtonItem key="leftBarButtonItem" title="Zurück" id="dgr-zF-bfR">
-                                            <connections>
-                                                <action selector="backButton:" destination="Jgg-ne-lG6" id="Dp5-9f-7TQ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Speichern" id="2zW-gl-Za1">
-                                            <connections>
-                                                <action selector="saveButton:" destination="Jgg-ne-lG6" id="d7K-r3-4i0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fragen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zO-rQ-Yc3">
                                 <rect key="frame" x="0.0" y="112" width="90" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -640,18 +615,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Fragebogen erstellen" id="XiW-aV-3Yn">
-                        <barButtonItem key="rightBarButtonItem" title="Sichern" id="QmK-gP-tZP">
+                    <navigationItem key="navigationItem" title="Fragebogen erstellen" id="ejq-QK-W7z">
+                        <barButtonItem key="rightBarButtonItem" title="Sichern" id="7nv-Kl-tnO">
                             <connections>
-                                <action selector="saveButton:" destination="Jgg-ne-lG6" id="kN1-Ca-txb"/>
+                                <action selector="saveButton:" destination="Jgg-ne-lG6" id="uoZ-EP-4cU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="nameOutlet" destination="s9d-AV-J6l" id="klC-dx-JYF"/>
                         <outlet property="questionsTableView" destination="rc6-Na-4ki" id="7cb-VB-Uwt"/>
-                        <segue destination="COB-qM-mGn" kind="show" identifier="createQuestion" id="HS4-Tv-1cf"/>
-                        <segue destination="0Lo-Dv-POP" kind="show" identifier="showDetailCreatedQuestion" id="aJN-yQ-3Do"/>
+                        <segue destination="COB-qM-mGn" kind="push" identifier="createQuestion" id="z02-lW-LaR"/>
+                        <segue destination="0Lo-Dv-POP" kind="push" identifier="showDetailCreatedQuestion" id="Qz1-yd-co5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFD-wB-yzt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -671,7 +646,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c9E-l3-eds">
-                                <rect key="frame" x="0.0" y="138" width="320" height="430"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -685,27 +660,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xum-D9-GyX">
-                                <rect key="frame" x="276" y="72" width="28" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addQuestionToExerciseBtn:" destination="9mn-lu-Aeb" eventType="touchUpInside" id="ZRM-NF-Pt9"/>
-                                    <action selector="addUserToBlocked:" destination="ljm-Iz-0Ft" eventType="touchUpInside" id="b24-5P-Udd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Fragen" id="J2B-xc-bh4"/>
+                    <navigationItem key="navigationItem" title="Fragen" id="J2B-xc-bh4">
+                        <barButtonItem key="rightBarButtonItem" title="Hinzufügen" id="zRP-52-jaA">
+                            <connections>
+                                <action selector="addQuestionButton:" destination="9mn-lu-Aeb" id="Are-m7-0Ae"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="c9E-l3-eds" id="HVP-Y9-WT7"/>
                         <segue destination="XgA-CS-K4C" kind="show" identifier="toDetailQuestion" id="N5K-Zq-A0b"/>
@@ -925,6 +889,11 @@
                                 <state key="normal" title="Speichern">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveButton:" destination="COB-qM-mGn" eventType="touchUpInside" id="AMD-Kj-6MN"/>
                                     <action selector="saveButton:" destination="tbD-Tm-yI4" eventType="touchUpInside" id="B4O-tj-NNV"/>
@@ -985,18 +954,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MTo-tT-CTL">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Frage erstellen" id="sKX-N8-xnb">
-                                        <barButtonItem key="backBarButtonItem" systemItem="cancel" id="dZp-6o-0Sq">
-                                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </barButtonItem>
-                                        <barButtonItem key="leftBarButtonItem" title="Zurück" id="lCw-Va-lgB"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Frage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-Nj-Qfh">
                                 <rect key="frame" x="16" y="92" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1091,7 +1048,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Frage erstellen" id="kvh-D5-lk5"/>
+                    <navigationItem key="navigationItem" title="Frage erstellen" id="0jd-y5-7H3"/>
                     <connections>
                         <outlet property="firstPossText" destination="yR5-iy-rqv" id="zk3-ja-xbM"/>
                         <outlet property="questionText" destination="kb8-FT-DgU" id="Dul-V0-xaF"/>
@@ -1102,7 +1059,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="peB-Rm-GNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4794.375" y="783.80281690140851"/>
+            <point key="canvasLocation" x="4988" y="784"/>
         </scene>
         <!--Fragebogen-->
         <scene sceneID="hR1-sx-ecB">
@@ -1149,7 +1106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rww-tC-lrP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6637.5" y="35.91549295774648"/>
+            <point key="canvasLocation" x="7635" y="35.91549295774648"/>
         </scene>
         <!--Ergebnis-->
         <scene sceneID="CPa-SF-1Ki">
@@ -1454,9 +1411,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqt-TC-SKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7531.875" y="35.91549295774648"/>
+            <point key="canvasLocation" x="8529.375" y="35.91549295774648"/>
         </scene>
-        <!--Detail Created Question View Controller-->
+        <!--Detailansicht-->
         <scene sceneID="IBO-0k-Ofp">
             <objects>
                 <viewController id="0Lo-Dv-POP" customClass="DetailCreatedQuestionViewController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -1574,10 +1531,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sFw-W4-TrR">
-                        <barButtonItem key="rightBarButtonItem" title="Ändern" id="Z4l-Ty-sLE">
+                    <navigationItem key="navigationItem" title="Detailansicht" id="7Y0-IE-aTZ">
+                        <barButtonItem key="rightBarButtonItem" title="Ändern" id="IiI-fR-lpe">
                             <connections>
-                                <action selector="saveEditButton:" destination="0Lo-Dv-POP" id="UnK-i4-lYK"/>
+                                <action selector="SaveEditButton:" destination="0Lo-Dv-POP" id="Sx5-Mn-PVh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1588,7 +1545,7 @@
                         <outlet property="questionTitleTextField" destination="rj4-qF-6hR" id="q1c-eV-uO2"/>
                         <outlet property="rightAnswerText" destination="nS8-G2-Avw" id="hsq-EY-n8b"/>
                         <outlet property="rightAnswerTextField" destination="fPT-9j-ETM" id="g96-lJ-Mvs"/>
-                        <outlet property="saveEditButton" destination="Z4l-Ty-sLE" id="he9-83-aQq"/>
+                        <outlet property="saveEditButton" destination="IiI-fR-lpe" id="TPh-em-h8V"/>
                         <outlet property="secPossText" destination="ZF8-Z2-nd5" id="A8W-ej-szw"/>
                         <outlet property="secPossTextField" destination="k58-9K-366" id="JmZ-IZ-ewD"/>
                         <outlet property="thrdPossText" destination="4Jh-Bd-JvC" id="d8R-FF-6V8"/>
@@ -1597,7 +1554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAM-cI-ki3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4793" y="1458"/>
+            <point key="canvasLocation" x="4988" y="1569"/>
         </scene>
         <!--Rooms View As Teacher Controller Scene-->
         <scene sceneID="Y9x-tu-2dq">
@@ -1622,6 +1579,11 @@
                                         <state key="normal" title="Hinzufügen">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="createRoom:" destination="kjB-uN-cAa" eventType="touchUpInside" id="bPD-5j-aft"/>
                                         </connections>
@@ -1682,9 +1644,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3zM-U7-iGH">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Klassenräume" id="3zM-U7-iGH"/>
                     <connections>
                         <outlet property="tableView" destination="oQN-Ee-6a5" id="q00-gB-b3Q"/>
                         <segue destination="FR5-zm-AUc" kind="show" identifier="toDetailRoomAsTeacher" id="Y8t-Lz-CIG"/>
@@ -1696,7 +1656,7 @@
             </objects>
             <point key="canvasLocation" x="3283.125" y="4022.5352112676055"/>
         </scene>
-        <!--Rooms View As Student Controller-->
+        <!--Klassenräume-->
         <scene sceneID="eNt-Q8-Tbq">
             <objects>
                 <viewController id="RAs-8t-ZDn" customClass="RoomsViewAsStudentController" customModule="FireLearning" customModuleProvider="target" sceneMemberID="viewController">
@@ -1765,6 +1725,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Klassenräume" id="X2a-v7-F40"/>
                     <connections>
                         <outlet property="tableView" destination="k2d-dc-kpr" id="7sj-lz-YjR"/>
                         <segue destination="wKK-a8-cWf" kind="show" identifier="toDetailRoomAsStudent" id="svf-s7-Tca"/>
@@ -2135,7 +2096,15 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7U-Z4-mmK">
                                 <rect key="frame" x="132" y="383" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Anlegen"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Anlegen">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="submit:" destination="vkF-Jf-dPU" eventType="touchUpInside" id="x1U-PC-w0n"/>
                                 </connections>
@@ -2366,6 +2335,7 @@
         <scene sceneID="aVF-0y-ARh">
             <objects>
                 <tabBarController id="DNL-wj-C9J" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="rnS-DM-CGn"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="h69-Ed-hw2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2380,7 +2350,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mok-OQ-qYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="36"/>
+            <point key="canvasLocation" x="1091" y="36"/>
         </scene>
         <!--Aufgaben-->
         <scene sceneID="uvE-LX-Vbe">
@@ -2440,9 +2410,27 @@
             </objects>
             <point key="canvasLocation" x="2285.625" y="-2376.7605633802818"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uMJ-48-J3j">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o5R-j3-csL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RD1-kV-J1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="09A-H8-MHc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mho-As-CSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1123" y="36"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sFg-5i-0Ym"/>
+        <segue reference="He5-zv-c0G"/>
         <segue reference="Hu0-9n-DJh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -63,7 +63,11 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
             let detailViewController = segue.destination as? DetailExerciseViewController
             detailViewController?.exercise = chosenExercise
         }
-        
+        if(segue.identifier == "createExercise"){
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            navigationItem.backBarButtonItem = backItem
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

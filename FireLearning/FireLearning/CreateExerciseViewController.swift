@@ -75,6 +75,14 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
             let detailCreatedQuestionViewController = segue.destination as? DetailCreatedQuestionViewController
             detailCreatedQuestionViewController?.question = chosenQuestion
             detailCreatedQuestionViewController?.indexOfQuestion = indexOfChosenQuestion
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            navigationItem.backBarButtonItem = backItem
+        }
+        if(segue.identifier == "createQuestion"){
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            navigationItem.backBarButtonItem = backItem
         }
     }
     //Table-Methoden
