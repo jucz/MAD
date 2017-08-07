@@ -198,26 +198,12 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
 //            self.editButtonTitle.title = "Speichern"
             self.descTextView.isHidden = false
             self.descTextView.text = self.room.description
-            
-            var contentSize = self.descTextView.sizeThatFits(self.descTextView.bounds.size)
-            var frame = self.descTextView.frame
-            frame.size.height = contentSize.height
-            self.descTextView.frame = frame
-            
-            var constraint = NSLayoutConstraint(item: self.descTextView, attribute: .height, relatedBy: .equal, toItem: self.descTextView, attribute: .width, multiplier: descTextView.bounds.height/descTextView.bounds.width, constant: 1)
-            self.descTextView.addConstraint(constraint)
+            self.resizeTextView(textView: self.descTextView)
 
             self.newsTextView.isHidden = false
             self.newsTextView.text = self.room.news
-            
-            contentSize = self.newsTextView.sizeThatFits(self.newsTextView.bounds.size)
-            frame = self.newsTextView.frame
-            frame.size.height = contentSize.height
-            self.newsTextView.frame = frame
-            
-            constraint = NSLayoutConstraint(item: self.newsTextView, attribute: .height, relatedBy: .equal, toItem: self.newsTextView, attribute: .width, multiplier: newsTextView.bounds.height/newsTextView.bounds.width, constant: 1)
-            self.newsTextView.addConstraint(constraint)
-            
+            self.resizeTextView(textView: self.newsTextView)
+           
         } else {
             
             self.descTextView.isHidden = true
@@ -263,6 +249,16 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             }
         }
         return false
+    }
+    
+    func resizeTextView(textView: UITextView!) {
+        let contentSize = textView.sizeThatFits(textView.bounds.size)
+        var frame = textView.frame
+        frame.size.height = contentSize.height
+        textView.frame = frame
+        
+        let constraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
+        textView.addConstraint(constraint)
     }
     
     

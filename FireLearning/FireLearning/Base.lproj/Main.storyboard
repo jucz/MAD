@@ -1046,7 +1046,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Frage erstellen" id="0jd-y5-7H3"/>
                     <connections>
@@ -1973,8 +1973,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dNR-7F-7xw">
-                                <rect key="frame" x="16" y="219" width="240" height="128"/>
+                                <rect key="frame" x="16" y="219" width="288" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1982,6 +1983,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Rc-EX-E1E">
                                 <rect key="frame" x="16" y="116" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1991,7 +1993,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7U-Z4-mmK">
-                                <rect key="frame" x="132" y="383" width="57" height="30"/>
+                                <rect key="frame" x="116" y="385" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Anlegen">
@@ -2007,7 +2009,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Neuen Raum anlegen" id="kj3-lE-UkO"/>
                     <connections>
@@ -2017,7 +2019,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C21-LL-o0F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3283" y="6637"/>
+            <point key="canvasLocation" x="3281.25" y="6636.9718309859154"/>
         </scene>
         <!--Fragebogen hinzufügen-->
         <scene sceneID="khj-G1-mxV">
@@ -2032,19 +2034,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="99P-do-1HF">
-                                <rect key="frame" x="0.0" y="24" width="320" height="487"/>
+                                <rect key="frame" x="0.0" y="49" width="320" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Fragebogen auswählen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zuT-D5-et0">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="STj-rW-35B">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="STj-rW-35B" id="faH-kV-c5e">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2054,8 +2049,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fragebogen auswählen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdB-EM-Zrx">
+                                <rect key="frame" x="16" y="80" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -2066,7 +2068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XjN-Gp-wtw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5535" y="4023"/>
+            <point key="canvasLocation" x="5535" y="4022.5352112676055"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="qm2-H7-Hfs">
@@ -2088,21 +2090,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enddatum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-hi-9WW">
-                                <rect key="frame" x="16" y="310" width="119" height="21"/>
+                                <rect key="frame" x="16" y="290" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="iDg-eT-tzj">
-                                <rect key="frame" x="0.0" y="348" width="320" height="117"/>
+                                <rect key="frame" x="0.0" y="328" width="320" height="117"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <date key="date" timeIntervalSinceReferenceDate="523197789.63626802">
                                     <!--2017-07-31 12:43:09 +0000-->
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fn-sg-rNv">
-                                <rect key="frame" x="132" y="481" width="57" height="30"/>
+                                <rect key="frame" x="132" y="471" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Anlegen"/>
                                 <connections>
@@ -2112,12 +2115,13 @@
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-Hj-NbB">
                                 <rect key="frame" x="0.0" y="117" width="320" height="128"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="523197789.63626802">
                                     <!--2017-07-31 12:43:09 +0000-->
                                 </date>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="endDatePicker" destination="iDg-eT-tzj" id="XkI-nd-rde"/>
@@ -2386,23 +2390,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xej-UG-BtM">
-                                                <rect key="frame" x="274" y="165" width="30" height="30"/>
+                                                <rect key="frame" x="274" y="157" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="cfs-nO-cu8"/>
                                                 </constraints>
                                                 <state key="normal" title="+"/>
                                                 <connections>
                                                     <action selector="addExercise:" destination="88W-VZ-zgf" eventType="touchUpInside" id="G0k-aa-ZtW"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4A-py-mGD">
-                                                <rect key="frame" x="274" y="470" width="30" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="fo4-gW-yd4"/>
-                                                </constraints>
-                                                <state key="normal" title="+"/>
-                                                <connections>
-                                                    <action selector="addStudent:" destination="88W-VZ-zgf" eventType="touchUpInside" id="Y4k-Rv-BMz"/>
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="780-el-auJ">
@@ -2425,12 +2419,22 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4A-py-mGD">
+                                                <rect key="frame" x="274" y="462" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="fo4-gW-yd4"/>
+                                                </constraints>
+                                                <state key="normal" title="+"/>
+                                                <connections>
+                                                    <action selector="addStudent:" destination="88W-VZ-zgf" eventType="touchUpInside" id="Y4k-Rv-BMz"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Xej-UG-BtM" firstAttribute="leading" secondItem="qSE-1V-K2h" secondAttribute="trailing" constant="173" id="11l-gc-8Eo"/>
                                             <constraint firstItem="opM-wT-Uh5" firstAttribute="leading" secondItem="AtI-km-4bM" secondAttribute="leading" id="49R-of-pw1"/>
-                                            <constraint firstItem="C4A-py-mGD" firstAttribute="top" secondItem="oQc-Op-cVh" secondAttribute="bottom" constant="43" id="8Qm-k3-Ii6"/>
+                                            <constraint firstItem="C4A-py-mGD" firstAttribute="top" secondItem="oQc-Op-cVh" secondAttribute="bottom" constant="35" id="8Qm-k3-Ii6"/>
                                             <constraint firstAttribute="trailing" secondItem="oQc-Op-cVh" secondAttribute="trailing" id="8ZB-Jm-j8E"/>
                                             <constraint firstItem="xiB-SB-FSV" firstAttribute="top" secondItem="Dwo-mU-3lJ" secondAttribute="bottom" constant="8" id="9DZ-6d-cz5"/>
                                             <constraint firstItem="C4A-py-mGD" firstAttribute="leading" secondItem="XCe-FE-tk7" secondAttribute="trailing" constant="207" id="AHT-yf-DH3"/>
@@ -2453,7 +2457,7 @@
                                             <constraint firstItem="780-el-auJ" firstAttribute="leading" secondItem="AtI-km-4bM" secondAttribute="leading" constant="5" id="WWE-ko-Rso"/>
                                             <constraint firstItem="jMZ-Lc-Of3" firstAttribute="leading" secondItem="AtI-km-4bM" secondAttribute="leading" constant="5" id="Wsa-TZ-W5D"/>
                                             <constraint firstItem="xiB-SB-FSV" firstAttribute="leading" secondItem="AtI-km-4bM" secondAttribute="leading" constant="8" id="YZg-Eb-3Zk"/>
-                                            <constraint firstItem="Xej-UG-BtM" firstAttribute="top" secondItem="780-el-auJ" secondAttribute="bottom" constant="31" id="bbF-va-qOt"/>
+                                            <constraint firstItem="Xej-UG-BtM" firstAttribute="top" secondItem="780-el-auJ" secondAttribute="bottom" constant="23" id="bbF-va-qOt"/>
                                             <constraint firstAttribute="trailing" secondItem="qSE-1V-K2h" secondAttribute="trailing" constant="219" id="bfw-wJ-Xst"/>
                                             <constraint firstAttribute="trailing" secondItem="Xej-UG-BtM" secondAttribute="trailing" constant="16" id="e7d-JQ-D5c"/>
                                             <constraint firstAttribute="trailing" secondItem="opM-wT-Uh5" secondAttribute="trailing" id="ecN-t9-e8E"/>

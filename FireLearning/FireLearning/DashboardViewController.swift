@@ -210,7 +210,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
+//                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
+                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observeSingleEvent(of: .value, with: { (snapshot) in
                         if let tmpData = snapshot.value as? [String : AnyObject] {
                             //delete old room-exercises from data-array
                             for each in self.pendingExercises{
@@ -248,6 +249,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                         
                     })
                 }
+            } else {
+                self.pendingExercisesTableView.reloadData()
             }
         })
     }
@@ -255,7 +258,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     func loadRoomNews(){
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
             //tableData reset:
-            self.pendingExercises = [:]
+//            self.pendingExercises = [:]
+            self.roomNews = [:]
             let tmpRoomIDs = snapshot.value as? [Int]
             if(tmpRoomIDs != nil){
                 var recentStudentRoomIDs = [Int:Int]()
@@ -263,6 +267,74 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                     recentStudentRoomIDs[each] = each
                 }
                 var counter = 0
+                
+                var freeCounters = [Int]()
+                for eachRoomID in recentStudentRoomIDs {
+//                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
+                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observeSingleEvent(of: .value, with: { (snapshot) in
+                        //delete old room-news from data-array
+                        print("fired\(eachRoomID.key)")
+                        for each in self.roomNews{
+                            freeCounters.append(each.key)
+                            if(each.key == eachRoomID.key){
+                                var i = 0
+                                for roomRef in self.roomsRef{
+                                    if(roomRef == eachRoomID.key){
+                                        self.roomsRef.remove(at: i)
+                                    }
+                                    i += 1
+                                }
+                                self.roomNews.removeValue(forKey: each.key)
+                                self.roomTitles.removeValue(forKey: each.key)
+                            }
+                        }
+                        
+                        
+                        let value = snapshot.value as? NSDictionary
+                        
+                        var roomMessage = value?["news"] as! String
+                        let roomTitle = value?["title"] as! String
+                        let students = value?["students"] as! [String]
+                        
+                        for student in students{
+                            if(student == globalUser?.user?.email){
+                                if(roomMessage == ""){
+                                    roomMessage = "keine News"
+                                }
+                                
+                                self.roomsRef.append(eachRoomID.key)
+                                self.roomNews[eachRoomID.key] = roomMessage
+                                self.roomTitles[eachRoomID.key] = roomTitle
+                                break
+                            }
+                        }
+                        
+                        
+                        if(self.roomNews.count == 0){
+                            self.noRoomNews = true
+                            self.roomNews[0] = "Keine News"
+                        }
+                        else{
+                            self.noRoomNews = false
+                        }
+                        self.newsTableView.reloadData()
+                    })
+                }
+            } else {
+                self.newsTableView.reloadData()
+            }
+        })
+    }
+    
+    func loadRoomNews(snapshot: DataSnapshot){
+            //tableData reset:
+            self.roomNews = [:]
+            let tmpRoomIDs = snapshot.value as? [Int]
+            if(tmpRoomIDs != nil){
+                var recentStudentRoomIDs = [Int:Int]()
+                for each in tmpRoomIDs!{
+                    recentStudentRoomIDs[each] = each
+                }
                 
                 var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
@@ -316,6 +388,5 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                     })
                 }
             }
-        })
     }
 }

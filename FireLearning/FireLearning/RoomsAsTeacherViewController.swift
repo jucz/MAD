@@ -14,6 +14,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     
     var name = ""
     var chosenRoom: Room?
+    var noRooms: Bool = true
     
     //UI
     @IBAction func createRoom(_ sender: Any) {
@@ -36,6 +37,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
             print("\nOBERSVE ROOMS AS TEACHER\n")
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
+                self.noRooms = false
                 for room in rooms {
                     roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                         let room = Room(snapshot: snapshot)
@@ -43,6 +45,11 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
                         self.tableView.reloadData()
                     })
                 }
+            } else {
+                self.noRooms = true
+                let tmpRoom = Room(title: "Keine Räume vorhanden", email: "")
+                self.roomsAsTeacher.append(tmpRoom)
+                self.tableView.reloadData()
             }
         })
                         
@@ -77,16 +84,26 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         let text = self.roomsAsTeacher[indexPath.row].title
         cell.textLabel?.text = text
+        if self.noRooms == true {
+            cell.textLabel?.textColor = UIColor.lightGray
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenRoom =  self.roomsAsTeacher[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailRoomAsTeacher", sender: nil)
+        if self.noRooms == false {
+            self.chosenRoom =  self.roomsAsTeacher[indexPath.row]
+            self.performSegue(withIdentifier: "toDetailRoomAsTeacher", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if self.noRooms == false {
+            return true
+        }
+        return false
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

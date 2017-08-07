@@ -13,8 +13,8 @@ import FirebaseDatabase
 class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var name = ""
-    var noRooms = true
     var chosenRoom: Room?
+    var noRooms: Bool = true
     
 
     @IBAction func toAsTeacher(_ sender: UIButton) {
@@ -34,25 +34,22 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
             if let rooms = snapshot.value as? [Int] {
                 if rooms.count > 0 {
                     self.noRooms = false
-                    print("\nnoRooms: \(self.noRooms)")
                     for room in rooms {
                         roomsRef.child("rid\(room)").observeSingleEvent(of: .value, with: { snapshot in
                             let room = Room(snapshot: snapshot)
                             self.roomsAsStudent.append(room)
                             self.tableView.reloadData()
-//                            print("++++++++++\nROOMS VIEW – Room added to roomsAsStudent: \n\(room)\n++++++++++")
                         })
                     }
-                } else {
-                    print("\nnoRooms: \(self.noRooms)")
-                    self.noRooms = true
-                    let tmpRoom = Room(title: "Keine Räume vorhanden", email: (globalUser?.user?.email)!)
-                    self.roomsAsStudent.append(tmpRoom)
                 }
+            } else {
+                self.noRooms = true
+                let tmpRoom = Room(title: "Keine Räume vorhanden", email: "")
+                self.roomsAsStudent.append(tmpRoom)
+                self.tableView.reloadData()
             }
         })
-        print("\(globalUser?.userRef?.child("roomsAsStudent"))")
-        
+//        print("\(globalUser?.userRef?.child("roomsAsStudent"))")
         tableView.allowsMultipleSelectionDuringEditing = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -84,16 +81,26 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         let text = self.roomsAsStudent[indexPath.row].title
         cell.textLabel?.text = text
+        if self.noRooms == true {
+            cell.textLabel?.textColor = UIColor.lightGray
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chosenRoom =  self.roomsAsStudent[indexPath.row]
-        self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
+        if self.noRooms == false {
+            self.chosenRoom =  self.roomsAsStudent[indexPath.row]
+            self.performSegue(withIdentifier: "toDetailRoomAsStudent", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        if self.noRooms == false {
+            return true
+        }
+        return false
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

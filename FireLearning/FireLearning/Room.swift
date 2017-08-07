@@ -54,7 +54,7 @@ struct Room {
             Helpers.rootRef.child("rids").setValue(rid+1)
             var room = Room(title: title, email: email, rid: rid)
             room.description = description
-            room.news = ""
+            room.news = "…"
             room.createRoomInDB()
             globalUser?.userRef?.child("roomsAsTeacher").setValue(room.appendRoomToGlobalUser(rid: rid))
         })
@@ -200,7 +200,7 @@ struct Room {
         roomsRef.child("rid\(self.rid)").child("students").setValue(students)
         let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
         userRef.observeSingleEvent(of: .value, with: { snapshot in
-            print("\n\(snapshot)\n")
+//            print("\n\(snapshot)\n")
             var roomsAsStudent = snapshot.value as? [Int]
             if roomsAsStudent != nil {
                 var index = 0
@@ -215,12 +215,6 @@ struct Room {
             }
             
         })
-    }
-
-    
-    ///SETTER
-    public mutating func setAdmin(email: String) {
-        self.admin = email
     }
     
 }
