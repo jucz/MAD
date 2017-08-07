@@ -16,40 +16,62 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     var room: Room!
     var chosenExercise: ExerciseExported?
     
+//    @IBOutlet var newsTextField: UITextField!
+//    @IBOutlet var descTextField: UITextField!
+    @IBOutlet var descTextView: UITextView!
+    @IBOutlet var newsTextView: UITextView!
     @IBOutlet var roomTitle: UINavigationItem!
-
-    @IBOutlet var editButtonTitle: UIBarButtonItem!
     @IBAction func editButton(_ sender: UIButton) {
         self.editRoom()
     }
-    
+
     @IBOutlet var descLabel: UILabel!
-    @IBOutlet var descTextField: UITextField!
     @IBOutlet var newsLabel: UILabel!
-    @IBOutlet var newsTextField: UITextField!
     @IBAction func addExercise(_ sender: UIButton) {
         self.performSegue(withIdentifier: "toAddExercise", sender: nil)
     }
-    
+    @IBOutlet var tableViewExercises: UITableView!
     @IBAction func addStudent(_ sender: UIButton) {
         self.presentAddStudentAlert()
     }
-    @IBOutlet var tableViewExercises: UITableView!
     @IBOutlet var tableViewStudents: UITableView!
+//    @IBOutlet var roomTitle: UINavigationItem!
+
+//    @IBOutlet var editButtonTitle: UIBarButtonItem!
+//    @IBAction func editButton(_ sender: UIButton) {
+//        self.editRoom()
+//    }
+    
+//    @IBOutlet var descLabel: UILabel!
+//    @IBOutlet var descTextField: UITextField!
+//    @IBOutlet var newsLabel: UILabel!
+//    @IBOutlet var newsTextField: UITextField!
+//    @IBAction func addExercise(_ sender: UIButton) {
+//        self.performSegue(withIdentifier: "toAddExercise", sender: nil)
+//    }
+    
+//    @IBAction func addStudent(_ sender: UIButton) {
+//        self.presentAddStudentAlert()
+//    }
+//    @IBOutlet var tableViewExercises: UITableView!
+//    @IBOutlet var tableViewStudents: UITableView!
     
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
-            self.descTextField.isHidden = true
-            self.newsTextField.isHidden = true
+            self.descTextView.isHidden = true
+            self.newsTextView.isHidden = true
             self.room = Room(snapshot: snapshot)
             self.roomTitle.title = self.room.title
             self.descLabel.text = self.room.description
+            self.descLabel.sizeToFit()
             self.newsLabel.text = self.room.news
+            self.newsLabel.sizeToFit()
             print("\nDetailRoomAsTeacher: observe1")
-            //self.roomTitle.title = self.room.title
+            self.roomTitle.title = self.room.title
             self.tableViewExercises.reloadData()
             self.tableViewStudents.reloadData()
             self.tableViewExercises.allowsMultipleSelectionDuringEditing = false
@@ -115,7 +137,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         }
         
         if tableView == self.tableViewStudents {
-            //self.chosenExercise = self.room.students[indexPath.row]
+//            self.chosenExercise = self.room.students[indexPath.row]
         }
         
     }
@@ -203,26 +225,42 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     func toggleUIforEdit(){
         if !self.isEditingRoom {
             
-            self.editButtonTitle.title = "Speichern"
-            self.descTextField.isHidden = false
-            self.descTextField.text = self.room.description
-            self.newsTextField.isHidden = false
-            self.newsTextField.text = self.room.news
+//            self.editButtonTitle.title = "Speichern"
+            self.descTextView.isHidden = false
+            self.descTextView.text = self.room.description
+            
+            var contentSize = self.descTextView.sizeThatFits(self.descTextView.bounds.size)
+            var frame = self.descTextView.frame
+            frame.size.height = contentSize.height
+            self.descTextView.frame = frame
+            
+            var constraint = NSLayoutConstraint(item: self.descTextView, attribute: .height, relatedBy: .equal, toItem: self.descTextView, attribute: .width, multiplier: descTextView.bounds.height/descTextView.bounds.width, constant: 1)
+            self.descTextView.addConstraint(constraint)
+
+            self.newsTextView.isHidden = false
+            self.newsTextView.text = self.room.news
+            
+            contentSize = self.newsTextView.sizeThatFits(self.newsTextView.bounds.size)
+            frame = self.newsTextView.frame
+            frame.size.height = contentSize.height
+            self.newsTextView.frame = frame
+            
+            constraint = NSLayoutConstraint(item: self.newsTextView, attribute: .height, relatedBy: .equal, toItem: self.newsTextView, attribute: .width, multiplier: newsTextView.bounds.height/newsTextView.bounds.width, constant: 1)
+            self.newsTextView.addConstraint(constraint)
             
         } else {
             
-            self.editButtonTitle.title = "Ändern"
-            self.descTextField.isHidden = true
-            self.newsTextField.isHidden = true
+            self.descTextView.isHidden = true
+            self.newsTextView.isHidden = true
         }
     }
     
     func processEditing(){
-//        self.room.description = descTextField.text!
-//        self.room.news = newsTextField.text!
+        self.room.description = descTextView.text!
+        self.room.news = newsTextView.text!
         roomsRef.child("rid\(self.room.rid)").updateChildValues([
-            "description": descTextField.text!,
-            "news": newsTextField.text!
+            "description": descTextView.text!,
+            "news": newsTextView.text!
             ])
     }
     
