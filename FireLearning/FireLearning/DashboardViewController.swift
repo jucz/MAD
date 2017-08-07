@@ -267,7 +267,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
                     Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
-                        //delete old room-exercises from data-array
+                        //delete old room-news from data-array
+                        print("fired\(eachRoomID.key)")
                         for each in self.roomNews{
                             freeCounters.append(each.key)
                             if(each.key == eachRoomID.key){
@@ -283,18 +284,26 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                         
+                        
                         let value = snapshot.value as? NSDictionary
                         
                         var roomMessage = value?["news"] as! String
-                        var roomTitle = value?["title"] as! String
+                        let roomTitle = value?["title"] as! String
+                        let students = value?["students"] as! [String]
                         
-                        if(roomMessage == ""){
-                            roomMessage = "keine News"
+                        for student in students{
+                            if(student == globalUser?.user?.email){
+                                if(roomMessage == ""){
+                                    roomMessage = "keine News"
+                                }
+                                
+                                self.roomsRef.append(eachRoomID.key)
+                                self.roomNews[eachRoomID.key] = roomMessage
+                                self.roomTitles[eachRoomID.key] = roomTitle
+                                break
+                            }
                         }
                         
-                        self.roomsRef.append(eachRoomID.key)
-                        self.roomNews[eachRoomID.key] = roomMessage
-                        self.roomTitles[eachRoomID.key] = roomTitle
                         
                         if(self.roomNews.count == 0){
                             self.noRoomNews = true

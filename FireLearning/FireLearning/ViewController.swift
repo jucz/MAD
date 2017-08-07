@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         do{
             try Auth.auth().signOut()
         }catch{
@@ -43,7 +45,6 @@ class ViewController: UIViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
 
@@ -57,11 +58,37 @@ class ViewController: UIViewController {
         let password = "swag12"
         //let password = "j@app.de"
         
-        //self.performSegue(withIdentifier: "login", sender: self)
-        
         loginHit = true;
-        Auth.auth().signIn(withEmail: mail,
-                               password: password)
+        Auth.auth().signIn(withEmail: mail, password: password) { (user, error) in
+            if(error != nil){
+                if let errCode = AuthErrorCode(rawValue: error!._code) {
+                    
+                    switch errCode {
+                    case .invalidEmail:
+                        self.present(AlertHelper.getLoginErrorAlert(_message: "Bitte gib eine gültige E-Mail ein!"),
+                                     animated: true,
+                                     completion: nil)
+                    case .tooManyRequests:
+                        self.present(AlertHelper.getLoginErrorAlert(_message: "Du hast zu viele Anfragen gesendet.\nVersuch es später nochmal!"),
+                                     animated: true,
+                                     completion: nil)
+                    case .wrongPassword:
+                        self.present(AlertHelper.getLoginErrorAlert(_message: "Bitte gib ein gültiges Passwort ein!"),
+                                     animated: true,
+                                     completion: nil)
+                    case .userNotFound:
+                        self.present(AlertHelper.getLoginErrorAlert(_message: "Leider konnte dieser Nutzer nicht gefunden werden!"),
+                                     animated: true,
+                                     completion: nil)
+                    default:
+                        self.present(AlertHelper.getLoginErrorAlert(_message: "Es ist ein Fehler aufgetreten.\n Bitte versuch es später nochmal!"),
+                                     animated: true,
+                                     completion: nil)
+                    }
+                    
+                }
+            }
+        }
     }
     
     @IBAction func getAccountButton(_ sender: Any) {

@@ -146,9 +146,8 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
             if tableView == self.tableViewExercises {
                 
                 let exportedExerciseKey = "eid\(self.room.exercises[indexPath.row].exportedExercise.eid)"
@@ -158,10 +157,9 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             if tableView == self.tableViewStudents {
                 self.room.removeStudent(index: indexPath.row)
             }
-            
         }
+        return [delete]
     }
-    
     //Schüler hinzufügen
     func presentAddStudentAlert(){
         let alert = UIAlertController(title: "Nutzer zum Raum hinzufügen", message:

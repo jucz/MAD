@@ -119,13 +119,14 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete && noExercises == false) {
-            let exerciseKey = "eid\(exercises[indexPath.row].eid)"
-            exercises.remove(at: indexPath.row)
-            globalUser?.userRef?.child("exercisesOwned").child(exerciseKey).removeValue()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            if (self.noExercises == false) {
+                let exerciseKey = "eid\(self.exercises[indexPath.row].eid)"
+                self.exercises.remove(at: indexPath.row)
+                globalUser?.userRef?.child("exercisesOwned").child(exerciseKey).removeValue()
+            }
         }
+        return [delete]
     }
-    
-    
 }

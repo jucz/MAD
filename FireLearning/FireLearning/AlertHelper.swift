@@ -99,4 +99,13 @@ class AlertHelper{
         return alertController
     }
     
+    //alert for showing login errors
+    public static func getLoginErrorAlert(_message: String) ->UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: _message,
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
 }
