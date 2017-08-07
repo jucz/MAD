@@ -89,13 +89,12 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            print("delete")
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
             self.deleteRoom(index: indexPath.row)
         }
+        return [delete]
     }
-    
     /** Entfernt einen Raum
      **/
     func deleteRoom(index: Int) {

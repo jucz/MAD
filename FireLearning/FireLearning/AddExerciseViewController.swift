@@ -46,6 +46,9 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toDatePicker"){
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            navigationItem.backBarButtonItem = backItem
             let detailViewController = segue.destination as? DatePickerViewController
             detailViewController?.exercise = self.chosenExercise
             detailViewController?.room = self.room

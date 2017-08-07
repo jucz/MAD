@@ -102,20 +102,22 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
             return false
         }
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete && noQuestions == false) {
-            let questionKey = "qid\(questions[indexPath.row].qid)"
-            questions.remove(at: indexPath.row)
-            globalUser?.userRef?
-                .child("exercisesOwned")
-                .child("eid\(exercise.eid)")
-                .child("questions")
-                .child(questionKey)
-                .removeValue()
-            
-        }
-    }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            if (self.noQuestions == false) {
+                let questionKey = "qid\(self.questions[indexPath.row].qid)"
+                self.questions.remove(at: indexPath.row)
+                globalUser?.userRef?
+                    .child("exercisesOwned")
+                    .child("eid\(self.exercise.eid)")
+                    .child("questions")
+                    .child(questionKey)
+                    .removeValue()
+            }
+        }
+        return [delete]
+    }
     
 
 }

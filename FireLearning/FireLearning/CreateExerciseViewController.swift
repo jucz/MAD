@@ -125,16 +125,19 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete && noQuestionsInTmpExercise == false){
-            exerciseQuestions.remove(at: indexPath.row)
-            if(exerciseQuestions.count == 0){
-                noQuestionsInTmpExercise = true
-                let tmpQuestion = Question(question: "bisher keine Frage erstellt", qid: 1, answer: " ", possibilities: [])
-                exerciseQuestions.append(tmpQuestion)
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            if(noQuestionsInTmpExercise == false){
+                exerciseQuestions.remove(at: indexPath.row)
+                if(exerciseQuestions.count == 0){
+                    noQuestionsInTmpExercise = true
+                    let tmpQuestion = Question(question: "bisher keine Frage erstellt", qid: 1, answer: " ", possibilities: [])
+                    exerciseQuestions.append(tmpQuestion)
+                }
+                self.questionsTableView.reloadData()
             }
-            questionsTableView.reloadData()
         }
+        return [delete]
     }
     
     //NotificationCenter-Methode

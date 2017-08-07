@@ -158,10 +158,13 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete && noBlockedUsers == false) {
-            blockedUsers.remove(at: indexPath.row)
-            saveChanges()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            if (self.noBlockedUsers == false) {
+                self.blockedUsers.remove(at: indexPath.row)
+                self.saveChanges()
+            }
         }
+        return [delete]
     }
 }

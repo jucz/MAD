@@ -69,15 +69,4 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
         cell.textLabel?.text = "\(Helpers.reconvertEmail(email:(doneIndexed[indexPath.row]?.email)!)): \((doneIndexed[indexPath.row]?.result)!) %"
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    }
-    
 }
