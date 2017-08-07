@@ -18,13 +18,21 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     
     
     @IBOutlet var roomTitle: UINavigationItem!
-    @IBOutlet var tableViewExercises: UITableView!
+    @IBOutlet var descLabel: UILabel!
+//    @IBOutlet var roomTitle: UINavigationItem!
+//    @IBOutlet var tableViewExercises: UITableView!
+    @IBOutlet var newsLabel: UILabel!
     
+    @IBOutlet var tableViewExercises: UITableView!
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.roomTitle.title = self.room.title
+//        self.roomTitle.title = self.room.title
+//        self.descLabel.text = room.description
+//        self.newsLabel.text = room.news
+//        self.descLabel.sizeToFit()
+//        self.newsLabel.sizeToFit()
         
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
@@ -33,6 +41,11 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
             self.tableViewExercises.allowsMultipleSelectionDuringEditing = false
             self.tableViewExercises.dataSource = self
             self.tableViewExercises.delegate = self
+            self.roomTitle.title = self.room.title
+            self.descLabel.text = self.room.description
+            self.newsLabel.text = self.room.news
+            self.descLabel.sizeToFit()
+            self.newsLabel.sizeToFit()
         })
         
         
@@ -48,7 +61,7 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "startTestFromRooms"){
-            let questionsInTestViewController = segue.destination as? QuestionsInTestViewController
+            _ = segue.destination as? QuestionsInTestViewController
             //questionsInTestViewController?.questions = []
             questionsInTest = []
 //            let recentExercise = self.chosenExercise
@@ -91,9 +104,9 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
         }
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
     
     
 }

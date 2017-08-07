@@ -38,7 +38,6 @@ struct Statistics {
         if let resultComplete = anyObject["resultComplete"] as? Int {
             self.resultComplete = resultComplete
         }
-        print("STATISTICS done: \(anyObject["done"] as? [String:Int])")
         if let done = anyObject["done"] as? [String:Int] {
             for s in done {
                 self.done[s.key] = s.value
@@ -53,17 +52,19 @@ struct Statistics {
     
     //Others
     //Wird aufgerufen, um eine Satistik zu berechnen
-    public func calculateResults() {
+    public mutating func calculateResults(studentsTotal: Int) {
         var resultComplete: Int = 0
-        var resultDone: Int = 0
-        
-        for user in self.done {
-            resultComplete += user.value
+        if self.done.count > 0 {
+            for user in self.done {
+                resultComplete += user.value
+            }
+            if studentsTotal > 0 {
+                self.resultComplete = resultComplete/studentsTotal
+            } else {
+                self.resultComplete = 0
+            }
+            self.resultDone = resultComplete/self.done.count
         }
-        resultDone /= self.done.count
-        
-        //TODO
-        //resultComplete /= Room.getStudents(snapshot: <#T##DataSnapshot#>)
     }
     
     public func toAny() -> Any {

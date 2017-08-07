@@ -103,7 +103,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                                 }
                                 let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
                                 //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
-                                if notExpired && notDone {
+                                if notExpired && notDone && tmpExportedExercise.exportedExercise.questions.count > 0 {
                                     if(freeCounters.count > 0){
                                         self.pendingExercises[freeCounters[0]] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
                                         freeCounters.remove(at: 0)

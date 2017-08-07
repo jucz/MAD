@@ -10,7 +10,7 @@ import UIKit
 
 class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var rid: Int = -1
+    var room: Room!
     var exported: ExerciseExported!
     var isEditingExercise = false
     //var noOneDone: true
@@ -18,27 +18,29 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     @IBOutlet var startDate: UILabel!
     @IBOutlet var endDate: UILabel!
     @IBOutlet var result: UILabel!
+    @IBOutlet var resultDone: UILabel!
     @IBOutlet var doneCount: UILabel!
     @IBOutlet var tableViewDone: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        roomsRef.child("rid\(self.rid)")
+        roomsRef.child("rid\(self.room.rid)")
             .child("exercises")
             .child("eid\(self.exported.exportedExercise.eid)")
             .observe(.value, with: { snapshot in
                 
                 let anyObject = snapshot.value as? AnyObject
                 if anyObject != nil && anyObject?["exportedExercise"] != nil {
+                    
                     self.exported = ExerciseExported(anyObject: anyObject!)
-                
+                    self.exported.statistics.calculateResults(studentsTotal: self.room.students.count)
+                    
                     self.exerciseTitle.title = self.exported.exportedExercise.title
                     self.startDate.text = (self.exported.start)!
                     self.endDate.text = (self.exported.end)!
-                    let resultComplete = self.exported.statistics.resultComplete
-                    print("RESULT COMPLETE: \(resultComplete)")
-                    self.result.text = "\(resultComplete)"
+                    self.result.text = "\(self.exported.statistics.resultComplete)"
+                    self.resultDone.text = "\(self.exported.statistics.resultDone)"
                     self.doneCount.text = "\(self.exported.statistics.done.count)"
                     
                     self.tableViewDone.reloadData()

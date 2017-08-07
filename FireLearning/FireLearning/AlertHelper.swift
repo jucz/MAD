@@ -108,4 +108,12 @@ class AlertHelper{
         
         return alertController
     }
+    
+    //alert if trying to add a user who blocked you
+    public static func getYouGotBlockedAlert() ->UIAlertController {
+        let alertController = UIAlertController(title: "Fehler", message:
+            "Du kannst diesen Nutzer nicht hinzufügen, da du dich auf seiner Blockierliste befindest!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        return alertController
+    }
 }

@@ -29,7 +29,6 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(realoadQuestionsInTest), name: NSNotification.Name(rawValue: "realoadQuestionsInTest"), object: nil)
-        
         self.questionsTableView.delegate = self
         self.questionsTableView.dataSource = self
         
@@ -68,10 +67,10 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
                 //if, damit nicht Division durch 0
                 if students != nil && (students?.count)! > 0 {
                     recentExercise?.exercise.statistics.moveUserToDone(email: (globalUser?.userMail)!, result: Int(rightPercentage))
-                    recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
-                    roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
-                        .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
-                        .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
+//                    recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
+//                    roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
+//                        .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
+//                        .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
                 } else {
                     self.present(AlertHelper.getGotRemovedWhileAnsweringErrorAlert(), animated: true, completion: nil)
                 }

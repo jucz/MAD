@@ -16,8 +16,6 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     var room: Room!
     var chosenExercise: ExerciseExported?
     
-//    @IBOutlet var newsTextField: UITextField!
-//    @IBOutlet var descTextField: UITextField!
     @IBOutlet var descTextView: UITextView!
     @IBOutlet var newsTextView: UITextView!
     @IBOutlet var roomTitle: UINavigationItem!
@@ -35,26 +33,6 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         self.presentAddStudentAlert()
     }
     @IBOutlet var tableViewStudents: UITableView!
-//    @IBOutlet var roomTitle: UINavigationItem!
-
-//    @IBOutlet var editButtonTitle: UIBarButtonItem!
-//    @IBAction func editButton(_ sender: UIButton) {
-//        self.editRoom()
-//    }
-    
-//    @IBOutlet var descLabel: UILabel!
-//    @IBOutlet var descTextField: UITextField!
-//    @IBOutlet var newsLabel: UILabel!
-//    @IBOutlet var newsTextField: UITextField!
-//    @IBAction func addExercise(_ sender: UIButton) {
-//        self.performSegue(withIdentifier: "toAddExercise", sender: nil)
-//    }
-    
-//    @IBAction func addStudent(_ sender: UIButton) {
-//        self.presentAddStudentAlert()
-//    }
-//    @IBOutlet var tableViewExercises: UITableView!
-//    @IBOutlet var tableViewStudents: UITableView!
     
     //System
     override func viewDidLoad() {
@@ -96,7 +74,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toExerciseExportedDetail"){
             let detailViewController = segue.destination as? ExportedAsTeacherViewController
-            detailViewController?.rid = self.room.rid
+            detailViewController?.room = self.room
             detailViewController?.exported = self.chosenExercise
         }
         if(segue.identifier == "toAddExercise"){
@@ -176,29 +154,23 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
                                             Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
                                                 let value = snapshot.value as? [String: AnyObject]
                                                 for each in value!{
-                                                    if(userEmail == each.key){
-                                                        print("gefunden")
-                                                        self.room.students.append(user)
-                                                        let userRef = Database.database().reference().child("users").child(userEmail)
-                                                        userRef.child("roomsAsStudent").observeSingleEvent(of: .value, with: {snapshot in
-                                                            var roomsAsStudent = [Int]()
-                                                            if let students = snapshot.value as? [Int] {
-                                                                roomsAsStudent = students
-                                                            }
-                                                            roomsAsStudent.append(self.room.rid)
-                                                            userRef.child("roomsAsStudent").setValue(roomsAsStudent)
-                                                            
-                                                        })
-                                                        roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
+                                                    var isBlocked = false
+                                                    var found = false
+                                                    if userEmail == each.key {
+                                                        found = true
+                                                        isBlocked = self.checkIfBlocked(user: each.value)
+                                                    }
+                                                    
+                                                    if found == true && isBlocked == false {
+//                                                        print("gefunden")
+                                                        self.processAddingStudent(email: user)
+                                                        return
+                                                    } else if isBlocked == true {
+                                                        self.present(AlertHelper.getYouGotBlockedAlert(), animated: true, completion: nil)
                                                         return
                                                     }
                                                 }
-                                                
-                                                let alertController = UIAlertController(title: "Fehler", message:
-                                                    "Kein Nutzer mit dieser Email gefunden!", preferredStyle: UIAlertControllerStyle.alert)
-                                                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-                                                
-                                                self.present(alertController, animated: true, completion: nil)
+                                                self.present(AlertHelper.getUserNotFoundForBlocked(), animated: true, completion: nil)
                                             })
                                         }
         }
@@ -262,6 +234,36 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             ])
     }
     
+    func processAddingStudent(email: String) {
+        self.room.students.append(email)
+        let userRef = Database.database().reference().child("users").child(Helpers.convertEmail(email: email))
+        userRef.child("roomsAsStudent").observeSingleEvent(of: .value, with: {snapshot in
+            var roomsAsStudent = [Int]()
+            if let students = snapshot.value as? [Int] {
+                roomsAsStudent = students
+            }
+            roomsAsStudent.append(self.room.rid)
+            userRef.child("roomsAsStudent").setValue(roomsAsStudent)
+            
+        })
+        roomsRef.child("rid\(self.room.rid)").child("students").setValue(self.room.students)
+    }
+    
+    
+    func checkIfBlocked(user: AnyObject) -> Bool {
+        let userTmp = user as? [String: AnyObject]
+        if userTmp != nil {
+            let blocked = userTmp?["blocked"] as? [String]
+            if blocked != nil {
+                for s in blocked! {
+                    if s == userTmp?["email"] as? String {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
     
     
     
