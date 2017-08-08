@@ -97,7 +97,7 @@ struct Statistics {
             doneIndexed[i] = DoneUser(email: s.key, result: s.value)
             i += 1
         }
-        print("\nDONE INDEXED: \(doneIndexed)\n")
+//        print("\nDONE INDEXED: \(doneIndexed)\n")
         return doneIndexed
     }
     

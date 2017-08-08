@@ -36,7 +36,7 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
         
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
-            print("\nDetailRoomAsStudent: observe1")
+//            print("\nDetailRoomAsStudent: observe1")
             self.tableViewExercises.reloadData()
             self.tableViewExercises.allowsMultipleSelectionDuringEditing = false
             self.tableViewExercises.dataSource = self

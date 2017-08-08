@@ -9,127 +9,34 @@
 import UIKit
 import FirebaseDatabase
 
-//struct RoomExercise {
-//    var rid: Int
-//    var exercise: ExerciseExported
-//    
-//    init(rid: Int, exercise: ExerciseExported) {
-//        self.rid = rid
-//        self.exercise = exercise
-//    }
-//}
+
 
 class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-    var noPendingExercises = false
-    //var pendingExercises = [Exercise]()
-    ///J
-    var pendingExercises = [Int:RoomExercise]() //[index:[rid:ExerciseExported]]
+
     var chosenExercise: RoomExercise?
-    ///
-    
-    //var chosenExercise: Exercise?
-    
+
     
     
     //View-Verbindungen
-    @IBAction func switchToCreatedExercisesBtn(_ sender: Any) {
+    @IBOutlet var pendingEx: UIView!
+    @IBOutlet var createdEx: UIView!
+    @IBAction func switchToCreatedExercisesBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: false)
     }
+
     @IBOutlet var pendingExercisesTable: UITableView!
     
     //System-Methoden
     override func viewDidLoad() {
-        self.pendingExercises = [:]
+//        self.pendingExercises = [:]
         
-        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
-            print("\nFIRE OBSERVE PENDING EXERCISES!!!\n")
-            //tableData reset:
-            self.pendingExercises = [:]
-            
-            let tmpRoomIDs = snapshot.value as? [Int]
-            
-            if(tmpRoomIDs != nil){
-                self.noPendingExercises = false
-                var recentStudentRoomIDs = [Int:Int]()
-                for each in tmpRoomIDs!{
-                    recentStudentRoomIDs[each] = each
-                }
-                
-                
-                //neue Observer registireren
-                print("\(recentStudentRoomIDs.count)")
-                var counter = 0
-                
-                var freeCounters = [Int]()
-                for eachRoomID in recentStudentRoomIDs {
-                        /*single
-                        Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observeSingleEvent(of: .value, with: { (snapshot) in
-                            if let tmpData = snapshot.value as? [String : AnyObject] {
-                                
-                                for each in tmpData{
-                                    let tmpExportedExercise = ExerciseExported(anyObject: each.value)
-                                    let notExpired = tmpExportedExercise.getEndAsDate()! > Date()
-                                    let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
-                                    if notExpired && notDone {
-                                        self.pendingExercises[counter] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        counter = counter + 1
-                                    }
-                                }
-                            }
-                            
-                            
-                            self.pendingExercisesTable.reloadData()
-                            
-                        })
-                     */
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
-                        if let tmpData = snapshot.value as? [String : AnyObject] {
-                            //delete old room-exercises from data-array
-                            for each in self.pendingExercises{
-                                freeCounters.append(each.key)
-                                if(each.value.rid == eachRoomID.key){
-                                    self.pendingExercises.removeValue(forKey: each.key)
-                                }
-                            }
-                            print(self.pendingExercises)
-                            
-                            //add recent room-exercises to data-array
-                            for each in tmpData{
-                                let tmpExportedExercise = ExerciseExported(anyObject: each.value)
-                                let endDate = tmpExportedExercise.getEndAsDate()
-                                var notExpired = false
-                                if endDate != nil && endDate! > Date() {
-                                    notExpired = true
-                                }
-                                let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
-                                //print("\(tmpExportedExercise):\nNOT EXPIRED: \(notExpired)\nNOT DONE: \(notDone)")
-                                if notExpired && notDone && tmpExportedExercise.exportedExercise.questions.count > 0 {
-                                    if(freeCounters.count > 0){
-                                        self.pendingExercises[freeCounters[0]] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        freeCounters.remove(at: 0)
-                                    }
-                                    else{
-                                        self.pendingExercises[counter] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        counter = counter + 1
-                                    }
-                                    print(self.pendingExercises)
-                                }
-                            }
-                        }
-                        
-                        
-                        self.pendingExercisesTable.reloadData()
-                        
-                    })
-                }
-            }
-        })
+        Style.roundLabels(lblOne: self.pendingEx, lblTwo: self.createdEx)
         
-        
+        globalObservers?.tableViewsPendingExercises.append(self.pendingExercisesTable)
+        globalObservers?.initObserversPendingExercises()
         
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:false);
-        
         pendingExercisesTable.reloadData()
         pendingExercisesTable.dataSource = self
         pendingExercisesTable.delegate = self
@@ -161,30 +68,37 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pendingExercises.count
+        return (globalObservers?.pendingExercises.count)!
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pendingExerciseCell", for: indexPath)
-        
-        let text = pendingExercises[indexPath.row]?.exercise.exportedExercise.title
+        let text = globalObservers?.pendingExercises[indexPath.row]?.exercise.exportedExercise.title
         
         cell.textLabel?.text = text
+        if globalObservers?.pendingExercises.count == 1 && globalObservers?.pendingExercises[0] != nil && globalObservers?.pendingExercises[0]?.rid == -1 {
+            globalObservers?.noPendingExercises = true
+        } else {
+            globalObservers?.noPendingExercises = false
+        }
         
-        
-        if(noPendingExercises == true){
+        if(globalObservers?.noPendingExercises == true){
             cell.textLabel?.textColor = UIColor.lightGray
             cell.detailTextLabel?.text = ""
-        }
-        else{
-            cell.detailTextLabel?.text = "aus Klassenraum"
-            Database.database().reference().child("rooms").child("rid\((pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
-                let roomTitle = snapshot.value as! String
-                cell.detailTextLabel?.text = "aus \(roomTitle)"
-            })
+            cell.viewWithTag(100)?.removeFromSuperview()
             
-            let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+        } else {
+            cell.detailTextLabel?.text = "aus Klassenraum"
+            Database.database().reference().child("rooms").child("rid\((globalObservers?.pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
+                let titleVal = snapshot.value as? String
+                if titleVal != nil {
+                    cell.detailTextLabel?.text = "\(titleVal!)"
+                } else {
+                    cell.detailTextLabel?.text = ""
+                }
+            })
+            let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()
             
             var daysLeft: Int
             if endDate != nil {
@@ -232,8 +146,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(noPendingExercises == false){
-            let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+        if(globalObservers?.noPendingExercises == false){
+            let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()
             
             var daysLeft: Int
             if endDate != nil {
@@ -254,7 +168,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                     cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                 }
             }
-            self.chosenExercise = self.pendingExercises[indexPath.row]
+            self.chosenExercise = globalObservers?.pendingExercises[indexPath.row]
             self.performSegue(withIdentifier: "startTest", sender: self)
         }
     }

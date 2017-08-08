@@ -35,11 +35,10 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.styleNavBarRed()
+        Style.roundLabels(lblOne: self.asTeacher, lblTwo: self.asStudent)
         
-            self.styleView()
         globalUser?.userRef?.child("roomsAsTeacher").observe(.value, with: { snapshot in
-            print("\nOBERSVE ROOMS AS TEACHER\n")
+//            print("\nOBERSVE ROOMS AS TEACHER\n")
             self.roomsAsTeacher = [Room]()
             if let rooms = snapshot.value as? [Int] {
                 self.noRooms = false
@@ -89,16 +88,13 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         let text = self.roomsAsTeacher[indexPath.row].title
         cell.textLabel?.text = text
-        self.styleCell(cell: cell)
+        Style.styleCell(cell: cell, empty: self.noRooms)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.noRooms == false {
             self.chosenRoom =  self.roomsAsTeacher[indexPath.row]
-            let cell = tableView.cellForRow(at: indexPath)!
-            cell.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
-            cell.contentView.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
             self.performSegue(withIdentifier: "toDetailRoomAsTeacher", sender: nil)
         }
     }
@@ -167,38 +163,6 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
             roomsRef.child("rid\(roomTmp.rid)").removeValue()
         })
     }
-    
-    func styleView() {
-        self.tableView.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
-        self.tableView.tintColor = UIColor.init(rgb: 0x2b2b2b)
-        self.asTeacher.layer.cornerRadius = 10;
-        self.asStudent.layer.cornerRadius = 10;
-    }
-    
-    public func styleNavBarRed() {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(rgb: 0xf36f70)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.tabBarController?.tabBar.barTintColor = UIColor.init(rgb: 0xf36f70)
-        self.tabBarController?.tabBar.tintColor = UIColor.white
-        for i in (self.tabBarController?.tabBar.items)! {
-            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.init(rgb: 0x2b2b2b)], for: .normal)
-            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
-        }
 
-    }
-    
-    func styleCell(cell: UITableViewCell!) {
-        if self.noRooms == true {
-            cell.textLabel?.textColor = UIColor.lightGray
-        } else {
-            cell.textLabel?.font = UIFont(name:"Chalkduster", size:22)
-            cell.textLabel?.textColor = UIColor.white
-            cell.textLabel?.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
-            cell.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
-            cell.contentView.backgroundColor = UIColor.init(rgb: 0x2b2b2b)
-        }
-    }
     
 }

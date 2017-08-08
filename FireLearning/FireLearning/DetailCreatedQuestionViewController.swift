@@ -26,6 +26,7 @@ class DetailCreatedQuestionViewController: UIViewController {
     @IBOutlet var secPossTextField: UITextField!
     @IBOutlet var thrdPossTextField: UITextField!
     
+    @IBOutlet var btnIcon: UIBarButtonItem!
     @IBOutlet var saveEditButton: UIBarButtonItem!
     @IBAction func SaveEditButton(_ sender: Any) {
         editQuestion()
@@ -89,7 +90,8 @@ class DetailCreatedQuestionViewController: UIViewController {
     func toggleUIforEdit(){
         if(isEditingQuestion){
             //Bar-Button
-            saveEditButton.title = "Ändern"
+//            saveEditButton.title = "Ändern"
+            btnIcon.image = UIImage.init(named: "EditPencilRed-20x20.png")
             
             //show Labels
             questionTitleText.isHidden = false
@@ -108,7 +110,8 @@ class DetailCreatedQuestionViewController: UIViewController {
         }
         else{
             //Bar-Button
-            saveEditButton.title = "Speichern"
+//            saveEditButton.title = "Speichern"
+            btnIcon.image = UIImage.init(named: "check-symbol-20x20.png")
             
             //hide Labels
             questionTitleText.isHidden = true

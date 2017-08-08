@@ -23,7 +23,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
     @IBAction func saveButton(_ sender: Any) {
         let exerciseName = nameOutlet.text!
         if(exerciseName != ""){
-            print(exerciseName)
+//            print(exerciseName)
             
             let exerciseID = 1
             

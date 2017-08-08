@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             self.navigationController?.popViewController(animated: true)
             
         }catch{
-            print("Error while signing out!")
+//            print("Error while signing out!")
         }
     }
     
@@ -96,7 +96,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         globalUser?.userRef?.observe(.value, with: { (snapshot) in
             globalUser?.user = User(snapshot: snapshot)
-            print("ausgeloest")
+//            print("ausgeloest")
             self.lastnameTextField?.text = globalUser?.user?.lastname
             self.firstnameTextField?.text = globalUser?.user?.firstname
             if(globalUser?.user?.blocked == nil){

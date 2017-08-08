@@ -110,7 +110,7 @@ class RegisterViewController: UIViewController {
             Auth.auth().createUser(withEmail: emailTextField.text!,
                                        password: passwortTextField.text!) { user, error in
                                         if error == nil {
-                                            print("user erstellt")
+//                                            print("user erstellt")
                                             let userObj = User(email: self.emailTextField!.text!,
                                                                firstname: self.vornameTextField!.text!,
                                                                lastname: self.nachnameTextField!.text!)

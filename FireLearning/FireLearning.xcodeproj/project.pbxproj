@@ -25,6 +25,8 @@
 		0AD406991F1D253400FD2533 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD406981F1D253400FD2533 /* Room.swift */; };
 		0AD4069B1F1D2E9700FD2533 /* ExerciseExported.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4069A1F1D2E9700FD2533 /* ExerciseExported.swift */; };
 		0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4069C1F1D2F1500FD2533 /* Statistics.swift */; };
+		0AFE4BDD1F39B63E006753CE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE4BDC1F39B63E006753CE /* Style.swift */; };
+		0AFE4BDF1F3A2930006753CE /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE4BDE1F3A2930006753CE /* Observers.swift */; };
 		6433E8C4C5AB20C4D119DDC9 /* Pods_FireLearningTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7653224ED6B044F898DF7D1 /* Pods_FireLearningTests.framework */; };
 		8451C2981F3670D500FA0D18 /* UsedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451C2971F3670D500FA0D18 /* UsedColors.swift */; };
 		8451C29C1F37195400FA0D18 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451C29B1F37195400FA0D18 /* UIColorExtension.swift */; };
@@ -98,6 +100,8 @@
 		0AD406981F1D253400FD2533 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		0AD4069A1F1D2E9700FD2533 /* ExerciseExported.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseExported.swift; sourceTree = "<group>"; };
 		0AD4069C1F1D2F1500FD2533 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		0AFE4BDC1F39B63E006753CE /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		0AFE4BDE1F3A2930006753CE /* Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		491304717FBDB5BBD7081EAF /* Pods-FireLearning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearning.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearning/Pods-FireLearning.release.xcconfig"; sourceTree = "<group>"; };
 		59068E92921DBEB9041494A5 /* Pods-FireLearning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearning/Pods-FireLearning.debug.xcconfig"; sourceTree = "<group>"; };
 		8451C2971F3670D500FA0D18 /* UsedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsedColors.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 		84DC14581F1F5D1600ACBD89 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AFE4BDE1F3A2930006753CE /* Observers.swift */,
+				0AFE4BDC1F39B63E006753CE /* Style.swift */,
 				84777D591F1C941C004324A2 /* User.swift */,
 				0AD406941F1D24CF00FD2533 /* Exercise.swift */,
 				0AD4069A1F1D2E9700FD2533 /* ExerciseExported.swift */,
@@ -682,6 +688,7 @@
 				0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */,
 				849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */,
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
+				0AFE4BDD1F39B63E006753CE /* Style.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,
 				849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */,
 				0A80F6281F367BE90016B27A /* DoneUser.swift in Sources */,
@@ -704,6 +711,7 @@
 				849CD4831F2F1ACB00C4E08E /* CreateQuestionForExistingExerciseViewController.swift in Sources */,
 				8451C2981F3670D500FA0D18 /* UsedColors.swift in Sources */,
 				84DC14611F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift in Sources */,
+				0AFE4BDF1F3A2930006753CE /* Observers.swift in Sources */,
 				84DC146B1F1F89EE00ACBD89 /* CreateExerciseViewController.swift in Sources */,
 				0A041D9B1F34BCC00072D67A /* RoomsAsStudent.swift in Sources */,
 				849CD4901F33226100C4E08E /* QuestionInTest.swift in Sources */,

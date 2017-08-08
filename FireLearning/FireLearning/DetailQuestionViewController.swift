@@ -26,6 +26,7 @@ class DetailQuestionViewController: UIViewController {
     @IBOutlet var secPossTextField: UITextField!
     @IBOutlet var thrdPossTextField: UITextField!
     
+    @IBOutlet var btnIcon: UIBarButtonItem!
     @IBOutlet var saveEditButton: UIBarButtonItem!
     @IBAction func saveEditButton(_ sender: Any) {
         editQuestion()
@@ -35,7 +36,7 @@ class DetailQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         globalUser?.userRef?.child("exercisesOwned").child("eid\(eidForExercise!)").child("questions").observe(.value, with: { (snapshot) in
-            print("observe on detailquestions triggered")
+//            print("observe on detailquestions triggered")
             let tmpQuestions = snapshot.value as? [String: AnyObject]
             if(tmpQuestions != nil){
                 self.question = Question(anyObject: tmpQuestions!["qid\(self.question.qid)"]!)
@@ -97,7 +98,8 @@ class DetailQuestionViewController: UIViewController {
     func toggleUIforEdit(){
         if(isEditingQuestion){
             //Bar-Button
-            saveEditButton.title = "Ändern"
+//            saveEditButton.title = "Ändern"
+            btnIcon.image = UIImage.init(named: "EditPencilRed-20x20.png")
             
             //show Labels
             questionTitleText.isHidden = false
@@ -116,7 +118,9 @@ class DetailQuestionViewController: UIViewController {
         }
         else{
             //Bar-Button
-            saveEditButton.title = "Speichern"
+//            saveEditButton.title = "Speichern"
+            btnIcon.image = UIImage.init(named: "check-symbol-20x20.png")
+
             
             //hide Labels
             questionTitleText.isHidden = true

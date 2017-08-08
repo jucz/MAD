@@ -38,4 +38,13 @@ class UsedColors{
         return 0xFFCC66
     }
     
+    public static func getColorNavBar() -> Int {
+        return 0x336600
+    }
+    
+    public static func getColorBoardGreen() -> Int {
+        return 0x003300
+    }
+    
+    
 }

@@ -169,7 +169,7 @@ struct Room {
         roomsRef.child("rid\(self.rid)").child("students").setValue(students)
         let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
         userRef.observeSingleEvent(of: .value, with: { snapshot in
-            print("\n\(snapshot)\n")
+//            print("\n\(snapshot)\n")
             var roomsAsStudent = snapshot.value as? [Int]
             if roomsAsStudent != nil {
                 var index = 0

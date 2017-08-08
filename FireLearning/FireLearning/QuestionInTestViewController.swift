@@ -45,7 +45,7 @@ class QuestionInTestViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.questionInTest.userChoice)
+//        print(self.questionInTest.userChoice)
         initUI()
     }
 

@@ -23,20 +23,27 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     //var exercisesRef: DatabaseReference?
     
     //View-Verbindungen
-    @IBAction func addButton(_ sender: Any) {
+//    @IBAction func addButton(_ sender: Any) {
+//        performSegue(withIdentifier: "createExercise", sender: self)
+//    }
+    @IBOutlet var pendingEx: UIView!
+    @IBOutlet var createdEx: UIView!
+    @IBAction func addButton(_ sender: UIButton) {
         performSegue(withIdentifier: "createExercise", sender: self)
     }
     @IBOutlet var tableView: UITableView!
     
-    @IBAction func switchToPendingExercisesBtn(_ sender: Any) {
-        //exercisesRef?.removeObserver(withHandle: exercisesObserverHandle)
+    @IBAction func switchToPendingExercisesBtn(_ sender: UIButton) {
         performSegue(withIdentifier: "toPendingExercises", sender: self)
-    
     }
+
     //System-Methoden
     override func viewDidLoad() {
+        
+        Style.roundLabels(lblOne: self.createdEx, lblTwo: self.pendingEx)
+        
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
-            print("observe on ExercisesOwned for User triggered")
+//            print("observe on ExercisesOwned for User triggered")
             self.exercises = []
             let tmpExercises = snapshot.value as? [String: AnyObject]
             if(tmpExercises != nil){

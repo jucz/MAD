@@ -53,7 +53,7 @@ struct User {
         self.roomsAsTeacher = User.getRoomsAsTeacher(snapshot: snapshot)
         self.roomsAsStudent = User.getRoomsAsStudent(snapshot: snapshot)
         self.exercisesOwned = User.getExercisesOwned(snapshot: snapshot)
-        print("___User: \(self)____")
+//        print("___User: \(self)____")
     }
     ///ENDE JULIAN
   

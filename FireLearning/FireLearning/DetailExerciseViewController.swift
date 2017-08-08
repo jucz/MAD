@@ -27,7 +27,7 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("questions").observe(.value, with: { (snapshot) in
-            print("observe on questions for User exercises triggered")
+//            print("observe on questions for User exercises triggered")
             self.questions = []
             let tmpQuestions = snapshot.value as? [String: AnyObject]
             if(tmpQuestions != nil){

@@ -10,28 +10,30 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+struct TitleNews{
+    var title: String
+    var news: String
+}
+
 class DashboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    //pendingExercisesTable data
-    var noPendingExercises = false
-    var pendingExercises = [Int:RoomExercise]()
+
     var chosenExercise: RoomExercise?
     
-    //newsTable data
-    var noRoomNews = false
-    var roomsRef = [Int]()
-    var roomNews = [Int:String]()
-    var roomTitles = [Int:String]()
+    var observersNews = [UInt]()
+    var noNews = true
+    var news = [Int:TitleNews]()
     
     //View-Verbindungen
-    
     @IBOutlet var pendingExercisesTableView: UITableView!
     @IBOutlet var newsTableView: UITableView!
     
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadPendingExercise()
-        loadRoomNews()
+        globalObservers?.tableViewsPendingExercises.append(self.pendingExercisesTableView)
+        globalObservers?.initObserversPendingExercises()
+
+        self.initObserversNews()
         pendingExercisesTableView.dataSource = self
         pendingExercisesTableView.delegate = self
         newsTableView.dataSource = self
@@ -62,33 +64,36 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(tableView == pendingExercisesTableView){
-            return pendingExercises.count
+        if(tableView == self.pendingExercisesTableView){
+            return (globalObservers?.pendingExercises.count)!
         }
         else{
-            return roomNews.count
+//            return self.roomNews.count
+            return self.arrayNews().count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(tableView == pendingExercisesTableView){
+        if(tableView == self.pendingExercisesTableView){
             let cell = tableView.dequeueReusableCell(withIdentifier: "pendingExercisesCell", for: indexPath)
-            let text = pendingExercises[indexPath.row]?.exercise.exportedExercise.title
+
+            let text = globalObservers?.pendingExercises[indexPath.row]?.exercise.exportedExercise.title
             cell.textLabel?.text = text
-            if(noPendingExercises == true){
+            
+            if(globalObservers?.noPendingExercises == true){
                 cell.textLabel?.textColor = UIColor.lightGray
                 cell.detailTextLabel?.text = ""
+                cell.viewWithTag(100)?.removeFromSuperview()
             }
             else{
                 cell.detailTextLabel?.text = "aus Klassenraum"
-                Database.database().reference().child("rooms").child("rid\((pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
+                Database.database().reference().child("rooms").child("rid\((globalObservers?.pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
                     let roomTitle = snapshot.value as! String
-                    cell.detailTextLabel?.text = "aus \(roomTitle)"
+                    cell.detailTextLabel?.text = "\(roomTitle)"
                 })
                 
-                let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+                let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()
                 
                 var daysLeft: Int
                 if endDate != nil {
@@ -134,18 +139,19 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
             }
             return cell
         }
+        //NEUIGKEITEN
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath)
-            if(noRoomNews == false){
-                print("nicht leer")
-                var refToRoom = roomsRef[indexPath.row]
-                cell.textLabel?.text = roomNews[refToRoom]
-                cell.detailTextLabel?.text = "aus \(roomTitles[refToRoom]!)"
+            let array = self.arrayNews()
+            if(self.noNews == false){
+                
+                cell.textLabel?.text = array[indexPath.row].news
+                cell.detailTextLabel?.text = array[indexPath.row].title
                 cell.textLabel?.textColor = UIColor.black
-            }
-            else{
-                print("leer")
-                cell.textLabel?.text = roomNews[indexPath.row]
+                
+            } else {
+                
+                cell.textLabel?.text = array[indexPath.row].news
                 cell.detailTextLabel?.text = ""
                 cell.textLabel?.textColor = UIColor.lightGray
             }
@@ -155,9 +161,9 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(tableView == pendingExercisesTableView){
-            if(noPendingExercises == false){
-                let endDate = pendingExercises[indexPath.row]?.exercise.getEndAsDate()
+        if(tableView == self.pendingExercisesTableView){
+            if(globalObservers?.noPendingExercises == false){
+                let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()
                 
                 var daysLeft: Int
                 if endDate != nil {
@@ -178,213 +184,70 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                         cellLabel.backgroundColor = UIColor(rgb: UsedColors.getColorDanger())
                     }
                 }
-                self.chosenExercise = self.pendingExercises[indexPath.row]
+                self.chosenExercise = globalObservers?.pendingExercises[indexPath.row]
                 self.performSegue(withIdentifier: "startTest", sender: self)
             }
         }
         else{
-            if(noRoomNews == false){
-                
-            }
-            
+            //…
         }
     }
     
-    //Help-Methoden
-    
-    func loadPendingExercise(){
+    func initObserversNews(){
+        
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
             //tableData reset:
-            self.pendingExercises = [:]
-            let tmpRoomIDs = snapshot.value as? [Int]
-            if(tmpRoomIDs != nil){
-                var recentStudentRoomIDs = [Int:Int]()
-                for each in tmpRoomIDs!{
-                    recentStudentRoomIDs[each] = each
-                }
-                
-                
-                //neue Observer registireren
-                print("\(recentStudentRoomIDs.count)")
-                var counter = 0
-                
-                var freeCounters = [Int]()
-                for eachRoomID in recentStudentRoomIDs {
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
-                        if let tmpData = snapshot.value as? [String : AnyObject] {
-                            //delete old room-exercises from data-array
-                            for each in self.pendingExercises{
-                                freeCounters.append(each.key)
-                                if(each.value.rid == eachRoomID.key){
-                                    self.pendingExercises.removeValue(forKey: each.key)
-                                }
-                            }
-                            
-                            //add recent room-exercises to data-array
-                            for each in tmpData{
-                                let tmpExportedExercise = ExerciseExported(anyObject: each.value)
-                                let endDate = tmpExportedExercise.getEndAsDate()
-                                var notExpired = false
-                                if endDate != nil && endDate! > Date() {
-                                    notExpired = true
-                                }
-                                let notDone = tmpExportedExercise.statistics.done[(globalUser?.userMail)!] == nil
-                                if notExpired && notDone {
-                                    if(freeCounters.count > 0){
-                                        self.pendingExercises[freeCounters[0]] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        freeCounters.remove(at: 0)
-                                    }
-                                    else{
-                                        self.pendingExercises[counter] = RoomExercise(rid: eachRoomID.key, exercise: tmpExportedExercise)
-                                        counter = counter + 1
-                                    }
-                                    print(self.pendingExercises)
-                                }
-                            }
-                        }
-                        
-                        
-                        self.pendingExercisesTableView.reloadData()
-                        
-                    })
-                }
-            } else {
-                self.pendingExercisesTableView.reloadData()
+            print("OBSERVE ALL NEWS NEW")
+            for handle in self.observersNews {
+                Database.database().reference().removeObserver(withHandle: handle)
             }
-        })
-    }
-    
-    func loadRoomNews(){
-        globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
-            //tableData reset:
-//            self.pendingExercises = [:]
-            self.roomNews = [:]
-            let tmpRoomIDs = snapshot.value as? [Int]
-            if(tmpRoomIDs != nil){
-                var recentStudentRoomIDs = [Int:Int]()
-                for each in tmpRoomIDs!{
-                    recentStudentRoomIDs[each] = each
-                }
-                var counter = 0
+            self.observersNews = []
+            self.news = [:]
+            let rooms = snapshot.value as? [Int]
+            if rooms != nil {
                 
-                var freeCounters = [Int]()
-                for eachRoomID in recentStudentRoomIDs {
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
-                        //delete old room-news from data-array
-                        print("fired\(eachRoomID.key)")
-                        for each in self.roomNews{
-                            freeCounters.append(each.key)
-                            if(each.key == eachRoomID.key){
-                                var i = 0
-                                for roomRef in self.roomsRef{
-                                    if(roomRef == eachRoomID.key){
-                                        self.roomsRef.remove(at: i)
+                for rid in rooms! {
+                    
+                    self.observersNews.append(
+                        Database.database().reference().child("rooms").child("rid\(rid)").child("news").observe(.value, with: { (snapshot) in
+                            let news = snapshot.value as? String
+                            if news == nil || news == "" {
+                                self.news.removeValue(forKey: rid)
+                                if self.news.count == 0 {
+                                    print("OBSERVE NEWS: rid\(rid) NO NEWS")
+                                    self.noNews = true
+                                    self.news[-1] = TitleNews(title: "", news: "Keine Neuigkeiten")
+                                    self.newsTableView.reloadData()
+                                }
+                            } else {
+                                Database.database().reference().child("rooms").child("rid\(rid)").child("title").observeSingleEvent(of: .value, with: { snapshot in
+                                    let title = snapshot.value as? String
+                                    if title != nil {
+                                        self.news.removeValue(forKey: -1)
+                                        self.noNews = false
+                                        self.news[rid] = TitleNews(title: title!, news: news!)
+                                        print("OBSERVE NEWS: rid\(rid)")
                                     }
-                                    i += 1
-                                }
-                                self.roomNews.removeValue(forKey: each.key)
-                                self.roomTitles.removeValue(forKey: each.key)
+                                    self.newsTableView.reloadData()
+                                })
                             }
-                        }
-                        
-                        
-                        let value = snapshot.value as? NSDictionary
-                        
-                        var roomMessage = value?["news"] as! String
-                        let roomTitle = value?["title"] as! String
-                        let students = value?["students"] as! [String]
-                        
-                        for student in students{
-                            if(student == globalUser?.user?.email){
-                                if(roomMessage == ""){
-                                    roomMessage = "keine News"
-                                }
-                                
-                                self.roomsRef.append(eachRoomID.key)
-                                self.roomNews[eachRoomID.key] = roomMessage
-                                self.roomTitles[eachRoomID.key] = roomTitle
-                                break
-                            }
-                        }
-                        
-                        
-                        if(self.roomNews.count == 0){
-                            self.noRoomNews = true
-                            self.roomNews[0] = "Keine News"
-                        }
-                        else{
-                            self.noRoomNews = false
-                        }
-                        self.newsTableView.reloadData()
-                    })
+                        })
+                    )
                 }
             } else {
+                self.noNews = true
+                self.news[-1] = TitleNews(title: "", news: "Keine Neuigkeiten")
                 self.newsTableView.reloadData()
             }
         })
     }
     
-    func loadRoomNews(snapshot: DataSnapshot){
-            //tableData reset:
-            self.roomNews = [:]
-            let tmpRoomIDs = snapshot.value as? [Int]
-            if(tmpRoomIDs != nil){
-                var recentStudentRoomIDs = [Int:Int]()
-                for each in tmpRoomIDs!{
-                    recentStudentRoomIDs[each] = each
-                }
-                
-                var freeCounters = [Int]()
-                for eachRoomID in recentStudentRoomIDs {
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
-                        //delete old room-news from data-array
-                        print("fired\(eachRoomID.key)")
-                        for each in self.roomNews{
-                            freeCounters.append(each.key)
-                            if(each.key == eachRoomID.key){
-                                var i = 0
-                                for roomRef in self.roomsRef{
-                                    if(roomRef == eachRoomID.key){
-                                        self.roomsRef.remove(at: i)
-                                    }
-                                    i += 1
-                                }
-                                self.roomNews.removeValue(forKey: each.key)
-                                self.roomTitles.removeValue(forKey: each.key)
-                            }
-                        }
-                        
-                        
-                        let value = snapshot.value as? NSDictionary
-                        
-                        var roomMessage = value?["news"] as! String
-                        let roomTitle = value?["title"] as! String
-                        let students = value?["students"] as! [String]
-                        
-                        for student in students{
-                            if(student == globalUser?.user?.email){
-                                if(roomMessage == ""){
-                                    roomMessage = "keine News"
-                                }
-                                
-                                self.roomsRef.append(eachRoomID.key)
-                                self.roomNews[eachRoomID.key] = roomMessage
-                                self.roomTitles[eachRoomID.key] = roomTitle
-                                break
-                            }
-                        }
-                        
-                        
-                        if(self.roomNews.count == 0){
-                            self.noRoomNews = true
-                            self.roomNews[0] = "Keine News"
-                        }
-                        else{
-                            self.noRoomNews = false
-                        }
-                        self.newsTableView.reloadData()
-                    })
-                }
-            }
+    func arrayNews() -> [TitleNews] {
+        let arrayed = self.news.reversed()
+        var array = [TitleNews]()
+        for n in arrayed {
+            array.append(n.value)
+        }
+        return array
     }
-}
+    }

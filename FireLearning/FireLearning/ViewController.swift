@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 
 var globalUser: GlobalUser?
+var globalObservers: Observers?
 var roomsAsStudent: RoomsAsStudent?
 let roomsRef = Database.database().reference().child("rooms")
 
@@ -25,18 +26,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.styleNavBarRed()
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         do{
             try Auth.auth().signOut()
         }catch{
-            print("Error while signing out!")
+//            print("Error while signing out!")
         }
         Auth.auth().addStateDidChangeListener { (auth, user) in
-            print("StateFired")
-            print("\nMAIL: \(user?.email)\n")
+//            print("StateFired")
+//            print("\nMAIL: \(user?.email)\n")
             if(user != nil){
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 globalUser = GlobalUser(_email: userMail)
+                globalObservers = Observers()
                 roomsAsStudent = RoomsAsStudent()
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
@@ -97,6 +101,20 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+//    public func styleNavBarRed() {
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+//        self.navigationController?.navigationBar.barTintColor = UIColor.init(rgb: UsedColors.getColorNavBar())
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+//        self.tabBarController?.tabBar.barTintColor = UIColor.init(rgb: UsedColors.getColorNavBar())
+//        self.tabBarController?.tabBar.tintColor = UIColor.white
+//        for i in (self.tabBarController?.tabBar.items)! {
+//            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.init(rgb: UsedColors.getColorBoardGreen())], for: .normal)
+//            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+//        }
+//        
+//    }
     
     
 }

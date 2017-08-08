@@ -30,7 +30,7 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
         globalUser?.userRef?.observe(.value, with: { snapshot in
             self.exercises = User.getExercisesOwned(snapshot: snapshot)
             self.removeIfAlreadyExported()
-            print("\nAddExerciseViewController: viewDidLoad \(self.exercises)\n")
+//            print("\nAddExerciseViewController: viewDidLoad \(self.exercises)\n")
             
             self.tableView.reloadData()
             self.tableView.allowsMultipleSelectionDuringEditing = false

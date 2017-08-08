@@ -17,9 +17,12 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     var noRooms: Bool = true
     
 
+    @IBOutlet var asStudent: UIView!
+    @IBOutlet var asTeacher: UIView!
     @IBAction func toAsTeacher(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: false)
     }
+
     @IBOutlet var tableView: UITableView!
     
     var roomsAsStudent = [Room]()
@@ -27,6 +30,8 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Style.roundLabels(lblOne: self.asStudent, lblTwo: self.asTeacher)
         self.navigationItem.setHidesBackButton(true, animated:false);
         
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { snapshot in
@@ -81,11 +86,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
         let text = self.roomsAsStudent[indexPath.row].title
         cell.textLabel?.text = text
-        if self.noRooms == true {
-            cell.textLabel?.textColor = UIColor.lightGray
-        } else {
-            cell.textLabel?.textColor = UIColor.black
-        }
+        Style.styleCell(cell: cell, empty: self.noRooms)
         return cell
     }
     
@@ -108,5 +109,18 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
             self.roomsAsStudent[indexPath.row].removeStudent(email: (globalUser?.user?.email)!)
         }
         return [delete]
+    }
+    
+    func styleView() {
+        self.asTeacher.layer.cornerRadius = 10;
+        self.asStudent.layer.cornerRadius = 10;
+    }
+    
+    func styleCell(cell: UITableViewCell!) {
+        if self.noRooms == true {
+            cell.textLabel?.textColor = UIColor.lightGray
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+        }
     }
 }

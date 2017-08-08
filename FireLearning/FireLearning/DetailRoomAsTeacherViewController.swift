@@ -19,6 +19,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     @IBOutlet var descTextView: UITextView!
     @IBOutlet var newsTextView: UITextView!
     @IBOutlet var roomTitle: UINavigationItem!
+    @IBOutlet var btnIcon: UIBarButtonItem!
     @IBAction func editButton(_ sender: UIBarButtonItem) {
         self.editRoom()
     }
@@ -52,7 +53,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
             self.descLabel.sizeToFit()
             self.newsLabel.text = self.room.news
             self.newsLabel.sizeToFit()
-            print("\nDetailRoomAsTeacher: observe1")
+//            print("\nDetailRoomAsTeacher: observe1")
             self.roomTitle.title = self.room.title
             self.tableViewExercises.reloadData()
             self.tableViewStudents.reloadData()
@@ -199,8 +200,11 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     func toggleUIforEdit(){
         if self.isEditingRoom {
 //            self.editButtonTitle.title = "Bearbeiten"
+            self.btnIcon.image = UIImage.init(named: "EditPencilRed-20x20.png")
         } else {
 //            self.editButtonTitle.title = "Speichern"
+            self.btnIcon.image = UIImage.init(named: "check-symbol-20x20.png")
+            
         }
         if !self.isEditingRoom {
             
