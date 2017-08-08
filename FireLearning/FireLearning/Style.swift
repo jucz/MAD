@@ -12,8 +12,8 @@ import Foundation
 class Style {
        
     public static func roundLabels(lblOne: UIView!, lblTwo: UIView!) {
-        lblOne.layer.cornerRadius = 10;
-        lblTwo.layer.cornerRadius = 10;
+        lblOne.layer.cornerRadius = 10
+        lblTwo.layer.cornerRadius = 10
     }
     
     public static func styleCell(cell: UITableViewCell!, empty: Bool) {
@@ -22,5 +22,9 @@ class Style {
         } else {
             cell.textLabel?.textColor = UIColor.black
         }
+    }
+    
+    public static func roundCorners(button: UIButton!) {
+        button.layer.cornerRadius = 10
     }
 }

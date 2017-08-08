@@ -64,6 +64,9 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toDetailRoomAsTeacher"){
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            self.navigationItem.backBarButtonItem = backItem
             let detailViewController = segue.destination as? DetailRoomAsTeacherViewController
             detailViewController?.room = self.chosenRoom
         }

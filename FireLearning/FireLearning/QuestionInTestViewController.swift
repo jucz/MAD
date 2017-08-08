@@ -21,6 +21,7 @@ class QuestionInTestViewController: UIViewController {
     @IBOutlet var thrdPossOutlet: UIButton!
     @IBOutlet var fthPossOutlet: UIButton!
     
+    @IBOutlet var doneBtn: UIButton!
     @IBAction func firstPossButton(_ sender: Any) {
         saveUserChoice(_userChoice: 0)
     }
@@ -45,6 +46,7 @@ class QuestionInTestViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        Style.roundCorners(button: self.doneBtn)
 //        print(self.questionInTest.userChoice)
         initUI()
     }

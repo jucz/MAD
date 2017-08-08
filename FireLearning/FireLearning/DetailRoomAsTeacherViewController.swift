@@ -78,6 +78,9 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toExerciseExportedDetail"){
+            let backItem = UIBarButtonItem()
+            backItem.title = "Zurück"
+            self.navigationItem.backBarButtonItem = backItem
             let detailViewController = segue.destination as? ExportedAsTeacherViewController
             detailViewController?.room = self.room
             detailViewController?.exported = self.chosenExercise

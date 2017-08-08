@@ -20,6 +20,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
     @IBOutlet var secPossText: UITextField!
     @IBOutlet var thrdPossText: UITextField!
     
+    @IBOutlet var saveBtn: UIButton!
     @IBAction func saveButton(_ sender: Any) {
         saveQuestion()
     }
@@ -56,6 +57,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        Style.roundCorners(button: self.saveBtn)
 
     }
 

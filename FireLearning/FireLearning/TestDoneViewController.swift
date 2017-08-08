@@ -17,6 +17,8 @@ class TestDoneViewController: UIViewController {
     
     //View-Verbindungen
     
+    @IBOutlet var backToOverviewBtn: UIButton!
+    @IBOutlet var showResultsBtn: UIButton!
     @IBOutlet var percentageText: UILabel!
     
     @IBAction func backToOverviewButton(_ sender: Any) {
@@ -31,6 +33,8 @@ class TestDoneViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        Style.roundCorners(button: self.backToOverviewBtn)
+        Style.roundCorners(button: self.showResultsBtn)
         self.navigationItem.setHidesBackButton(true, animated:false);
         percentageText.text = "\(rightPercentage!) % \n richtig beantwortet"
         

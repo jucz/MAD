@@ -52,6 +52,11 @@ class Observers {
                                 for each in exerciseList {
                                     let exportedExerciseTmp = ExerciseExported(anyObject: each.value)
                                     let endDate = exportedExerciseTmp.getEndAsDate()
+                                    let startDate = exportedExerciseTmp.getStartAsDate()
+                                    var started = false
+                                    if startDate != nil && startDate! <= Date() {
+                                        started = true
+                                    }
                                     var notExpired = false
                                     if endDate != nil && endDate! > Date() {
                                         notExpired = true
@@ -59,9 +64,8 @@ class Observers {
                                     let notEmpty = exportedExerciseTmp.exportedExercise.questions.count > 0
                                     let notDone = exportedExerciseTmp.statistics.done[(globalUser?.userMail)!] == nil
                                     
-                                    if notExpired && notDone && notEmpty {
+                                    if started && notExpired && notDone && notEmpty {
                                         self.pendingExercises[self.pendingExercises.count] = RoomExercise(rid: eachRoomID.key, exercise: exportedExerciseTmp)
-                                        //                                       print(self.pendingExercises)
                                     }
                                 }
                                 self.handleNoExercises()

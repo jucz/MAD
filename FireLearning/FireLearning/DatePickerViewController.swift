@@ -15,6 +15,7 @@ class DatePickerViewController: UIViewController  {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
+    @IBOutlet var submitBtn: UIButton!
     @IBAction func submit(_ sender: UIButton) {
         
         roomsRef.child("rid\(self.room.rid)").child("exercises").setValue(self.addExercise().exercisesToAny())
@@ -27,6 +28,7 @@ class DatePickerViewController: UIViewController  {
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        Style.roundCorners(button: self.submitBtn)
         self.endDatePicker.date = NSDate(timeIntervalSinceNow: (((24 * 60) * 60) * 6)) as Date
     }
     

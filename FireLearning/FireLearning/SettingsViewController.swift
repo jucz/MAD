@@ -19,14 +19,20 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     @IBOutlet var lastnameTextField: UITextField!
     @IBOutlet var blockedTableView: UITableView!
     
-    @IBAction func saveButton(_ sender: Any) {
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveChanges()
-        //initUI()
     }
+//    @IBAction func saveButton(_ sender: Any) {
+//        saveChanges()
+//        //initUI()
+//    }
     
-    @IBAction func addUserToBlocked(_ sender: Any) {
+    @IBAction func addUserToBlocked(_ sender: UIButton) {
         addUserToBlockList()
     }
+//    @IBAction func addUserToBlocked(_ sender: Any) {
+//        addUserToBlockList()
+//    }
     
     @IBAction func logOutButton(_ sender: Any) {
         do{
