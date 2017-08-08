@@ -68,9 +68,9 @@ class QuestionsInTestViewController: UIViewController, UITableViewDelegate, UITa
                 if students != nil && (students?.count)! > 0 {
                     recentExercise?.exercise.statistics.moveUserToDone(email: (globalUser?.userMail)!, result: Int(rightPercentage))
 //                    recentExercise?.exercise.statistics.resultDone += Int(rightPercentage)/(recentExercise?.exercise.statistics.done.count)!
-//                    roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
-//                        .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
-//                        .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
+                    roomsRef.child("rid\((recentExercise?.rid)!)").child("exercises")
+                        .child("eid\((recentExercise?.exercise.exportedExercise.eid)!)")
+                        .child("statistics").setValue((recentExercise?.exercise.statistics.toAny())!)
                 } else {
                     self.present(AlertHelper.getGotRemovedWhileAnsweringErrorAlert(), animated: true, completion: nil)
                 }

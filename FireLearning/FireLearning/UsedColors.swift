@@ -37,4 +37,5 @@ class UsedColors{
     public static func getColorAttention() -> Int {
         return 0xFFCC66
     }
+    
 }

@@ -22,8 +22,9 @@ class CreateRoomViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.styleView()
         self.nameForm.text = ""
-        self.descriptionForm.text = "Beschreibung"
+        self.descriptionForm.text = ""
         self.nameForm.placeholder = "Name"
     }
     
@@ -34,6 +35,10 @@ class CreateRoomViewController: UIViewController {
     func createRoom() {
         Room.createRoom(title: self.nameForm.text!, email: (globalUser?.user?.email)!, description: self.descriptionForm.text!)
         
+    }
+    
+    func styleView() {
+        self.descriptionForm.layer.cornerRadius = 10
     }
     
 }

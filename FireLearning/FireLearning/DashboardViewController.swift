@@ -210,8 +210,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
-//                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observeSingleEvent(of: .value, with: { (snapshot) in
+                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").child("exercises").observe(.value, with: { (snapshot) in
                         if let tmpData = snapshot.value as? [String : AnyObject] {
                             //delete old room-exercises from data-array
                             for each in self.pendingExercises{
@@ -270,8 +269,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 var freeCounters = [Int]()
                 for eachRoomID in recentStudentRoomIDs {
-//                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
-                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    Database.database().reference().child("rooms").child("rid\(eachRoomID.key)").observe(.value, with: { (snapshot) in
                         //delete old room-news from data-array
                         print("fired\(eachRoomID.key)")
                         for each in self.roomNews{

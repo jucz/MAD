@@ -19,9 +19,13 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     @IBOutlet var descTextView: UITextView!
     @IBOutlet var newsTextView: UITextView!
     @IBOutlet var roomTitle: UINavigationItem!
-    @IBAction func editButton(_ sender: UIButton) {
+    @IBAction func editButton(_ sender: UIBarButtonItem) {
         self.editRoom()
     }
+//    @IBAction func editButton(_ sender: UIButton) {
+//        self.editRoom()
+//    }
+//    @IBOutlet var editButtonTitle: UIBarButtonItem!
 
     @IBOutlet var descLabel: UILabel!
     @IBOutlet var newsLabel: UILabel!
@@ -37,7 +41,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.descTextView.isHidden = true
@@ -193,21 +197,29 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     }
     
     func toggleUIforEdit(){
+        if self.isEditingRoom {
+//            self.editButtonTitle.title = "Bearbeiten"
+        } else {
+//            self.editButtonTitle.title = "Speichern"
+        }
         if !self.isEditingRoom {
             
-//            self.editButtonTitle.title = "Speichern"
+            self.descLabel.isHidden = true
             self.descTextView.isHidden = false
             self.descTextView.text = self.room.description
             self.resizeTextView(textView: self.descTextView)
 
             self.newsTextView.isHidden = false
+            self.newsLabel.isHidden = true
             self.newsTextView.text = self.room.news
             self.resizeTextView(textView: self.newsTextView)
            
         } else {
             
             self.descTextView.isHidden = true
+            self.descLabel.isHidden = false
             self.newsTextView.isHidden = true
+            self.newsLabel.isHidden = false
         }
     }
     
@@ -223,7 +235,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     func processAddingStudent(email: String) {
         self.room.students.append(email)
         let userRef = Database.database().reference().child("users").child(Helpers.convertEmail(email: email))
-        userRef.child("roomsAsStudent").observeSingleEvent(of: .value, with: {snapshot in
+        userRef.child("roomsAsStudent").observeSingleEvent(of: .value, with: { snapshot in
             var roomsAsStudent = [Int]()
             if let students = snapshot.value as? [Int] {
                 roomsAsStudent = students
@@ -260,6 +272,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
         let constraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
         textView.addConstraint(constraint)
     }
+    
     
     
     
