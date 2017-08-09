@@ -22,17 +22,10 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveChanges()
     }
-//    @IBAction func saveButton(_ sender: Any) {
-//        saveChanges()
-//        //initUI()
-//    }
     
     @IBAction func addUserToBlocked(_ sender: UIButton) {
         addUserToBlockList()
     }
-//    @IBAction func addUserToBlocked(_ sender: Any) {
-//        addUserToBlockList()
-//    }
     
     @IBAction func logOutButton(_ sender: Any) {
         do{
@@ -40,15 +33,22 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
             self.navigationController?.popViewController(animated: true)
             
         }catch{
-//            print("Error while signing out!")
+            self.present(AlertHelper.getAuthErrorAlert(_message: "Es ist ein Fehler aufgetreten.\nBitte versuch es später erneut!"),
+                         animated: true,
+                         completion: nil)
         }
     }
     
     //Help-Methoden
     
     func saveChanges(){
-        globalUser?.updateUser(_firstname: (firstnameTextField?.text)!, _lastname: (lastnameTextField?.text)!, _blocked: blockedUsers)
-        
+        var tmpBlockedUsers = blockedUsers
+        if(noBlockedUsers == true){
+            tmpBlockedUsers = []
+        }
+        globalUser?.updateUser(_firstname: (firstnameTextField?.text)!,
+                               _lastname: (lastnameTextField?.text)!,
+                               _blocked: tmpBlockedUsers)
     }
     
     func addUserToBlockList(){
