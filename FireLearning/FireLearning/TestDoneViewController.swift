@@ -36,7 +36,7 @@ class TestDoneViewController: UIViewController {
         Style.roundCorners(button: self.backToOverviewBtn)
         Style.roundCorners(button: self.showResultsBtn)
         self.navigationItem.setHidesBackButton(true, animated:false);
-        percentageText.text = "\(rightPercentage!) % \n richtig beantwortet"
+        percentageText.text = "\(Int(rightPercentage!)) %"
         
     }
 

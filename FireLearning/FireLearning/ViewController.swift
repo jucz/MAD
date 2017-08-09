@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 var globalUser: GlobalUser?
 var globalObservers: Observers?
-var roomsAsStudent: RoomsAsStudent?
+//var roomsAsStudent: RoomsAsStudent?
 let roomsRef = Database.database().reference().child("rooms")
 
 
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 globalUser = GlobalUser(_email: userMail)
                 globalObservers = Observers()
-                roomsAsStudent = RoomsAsStudent()
+//                roomsAsStudent = RoomsAsStudent()
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
                 }

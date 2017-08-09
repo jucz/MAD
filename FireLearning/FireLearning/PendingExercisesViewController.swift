@@ -94,6 +94,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
                 let titleVal = snapshot.value as? String
                 if titleVal != nil {
                     cell.detailTextLabel?.text = "\(titleVal!)"
+                    cell.detailTextLabel?.textColor = UIColor.lightGray
+                    
                 } else {
                     cell.detailTextLabel?.text = ""
                 }

@@ -3,20 +3,13 @@ import Foundation
 import FirebaseDatabase
 
 
-struct Exercise {
+class Exercise {
     
-    //static var qids: Int = 0
     var qids:Int = 0
     var eid: Int
     var title: String
     var questions = [Question]()
-    
-    //Constructors
-//    init(title: String) {
-//        Exercise.getRecentEid()
-//        self.eid = Exercise.eids
-//        self.title = title
-//    }
+
     
     init(title: String, qids: Int) {
         self.eid = User.eids
@@ -54,7 +47,7 @@ struct Exercise {
     }
     
     //Other
-    public mutating func addQuestion(question: Question){
+    public func addQuestion(question: Question){
         self.questions.append(question)
     }
     
@@ -70,40 +63,5 @@ struct Exercise {
             "questions": questions
         ]
     }
-    /*
-    public static func getRecentEid() {
-        Helpers.rootRef.child("eids").observe(.value, with: { snapshot in
-            Exercise.eids = snapshot.value as! Int
-        })
-        Helpers.rootRef.child("eids").setValue(Exercise.eids+1)
-    }*/
-    
-    
-    //Setter
-    /*public mutating func setEid(eid: Int) {
-        self.eid = eid
-    }
-    
-    public mutating func setTitle(title: String){
-        self.title = title
-    }
-    
-    public mutating func setQuestions(questions: [Int:Question]){
-        self.questions = questions
-    }*/
-    
-    
-    //Getter
-    /*public func getEid() -> Int {
-        return self.eid
-    }
-    
-    public func getTitle() -> String {
-        return self.title
-    }
-    
-    public func getQuestions() -> [Int:Question] {
-        return self.questions
-    }*/
     
 }

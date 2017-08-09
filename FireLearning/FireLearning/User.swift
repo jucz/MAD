@@ -6,7 +6,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-struct User {
+class User {
     
     static var eids: Int = 0
     let email: String
@@ -82,7 +82,7 @@ struct User {
         ]
     }
     
-    public mutating func addExercise(exercise: Exercise) {
+    public func addExercise(exercise: Exercise) {
         self.exercisesOwned.append(exercise)
     }
     

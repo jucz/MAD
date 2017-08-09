@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct ExerciseExported {
+class ExerciseExported {
     
     var exportedExercise: Exercise!
     var start: String?
@@ -43,10 +43,7 @@ struct ExerciseExported {
     public func toAny() -> Any {
         let exportedExercise = self.exportedExercise.toAny()
         let statistics = self.statistics.toAny()
-//        let dateFormatter = DateFormatter()
-//        print("START toAny(): \(self.start)")
-//        print("END toAny(): \(self.end)")
-        
+  
         return [
             "exportedExercise": exportedExercise,
             "start": self.start ?? "",
@@ -55,19 +52,11 @@ struct ExerciseExported {
         ]
     }
     
-    public mutating func createRoomInDB() {
+    public func createRoomInDB() {
         Helpers.rootRef.child("rooms").setValue(self.toAny())
     }
     
-    
-    //Setter
-    //not necessary yet
-    
-    
-    //Getter
-//    public func getexportedExercise() -> Exercise {
-//        return self.exportedExercise
-//    }
+
     
     public func getStart() -> String {
         if self.start == nil {

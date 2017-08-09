@@ -2,7 +2,7 @@
 import Foundation
 import FirebaseDatabase
 
-struct Room {
+class Room {
     
     static var rids = 0
     
@@ -61,11 +61,11 @@ struct Room {
     }
     
     //Others
-    public mutating func addStudent(email: String) {
+    public func addStudent(email: String) {
         self.students.append(email)
     }
     
-    public mutating func addExercise(exercise: Exercise, start: String?, end: String?) {
+    public func addExercise(exercise: Exercise, start: String?, end: String?) {
         self.exercises.append(ExerciseExported(exercise: exercise, start: start, end: end))
     }
     

@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Statistics {
+class Statistics {
 
     var done = [String:Int]() //key: email, value: rounded percent value
     var notDone = [String]() //emails of not done users
@@ -52,7 +52,7 @@ struct Statistics {
     
     //Others
     //Wird aufgerufen, um eine Satistik zu berechnen
-    public mutating func calculateResults(studentsTotal: Int) {
+    public func calculateResults(studentsTotal: Int) {
         var resultComplete: Int = 0
         if self.done.count > 0 {
             for user in self.done {
@@ -78,7 +78,7 @@ struct Statistics {
         ]
     }
     
-    public mutating func moveUserToDone(email: String, result: Int) {
+    public func moveUserToDone(email: String, result: Int) {
         self.done[email] = result
         if self.notDone.count > 0 {
             for index in 0...self.notDone.count-1 {
@@ -100,29 +100,5 @@ struct Statistics {
 //        print("\nDONE INDEXED: \(doneIndexed)\n")
         return doneIndexed
     }
-    
-    
-    
-    //Setter
-    //not necessary yet
-    
-    
-    //Getter
-    /*public func getDone() -> [String:Int]? {
-        return self.done
-    }
-    
-    public func getNotDone() -> [String]? {
-        return self.notDone
-    }
-    
-    public func getResultComplete() -> Int {
-        return self.resultComplete
-    }
-    
-    public func getResultDone() -> Int {
-        return self.resultDone
-    }*/
-    
     
 }

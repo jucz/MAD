@@ -91,6 +91,8 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 Database.database().reference().child("rooms").child("rid\((globalObservers?.pendingExercises[indexPath.row]?.rid)!)").child("title").observeSingleEvent(of: .value, with: { (snapshot) in
                     let roomTitle = snapshot.value as! String
                     cell.detailTextLabel?.text = "\(roomTitle)"
+                    cell.detailTextLabel?.textColor = UIColor.lightGray
+
                 })
                 
                 let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()
@@ -147,6 +149,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 cell.textLabel?.text = array[indexPath.row].news
                 cell.detailTextLabel?.text = array[indexPath.row].title
+                cell.detailTextLabel?.textColor = UIColor.lightGray
                 cell.textLabel?.textColor = UIColor.black
                 
             } else {
@@ -197,7 +200,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
         
         globalUser?.userRef?.child("roomsAsStudent").observe(.value, with: { (snapshot) in
             //tableData reset:
-            print("OBSERVE ALL NEWS NEW")
+//            print("OBSERVE ALL NEWS NEW")
             for handle in self.observersNews {
                 Database.database().reference().removeObserver(withHandle: handle)
             }
@@ -214,7 +217,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                             if news == nil || news == "" {
                                 self.news.removeValue(forKey: rid)
                                 if self.news.count == 0 {
-                                    print("OBSERVE NEWS: rid\(rid) NO NEWS")
+//                                    print("OBSERVE NEWS: rid\(rid) NO NEWS")
                                     self.noNews = true
                                     self.news[-1] = TitleNews(title: "", news: "Keine Neuigkeiten")
                                     self.newsTableView.reloadData()
@@ -226,7 +229,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
                                         self.news.removeValue(forKey: -1)
                                         self.noNews = false
                                         self.news[rid] = TitleNews(title: title!, news: news!)
-                                        print("OBSERVE NEWS: rid\(rid)")
+//                                        print("OBSERVE NEWS: rid\(rid)")
                                     }
                                     self.newsTableView.reloadData()
                                 })
