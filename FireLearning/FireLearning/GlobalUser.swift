@@ -28,7 +28,6 @@ class GlobalUser{
     }
     
     public func updateUser(_firstname: String, _lastname: String, _blocked: [String] ){
-        //let blocked = Helpers.toAny(array: _blocked)
         userRef?.updateChildValues([
             "lastname": _lastname,
             "firstname": _firstname,
@@ -39,7 +38,6 @@ class GlobalUser{
     
     public func addExerciseToDatabaseForGlobalUser(_exercise: Exercise){
         let eidRef = self.userRef?.child("eids")
-        //let eidRef = Database.database().reference().child("eids")
         eidRef?.observeSingleEvent(of: .value, with: { snapshot in
             let id = snapshot.value as! Int
             var tmpExercise = Exercise(_exercise: _exercise)

@@ -69,23 +69,27 @@ class ViewController: UIViewController {
                     
                     switch errCode {
                     case .invalidEmail:
-                        self.present(AlertHelper.getLoginErrorAlert(_message: "Bitte gib eine gültige E-Mail ein!"),
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Bitte gib eine gültige E-Mail ein!"),
                                      animated: true,
                                      completion: nil)
                     case .tooManyRequests:
-                        self.present(AlertHelper.getLoginErrorAlert(_message: "Du hast zu viele Anfragen gesendet.\nVersuch es später nochmal!"),
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Du hast zu viele Anfragen gesendet.\nVersuch es später nochmal!"),
                                      animated: true,
                                      completion: nil)
                     case .wrongPassword:
-                        self.present(AlertHelper.getLoginErrorAlert(_message: "Bitte gib ein gültiges Passwort ein!"),
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Bitte gib ein gültiges Passwort ein!"),
                                      animated: true,
                                      completion: nil)
                     case .userNotFound:
-                        self.present(AlertHelper.getLoginErrorAlert(_message: "Leider konnte dieser Nutzer nicht gefunden werden!"),
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Leider konnte dieser Nutzer nicht gefunden werden!"),
+                                     animated: true,
+                                     completion: nil)
+                    case .networkError:
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Es ist ein Netzwerkfehler aufgetreten.\nBitte überprüfe deine Verbindung!"),
                                      animated: true,
                                      completion: nil)
                     default:
-                        self.present(AlertHelper.getLoginErrorAlert(_message: "Es ist ein Fehler aufgetreten.\n Bitte versuch es später nochmal!"),
+                        self.present(AlertHelper.getAuthErrorAlert(_message: "Es ist ein Fehler aufgetreten.\n Bitte versuch es später nochmal!"),
                                      animated: true,
                                      completion: nil)
                     }
@@ -101,21 +105,5 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-//    public func styleNavBarRed() {
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-//        self.navigationController?.navigationBar.barTintColor = UIColor.init(rgb: UsedColors.getColorNavBar())
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-//        self.tabBarController?.tabBar.barTintColor = UIColor.init(rgb: UsedColors.getColorNavBar())
-//        self.tabBarController?.tabBar.tintColor = UIColor.white
-//        for i in (self.tabBarController?.tabBar.items)! {
-//            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.init(rgb: UsedColors.getColorBoardGreen())], for: .normal)
-//            i.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
-//        }
-//        
-//    }
-    
-    
 }
 
