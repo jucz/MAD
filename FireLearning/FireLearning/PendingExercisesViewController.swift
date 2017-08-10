@@ -28,7 +28,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
     
     //System-Methoden
     override func viewDidLoad() {
-//        self.pendingExercises = [:]
+        //        self.pendingExercises = [:]
+        self.hideKeyboardOnTabAnywhere()
         
         Style.roundLabels(lblOne: self.pendingEx, lblTwo: self.createdEx)
         

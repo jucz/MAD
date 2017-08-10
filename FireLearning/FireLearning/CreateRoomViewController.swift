@@ -22,6 +22,7 @@ class CreateRoomViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         self.styleView()
         self.nameForm.text = ""
         self.descriptionForm.text = ""

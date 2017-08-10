@@ -25,29 +25,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.styleNavBarRed()
+        self.hideKeyboardOnTabAnywhere()
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         do{
             try Auth.auth().signOut()
         }catch{
-//            print("Error while signing out!")
+            
         }
         Auth.auth().addStateDidChangeListener { (auth, user) in
-//            print("StateFired")
-//            print("\nMAIL: \(user?.email)\n")
             if(user != nil){
                 let userMail = Helpers.convertEmail(email: (user?.email)!)
                 globalUser = GlobalUser(_email: userMail)
                 globalObservers = Observers()
-//                roomsAsStudent = RoomsAsStudent()
                 DispatchQueue.main.async(){
                     self.performSegue(withIdentifier: "login", sender: self)
                 }
             }
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }

@@ -42,6 +42,7 @@ class DetailRoomAsTeacherViewController: UIViewController, UITableViewDataSource
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
 
         
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in

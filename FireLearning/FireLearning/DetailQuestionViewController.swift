@@ -35,6 +35,7 @@ class DetailQuestionViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         globalUser?.userRef?.child("exercisesOwned").child("eid\(eidForExercise!)").child("questions").observe(.value, with: { (snapshot) in
 //            print("observe on detailquestions triggered")
             let tmpQuestions = snapshot.value as? [String: AnyObject]

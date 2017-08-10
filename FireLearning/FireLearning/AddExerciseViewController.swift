@@ -24,6 +24,7 @@ class AddExerciseViewController: UIViewController, UITableViewDataSource, UITabl
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         
         self.datepicker = UIDatePicker(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 250))
         

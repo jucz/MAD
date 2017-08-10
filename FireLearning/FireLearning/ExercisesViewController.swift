@@ -41,7 +41,7 @@ class ExercisesViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         
         Style.roundLabels(lblOne: self.createdEx, lblTwo: self.pendingEx)
-        
+        self.hideKeyboardOnTabAnywhere()
         globalUser?.userRef?.child("exercisesOwned").observe(.value, with: { snapshot in
 //            print("observe on ExercisesOwned for User triggered")
             self.exercises = []

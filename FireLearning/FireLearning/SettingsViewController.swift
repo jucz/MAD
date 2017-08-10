@@ -68,20 +68,21 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
                                         }
                                         if(user != ""){
                                             let userEmail = Helpers.convertEmail(email: user)
-                                            
-                                            Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
-                                                let value = snapshot.value as? [String: AnyObject]
-                                                for each in value!{
-                                                    if(userEmail == each.key){
-                                                        globalUser?.user?.blocked.append(user)
-                                                        globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
-                                                        return
+                                            if(userEmail != globalUser?.userMail){
+                                                Database.database().reference().child("users").observeSingleEvent(of: .value, with: {snapshot in
+                                                    let value = snapshot.value as? [String: AnyObject]
+                                                    for each in value!{
+                                                        if(userEmail == each.key){
+                                                            globalUser?.user?.blocked.append(user)
+                                                            globalUser?.userRef?.child("blocked").setValue(globalUser?.user?.blocked)
+                                                            return
+                                                        }
                                                     }
-                                                }
-                                                
-                                                self.present(AlertHelper.getUserNotFoundForBlocked(), animated: true, completion: nil)
-                                                
-                                            })
+                                                    
+                                                    self.present(AlertHelper.getUserNotFoundForBlocked(), animated: true, completion: nil)
+                                                    
+                                                })
+                                            }
                                         }
         }
         
@@ -99,6 +100,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource, UITableVie
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         globalUser?.userRef?.observe(.value, with: { (snapshot) in
             globalUser?.user = User(snapshot: snapshot)

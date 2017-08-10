@@ -30,6 +30,7 @@ class DashboardViewController: UIViewController, UITableViewDataSource, UITableV
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         globalObservers?.tableViewsPendingExercises.append(self.pendingExercisesTableView)
         globalObservers?.initObserversPendingExercises()
 

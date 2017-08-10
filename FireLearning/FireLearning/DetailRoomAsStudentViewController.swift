@@ -27,6 +27,7 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         
 //        self.roomTitle.title = self.room.title
 //        self.descLabel.text = room.description
