@@ -34,7 +34,14 @@ class CreateRoomViewController: UIViewController {
     }
     
     func createRoom() {
-        Room.createRoom(title: self.nameForm.text!, email: (globalUser?.user?.email)!, description: self.descriptionForm.text!)
+        if(self.nameForm.text! != ""){
+            Room.createRoom(title: self.nameForm.text!, email: (globalUser?.user?.email)!, description: self.descriptionForm.text!)
+        }
+        else{
+            self.present(AlertHelper.getCreateClassroomErrorAlert(),
+                         animated: true,
+                         completion: nil)
+        }
         
     }
     

@@ -109,6 +109,16 @@ class AlertHelper{
         return alertController
     }
     
+    //alert for no class room title
+    public static func getCreateClassroomErrorAlert() ->UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: "Bitte gib einen Namen für den Klassenraum ein!",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
+    
     //alert if trying to add a user who blocked you
     public static func getYouGotBlockedAlert() ->UIAlertController {
         let alertController = UIAlertController(title: "Fehler", message:
