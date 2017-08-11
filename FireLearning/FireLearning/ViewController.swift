@@ -51,13 +51,13 @@ class ViewController: UIViewController {
 
     @IBAction func loginButton(_ sender: Any) {
 
-        //let mail = mailOutlet.text!
+        let mail = mailOutlet.text!
 //        let mail = "leo@swag.com"
-        let mail = "j@app.de"
+//        let mail = "j@app.de"
         
-        //let password = passwordOutlet.text!
+        let password = passwordOutlet.text!
 //        let password = "swag12"
-        let password = "j@app.de"
+//        let password = "j@app.de"
         
         loginHit = true;
         Auth.auth().signIn(withEmail: mail, password: password) { (user, error) in
