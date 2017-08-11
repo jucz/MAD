@@ -126,4 +126,24 @@ class AlertHelper{
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
         return alertController
     }
+    
+    //if exercise expired
+    public static func getExerciseExpired(end: String) -> UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: "Dieser Fragebogen ist seit dem \(end) abgelaufen!",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
+    
+    //if exercise expired
+    public static func getExerciseNotStartedYet(start: String) -> UIAlertController {
+        let alertController = UIAlertController(title: "Fehler",
+                                                message: "Dieser Fragebogen wird erst am \(start) freigegeben!",
+                                                preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+        
+        return alertController
+    }
 }

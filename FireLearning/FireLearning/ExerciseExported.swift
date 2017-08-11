@@ -31,7 +31,6 @@ class ExerciseExported {
     ///JULIAN
     init(anyObject: AnyObject){
         self.exportedExercise = Exercise(anyObject: (anyObject["exportedExercise"])! as AnyObject)
-//        print("\nSTART IN KONSTRUKTOR: \(anyObject["start"]! as! String!)")
         self.start = anyObject["start"] as? String ?? ""
         self.end = anyObject["end"] as? String ?? ""
         self.statistics = Statistics(anyObject: (anyObject["statistics"] as? AnyObject)!)
@@ -97,9 +96,19 @@ class ExerciseExported {
         return true
     }
     
-//    public func getStatistics() -> Statistics {
-//        return self.statistics
-//    }
+    public func started() -> Bool {
+        if self.getStartAsDate()! <= Date() {
+            return true
+        }
+        return false
+    }
     
+    public func expired() -> Bool {
+        if self.getEndAsDate()! < Date() {
+            return true
+        }
+        return false
+    }
+
     
 }

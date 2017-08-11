@@ -52,9 +52,9 @@ class Room {
         Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
             let rid = snapshot.value as! Int
             Helpers.rootRef.child("rids").setValue(rid+1)
-            var room = Room(title: title, email: email, rid: rid)
+            let room = Room(title: title, email: email, rid: rid)
             room.description = description
-            room.news = "…"
+            room.news = ""
             room.createRoomInDB()
             globalUser?.userRef?.child("roomsAsTeacher").setValue(room.appendRoomToGlobalUser(rid: rid))
         })
@@ -85,15 +85,7 @@ class Room {
             "exercises": self.exercisesToAny()
         ]
     }
-    
-//    public static func getRecentRid() {
-//        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
-//            let rids = snapshot.value as! Int
-//            Room.rids = rids
-//            Helpers.rootRef.child("rids").setValue(rids+1)
-//        })
-//    }
-    
+
     
     func appendRoomToGlobalUser(rid: Int) -> [Int] {
         globalUser?.user?.roomsAsTeacher.append(rid)

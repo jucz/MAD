@@ -19,8 +19,6 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     
     @IBOutlet var roomTitle: UINavigationItem!
     @IBOutlet var descLabel: UILabel!
-//    @IBOutlet var roomTitle: UINavigationItem!
-//    @IBOutlet var tableViewExercises: UITableView!
     @IBOutlet var newsLabel: UILabel!
     
     @IBOutlet var tableViewExercises: UITableView!
@@ -29,15 +27,8 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
         super.viewDidLoad()
         self.hideKeyboardOnTabAnywhere()
         
-//        self.roomTitle.title = self.room.title
-//        self.descLabel.text = room.description
-//        self.newsLabel.text = room.news
-//        self.descLabel.sizeToFit()
-//        self.newsLabel.sizeToFit()
-        
         roomsRef.child("rid\(self.room.rid)").observe(.value, with: { snapshot in
             self.room = Room(snapshot: snapshot)
-//            print("\nDetailRoomAsStudent: observe1")
             self.tableViewExercises.reloadData()
             self.tableViewExercises.allowsMultipleSelectionDuringEditing = false
             self.tableViewExercises.dataSource = self
@@ -63,14 +54,10 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "startTestFromRooms"){
             _ = segue.destination as? QuestionsInTestViewController
-            //questionsInTestViewController?.questions = []
             questionsInTest = []
-//            let recentExercise = self.chosenExercise
             
             for each in (self.chosenExercise?.exportedExercise.questions)!{
-                //question template convert to real question
                 let realQuestion = QuestionInTest(_question: each)
-                //questionsInTestViewController?.questions.append(realQuestion)
                 questionsInTest.append(realQuestion)
             }
         }
@@ -94,20 +81,25 @@ class DetailRoomAsStudentViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if tableView == self.tableViewExercises {
             self.chosenExercise = self.room.exercises[indexPath.row]
             recentExercise = RoomExercise(rid: self.room.rid, exercise: self.chosenExercise!)
-            if self.chosenExercise?.alreadyAnswered(email: (globalUser?.userMail)!) == false {
-                self.performSegue(withIdentifier: "startTestFromRooms", sender: nil)
-            } else {
+            
+            if self.chosenExercise?.alreadyAnswered(email: (globalUser?.userMail)!) == true {
                 self.present(AlertHelper.getAlreadyAnsweredErrorAlert(), animated: true, completion: nil)
+                
+            } else if self.chosenExercise?.started() == false {
+                self.present(AlertHelper.getExerciseNotStartedYet(start: (self.chosenExercise?.getStart())!), animated: true, completion: nil)
+                
+            } else if self.chosenExercise?.expired() == true {
+                self.present(AlertHelper.getExerciseExpired(end: (self.chosenExercise?.getEnd())!), animated: true, completion: nil)
+
+            } else {
+                self.performSegue(withIdentifier: "startTestFromRooms", sender: nil)
             }
         }
     }
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
     
     
 }

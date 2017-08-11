@@ -154,7 +154,7 @@ class RoomsViewAsTeacherController: UIViewController, UITableViewDataSource, UIT
     /** Aktualisiert alle Studenten des Raums in der Firebase und entfernt dann den Raum komplett
      **/
     func removeStudentsAndThenRoom(room: Room) {
-        var roomTmp = room
+        let roomTmp = room
         roomsRef.child("rid\(roomTmp.rid)").child("students").observeSingleEvent(of: .value, with: { snapshot in
             if let students = snapshot.value as? [String] {
                 roomTmp.students = students

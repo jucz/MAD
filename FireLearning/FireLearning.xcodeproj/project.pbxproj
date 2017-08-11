@@ -10,7 +10,6 @@
 		080642B27EA272218375ED5F /* Pods_FireLearningUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E517B1AF995A6913D0073600 /* Pods_FireLearningUITests.framework */; };
 		0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A033DDF1F1F6D83008967BE /* Helpers.swift */; };
 		0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A041D9C1F366AF00072D67A /* RoomExercise.swift */; };
-		0A2310971F321ED000B03D90 /* QuestionsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */; };
 		0A286D1F1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */; };
 		0A286D251F2E1E5A00587420 /* RoomsAsStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */; };
 		0A286D271F2F2C9200587420 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A286D261F2F2C9100587420 /* AddExerciseViewController.swift */; };
@@ -85,7 +84,6 @@
 /* Begin PBXFileReference section */
 		0A033DDF1F1F6D83008967BE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0A041D9C1F366AF00072D67A /* RoomExercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomExercise.swift; sourceTree = "<group>"; };
-		0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsAsStudentViewController.swift; sourceTree = "<group>"; };
 		0A286D1E1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRoomAsTeacherViewController.swift; sourceTree = "<group>"; };
 		0A286D241F2E1E5A00587420 /* RoomsAsStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsStudentViewController.swift; sourceTree = "<group>"; };
 		0A286D261F2F2C9100587420 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 				0A286D281F2F5DC200587420 /* DatePickerViewController.swift */,
 				0A286D2C1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift */,
 				0A286D2E1F30954F00587420 /* CreateRoomViewController.swift */,
-				0A2310961F321ED000B03D90 /* QuestionsAsStudentViewController.swift */,
 			);
 			name = Classrooms;
 			sourceTree = "<group>";
@@ -726,7 +723,6 @@
 				0A286D1F1F2CF0C000587420 /* DetailRoomAsTeacherViewController.swift in Sources */,
 				0A286D2D1F2F9B7600587420 /* DetailRoomAsStudentViewController.swift in Sources */,
 				84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */,
-				0A2310971F321ED000B03D90 /* QuestionsAsStudentViewController.swift in Sources */,
 				849CD4981F34672F00C4E08E /* DetailResultQuestionsViewController.swift in Sources */,
 				8451C29C1F37195400FA0D18 /* UIColorExtension.swift in Sources */,
 				849CD48A1F2F3C3C00C4E08E /* PendingExercisesViewController.swift in Sources */,

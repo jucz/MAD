@@ -2230,11 +2230,11 @@
             </objects>
             <point key="canvasLocation" x="1091" y="36"/>
         </scene>
-        <!--Aufgaben-->
+        <!--Fragebögen-->
         <scene sceneID="uvE-LX-Vbe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KGs-bC-XGR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Aufgaben" image="check-box_20x20" id="HUl-yI-dau" userLabel="Aufgaben"/>
+                    <tabBarItem key="tabBarItem" title="Fragebögen" image="check-box_20x20" id="HUl-yI-dau" userLabel="Aufgaben"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="O1d-NN-9Cf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UCk-8x-NeG">
