@@ -57,6 +57,7 @@ class CreateQuestionForExistingExerciseViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         Style.roundCorners(button: self.saveBtn)
 
     }

@@ -58,6 +58,7 @@ class CreateExerciseViewController: UIViewController, UITableViewDataSource, UIT
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         exerciseQuestions = []
         noQuestionsInTmpExercise = true
         let tmpQuestion = Question( question: "bisher keine Frage erstellt", qid: 1, answer: " ", possibilities: [])

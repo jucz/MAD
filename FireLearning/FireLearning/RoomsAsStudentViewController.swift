@@ -30,6 +30,7 @@ class RoomsViewAsStudentController: UIViewController, UITableViewDataSource, UIT
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         
         Style.roundLabels(lblOne: self.asStudent, lblTwo: self.asTeacher)
         self.navigationItem.setHidesBackButton(true, animated:false);

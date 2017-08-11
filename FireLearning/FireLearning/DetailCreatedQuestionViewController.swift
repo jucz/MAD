@@ -34,6 +34,7 @@ class DetailCreatedQuestionViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         initView()
         
     }

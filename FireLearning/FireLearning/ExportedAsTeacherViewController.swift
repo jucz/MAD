@@ -25,6 +25,7 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         roomsRef.child("rid\(self.room.rid)")
             .child("exercises")
             .child("eid\(self.exported.exportedExercise.eid)")

@@ -27,6 +27,7 @@
 		0AFE4BDD1F39B63E006753CE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE4BDC1F39B63E006753CE /* Style.swift */; };
 		0AFE4BDF1F3A2930006753CE /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE4BDE1F3A2930006753CE /* Observers.swift */; };
 		6433E8C4C5AB20C4D119DDC9 /* Pods_FireLearningTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7653224ED6B044F898DF7D1 /* Pods_FireLearningTests.framework */; };
+		84066EDD1F3C8B8E0031C12A /* ViewControlleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84066EDC1F3C8B8E0031C12A /* ViewControlleExtension.swift */; };
 		8451C2981F3670D500FA0D18 /* UsedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451C2971F3670D500FA0D18 /* UsedColors.swift */; };
 		8451C29C1F37195400FA0D18 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451C29B1F37195400FA0D18 /* UIColorExtension.swift */; };
 		8451C29F1F37221B00FA0D18 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451C29E1F37221B00FA0D18 /* DoubleExtension.swift */; };
@@ -102,6 +103,7 @@
 		0AFE4BDE1F3A2930006753CE /* Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		491304717FBDB5BBD7081EAF /* Pods-FireLearning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearning.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearning/Pods-FireLearning.release.xcconfig"; sourceTree = "<group>"; };
 		59068E92921DBEB9041494A5 /* Pods-FireLearning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireLearning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireLearning/Pods-FireLearning.debug.xcconfig"; sourceTree = "<group>"; };
+		84066EDC1F3C8B8E0031C12A /* ViewControlleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControlleExtension.swift; sourceTree = "<group>"; };
 		8451C2971F3670D500FA0D18 /* UsedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsedColors.swift; sourceTree = "<group>"; };
 		8451C29B1F37195400FA0D18 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8451C29E1F37221B00FA0D18 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				8451C29B1F37195400FA0D18 /* UIColorExtension.swift */,
 				8451C29E1F37221B00FA0D18 /* DoubleExtension.swift */,
 				8451C2A01F37291F00FA0D18 /* DateExtension.swift */,
+				84066EDC1F3C8B8E0031C12A /* ViewControlleExtension.swift */,
 			);
 			name = ExtensionClasses;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */,
 				0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */,
 				849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */,
+				84066EDD1F3C8B8E0031C12A /* ViewControlleExtension.swift in Sources */,
 				84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */,
 				0AFE4BDD1F39B63E006753CE /* Style.swift in Sources */,
 				0AD406991F1D253400FD2533 /* Room.swift in Sources */,

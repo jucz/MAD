@@ -29,6 +29,7 @@ class DetailExerciseViewController: UIViewController, UITableViewDataSource, UIT
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         globalUser?.userRef?.child("exercisesOwned").child("eid\(exercise.eid)").child("questions").observe(.value, with: { (snapshot) in
 //            print("observe on questions for User exercises triggered")
             self.questions = []

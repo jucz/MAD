@@ -26,6 +26,7 @@ class RegisterViewController: UIViewController {
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         displayOKTextField(_textField: vornameTextField)
         displayOKTextField(_textField: nachnameTextField)
         displayOKTextField(_textField: emailTextField)

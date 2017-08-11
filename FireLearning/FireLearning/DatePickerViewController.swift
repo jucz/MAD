@@ -28,6 +28,7 @@ class DatePickerViewController: UIViewController  {
     //System
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTabAnywhere()
         Style.roundCorners(button: self.submitBtn)
         self.endDatePicker.date = NSDate(timeIntervalSinceNow: (((24 * 60) * 60) * 6)) as Date
     }
