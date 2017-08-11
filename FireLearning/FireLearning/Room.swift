@@ -4,7 +4,7 @@ import FirebaseDatabase
 
 class Room {
     
-    static var rids = 0
+//    static var rids = 0
     
     var rid: Int
     var title: String
@@ -86,13 +86,13 @@ class Room {
         ]
     }
     
-    public static func getRecentRid() {
-        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
-            let rids = snapshot.value as! Int
-            Room.rids = rids
-            Helpers.rootRef.child("rids").setValue(rids+1)
-        })
-    }
+//    public static func getRecentRid() {
+//        Helpers.rootRef.child("rids").observeSingleEvent(of: .value, with: { snapshot in
+//            let rids = snapshot.value as! Int
+//            Room.rids = rids
+//            Helpers.rootRef.child("rids").setValue(rids+1)
+//        })
+//    }
     
     
     func appendRoomToGlobalUser(rid: Int) -> [Int] {
@@ -169,7 +169,6 @@ class Room {
         roomsRef.child("rid\(self.rid)").child("students").setValue(students)
         let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
         userRef.observeSingleEvent(of: .value, with: { snapshot in
-//            print("\n\(snapshot)\n")
             var roomsAsStudent = snapshot.value as? [Int]
             if roomsAsStudent != nil {
                 var index = 0
@@ -200,7 +199,6 @@ class Room {
         roomsRef.child("rid\(self.rid)").child("students").setValue(students)
         let userRef = Database.database().reference().child("users").child(userEmail).child("roomsAsStudent")
         userRef.observeSingleEvent(of: .value, with: { snapshot in
-//            print("\n\(snapshot)\n")
             var roomsAsStudent = snapshot.value as? [Int]
             if roomsAsStudent != nil {
                 var index = 0

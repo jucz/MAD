@@ -25,19 +25,19 @@ class User {
         self.lastname = lastname
     }
     
-    //Wird benutzt, um User aus aus Firebase bezogenen Daten zu generieren
-    init(email: String, firstname: String, lastname: String,
-         exercisesOwned: [Exercise], blocked: [String], roomsAsTeacher: [Int],
-         roomsAsStudent: [Int]) {
-        
-        self.email = email
-        self.firstname = firstname
-        self.lastname = lastname
-        self.exercisesOwned = exercisesOwned
-        self.blocked = blocked
-        self.roomsAsTeacher = roomsAsTeacher
-        self.roomsAsStudent = roomsAsStudent
-    }
+//    //Wird benutzt, um User aus aus Firebase bezogenen Daten zu generieren
+//    init(email: String, firstname: String, lastname: String,
+//         exercisesOwned: [Exercise], blocked: [String], roomsAsTeacher: [Int],
+//         roomsAsStudent: [Int]) {
+//        
+//        self.email = email
+//        self.firstname = firstname
+//        self.lastname = lastname
+//        self.exercisesOwned = exercisesOwned
+//        self.blocked = blocked
+//        self.roomsAsTeacher = roomsAsTeacher
+//        self.roomsAsStudent = roomsAsStudent
+//    }
     
     ///JULIAN
     init(snapshot: DataSnapshot) {

@@ -71,8 +71,8 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         return (globalObservers?.pendingExercises.count)!
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "pendingExerciseCell", for: indexPath)
         let text = globalObservers?.pendingExercises[indexPath.row]?.exercise.exportedExercise.title
         
@@ -146,7 +146,7 @@ class PendingExercisesViewController: UIViewController,UITableViewDelegate, UITa
         }
         return cell
     }
-    
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(globalObservers?.noPendingExercises == false){
             let endDate = globalObservers?.pendingExercises[indexPath.row]?.exercise.getEndAsDate()

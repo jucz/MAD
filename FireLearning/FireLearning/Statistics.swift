@@ -90,7 +90,17 @@ class Statistics {
         }
     }
     
-    public func getIndexedMapOfDone() -> [Int:DoneUser]{
+    public func getResultsOfDone() -> [DoneUser] {
+        var results = [DoneUser]()
+        var i = 0
+        for s in self.done {
+            results.append(DoneUser(email: s.key, result: s.value))
+            i += 1
+        }
+        return results
+    }
+    
+    public func getIndexedMapOfDone() -> [Int:DoneUser] {
         var doneIndexed = [Int:DoneUser]()
         var i = 0
         for s in self.done {

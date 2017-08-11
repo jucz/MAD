@@ -66,9 +66,14 @@ class ExportedAsTeacherViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let doneIndexed = self.exported.statistics.getIndexedMapOfDone()
+        let results = self.exported.statistics.getResultsOfDone()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
-        cell.textLabel?.text = "\(Helpers.reconvertEmail(email:(doneIndexed[indexPath.row]?.email)!)): \((doneIndexed[indexPath.row]?.result)!) %"
+        cell.textLabel?.text = "\(Helpers.reconvertEmail(email:(results[indexPath.row].email))): \((results[indexPath.row].result)) %"
         return cell
+
+//        let doneIndexed = self.exported.statistics.getIndexedMapOfDone()
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier", for: indexPath)
+//        cell.textLabel?.text = "\(Helpers.reconvertEmail(email:(doneIndexed[indexPath.row]?.email)!)): \((doneIndexed[indexPath.row]?.result)!) %"
+//        return cell
     }
 }
