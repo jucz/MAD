@@ -46,7 +46,6 @@
 		849CD4961F3466B300C4E08E /* ResultQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4951F3466B300C4E08E /* ResultQuestionsViewController.swift */; };
 		849CD4981F34672F00C4E08E /* DetailResultQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849CD4971F34672F00C4E08E /* DetailResultQuestionsViewController.swift */; };
 		849FF91E1F1A5A64006D99F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */; };
-		849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF91F1F1A5A64006D99F3 /* ViewController.swift */; };
 		849FF9231F1A5A64006D99F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9211F1A5A64006D99F3 /* Main.storyboard */; };
 		849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 849FF9241F1A5A64006D99F3 /* FireLearning.xcdatamodeld */; };
 		849FF9281F1A5A64006D99F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 849FF9271F1A5A64006D99F3 /* Assets.xcassets */; };
@@ -54,6 +53,7 @@
 		849FF9361F1A5A64006D99F3 /* FireLearningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF9351F1A5A64006D99F3 /* FireLearningTests.swift */; };
 		849FF9411F1A5A65006D99F3 /* FireLearningUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849FF9401F1A5A65006D99F3 /* FireLearningUITests.swift */; };
 		849FF94F1F1A5A95006D99F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */; };
+		84C747EB1F41B8BB00777471 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C747EA1F41B8BB00777471 /* LoginViewController.swift */; };
 		84DC145D1F1F5E9000ACBD89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */; };
 		84DC145F1F1F5ECD00ACBD89 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */; };
 		84DC14611F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC14601F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift */; };
@@ -123,7 +123,6 @@
 		849CD4971F34672F00C4E08E /* DetailResultQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailResultQuestionsViewController.swift; sourceTree = "<group>"; };
 		849FF91A1F1A5A64006D99F3 /* FireLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849FF91D1F1A5A64006D99F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		849FF91F1F1A5A64006D99F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		849FF9221F1A5A64006D99F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		849FF9251F1A5A64006D99F3 /* FireLearning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FireLearning.xcdatamodel; sourceTree = "<group>"; };
 		849FF9271F1A5A64006D99F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		849FF94E1F1A5A95006D99F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84A68ACC1F2B580D0008810B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		84A68ACD1F2B580F0008810B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		84C747EA1F41B8BB00777471 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84DC145C1F1F5E9000ACBD89 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		84DC145E1F1F5ECD00ACBD89 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		84DC14601F1F5F1700ACBD89 /* RoomsAsTeacherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsAsTeacherViewController.swift; sourceTree = "<group>"; };
@@ -270,8 +270,8 @@
 		849CD4851F2F1B3800C4E08E /* PreApp */ = {
 			isa = PBXGroup;
 			children = (
-				849FF91F1F1A5A64006D99F3 /* ViewController.swift */,
 				84777D571F1C89FA004324A2 /* RegisterViewController.swift */,
+				84C747EA1F41B8BB00777471 /* LoginViewController.swift */,
 			);
 			name = PreApp;
 			sourceTree = "<group>";
@@ -704,7 +704,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849FF9201F1A5A64006D99F3 /* ViewController.swift in Sources */,
 				849FF9261F1A5A64006D99F3 /* FireLearning.xcdatamodeld in Sources */,
 				0A041D9D1F366AF00072D67A /* RoomExercise.swift in Sources */,
 				849CD48C1F2F676500C4E08E /* AlertHelper.swift in Sources */,
@@ -744,6 +743,7 @@
 				0AD4069D1F1D2F1500FD2533 /* Statistics.swift in Sources */,
 				8451C29F1F37221B00FA0D18 /* DoubleExtension.swift in Sources */,
 				0A286D271F2F2C9200587420 /* AddExerciseViewController.swift in Sources */,
+				84C747EB1F41B8BB00777471 /* LoginViewController.swift in Sources */,
 				0A033DE01F1F6D83008967BE /* Helpers.swift in Sources */,
 				0A286D2F1F30954F00587420 /* CreateRoomViewController.swift in Sources */,
 				849B59271F27B66500DE80B4 /* DetailCreatedQuestionViewController.swift in Sources */,

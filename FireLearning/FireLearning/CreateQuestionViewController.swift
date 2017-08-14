@@ -8,19 +8,20 @@
 
 import UIKit
 
-class CreateQuestionViewController: UIViewController {
+class CreateQuestionViewController: UIViewController, UITextFieldDelegate {
     //View-Verbindungen
+    
     @IBOutlet var questionText: UITextField!
     @IBOutlet var rightAnswerText: UITextField!
     @IBOutlet var firstPossText: UITextField!
     @IBOutlet var secPossText: UITextField!
     @IBOutlet var thrdPossText: UITextField!
+    @IBOutlet var scrollView: UIScrollView!
     
     @IBOutlet var saveBtn: UIButton!
     @IBAction func saveButton(_ sender: Any) {
         saveQuestion()
     }
-    
     
     //System-Methoden
     override func viewDidLoad() {
@@ -34,6 +35,18 @@ class CreateQuestionViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if(textField == secPossText){
+            scrollView.setContentOffset(CGPoint(x: 0,y: 90), animated: true)
+        }
+        else{
+            scrollView.setContentOffset(CGPoint(x: 0,y: 150), animated: true)
+        }
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0,y: -64), animated: true)
+    }
     
     
     //Methoden:

@@ -31,6 +31,7 @@ class DetailCreatedQuestionViewController: UIViewController {
     @IBAction func SaveEditButton(_ sender: Any) {
         editQuestion()
     }
+    @IBOutlet var scrollView: UIScrollView!
     //System-Methoden
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,12 @@ class DetailCreatedQuestionViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0,y: 150), animated: true)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0,y: -64), animated: true)
+    }
     
     //Hilfs-Methoden
     func initView(){

@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate{
     
     //View-Verbindungen
     @IBOutlet var vornameTextField: UITextField!
@@ -18,6 +18,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwortTextField: UITextField!
     @IBOutlet var wiederholenTextField: UITextField!
+    @IBOutlet var scrollView: UIScrollView!
     
     @IBAction func createAccountButton(_ sender: Any) {
         createAccount()
@@ -27,6 +28,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnTabAnywhere()
+        scrollView.setContentOffset(CGPoint(x: 0,y: 0), animated: true)
         displayOKTextField(_textField: vornameTextField)
         displayOKTextField(_textField: nachnameTextField)
         displayOKTextField(_textField: emailTextField)
@@ -41,6 +43,12 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0,y: 150), animated: true)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0,y: -64), animated: true)
+    }
     //Help-Mathoden
     func hideNavBar(){
         self.navigationController?.popViewController(animated: true)
